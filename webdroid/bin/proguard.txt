@@ -1,0 +1,45 @@
+# view AndroidManifest.xml #generated:82
+-keep class com.jwetherell.quick_response_code.DecoderActivity { <init>(...); }
+
+# view res/layout/capture.xml #generated:26
+# view res/layout/decoder.xml #generated:26
+-keep class com.jwetherell.quick_response_code.ViewfinderView { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:46
+-keep class com.njfsoft_utils.anim.AnimView { <init>(...); }
+
+# view AndroidManifest.xml #generated:93
+-keep class com.njfsoft_utils.artpad.ArtPad { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_artpad_artpad.xml #generated:45
+-keep class com.njfsoft_utils.artpad.ap_utils.TouchImageView { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class com.njfsoft_utils.camcapture.DecoderActivity { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_camcapture_decoderactivity.xml #generated:31
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:80
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:92
+-keep class com.njfsoft_utils.camcapture.VerticalTextView { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_camcapture_decoderactivity.xml #generated:24
+-keep class com.njfsoft_utils.camcapture.ViewfinderView { <init>(...); }
+
+# view AndroidManifest.xml #generated:97
+-keep class com.njfsoft_utils.cropimage.CropImage { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_cropimage_cropimage.xml #generated:26
+-keep class com.njfsoft_utils.cropimage.CropImageView { <init>(...); }
+
+# view AndroidManifest.xml #generated:101
+-keep class com.njfsoft_utils.cutOuts.CutOuts { <init>(...); }
+
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:34
+-keep class com.njfsoft_utils.cutOuts.CutOutsView { <init>(...); }
+
+# view AndroidManifest.xml #generated:112
+-keep class com.njfsoft_utils.shareutil.ShareActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:45
+-keep class com.qbits.qBits { <init>(...); }
+

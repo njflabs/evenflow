@@ -1,0 +1,157 @@
+CREATE TABLE quser (
+  _id  integer primary key auto_increment,
+  u_rtype int(4),
+  u_name varchar(64),
+  u_email varchar(128),
+  u_pass varchar(128),
+  u_header varchar(256),
+  u_socauthtype int(4),
+  u_socauthid varchar(128),
+  u_socauthtoke text,
+  u_dadded varchar(14)
+);
+
+CREATE TABLE qco (
+  _id  integer primary key auto_increment,
+  c_rtype int(4),
+  c_uid int(11),
+  c_title varchar(128),
+  c_desc varchar(128),
+  c_tel varchar(128),
+  c_web varchar(128),
+  c_email varchar(128),
+  c_vala varchar(128),
+  c_valb varchar(128),
+  c_dadded varchar(14)
+);
+
+CREATE TABLE qcat (
+  _id  integer primary key auto_increment,
+  cat_rtype int(4),
+  cat_uid int(11),
+  cat_coid int(11), 
+  cat_pid int(12),
+  cat_title text,
+  cat_desc text,
+  cat_vala text,
+  cat_valb text,
+  cat_dadded varchar(14)
+);
+
+CREATE TABLE qitem (
+  _id  integer primary key auto_increment,
+  i_rtype int(4),
+  i_itemid varchar(40),
+  i_bcode varchar(128),
+  i_uid int(11),
+  i_coid int(11),
+  i_catid int(11),
+  i_pid int(12),
+  i_title varchar(128),
+  i_desc text,
+  i_price_a  decimal(12,2),
+  i_price_b  decimal(12,2),
+  i_dimen_n  int(4),
+  i_dimen_v  varchar(64),
+  i_img  text,
+  i_vala varchar(128),
+  i_valb varchar(128),
+  i_dadded varchar(14)
+);
+
+CREATE TABLE qcartitem (
+  _id  integer primary key auto_increment,
+  ci_rtype int(4),
+  ci_uid int(11),
+  ci_itemid varchar(40),
+  ci_cartid varchar(64),
+  ci_coid int(11), 
+  ci_catid int(11),
+  ci_pid int(12),
+  ci_title varchar(128),
+  ci_price_a  decimal(12,2),
+  ci_price_b  decimal(12,2),
+  ci_dimen_n  int(4),
+  ci_dimen_v  varchar(64),
+  ci_img  text,
+  ci_cartqty int(4) NOT NULL DEFAULT '0',
+  ci_vala varchar(128),
+  ci_valb varchar(128),
+  ci_dadded varchar(14)
+);
+
+CREATE TABLE qordereditem (
+  _id  integer primary key auto_increment,
+  oi_rtype int(4),
+  oi_uid int(11),
+  oi_itemid varchar(40),
+  oi_cartid varchar(64),
+  oi_coid int(11), 
+  oi_catid int(11),
+  oi_pid int(12),
+  oi_title varchar(128),
+  oi_price_a  decimal(12,2),
+  oi_price_b  decimal(12,2),
+  oi_dimen_n  int(4),
+  oi_dimen_v  varchar(64),
+  oi_img  text,
+  oi_cartqty int(4) NOT NULL DEFAULT '0',
+  oi_vala varchar(128),
+  oi_valb varchar(128),
+  oi_dadded varchar(14)
+);
+
+CREATE TABLE qorder (
+  _id  integer primary key auto_increment,
+  o_rtype int(4),
+  o_uid int(11),
+  o_cartid varchar(64),
+  o_coid int(11), 
+  o_pid int(12),
+  o_cartqty int(9) NOT NULL DEFAULT '0',
+  o_vala varchar(128),
+  o_valb varchar(128),
+  o_dadded varchar(14)
+);
+
+
+CREATE TABLE qmedia (
+  _id  integer primary key auto_increment,
+  m_rtype int(4),
+  m_uid int(11),
+  m_coid int(11), 
+  m_catid int(11), 
+  m_pid int(12),
+  m_file varchar(128),
+  m_data  text,
+  m_vala text,
+  m_valb text,
+  m_valc text,
+  m_dadded varchar(14)
+);
+
+
+CREATE TABLE qextras (
+  _id  integer primary key auto_increment,
+  e_rtype int(4),
+  e_uid int(11),
+  e_vala text,
+  e_valb text,
+  e_valc text,
+  e_vald text,
+  e_vale text,
+  e_valf text,
+  e_dadded varchar(14)
+);
+
+CREATE TABLE qbit (
+  _id  integer primary key auto_increment,
+  q_rtype int(4),
+  q_uid int(11),
+  q_pid int(12),
+  q_title text,
+  q_desc text,
+  q_vala text,
+  q_valb text,
+  q_dadded varchar(14)
+);

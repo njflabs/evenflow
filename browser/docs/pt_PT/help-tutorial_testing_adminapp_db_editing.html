@@ -1,0 +1,299 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%; height: 264px;" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="background-position: 0px 0px; font-weight: 700; font-size: x-large; background-repeat: repeat; background-attachment: scroll;">
+						Tutorial - Testar adminApp</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;Este tutorial está assumindo que já está
+						<a href="help-tutorial_getting_connected.html">ligado</a> 
+						ao Base de Dados do seu website.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              O texto sql em baixo vai 
+												eliminar, <font color="#CC3300">drop if 
+												exists</font>, se existir, e crie um TestTable no 
+												BaseDados atualmente selecionado 
+												em sua
+												<a href="help-window_db_search_box.html">lista BaseDados</a>.<br>
+												Nota que o primeiro campo test_table (testFieldA), é auto incrementado (1, 2, 3, 4, etc.)
+												<br>
+																								Copie (arraste e selecione texto e utilize as teclas 
+												Ctrl+ C), o texto abaixo de cor vermelha para a área de texto 
+												[Comando SQL (Query)] localizado na 
+												<a href="help-window_db_search_box.html">
+												caixa de pesquisa</a>,
+<br>
+																								(A área de texto que exibe a 
+												instrução SQL&nbsp; para o seu base 
+												de dados), e clique no botão 
+												[Executar SQL].</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td style="color: #CC0000">
+                                              DROP TABLE IF EXISTS test_table;<br>
+												CREATE TABLE test_table (<br>
+												testFieldA int(11) auto_increment,<br>
+												testFieldB varchar(50),<br>
+												testFieldC varchar(50),<br>
+												testFieldD int(12),<br>
+												UNIQUE KEY testFieldA 
+												(testFieldA)<br>
+												) ENGINE=MyISAM DEFAULT 
+												CHARSET=latin1 
+												COLLATE=latin1_general_ci;<br>
+												<br>
+												INSERT INTO test_table VALUES 
+												(&#39;&#39;, &#39;yes&#39;, &#39;no&#39;, 5);<br>
+												INSERT INTO test_table VALUES 
+												(&#39;&#39;, &#39;yes&#39;, &#39;no&#39;, 5);<br>
+												<br>
+						</td>
+					</tr>
+					</table>
+				<table>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              Isto irá criar uma tabela, &quot;test_table&quot;,&nbsp; em 
+												seu database.<br>
+																								Para confirmar isso, clique em 
+												botao [Atualizar BaseDados] 
+												também encontrado na  
+												<a href="help-window_db_search_box.html">
+												caixa de pesquisa</a> (lado superior 
+												direito).<br>
+																								Agora você deve ver o test_table 
+												na lista de tabelas encontrada na caixa de pesquisa (lado esquerdo).<br>
+																								Clique 
+												em test_table, ou selecione-o na 
+												lista e clique no botão [Executar SQL].<br>
+																								Uma vez que este test_table contém apenas dois registros, eles serão exibidos em sua 
+												<a href="help-window_spread_sheet.html">
+												folha de calculo</a>.<br>
+												Para adicionar mais alguns registros:<br>
+																								Botão direito do mouse sobre a folha de calculo e selecione [Adicionar linhas] 
+												e no menu pop-up.
+												digite "10".<br>
+																								Isto irá adicionar 10 linhas em branco para 
+												esta folha de calculo.</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              <b>Continuado</b> em baixo.....</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              <table style="width: 100%">
+												<tr>
+													<td>
+													<img src="images/tutoral-testing-fill.gif" style="height: 325px; width: 537px"></td>
+													<td valign="top">&nbsp;</td>
+												</tr>
+												</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Clique na célula na coluna testFieldB, número da linha 2, o valor é a palavra "sim",
+e arraste para baixo até que você selecione todas as células em branco nesta coluna.
+						<br>
+						Depois clique sobre elas com o botão direito do rato e selecione 
+						a opçao [Preencher] que aparece no pop-up.<br>
+												Isto irá preencher todas as células em branco com a palavra "sim".
+Faça o mesmo para a coluna testFieldC.
+Na coluna testFieldD, alterar o valor de "5" para "10".
+Em seguida, faça a mesma coisa, selecione as células vazias, clique direito 
+						sobre as células, e no pop-up e selecione a opção [Preencher].
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>A coluna testFieldA não está a ser preenchido, pois é um campo auto-incrementado 
+						e introduz o proximo número automaticamente, i.e., 3, 4, 5, 
+						...<br>
+E como estamos fazer adição de registros, não há necessidade de editar.
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 20px">
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Uma vez que o preenchimento é feito nas células como mostrado acima, clique no botão [Upload 
+						Registo(s)] encontrado no canto superior direito .
+Isto irá adicionar estes registros nas celulas para o test_table em seu base de 
+						dados.
+
+
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Uma caixa de alerta, (pop up), deve abrir e mostrar o número de registros enviados.
+						<br>
+						Pode confirmar se os registros foram enviados através de clicando no 
+						[test_table] na lista de Tabelas na 
+						<a href="help-window_db_search_box.html">Caixa de Pesquisa</a>.<br>
+Em seguida, clicar no botão[Executar Query].<br>
+						Os novos resultados devem aparecer na planilha. 		</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			</table>
+      
+</body></html>

@@ -1,0 +1,600 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="height: 20px">
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="font-weight: 700; font-size: x-large;">Main Spread-Sheet Window</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					<tr>
+                                            <td width="100%">This is the main 
+											window that opens up when you launch 
+											adminApp.<br>
+											Following will open up the SQL
+											<a href="help-window_db_search_box.html">
+											Search Box</a>.<br>
+											In order to display results in this 
+											spread-sheet, you will first have to 
+											search for database results through 
+											the search box.</td>
+                                          </tr>
+					<tr>
+                                            <td width="100%">Once results are 
+											displayed, you can
+											<a href="help-window_edit_record.html">
+											edit</a> them with some of the 
+											spread sheet capabilities listed 
+											below.<br>
+											More functions will be added in 
+											future versions.</td>
+                                          </tr>
+					<tr>
+                                            <td width="100%">&nbsp;</td>
+                                          </tr>
+					<tr>
+                                            <td width="100%">
+                                            <b>Below</b> is a listing with a 
+											description of all the components.</td>
+                                          </tr>
+					<tr>
+                                            <td width="100%">&nbsp;</td>
+                                          </tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+      
+<table style="width: 100%">
+	<tr>
+		<td style="width: 1045px">
+		<img src="images/help-window_spread_sheet.gif" style="height: 609px; width: 756px"></td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		<font style="background-color:#CCCCCC">Menu List</font> </td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+                                            <td width="100%">
+											<table>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													File -&gt; <font color="#8888FF">
+													[Open]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Opens selected cvs file (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													File -&gt; <font color="#8888FF">
+													[Save]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Saves selected cvs file&nbsp; (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													File -&gt; <font color="#8888FF">
+													[Save As]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Saves As selected cvs file&nbsp; (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													File -&gt; <font color="#8888FF">
+													[Quit]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Closes the adminApp Program.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 19px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 19px;">
+													</td>
+													<td style="width: 674px; height: 19px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Edit -&gt; <font color="#8888FF">
+													[Copy]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Copies the selected 
+													text/cells on the 
+													spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Edit -&gt; <font color="#8888FF">
+													[Paste]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Pastes the copied text/cells 
+													to the spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Edit -&gt; <font color="#8888FF">
+													[Fill Column]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Fills the selected cells in 
+													a column with the first 
+													selected cell value.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Tools-&gt; <font color="#8888FF">
+													[Search Database]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Opens the database
+													<a href="help-window_db_search_box.html">
+													search 
+													box</a>, allowing you to 
+													search your database for 
+													results to be displayed on 
+													spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Tools -&gt; <font color="#8888FF">
+													[Add Database]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Opens the 
+													<a href="help-window_add_database.html">Add/Edit database</a> 
+													box, allowing you to add one 
+													of your website databases to 
+													the Search Box database list.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Data -&gt; <font color="#8888FF">
+													[Edit Record]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Opens the
+													<a href="help-window_edit_record.html">
+													Edit Record</a> box, 
+													allowing you to edit the 
+													selected row record.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top" nowrap="nowrap">
+													Data -&gt; <font color="#8888FF">
+													[Upload Selected Record to 
+													Database]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Uploads the selected record 
+													row to your database.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Read</a> how records are uploaded using the &quot;<i>Replace 
+						into tablename</i>&quot; 
+						MySQL command.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top" nowrap="nowrap">
+													Data -&gt;&nbsp; <font color="#8888FF">
+													[Upload All Record to 
+													Database]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Uploads all records on the 
+													spread-sheet to your database.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Read</a> how records are uploaded using the &quot;<i>Replace 
+						into tablename</i>&quot; 
+						MySQL command.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Data -&gt; <font color="#8888FF">
+													[Add Row]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Adds a cell row to the 
+													bottom of the spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Data -&gt; <font color="#8888FF">
+													[Add Row(s)]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Adds cell row(s) to the 
+													bottom of the spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Data -&gt; <font color="#8888FF">
+													[Delete Row(s)]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Deletes the selected rows 
+													from the spread-sheet.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;This does not delete the records from your 
+						database, only from the spread-sheet.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												</table>
+						</td>
+                                          		</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		Spread Sheet</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+                                            <td width="100%">
+											<table>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Information <font color="#8888FF">Label</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Text shown above the 
+													spread-sheet. Displays 
+													your current database and 
+													table name.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Search Database<font color="#8888FF"> Button</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Opens the database
+													<a href="help-window_db_search_box.html">
+													search 
+													box</a>, allowing you to 
+													search your database for 
+													results to be displayed on 
+													spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top"  nowrap="nowrap">
+													Upload Record(s<font color="#8888FF">) Button</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Uploads all records on 
+													spread-sheet to your 
+													database.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Read</a> how records are uploaded using the &quot;<i>update</i>&quot; 
+						MySQL command.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top"  nowrap="nowrap">
+													<font color="#8888FF">
+													Progress Bar</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Upper right hand corner.<br>
+													The connection progress 
+													bars,&nbsp; (mainly found on 
+													the top right hand side of 
+													most windows) will flash 
+													while adminApp is making a 
+													connection to your website. 
+													For now, they will not show 
+													you a progress, percentage 
+													wise, because most 
+													connections (DSL returning 
+													500 records), will take less 
+													than 4 seconds. The 
+													percentage feature may be 
+													added in the future.<table>
+					</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top" nowrap="nowrap">
+													Spread-Sheet:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													This is where the database 
+													records are displayed after 
+													searching your database 
+													through the
+													<a href="help-window_db_search_box.html">
+													database search box</a>.<br>
+													After editing the results on 
+													the spread-sheet, you can 
+													upload all the results on 
+													the spread-sheet to the 
+													database or you can upload 
+													each record individually.<br>
+													Records can also be edited 
+													individually and saved to 
+													the
+													<a href="help-window_pending_queries_list.html">
+													Pending Queries</a> list 
+													(upload later).<br>
+													To edit records individually, 
+													you can open up the
+													<a href="help-window_edit_record.html">
+													Edit Record</a> box either 
+													by double-clicking on the 
+													row number in the grey left 
+													hand column (showing the row 
+													numbers), right clicking 
+													over the row record and 
+													selecting Edit Record, or 
+													using the Menu -&gt; Data -&gt; 
+													Edit Record. Also see
+													<a href="help-tutorial_editing_records.html">
+													Editing Records</a>.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td id="tblcellTblList0" name="tblcellTblList"  style="font-weight: 700; background-color: #FFFFFF;" valign="top">
+															  Pending Queries
+																<font color="#8888FF">
+																List</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													The Pending Queries list is 
+													found on the bottom of the 
+													spread-sheet.<br>
+													Basically instead of 
+													uploading each selected 
+													record after editing it, you 
+													can send the record row to 
+													this list.<br>
+													For now sending the record 
+													row to his list can only be 
+													done through the
+													<a href="help-window_edit_record.html">
+													Edit Record</a> box.<br>
+													Once you are done editing 
+													your selected records and 
+													adding them to this list, 
+													you can then upload them all 
+													at once.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												</table>
+						</td>
+                                          		</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+      
+</body></html>

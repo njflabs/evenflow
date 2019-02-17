@@ -1,0 +1,508 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="height: 20px">
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="font-weight: 700; font-size: x-large;">Janela 
+						Principal - Folha de Calculo</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>Esta é a janela principal que se abre quando você inicia adminApp.
+						<br>
+Para amostrar resultados nesta folha de calculo, primeiro tem que procurar por resultados do 
+						seu base de dados através da
+												<a href="help-window_db_search_box.html">Caixa de Pesquisa</a>. 
+						Uma vez exibidas, você pode editá-los com algumas das capacidades de folha 
+						de calculo <b>abaixo</b> mecionados.<br>
+						Mais funções serão adicionados em versões futuras.<td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					<tr>
+				<td>
+				<b>Veja descrição de todas as opções abaixo.</b></td>
+					</tr>
+					<tr>
+                                            <td width="100%">&nbsp;</td>
+                                          </tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+      
+<table style="width: 100%">
+	<tr>
+		<td style="width: 1045px; height: 421px;">
+		<img src="images/help-window_spread_sheet.gif"></td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		<font style="background-color:#CCCCCC">Lista de Menus Topo</font>  </td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+                                            <td width="100%">
+											<table>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Ficheiro -&gt; <font color="#8888FF">
+													[Abrir]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Abre ficheiro .cvs 
+													selecionado (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Ficheiro -&gt; <font color="#8888FF">
+													[Guardar]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Guarda ficheiro .cvs 
+													selecionado (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Ficheiro -&gt; <font color="#8888FF">
+													[Guardar Como]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Guarda Como ficheiro .cvs 
+													selecionado (experimental).</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Ficheiro -&gt; <font color="#8888FF">
+													[Fechar]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Fecha o programa.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 19px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 19px;">
+													</td>
+													<td style="width: 674px; height: 19px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Editar -&gt; <font color="#8888FF">
+													[Copiar]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Copiea o texto selecionado 
+													na folha de calculo.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Editar-&gt; <font color="#8888FF">
+													[Colar]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Cola para a folha de calculo 
+													texto copiado.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Editar -&gt; <font color="#8888FF">
+													[Preencher Coluna]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Preenche as células 
+													selecionadas em uma coluna 
+													com o valor da primeira 
+													célula selecionada.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Ferramentas-&gt; <font color="#8888FF">
+													[Pesquisar Base de Dados]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Abre a
+													<a href="help-window_db_search_box.html">
+													caixa de pesquisa</a>, 
+													permitindo a procura no seu 
+													base de dados para que os 
+													resultados sejam exibidos 
+													nesta folha de calculo.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Ferramentas-&gt;&nbsp; <font color="#8888FF">
+													[Adicionar Base De Dados]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Opens the&nbsp; 
+													box, allowing you to add one 
+													of your website databases to 
+													the Search Box database list.<br>
+													Abre a caixa de 
+													<a href="help-window_add_database.html">Adicionar/Editar</a> 
+													base de dados, permitindo 
+													que você adicione uma das 
+													bases de dados do seu site á 
+													lista na
+													<a href="help-window_db_search_box.html">
+													caixa de pesquisa</a>.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Dados -&gt; <font color="#8888FF">
+													[Editar Registo]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Abre a caixa de <a href="help-window_edit_record.html">
+													Editar 
+													Registro</a>, que lhe permite 
+													editar o registro 
+													seleccionado.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top" nowrap="nowrap">
+													Dados -&gt; <font color="#8888FF">
+													[Faça Upload Registros Seleccionados]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Faz upload do registro 
+													selecionado para o base de 
+													dados<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Leia</a> 
+						como os registros são enviados usando o comando MySQL &quot;Replace 
+						into 
+						tablename&quot;.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top" nowrap="nowrap">
+													Dados -&gt;&nbsp; <font color="#8888FF">
+																										[Faça Upload de todos 
+													Registros]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Faz upload do registros na 
+													folha de calculo para o base 
+													de dados<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Leia</a> 
+						como os registros são enviados usando o comando MySQL &quot;Replace 
+						into 
+						tablename&quot;.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Dados -&gt; <font color="#8888FF">
+													[Adicionar Fila]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Adiciona uma linha de 
+													células no fundo desta folha 
+													de calculo.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Dados -&gt; <font color="#8888FF">
+													[Adicionar Fila(s)]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Adiciona linha(s) de células 
+													no fundo desta folha de 
+													calculo.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Dados -&gt; <font color="#8888FF">
+													[Eliminar Fila(s)]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Elimina as filas 
+													selecionadas da folha de 
+													calculo.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;Isto não elimina os registros do seu base de 
+						dados, somente desta folha de calculo.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												</table>
+						</td>
+                                          		</tr>
+			</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		Folha de Calculo</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+                                            <td width="100%">
+											<table>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Informação
+													<font color="#8888FF">Rótulo</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													O texto mostrado acima da 
+													folha de calculo. Mostra o 
+													seu base de dados atual e o 
+													nome da tabela</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Pesquisar Base de Dados
+													<font color="#8888FF"> &nbsp;Botão</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Abre a
+													<a href="help-window_db_search_box.html">
+													caixa de pesquisa</a> de 
+													base de dados, permitindo 
+													que você procure em seu base 
+													de dados para que os 
+													resultados sejam exibidos 
+													nesta folha de calculo.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top"  nowrap="nowrap">
+													Faça
+													Upload Registros(s<font color="#8888FF">) Botão</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Faz upload de todos os 
+													registros na folha de 
+													calculo para seu base de 
+													dados.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top"  nowrap="nowrap">
+													<font color="#8888FF">
+													Barra de Progresso</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Enconta se no canto direito 
+													superior. As barras de 
+													progresso, (encontrado 
+													principalmente no lado 
+													superior direito da maioria 
+													das janelas) irá piscar 
+													enquanto adminApp ésta a 
+													fazer uma ligação para o seu 
+													site. Por enquanto, eles não 
+													vão lhe mostrar um 
+													progresso, percentualmente, 
+													porque a maioria das 
+													conexões DSL (retornar 500 
+													registros), levará menos de 
+													4 segundos. A característica 
+													porcentagem pode ser 
+													adicionada no futuro.<table>
+					</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top" nowrap="nowrap">
+													Folha de Calculo:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Este é o local onde os 
+													registros do base de dados 
+													são exibidos depois de 
+													procurar seu base de dados 
+													através da
+													<a href="help-window_db_search_box.html">
+													caixa de pesquisa</a>.<br>
+Depois de editar os resultados nesta folha de calculo, pode fazer upload de todos os resultados para o 
+													seu base de dados ou pode 
+													fazer upload de cada 
+													registro individualmente.<br>
+Os registros também podem ser editados individualmente e guardado na lista de 
+													<a href="help-window_pending_queries_list.html">
+													comandos SQL pendentes</a> 
+													(upload mais tarde). <br>
+													Para editar registros 
+													individualmente, pode&nbsp;pelo botão direito do mouse sobre a folha de calculo e 
+				selecione [Editar Registro] <br>
+				Além disso, um duplo clique sobre o número da linha (coluna 
+				cinza no lado esquerdo), vai abrir a caixa de 
+													<a href="help-window_edit_record.html">
+													Editar Registro</a>.<br>
+													Tambem veja
+													<a href="help-tutorial_editing_records.html">
+													Editar Registros</a>.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												<tr>
+													<td id="tblcellTblList0" name="tblcellTblList"  style="font-weight: 700; background-color: #FFFFFF;" valign="top">
+															  Comandos SQL
+															  Pendentes
+																<font color="#8888FF">
+																Lista</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													A lista de Comandos SQL Pendentes é encontrado no fundo desta 
+													folha de calculos.
+Basicamente, em vez de fazer upload de cada registro selecionado após a edição, você pode enviar 
+													o registro para esta lista.&nbsp; Uma vez que terminar de editar os registros selecionados e adicioná-los a esta lista, então você pode 
+													fazer upload de todos de uma vez.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													&nbsp;</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">&nbsp;</td>
+												</tr>
+												</table>
+						</td>
+                                          		</tr>
+			</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+      
+</body></html>

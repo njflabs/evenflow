@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (C) 2008 ZXing authors
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+
+
+      android:layout_width="360dip"
+      android:layout_height="280dip"
+
+ -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
+
+
+  <SurfaceView android:id="@+id/preview_view"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+ >
+  </SurfaceView>
+
+  <com.njfsoft_utils.cutOuts.CutOutsView
+      android:id="@+id/cutouts_view"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+>
+  </com.njfsoft_utils.cutOuts.CutOutsView>
+
+<RelativeLayout 
+      android:id="@+id/gbgv_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   />
+  <com.njfsoft_utils.anim.AnimView
+      android:id="@+id/gif_view"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+
+>   </com.njfsoft_utils.anim.AnimView> 
+
+
+<!--  
+  <com.njfsoft_utils.anim.AnimBGView
+      android:id="@+id/gif_bgview"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+
+>
+  </com.njfsoft_utils.anim.AnimBGView>
+
+
+  <com.njfsoft_utils.anim.AnimPrevView
+      android:id="@+id/gif_prevview"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+
+>
+
+   </com.njfsoft_utils.anim.AnimPrevView> 
+-->
+
+<RelativeLayout 
+      android:id="@+id/gpv_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   />
+
+   <com.njfsoft_utils.camcapture.VerticalTextView android:id="@+id/status_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_horizontal"
+          android:textColor="#88ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Click for Picture  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+            android:textSize="18sp">
+</com.njfsoft_utils.camcapture.VerticalTextView>
+
+   <com.njfsoft_utils.camcapture.VerticalTextView android:id="@+id/status_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+          android:textColor="#88ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Stop for Picture  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+            android:textSize="18sp">
+</com.njfsoft_utils.camcapture.VerticalTextView>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="right|center_vertical"
+ 		>
+
+                <ImageButton
+                        android:id="@+id/btn_vid"
+                        android:layout_width="36dip"
+                        android:layout_height="36dip"
+			  android:layout_margin="3dp"
+	    android:background="@drawable/rounded_corners"
+                        android:src="@drawable/icon_vid"  
+                        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="1dp"
+        android:scaleType="fitCenter"      
+          		 />
+                <ImageButton
+                        android:id="@+id/btn_cam"
+                        android:layout_width="36dip"
+                        android:layout_height="36dip"
+			  android:layout_margin="3dp"
+	    		android:background="@drawable/rounded_corners"
+                 	android:src="@drawable/icon_cam"    
+                        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="1dp"
+        android:scaleType="fitCenter"     
+          		 />
+
+        </LinearLayout>
+
+</FrameLayout>

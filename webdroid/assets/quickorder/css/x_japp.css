@@ -1,0 +1,29 @@
+﻿body {
+	 font-family: sans-serif;
+	 font-size: 24px;
+}
+
+
+.txtBig {
+font-size: 28px;
+font-size:large;
+}
+
+.txtSmall {
+font-size: 18px;
+font-family: Verdana,Helvetica,Arial;
+}
+
+.txtNrml {
+font-size: 24px;
+font-family: Verdana,Helvetica,Arial;
+}
+
+.txtLrg {
+font-size: 26px;
+font-family: Verdana,Helvetica,Arial;
+}
+.txtXLrg {
+font-size: 28px;
+/* font-family: Verdana,Helvetica,Arial; */
+}

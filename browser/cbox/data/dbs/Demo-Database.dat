@@ -1,0 +1,8 @@
+hostfolder = http://mydomain/qcommsfolder/
+adminusername = username
+adminpassword = database password
+encryptedUname = ecrypted username
+encryptedPass = ecrypted password
+webdbasename = database name
+dbID = 555
+dbHost = localhost

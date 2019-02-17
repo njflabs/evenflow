@@ -1,0 +1,195 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="background-position: 0px 0px; font-weight: 700; font-size: x-large; background-repeat: repeat; background-attachment: scroll;">
+						Tutorial - Editing Records</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td style="height: 32px">
+						<img src="images/alert_small.gif" width="15" height="14"> </td>
+						<td style="height: 32px">This tutorial is assuming you already
+						<a href="help-tutorial_getting_connected.html">connected</a> 
+						to your website database, have
+						<a href="help-tutorial_searching_records.html">searched</a> 
+						your database for records, and they are displayed on 
+						your <a href="help-window_spread_sheet.html">
+						spread-sheet</a>.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              There are multiple ways to edit 
+												the database records on the 
+												spread-sheet.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              You can edit them directly on the 
+												spread-sheet or you can edit 
+												them individually by right 
+												clicking over the spread-sheet 
+												row and selecting Edit Record. 
+												Also, double clicking on the row 
+												number ( grey column on left 
+												hand side), will open up the 
+												Record Edit box.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Editing and deleting rows on the spread-sheet will 
+						not alter your database.<br>
+						Your database will only be altered if you upload the 
+						records.<br>
+						Deleting rows on a spread sheet comes in handy if say 
+						you searched for 50 records and modified only like 25.<br>
+						You would then delete the rows you haven't modified and
+						<a href="help-tutorial_uploading_records.html">upload</a> 
+						the rest.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              There are also a few options if 
+												you want to add a record to your 
+												table.<br>
+												<br>
+												Select the
+												<a href="help-window_db_search_box.html">
+												table</a> that you would like to 
+												add a record to.<br>
+												In the Number of Results, put 3 
+												and hit Run Query.<br>
+												You should now see the last 3 
+												records from that table in the 
+												spread-sheet.<br>
+												In the spread-sheet 
+												top menu,&nbsp; select [Data] -&gt; 
+												[Add Row].<br>
+												It will 
+												add a blank row to the bottom of 
+												your spread sheet.<br>
+												Fill in the record fields on the 
+												spread sheet and click upload 
+												records.<br>
+												<br>
+												Keep in mind that adminApp 
+												assumes that your database 
+												tables have the first field in 
+												your tables as a unique index 
+												field, auto increment.<br>
+												So if you were to delete the 
+												auto-increment number (set it to 
+												blank) on the spread-sheet, when 
+												you upload the records, the 
+												blank field is usually treated 
+												as a new record with MySql.<br>
+												<br>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;If your table has no records, by default it will 
+						set a demo record by copying the field names as values 
+						to the spread-sheet.<br>
+&nbsp;This record is not in your database. It is just to facilitate adding a 
+						record to the table.</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			</table>
+      
+</body></html>

@@ -1,0 +1,300 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%; height: 264px;" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="background-position: 0px 0px; font-weight: 700; font-size: x-large; background-repeat: repeat; background-attachment: scroll;">
+						Tutorial - Testing</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;This tutorial is assuming you area already
+						<a href="help-tutorial_getting_connected.html">connected</a> 
+						to your website database.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              The below sql text will, <font color="#CC3300">drop if 
+												exists</font>, and then create a 
+												testTable in the currently 
+												selected database on your
+												<a href="help-window_db_search_box.html">database list</a>.<br>
+												Note that the first field in 
+												test_table (testFieldA), is auto 
+												incremented (1, 2, 3, 4 etc).<br>
+												Copy (drag and select text and 
+												use Ctrl+ C keys), the below red colored text&nbsp; to 
+												the SQL Query text area located 
+												in the
+												<a href="help-window_db_search_box.html">
+												search box</a>,<br>
+												(The text area that displays the 
+												actual SQL statement for your 
+												database),&nbsp; and click the 
+												[Run Query] button.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td style="color: #CC0000">
+                                              DROP TABLE IF EXISTS test_table;<br>
+												CREATE TABLE test_table (<br>
+												testFieldA int(11) auto_increment,<br>
+												testFieldB varchar(50),<br>
+												testFieldC varchar(50),<br>
+												testFieldD int(12),<br>
+												UNIQUE KEY testFieldA 
+												(testFieldA)<br>
+												) ENGINE=MyISAM DEFAULT 
+												CHARSET=latin1 
+												COLLATE=latin1_general_ci;<br>
+												<br>
+												INSERT INTO test_table VALUES 
+												(&#39;&#39;, &#39;yes&#39;, &#39;no&#39;, 5);<br>
+												INSERT INTO test_table VALUES 
+												(&#39;&#39;, &#39;yes&#39;, &#39;no&#39;, 5);<br>
+						</td>
+					</tr>
+					</table>
+				<table>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              This will create a test_table in 
+												your website database.<br>
+												To confirm this, click the 
+												[Reload Database Information] 
+												button also found in
+												<a href="help-window_db_search_box.html">
+												search box</a> (top right hand 
+												side).<br>
+												You should now see the 
+												test_table in the tables list 
+												found in
+												<a href="help-window_db_search_box.html">
+												search box</a> (left hand side).<br>
+												Click on test_table, or select 
+												it from the list, and click the 
+												[Run Query] button.<br>
+												Since this test_table only 
+												contains 2 records, they will be 
+												displayed on your
+												<a href="help-window_spread_sheet.html">
+												spread-sheet</a>.</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              Lets add a few more records.<br>
+												Right click over the 
+												spread-sheet and select [Add 
+												Rows] from the pop-up menu.<br>
+												Enter &quot;10&quot; in the text input 
+												area. This will add 10 blank 
+												rows to your spread-sheet.<br>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              <b>Continue </b>below.....</td>
+					</tr>
+					<tr>
+						<td style="width: 4px">&nbsp;</td>
+						<td>
+                                              <table style="width: 100%">
+												<tr>
+													<td>
+													<img src="images/tutoral-testing-fill.gif" style="height: 325px; width: 537px"></td>
+													<td valign="top">&nbsp;</td>
+												</tr>
+												</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Click on the cell in the testFieldB column, row number <span style="background-color:gray">2</span>, value 
+				is the word &quot;yes&quot;,<br>
+						and drag down until you select all the blank cells in 
+						this column.<br>
+						Right-click over them and select the [Fill] option in 
+						the pop-up.<br>
+						This will fill all blank cells with the word &quot;yes&quot;.<br>
+						Do the same for the testFieldC column.<br>
+						In the testFieldD column, change the value from &quot;5&quot; to 
+						&quot;10&quot;.<br>
+						Then do the same thing, select empty cells, right click 
+						for pop up and select the [Fill] option.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;The testFieldA column is not being filled because 
+						it is an auto-incremented field in your database.<br>
+&nbsp;It will number itself, 3, 4, 5, etc.<br>
+&nbsp;And since we are adding records, there is no need to edit.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 20px">
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>Once your done filling in the cells as shown above, 
+						click the [Upload Record(s)] button found on top right 
+						hand corner of spread-sheet.<br>
+						This will add the extra records to the test_table in 
+						your web-site database.</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td>An alert box should pop open showing you the number 
+						of records uploaded.<br>
+						You can confirm if the records have been uploaded by 
+						selecting or clicking on the test_table in the
+						<a href="help-window_db_search_box.html">SQL/Search Box</a>.<br>
+						Then clicking the [Run Query] button.<br>
+						The new results should show up on the spread-sheet.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			</table>
+      
+<p>&nbsp;</p>
+      
+</body></html>

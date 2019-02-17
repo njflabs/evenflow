@@ -1,0 +1,268 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="font-weight: 700; font-size: x-large;">Record 
+						Edit Box</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+      
+<table style="width: 100%">
+	<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+	<tr>
+				<td>
+				You can open up this record edit box when:<br>
+				You select the [Edit Record] option either from the spread-sheet 
+				top Data menu.<br>
+				Or by right-clicking over the selected row in the spread-sheet 
+				and select the [Edit Record] option from the right-click popup.<br>
+				Double clicking over the grey cell on the spread sheets right 
+				hand side will also open up this Record Edit box. </td>
+			</tr>
+	<tr>
+				<td>
+				You can edit the record field values by selecting the field to 
+				edit and entering the new value in the Field Edit text input.<br>
+				If the field value is a long text string, you can double click 
+				over the field value and a wider text area will open up. </td>
+			</tr>
+	<tr>
+				<td>
+				Once you are done editing, you can upload the record to your 
+				database or add it to the
+				<a href="help-window_spread_sheet.html">Pending Uploads</a> 
+				list.</td>
+			</tr>
+	<tr>
+                                            <td width="100%">
+                                            <b>Below</b> is a listing with a 
+											description of all the components.</td>
+                                          </tr>
+	<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+	<tr>
+		<td>
+		<table>
+			<tr>
+				<td>
+		<img src="images/help-window_edit_record.gif" style="height: 376px; width: 431px"></td>
+				<td>
+				<table style="width: 100%">
+					<tr>
+						<td><img src="images/help-window_edit_record_small.gif" style="height: 186px; width: 220px"></td>
+					</tr>
+					<tr>
+						<td style="text-align: center">Double clicking on a 
+						field value<br>
+						will open up this larger text area.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		<br>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%">
+			<tr>
+				<td><table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;All blank field values will show the value &quot;<i>isnull</i>&quot;.<br>
+&nbsp;If you want to upload a blank value, do not change, it will set isnull to 
+						blank automatically.</td>
+					</tr>
+				</table>
+													</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		<font style="background-color:#CCCCCC">Record Menu</font> </td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+                                            <td width="100%">
+											<table>
+												<tr>
+													<td style="font-weight: 700" valign="top">
+													Record -&gt; <font color="#8888FF">
+													[Edit Field]</font>:</td>
+													<td style="font-weight: 700">
+													&nbsp;</td>
+													<td style="width: 674px">
+													Will switch to the larger 
+													text area allowing you to 
+													edit the selected field 
+													value.<br>
+													Double clicking on the field 
+													value will also switch to 
+													the larger text area.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 19px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 19px;">
+													</td>
+													<td style="width: 674px; height: 19px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top" nowrap="nowrap">
+													Record -&gt; <font color="#8888FF">
+													[Upload Record to Database]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Uploads the record to your 
+													website database.<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;<a href="help-tutorial_uploading_records.html">Read</a> 
+						how records are uploaded using the &quot;<i>Replace into 
+						tablename</i>&quot; MySQL command.</td>
+					</tr>
+				</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Record -&gt; <font color="#8888FF">
+													[Add to Pending Uploads]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Adds this record to the
+													<a href="help-window_spread_sheet.html">
+													Pending Queries</a> list 
+													found on the bottom of your 
+													spread-sheet.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 16px;" valign="top">
+													Record -&gt; <font color="#8888FF">
+													[Close]</font>:</td>
+													<td style="font-weight: 700; height: 16px;">
+													</td>
+													<td style="width: 674px; height: 16px;">
+													Closes this Record Edit box.</td>
+												</tr>
+												<tr>
+													<td style="font-weight: 700; height: 18px;" valign="top">
+													</td>
+													<td style="font-weight: 700; height: 18px;">
+													</td>
+													<td style="width: 674px; height: 18px;"></td>
+												</tr>
+												</table>
+						</td>
+                                          		</tr>
+			</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px; font-weight: 700; text-align: center;">
+		Components</td>
+	</tr>
+	<tr>
+		<td style="width: 1045px">
+		<table style="width: 100%">
+			<tr>
+				<td>
+		<table style="width: 100%">
+			<tr>
+				<td>The Record Edit box creates 2 parallel lists of the field 
+				names and field values for the specific database table record.<br>
+				Note that the selected row record displayed on the
+				<a href="help-window_spread_sheet.html">spread sheet</a> is not 
+				updated when you finish editing/uploading this record.<br>
+				You must do that manually in this version. Or just redo the 
+				search request to refresh your spread-sheet records.</td>
+			</tr>
+		</table>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+      
+</body></html>

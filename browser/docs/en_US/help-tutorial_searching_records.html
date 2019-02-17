@@ -1,0 +1,114 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="background-position: 0px 0px; font-weight: 700; font-size: x-large; background-repeat: repeat; background-attachment: scroll;">
+						Tutorial - Searching Records</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;This tutorial is assuming you area already
+						<a href="help-tutorial_getting_connected.html">connected</a> 
+						to your website database.</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              All database searching, including 
+												running MySQL queries is done 
+												through the Database
+												<a href="help-window_db_search_box.html">
+												Query/Search</a> Box.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              The query text in the search box 
+												will take any sql query, or 
+												auto complete one as you select 
+												your search criteria.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;The default query statement in the SQL text area is to 
+				show the last 50 records of the selected database table.<br>
+				&nbsp;i.e.; <b>select * from DemoTableD order by DemoFieldD1 desc limit 50;</b></td>
+			</tr>
+			<tr>
+				<td>
+				The results will then show up on your
+				<a href="help-window_spread_sheet.html">spread sheet</a> where 
+				you can <a href="help-tutorial_editing_records.html">edit</a> 
+				and <a href="help-tutorial_uploading_records.html">upload</a> 
+				these records/results.</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			</table>
+      
+</body></html>

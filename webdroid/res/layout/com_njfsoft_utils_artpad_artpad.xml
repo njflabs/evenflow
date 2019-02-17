@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+android:background="@android:color/black"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+              xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@+id/lnrlyBtns"
+android:orientation="horizontal"
+android:background="@android:color/black"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content">
+        <ImageButton
+                android:id="@+id/btn_Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_artpad"
+                android:layout_gravity="center"
+		    android:background="@drawable/rounded_corners"
+                />
+        <Button android:id="@+id/MainImageButtonFile"
+android:background="@drawable/rounded_corners"
+android:text="File"
+android:textColor="@android:color/white"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_weight="1.0"
+android:layout_gravity="center"/>
+        <Button android:id="@+id/MainImageButtonEffects"
+android:background="@drawable/rounded_corners"
+android:text="Edit"
+android:textColor="@android:color/white"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_weight="1.0"
+android:layout_gravity="center" />
+         <Button android:id="@+id/MainImageButtonShare"
+android:background="@drawable/rounded_corners"
+android:text="Share"
+android:textColor="@android:color/white"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"  
+android:layout_weight="1.0"   
+android:layout_gravity="center" />
+    </LinearLayout>
+    <com.njfsoft_utils.artpad.ap_utils.TouchImageView
+                android:id="@+id/ImageView1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:scaleType="matrix" />
+</LinearLayout>

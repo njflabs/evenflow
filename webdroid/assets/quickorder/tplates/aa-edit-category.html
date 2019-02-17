@@ -1,0 +1,63 @@
+<table  class="clsDvCntntTtle" width="100%" cellpadding="0" cellspacing="0"><tr>
+	<td><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.php?pid=aa-edit-category&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a>
+				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px"><ti data-ison="currPgTitle" data-desc="edit_item"></td>
+	<td align="right"><table><tr><td>
+				 
+  <a class="btn txtBold" href="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" style="text-transform:none">More</a>
+        
+ 
+
+        
+        
+        </td></tr></table></td></tr></table>
+
+         		      <table><tr><td width="100%"></td><td style="min-width:150px;"  onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')"> 
+         		      <div class="collection" id="mmDdown" style="position:absolute;display:none;visibility:hidden;z-index:999999;margin-right:10px">
+    <a href="javascript:doNuItemDelete();" class="collection-item txtDecorNone"><i class="material-icons">delete</i><span style="vertical-align:super;padding-left:12px;"><img alt="21" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" width="4px" height="4px" onload="dw(this.parentNode, stxt[42]);"  onerror="dw(this.parentNode, stxt[42]);">Delete</span></a>
+     <a href="javascript:doNuItemDelete();" class="collection-item txtDecorNone"><i class="material-icons">zoom_in</i><span style="vertical-align:super;padding-left:12px;"><img alt="21" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" width="4px" height="4px" onload="dw(this.parentNode, stxt[53]);"  onerror="dw(this.parentNode, stxt[53]);">Delete</span></a>
+     <a href="javascript:preAQR();" class="collection-item txtDecorNone"><i class="material-icons">content_copy</i><span style="vertical-align:super;padding-left:12px;">QRCode</span></a>
+      <a href="javascript:document.location.href='index.php?pid=aa-show-category&cid=' + cid + '&catid=' + catid" class="collection-item txtDecorNone"><i class="material-icons">category</i><span style="vertical-align:super;padding-left:12px;"><img alt="21" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" width="4px" height="4px" onload="dw(this.parentNode, stxt[53] + ' ' + stxt[16]);"  onerror="dw(this.parentNode, stxt[53] + ' ' + stxt[16]);">View Category</span></a>
+     <a href="javascript:getAppDBReq();" class="collection-item txtDecorNone"><i class="material-icons">content_copy</i><span style="vertical-align:super;padding-left:12px;">AppDB</span></a>
+
+
+  </div> </td></tr></table>
+
+
+&nbsp;<table style="margin: 0 auto" align="center" id="tblCatEdit" class="cls-form-dv">
+	<tr>
+		<td>	
+<input class="cls_input_text"  name="tmp_cat_title" id="tmp_cat_title" value="" data="disnull"   onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'"></td>
+		<td>	
+		<span><a href="javascript:doCatTitleEdit();" class="btn-floating clsDvCntntTtle"><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">edit</i></a>
+</span></td>
+	</tr>
+	</table>
+	
+	<table style="margin: 0 auto" align="center">
+		<tr>
+			<td><span id="lbl_i_title"  style="vertical-align:super"><ti data-ison="stxt[17]" data-desc="add_item"></ti></span></td>
+		</tr>
+		<tr>
+			<td><table style="margin:0 auto" align="center"  class="cls-form-dv">
+	<tr>
+		<td><input  name="tmp_i_title" id="tmp_i_title" value="" class="cls_input_text" value="" data="disnull"   onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'" style="margin-bottom:0px"></td>
+		<td><a class="btn-floating clsDvCntntTtle" href="javascript:doItemAdd('qitem',5)"><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">add</i></a>
+</td>
+	</tr>
+</table>
+</td>
+		</tr>
+		</table>
+ <table style="margin: 0 auto;max-width:480px" align="center" width="100%">
+	<tr>
+		<td>	
+														  <div id="divQitems" class="collection cls-form-dv" style="border:0px"></div></td>
+					  </tr>
+	</table>
+&nbsp;<!-- TO delete <img alt="imgldr" height="14px" width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" onload="javascript:doPgInit();"  onerror="javascript:doPgInit();"> -->
+
+
+
+          
+          
+                                           

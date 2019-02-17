@@ -1,0 +1,171 @@
+<html><head><title>adminapp</title>
+<STYLE type=text/css>
+BODY {FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;
+margin-top: 7px; margin-left: 7px; margin-right: 7px; margin-bottom: 7px; }
+TD { FONT-SIZE: small; FONT-FAMILY: Geneva, Arial, Helvetica, san-serif;}
+</STYLE>
+<link href="styles-body.css" rel="stylesheet" type="text/css">
+<base target="main">
+<SCRIPT language="JavaScript"> 
+   if (top.frames.length==0)
+    {
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+top.location="./?ib=" + filename.replace(".html", "");
+    }
+</SCRIPT>
+</head>
+<body>
+      
+		<table style="width: 100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+				<table cellspacing="1" cellpadding="2">
+					<tr>
+						<td>
+						&nbsp;</td>
+						<td style="background-position: 0px 0px; font-weight: 700; font-size: x-large; background-repeat: repeat; background-attachment: scroll;">
+						Tutorial - Fazer Upload de Registos</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+						&nbsp;</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>&nbsp;Este tutorial está assumindo que 
+				você já está <a href="help-tutorial_getting_connected.html">conectado</a> ao seu base de dados 
+						do seu site, tenha 
+						<a href="help-tutorial_searching_records.html">pesquisado</a> 
+						o banco de dados por registros, e eles são 
+						exibidos em seu <a href="help-window_spread_sheet.html">
+						spread-sheet</a>. </td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>
+                                              <table>
+					<tr>
+						<td>
+						<img src="images/alert_small.gif" width="15" height="14"></td>
+						<td>O comando MySQL &quot;<i>Replace into tablename</i>&quot; é usado para 
+						fazer upload dos registos em seu base de dados.<br>
+				Tenha em mente que adminApp assume que o primeiro campo em sua tabela 
+						é um campo de 
+				índice único, de incremento automático.</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              Existem várias maneiras de fazer 
+												upload dos registros na folha de 
+												calculo para o seu base de 
+												dados.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              Você pode fazer upload de todos os 
+												registros na folha de calculo em 
+												clicando no botão [Faça Upload 
+												de Registros](canto superior 
+												direito). <br>
+												Esta acção faz upload de todos 
+												os registros na folha de calculo 
+												para o seu website/base de 
+												dados.</td>
+					</tr>
+					</table>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+												Você também pode fazer upload de 
+												um registo individual, 
+												selecionando a partir do menu 
+												superior, [Dados] -&gt; [Fazer 
+												Upload de Registros Sel...].<br>
+												Outra maneira é botão direito do 
+												mouse sobre a linha selecionada 
+												e clique em&nbsp; [Fazer Upload 
+												de Registros Sel...].<br>
+												Ou, se esta usar o caixa
+												<a href="help-window_edit_record.html">
+												Editar Registro</a> para 
+												editar o registro, em vez de 
+												editar o registro diretamente na 
+												folha calculo, ele também vem 
+												com um botão de upload.</td>
+					</tr>
+					</table>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              &nbsp;</td>
+					</tr>
+					</table>
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                                              &nbsp;Se está editando registros diferentes, um por um, você pode 
+acrescentá-los à lista de [Comandos SQL Pendentes] na folha de calculo,&nbsp; e 
+												quando terminar pode enviá-los todos de uma vez.</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				&nbsp;</td>
+			</tr>
+			</table>
+      
+</body></html>

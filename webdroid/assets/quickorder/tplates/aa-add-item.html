@@ -1,0 +1,168 @@
+<table  class="clsDvCntntTtle" width="100%" cellpadding="0" cellspacing="0"><tr>
+	<td><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.php?pid=aa-edit-category&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a>
+				 </td><td width="100%" id="tdTitleBar"><ti data-ison="currPgTitle" data-desc="edit_item"></ti></td>
+	<td align="right"><table><tr><td><button id="btnEUsave" class="txtClrDlg" style="border:0px;background-color:#26a69a;color:white;padding:0px"><img alt="18" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" width="4" height="4" onload="dw(this.parentNode, stxt[21]);"  onerror="dw(this.parentNode, stxt[21]);">save</button></td>
+		<td>  </td><td>
+				 
+  <a class="btn txtBold" href="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" style="text-transform:none"><i class="material-icons">more_horiz</i></a>
+        
+ 
+
+        
+        
+        </td></tr></table></td></tr></table>
+
+         		      <table><tr><td width="100%"></td><td style="min-width:150px;"  onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')"> 
+         		      <div class="collection" id="mmDdown" style="position:absolute;display:none;visibility:hidden">
+    <a href="javascript:doNuItemDelete();" class="collection-item txtDecorNone"><i class="material-icons">delete</i><span style="vertical-align:super;padding-left:12px;"><ti data-ison="stxt[42]" data-desc="delete">Roncord</ti></span></a>
+     <a href="javascript:document.location.href='index.php?pid=aa-show-item&cid=' + cid + '&catid=' + catid + '&itemid=' + itemid;" class="collection-item txtDecorNone"><i class="material-icons">zoom_in</i><span style="vertical-align:super;padding-left:12px;"><ti data-ison="stxt[57] + ' ' + stxt[19]" data-desc="view">Preview  Item</ti></span></a>
+     <a href="javascript:doNuItemDelete();" class="collection-item txtDecorNone"><i class="material-icons">content_copy</i><span style="vertical-align:super;padding-left:12px;"><ti data-ison="stxt[54]" data-desc="delete"></ti></span></a>
+      <a href="javascript:document.location.href='index.php?pid=aa-edit-category&cid=' + cid + '&catid=' + catid" class="collection-item txtDecorNone"><i class="material-icons">category</i><span style="vertical-align:super;padding-left:12px;"><ti data-ison="stxt[31] + ' ' + stxt[16]" data-desc="edit_category">Edit Category</ti></span></a>
+
+
+  </div> </td></tr></table>
+ <div id="dvWrapper" class="clsDummt"><table style="width: 100%;" class="cls-form-dv">
+	<tr>
+		<td>
+		<div class="cls-error-div" id="dvVdtnError"></div></td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%" id="tblItitle">
+			<tr>
+				<td><table><tr><td><span><i class="small-material-icons">title</i></span></td><td><span id="lbl_i_title"  style="vertical-align:super"></span></td></tr></table></td>
+			</tr>
+			<tr>
+				<td><div name="mod_i_title"  id="mod_i_title"  style="min-height:20px;" contenteditable="true"  class="cls_input_tarea"  onblur="this.className='cls_input_tarea'" onfocus="this.className='cls_input_tarea cls_input_text_focus'"></div></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+		<table id="tblIprice">
+			<tr>
+				<td><table><tr><td><span><i class="small-material-icons">monetization_on</i></span></td><td><span id="lbl_i_price_b"  style="vertical-align:super"></span></td></tr></table></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+				<td><table><tr><td><span><i class="small-material-icons">category</i></span></td>
+							<td style="width: 4px"><span id="lbl_i_catid" style="vertical-align:super"></span></td></tr></table></td>
+			</tr>
+			<tr>
+				<td><input type="number" name="mod_i_price_b" id="mod_i_price_b" value="" data="disnull" class="cls_input_text"  onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'"></td>
+				<td></td>
+				<td id="tdSpin"><select size="1" name="mod_i_catid" id="mod_i_catid" class="cls_input_text crsrPointer"  onblur="this.className='cls_input_text crsrPointer'" onfocus="this.className='cls_input_text cls_input_text_focus crsrPointer'" style="-webkit-appearance: none;height:2rem" onchange="javascript:doCatChange(this, document.getElementById('tdSpin'))">
+                                      <option value="0">Top Main</option>
+                                      </select></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%" id="tblImedia" class="bkgdClrNrml">
+			<tr>
+				<td><table><tr><td  onclick="javascript:JSSHOP.ui.toggleNuModule('spnMediaTgl','tdImedia');" class="crsrPointer"><span><img alt="Product Image" src="images/menu_iconl.jpg"  class="slmtable icndbtn brdrClrDlg" style="text-align:center;max-height:22px;" align="absmiddle" id="imgIedit"></span></td><td style="width:100%"><span id="lbl_i_media" style="vertical-align:super"></span></td><td onclick="javascript:JSSHOP.ui.toggleNuModule('spnMediaTgl','tdImedia');" class="crsrPointer">
+					 
+            			    <div id="spnMediaTgl" class="icnbtn brdrClrDlg crsrPointer"><i class="small-material-icons" style="font-size:22px">expand_more</i></div>
+            			   
+            			   </td></tr></table></td>
+			</tr>
+			<tr>
+				<td><div id="progressOuter"></div><div id="msgBox"></div> </td>
+			</tr>
+			<tr>
+				<td   id="tdImedia"  style="display:none;visibility:hidden"><table><tr><td style="text-align: center; vertical-align:top"><br>
+				<button id="uploadBtn"  class="slmtable txtBold txtBig brdrClrHdr" style=" " onclick="JSSHOP.shared.setFrmFieldVal('qmedia', 'm_dadded', JSSHOP.getUnixTimeStamp();"><i class="small-material-icons">mode_edit</i></button> 
+             </td><td style="text-align: center; vertical-align:top"><div id="dvPrdMedia"></div></td></tr></table></td>
+			</tr>
+			<tr>
+				<td><div id="dvAppBCodeBtn"></div></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%" id="tblIdesc">
+			<tr>
+				<td><table><tr><td><span><i class="small-material-icons">description</i></span></td><td><span id="lbl_i_desc" style="vertical-align:super"></span></td></tr></table></td>
+			</tr>
+			<tr>
+				<td><div  name="mod_i_desc"  id="mod_i_desc"  style="padding:10px;min-height:40px;" contenteditable="true" class="cls_input_tarea"  onblur="this.className='cls_input_tarea'" onfocus="this.className='cls_input_tarea cls_input_text_focus'"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+	<tr>
+		<td>
+		<table style="width: 100%" id="tblIcat">
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><table>
+					<tr>
+						<td>
+						
+						
+						
+						</td>
+						<td>
+						<table>
+							<tr>
+								<td></td>
+								 
+							</tr>
+						</table>
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+                         <input type="hidden" name="mod_i_img" id="mod_i_img" value="" data="disnull"> 
+                   <input type="hidden" name="mod_i_valb" id="mod_i_valb" value="" data="disnull"> <input type="hidden" name="mod_i_vala" id="mod_i_vala" value="" data="disnull">   <input type="hidden" name="mod_i_dimen_v" id="mod_i_dimen_v" value="" data="disnull"> <input type="hidden" name="mod_i_price_a" id="mod_i_price_a" value="" data="disnull"></td>
+	</tr>
+</table>
+</div>
+&nbsp;
+					  
+					  
+					  
+					  
+					  
+					  
+
+<!-- to delete!!
+<img alt="imgldr" height="14px" width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" onload="javascript:doFUJSLoad();"  onerror="javascript:doFUJSLoad();">
+<img alt="imgldr" height="14px" width="24px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" onload="javascript:aLoadEditItem();"  onerror="javascript:aLoadEditItem();">
+-->
+
