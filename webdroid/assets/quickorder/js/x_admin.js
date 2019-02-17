@@ -423,7 +423,7 @@ var getAppDBReq = function() {
 	// alert(qEncdQstring);
 	app.doDB(qEncdQstring)
     } catch (e) {
-	alert(e);
+	alert("This only works with the java-browser");
         JSSHOP.logJSerror(e, arguments, "JSSHOP.admin.getAppReq");
     }
 };

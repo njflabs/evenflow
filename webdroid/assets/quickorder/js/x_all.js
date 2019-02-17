@@ -2052,7 +2052,7 @@ strImgDsct = "";
  
  	
 
-	strHtml += "<div  id=\"tdCI" + ts._id + "\" onclick=\"javascript:JSSHOP.shop.doQIadd('" + thePrdsArna + "',this.id,'" + ts._id + "','" + iint + "');\"><img src=\"images/cart_r.gif\" class=\"icnsmlbtn brdrClrWhite\">";
+	strHtml += "<div  id=\"tdCI" + ts._id + "\" onclick=\"javascript:JSSHOP.shop.doQIadd('" + thePrdsArna + "',this.id,'" + ts._id + "','" + iint + "');\"><img src=\"images/cart_r.gif\" class=\"icnmedbtn brdrClrWhite crsrPointer\">";
 	strHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
 	strHtml += "</div>";
 

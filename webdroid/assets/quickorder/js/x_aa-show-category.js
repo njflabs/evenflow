@@ -22,11 +22,6 @@ catch (e) {
  
 
 
-
-
-
-
-
 var renderCatItems = function (theCArr) {
     try {
         spinner.stop();
@@ -57,7 +52,7 @@ var renderCatItems = function (theCArr) {
         else {
             tmpDVlpr.innerHTML = JSSHOP.ui.doDefBtn("Price", "JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','u');renderPrix('d');");
         }
-        tmpTDQI.appendChild(tmpDVlpr);
+        // tmpTDQI.appendChild(tmpDVlpr);
         tStrHtml = JSSHOP.shop.getPrdsFullStr("cat", theCArr, null, null, null);
 	  tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\">";
 
