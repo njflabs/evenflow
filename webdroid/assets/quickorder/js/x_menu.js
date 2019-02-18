@@ -57,7 +57,7 @@ JSSHOP.logJSerror(e, arguments, "doSubMenuLoad");
 } 
 if(catid == 0) {
 hstring = "Home";
-mstring = "<a href=\"index.php\">" + hstring + "</a>";
+mstring = "<a href=\"index.php?cid=" + +cid + "\">" + hstring + "</a>";
 fmcstr = "<div style=\"margin-left: 15px\" class=\"crsrPointer txtSmall txtClrBlack\">" + mstring +  "</div>";
 } else {
 newMTmpArr = [];
@@ -155,7 +155,7 @@ var getMMenu = function() {
 	linkText = document.createTextNode("Home");
 	tmpA.appendChild(linkText);
 	tmpA.title = "Home";
-	tmpA.href = "index.php?home";
+	tmpA.href = "index.php?cid=" + cid;
 	tmpLI.appendChild(tmpA);
 	tmpUL = document.createElement("ul");
 	tmpUL.id = "mnuIHome";

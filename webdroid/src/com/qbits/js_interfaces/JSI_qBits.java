@@ -301,21 +301,21 @@ for (int i = 0; i < array.length(); i++) {
 
     public void getALocalUrl(String strLUrl) {
 	webMobia.doLoadLclUrl(strLUrl);
-    // return "file:///android_asset/" + strLUrl ;
+ 
     }
 
      public void setPageThread(int ptype, int pid, String purl) {
 	webMobia.setPageThread(ptype, pid, purl);
-    // return "file:///android_asset/" + strLUrl ;
+ 
     }
 
      public void getPageThread() {
 	webMobia.getPageThread();
-    // return "file:///android_asset/" + strLUrl ;
+ 
     }
      public void getFormatSMS(String strRKey, String strMsgArgs, String strPhoneNums, String strMsg) {
 	webMobia.runFormatSMS(strRKey, strMsgArgs, strPhoneNums, strMsg);
-    // return "file:///android_asset/" + strLUrl ;
+ 
     }
 
 	public void getSmsDetails() {

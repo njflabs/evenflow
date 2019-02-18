@@ -1,9 +1,6 @@
 package njfbrowser.utils;
  
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 import java.sql.*;
 import java.io.*;
 import java.net.*;
@@ -30,30 +27,34 @@ import njfbrowser.utils.BasicUtils;
 public class UtilSQLAdapter {
 
 
-    public static final String MYDATABASE_NAME = "qbits.db";
+    public static final String MYDATABASE_NAME = "evenflow.db";
     public static final String MYDATABASE_TABLE = "quser";
     public static final int MYDATABASE_VERSION = 3;
- 
- 
-     String dburl = "jdbc:sqlite:evenflow.db";
-	StringUtils stringUtils;
-	BasicUtils basicUtils;
-Connection conn;
+
+
+    String dburl = "jdbc:sqlite:";
+    StringUtils stringUtils;
+    BasicUtils basicUtils;
+    Connection conn = null;
+
+
     public UtilSQLAdapter() {
- 
-stringUtils = new StringUtils();
-basicUtils = new BasicUtils();
-        try { 
-		conn = DriverManager.getConnection(dburl); 
+
+        stringUtils = new StringUtils();
+        basicUtils = new BasicUtils();
+        String furl = "jdbc:sqlite:" + basicUtils.getUfile("evenflow.db");
+        dburl = furl;
+        try {
+            conn = DriverManager.getConnection(dburl);
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 doTblTest();
 
-         }
+            }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("UtilSQLAdapter: " + e.getMessage());
+            e.printStackTrace();
         }
-
 
 
     }
@@ -69,7 +70,7 @@ basicUtils = new BasicUtils();
   
 
 
-        String sql = "SELECT _id FROM quser limit 0,1";
+              String sql = "SELECT _id FROM quser limit 0,1";
  
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql);

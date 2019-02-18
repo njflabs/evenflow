@@ -2090,7 +2090,7 @@ resultSet.put(e.toString());
 
         @Override
         public void onHideCustomView() {
-            System.out.println("customview hideeeeeeeeeeeeeeeeeeeeeeeeeee");
+            System.out.println("onHideCustomView");
             if (mCustomView == null)
                 return;        
 
@@ -3221,9 +3221,9 @@ return;
 	if(currCmdInt == SPK_CMND_SMS) {
 	// if(strCmnd.toLowerCase().startsWith("sms")) {
 	if(strCmnd.toLowerCase().contains("mensagem")) {
-	 doSpeechOut("o sms para " + name + " pronto Donna Natalie ");
+	 doSpeechOut("o sms para " + name + " está pronto");
 	} else {
-	 doSpeechOut("sms for " + name + " mister bee ");
+	 doSpeechOut("sms for " + name + " is ready");
 	}
 Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 smsIntent.setType("vnd.android-dir/mms-sms");
@@ -3242,9 +3242,9 @@ smsIntent.putExtra("sms_body",tcctxt);
 startActivity(smsIntent);
 	} else {
 	if(currCmdInt == SPK_CMND_CHAMA) {
-	 doSpeechOut("a chamada para " + name + "  pronta Donna Natalie ");
+	 doSpeechOut("a chamada para " + name + "  está pronta");
 	} else {
-	 doSpeechOut("calling " + name + " mister bee ");
+	 doSpeechOut("the call to " + name + " is ready");
 	}
 
 
@@ -3320,9 +3320,9 @@ startActivity(smsIntent);
  
 if(isLastTry == true) {
 if(strTcmd.startsWith("call") || strTcmd.contains("message")) {
-	 doSpeechOut("sorry did not get the name mister bee ");
+	 doSpeechOut("sorry, did not get the name");
 } else {
-	 doSpeechOut("desculpa Donna Natalie. nao percebi o nome  ");
+	 doSpeechOut("desculpa, nao percebi o nome  ");
 }
  		currContactStr = strTcmd;
         Intent intentContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI); 
@@ -3374,9 +3374,9 @@ tryAgain("who ");
  
 
 if(strTcmd.startsWith("call") || strTcmd.contains("message")) {
-	 doSpeechOut("sorry did not get the name mister bee ");
+	 doSpeechOut("sorry, did not get the name.");
 } else {
-	 doSpeechOut("desculpa Donna Natalie. nao percebi o nome  ");
+	 doSpeechOut("desculpa, nao percebi o nome  ");
 }
  		currContactStr = strTcmd;
         Intent intentContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI); 
@@ -3438,16 +3438,7 @@ currContactName = name;
 
 	tryPInfo(name, strTcmd);
 
-/* 
-if(strTcmd.startsWith("call") || strTcmd.contains("message")) {
-	 doSpeechOut("sorry did not get the name mister bee ");
-} else {
-	 doSpeechOut("desculpa Donna Natalie. nao percebi o nome  ");
-}
- 		currContactStr = strTcmd;
-        Intent intentContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI); 
-        startActivityForResult(intentContact, 2);
-*/
+ 
 
 	}
     }
@@ -3501,15 +3492,8 @@ int ial = 0;
 String strSCret = "";
            	String tsm = "";
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            showDaToast(results.toString());
-		/*
-		currSpkLast = currSpkMatches;
-		currSpkMatches = tsm.substring(1, tsm.length() - 1);
-		// showDaToast("matches: " + currSpkMatches);
-
-		currSpkLChoice = currSpkChoice;
-		currSpkChoice = matches.get(0);
-		*/
+            // showDaToast(results.toString());
+ 
 
 		while(ial < matches.size()) {
 			System.out.println(matches.get(ial));
@@ -3750,8 +3734,6 @@ return message;
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     WebView.HitTestResult result = mWebView.getHitTestResult();
  
-
-                    // theStoryBundle.putString("picture", "http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png");
  
                     System.out.println("onMenuItemClick: " + result.getExtra() +  " :: " + result.getType());
 

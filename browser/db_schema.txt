@@ -155,6 +155,7 @@ CREATE TABLE qbit (
   q_valb text,
   q_dadded varchar(14)
 );
+  
 
 CREATE TABLE cryptcoin (
   _id  integer primary key auto_increment,
@@ -182,15 +183,15 @@ CREATE TABLE cryptprice (
   cp_rtype int(4),
   cp_symbol varchar(11),
   cp_price varchar(24),
-  cp_prices text(),
-  cp_price_chg varchar(24), 
-  cp_price_pct_chg varchar(24), 
-  cp_open_orice varchar(24), 
-  cp_high_price varchar(24), 
+  cp_prices text,
+  cp_price_chg varchar(24),
+  cp_price_pct_chg varchar(24),
+  cp_open_price varchar(24),
+  cp_high_price varchar(24),
   cp_low_price varchar(24),
   cp_volume varchar(24),
-  cp_count varchar(24), 
-  cp_buy_at varchar(24), 
+  cp_count varchar(24),
+  cp_buy_at varchar(24),
   cp_sell_at varchar(24),
   cp_confirm_trans varchar(6),
   cp_dadded varchar(14)

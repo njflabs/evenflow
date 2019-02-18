@@ -6,56 +6,48 @@ var euiFFObjArr = [];
 var ck_ctitle = /^[A-Za-z0-9 ]{3,20}$/;
 
 
+
+
+/*
+* redirects on finish
+*/
+var fnishCatAdds = function(a, b, c) {
+       // alert(b);
+        try {
+             document.location.href = "index.php?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
+
+        } catch (e) {
+            document.location.href = "index.php?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
+        }
+
+};
+
 /*
 * loops through the category title inputs and adds them to db
 */
-var startCatEdits = function(a, b, c) {
-    theSelCats = JSSHOP.shared.getFrmVals(document['frmcatsgsts'], 'nada');
-    if (tmpVindex == theSelCats.length) {
-        tmpVindex = 0;
-        document.location.href = "index.php?pid=aa-edit-cos";
-    } else {
-        try {
-		if(b == "b") {} else { tmpVindex = tmpVindex + 1; }
-		if(theSelCats[tmpVindex].v) {
-		tmpVval = theSelCats[tmpVindex].v;
-		if(tmpVval.length >=1 ) {
-            JSSHOP.shared.setFrmFieldVal("qcat", "cat_title", theSelCats[tmpVindex].v);
+ 
+var astCatEdit = function(a, b, c) {
+    if (b.indexOf("_id") != -1) {
+        var arrToFill = JSON.parse(b);
+        var ttsi = arrToFill[0];
+	  iint = 0;
+	  theSelCats = JSSHOP.shared.getFrmVals(document['frmcatsgsts'], 'nada');
+	  currTCTarr = [];
+	  while(iint < theSelCats.length) {
+		JSSHOP.shared.setFrmFieldVal("qcat", "cat_title", theSelCats[iint].v);
+            JSSHOP.shared.setFrmFieldVal("qcat", "cat_coid", ttsi._id);
             tmpFobj = null;
             tmpFobj = {};
             tmpFobj["knvp"] = JSSHOP.shared.getFrmVals(document["qcat"], "nada");
             oi = getNuDBFnvp("qcat", 6, null, tmpFobj);
-            if (theSelCats[tmpVindex].v == "Paginas") {} else {
-                doQComm(oi["rq"], null, "startCatEdits");
-            }
+	     if(iint == theSelCats.length -1) {
+	     doQComm(oi["rq"], null, "fnishCatAdds");
 		} else {
-		startCatEdits("a","b","c");
+	     doQComm(oi["rq"], null, "doNada");
 		}
-		} else {
-		startCatEdits("a","b","c");
-		}
-        } catch (e) {
-            document.location.href = "index.php?pid=aa-edit-menu&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
-        }
-    }
-};
-
-
-/*
-* gets the newly added company _id from database
-*/
-var astCatEdit = function(a, b, c) {
-    if (b.indexOf("_id") != -1) {
-        var arrToFill = JSON.parse(b);
-        var len = arrToFill.length;
-        var iint = 0;
-        while (iint < len) {
-            ts = arrToFill[iint];
-            JSSHOP.shared.setFrmFieldVal("qcat", "cat_coid", ts._id);
             iint++;
         }
-        tmpVindex = 0;
-        startCatEdits("a","b","c");
+ 
     } else {
         alert("astCatEdit = false: " + b);
     }

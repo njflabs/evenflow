@@ -155,3 +155,53 @@ CREATE TABLE qbit (
   q_valb text,
   q_dadded varchar(14)
 );
+  
+
+CREATE TABLE cryptcoin (
+  _id  integer primary key auto_increment,
+  cc_rtype int(4),
+  cc_symbol varchar(11),
+  cc_name varchar(256),
+  cc_rank int(8),
+  cc_props int(4),
+  cc_bsymbol varchar(11),
+  cc_status varchar(11),
+  cc_base_asset varchar(11),
+  cc_quote_asset varchar(11),
+  cc_filters text,
+  cc_market_cap varchar(11),
+  cc_available_supply varchar(11),
+  cc_total_supply varchar(11),
+  cc_max_supply varchar(11),
+  cc_price_day_chg varchar(24),
+  cc_price_week_chg varchar(24),
+  cn_dadded varchar(14)
+);
+
+CREATE TABLE cryptprice (
+  _id  integer primary key auto_increment,
+  cp_rtype int(4),
+  cp_symbol varchar(11),
+  cp_price varchar(24),
+  cp_prices text,
+  cp_price_chg varchar(24),
+  cp_price_pct_chg varchar(24),
+  cp_open_price varchar(24),
+  cp_high_price varchar(24),
+  cp_low_price varchar(24),
+  cp_volume varchar(24),
+  cp_count varchar(24),
+  cp_buy_at varchar(24),
+  cp_sell_at varchar(24),
+  cp_confirm_trans varchar(6),
+  cp_dadded varchar(14)
+);
+
+CREATE TABLE cryptasset (
+  _id  integer primary key auto_increment,
+  ca_rtype int(4),
+  ca_symbol varchar(11),
+  ca_free varchar(11),
+  ca_locked varchar(11),
+  ca_dadded varchar(14)
+);
