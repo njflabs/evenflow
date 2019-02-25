@@ -20,12 +20,7 @@ import android.widget.*;
 import android.view.WindowManager;
 import com.njfsoft_utils.webviewutil.JSI_MainDialog;
 import com.njfsoft_utils.webviewutil.UtilWebView;
-
- 
 import java.util.regex.Pattern;
-
-
-// import com.facebook.android.Facebook.DialogListener;
 
 public class UtilWebDialog extends Dialog {
 
@@ -107,7 +102,7 @@ public class UtilWebDialog extends Dialog {
             fullUrl = "file:///android_asset/" + theUrl;
         }
 
-        if (theHtml.equals("noQvalue")) {
+        if(theHtml.equals("noQvalue") || theHtml.length() < 2) {
             System.out.println("setPopPage: " + fullUrl + " :: " + theHtml);
             show();
             epMainWebView.loadUrl(fullUrl);

@@ -195,12 +195,10 @@ for (int i = 0; i < array.length(); i++) {
     fulretObject.put("data" , webMobia.dbMSQLA.setDBselectQ(tmpStrQstr));
 
 }
-
-     	  strHtml = fulretObject.toString();
-        return strHtml;
+strHtml = fulretObject.toString();
+return strHtml;
 } catch(Exception ee) {
   System.out.println("getNuDBselectQ: " + ee);
-
   return strHtml;
 }
 
@@ -373,12 +371,7 @@ webMobia.setCutOuts();
 public void doShareFromPage(String tmpStrBnce) {
 webMobia.shareFromPage(tmpStrBnce);
 }
-
  
-public void doYo(String theKey, String theSign, String theNonce, String theMethod, String theParams) {
-String xsss = webMobia.doYoUpload(theKey, theSign, theNonce, theMethod, theParams);
-webMobia.showDaToast(xsss);
-}
 
 
 
@@ -396,7 +389,7 @@ public static String bytesToHex(byte[] bytes) {
 
   public String sign(String message, String secret) {
     try {
-	String ss = "j4dN6FRh9addxwzzlIJQN4erYBfXvA2eSqQNtNXNSU6nt9ZS3r589qM6Yd1myoSp";
+	String ss = "j4dN6FRh9addxwzzlIJQN4erYBfXvA2eSasasas";
       Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
       SecretKeySpec secretKeySpec = new SecretKeySpec(ss.getBytes(), "HmacSHA256");
       sha256_HMAC.init(secretKeySpec);
@@ -409,11 +402,6 @@ public static String bytesToHex(byte[] bytes) {
       throw new RuntimeException("Unable to sign message.", e);
     }
   }
-
-    public String doWebScrape(String theUrl) {
- return webMobia.doWScrape(theUrl);
-
-}
 
 
 public void doWhatsApp(String strNumber, String msgStr) {
