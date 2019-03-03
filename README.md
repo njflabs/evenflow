@@ -42,7 +42,9 @@ inerface files to interact with the WebViews, etc.<br><br>- <strong>User Interfa
 Rendering of the user interface mostly relies on simple html and javascript, json.<br>
 The main index.php file uses ajax requests to include the html/tplates files 
 according to the pid variable passed in the URL.<br>The corresponding javascript 
-file is also included. These functions are found in x_booter.js<br>The search and nav bar are found in index_nav.html.<br><br><strong>- Database:</strong><br>Most of the custom database requests are made 
+file is also included. These functions are found in x_booter.js<br>The search and nav bar are found in index_nav.html.<br>
+The UI is not currently using any 3rd party JS frameowrks.<br>Trying to keep it 
+simple with no dependencies on UI.<br><br><strong>- Database:</strong><br>Most of the custom database requests are made 
 using javascript, and each contain a javascript callback function:<br>Basically 
 an ajax request is sent to quickorder/assets/_p/do.php which connects to mysql 
 and sends back a response string.<br>see the older 

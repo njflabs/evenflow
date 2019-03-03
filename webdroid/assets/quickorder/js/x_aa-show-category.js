@@ -5,7 +5,7 @@ tmpVitemArr = [];
 var tmpVindex = 0;
 var tmpImgCtr = 0;
 
-currProdsPPg = 2; // override from X_booter - pagination  - number of items per page
+
 
 try {
     var upRefs = arrUprefs["prfsSHOPuser"][0].scv;
@@ -177,14 +177,13 @@ doNurQComm(tac);
 
     // doNuQComm("ca" + catid, "m", ccheD, oi["rq"], null, "loadCatItems");
 
-    currPgTitle = arrAllForms.qcat.v[0].cat_title;
-    document.title = currPgTitle; // set the page title 
 
 
- tmpDV = document.createElement("div");
- tmpDV.className = "collection collectionbrdr";
- tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
- document.getElementById('tdLMenu').appendChild(tmpDV);
+ 
+currPgTitle = arrAllForms.qcat.v[0].cat_title;
+document.title = currPgTitle; // set the page title 
+document.getElementById("tdTitleBar").innerHTML = currPgTitle;
+
 };
  
 var dmyPushActbArr = pushActbArr;
@@ -226,7 +225,7 @@ tmpActArr = getCurrMItemsArr();
         scrollToElement("dvHdr");
         window.scrollTo(0, 0);
     }
-	
+
 };
 var dmyClearActbArr = clearActbArr;
 clearActbArr = function () {

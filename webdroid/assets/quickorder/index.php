@@ -87,18 +87,23 @@ include "_p/js-header.php";
 	 
 	 <div id="dvMCatTree" style="z-index:99999;min-height:20px;float:right;">
 </div>
-<div>
 
+
+
+
+
+
+<div>
 <table id="tblMNContent" style="min-height:80px;" cellpadding="0" cellspacing="0" width="100%"><tr>
-	<td valign="top" class="clsTDLmenu">
+	<td valign="top" class="clsTDLmenu" nowrap="nowrap">
 	
-<div id="tdLMenu" class="onlyWideScreen clsLeftMenu">
+<div id="tdLMenu" class="onlyWideScreen clsLeftMenu" style="overflow:auto;max-height:500px">
 	
  
 
 	    <table style="width: 100%">
 			<tr>
-				<td class="collectionhdr"><div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer" style="float: right;" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');">
+				<td class="collectionhdr"><div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer" style="float: right;" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');" nowrap="nowrap">
 <div><i class="small-material-icons" style="font-size:22px">expand_less</i>
 </div></div>
 </td>
@@ -116,6 +121,47 @@ include "_p/js-header.php";
 
 </td><td valign="top" width="100%"><table style="min-height:80px;margin:0 auto" align="center" width="100%" cellpadding="0" cellspacing="0"><tr>
 		<td valign="top">
+
+
+
+
+
+
+
+<!-- TitleBar and left top right for mobile menus CODE BEGIN -->
+
+
+<table  class="clsDvCntntTtle" width="100%"><tr>
+	<td><span class="onlySmallScreen"><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.php?pid=aa-edit-categories&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a></span>
+				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px">
+	<ti data-ison="currPgTitle" data-desc="title_bar"></td>
+	<td align="right"><table class="onlySmallScreen"><tr><td>
+				 
+  <a class="btn txtBold" href="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" style="text-transform:none"><ti data-ison="stxt[62]" data-desc="btn_more">More</ti></a>
+        
+ 
+
+        
+        
+        </td></tr></table></td></tr></table>
+
+         		      <table><tr><td style="width: 100%"></td><td style="min-width:150px;"  onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" nowrap="nowrap"> 
+         		      <div class="collection" id="mmDdown" style="position:absolute;display:none;visibility:hidden;z-index:999999;margin-right:10px" nowrap="nowrap">
+
+
+
+
+  </div> </td></tr></table>
+	
+	
+<!-- end of main menus and title bar -->
+
+
+
+
+
+
+
 
 <div><div id="includedContent">
 </div></div></td></tr></table></td></tr></table></div>

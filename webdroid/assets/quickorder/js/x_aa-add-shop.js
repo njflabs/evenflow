@@ -11,7 +11,7 @@ var ck_ctitle = /^[A-Za-z0-9 ]{3,20}$/;
 /*
 * redirects on finish
 */
-var fnishCatAdds = function(a, b, c) {
+var fnishCatAdds = function() {
        // alert(b);
         try {
              document.location.href = "index.php?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
@@ -34,20 +34,22 @@ var astCatEdit = function(a, b, c) {
 	  theSelCats = JSSHOP.shared.getFrmVals(document['frmcatsgsts'], 'nada');
 	  currTCTarr = [];
 	  while(iint < theSelCats.length) {
+           if(theSelCats[iint].v == stxt[8]) { // its default value. do nothing.
+            } else {	
 		JSSHOP.shared.setFrmFieldVal("qcat", "cat_title", theSelCats[iint].v);
             JSSHOP.shared.setFrmFieldVal("qcat", "cat_coid", ttsi._id);
             tmpFobj = null;
             tmpFobj = {};
             tmpFobj["knvp"] = JSSHOP.shared.getFrmVals(document["qcat"], "nada");
             oi = getNuDBFnvp("qcat", 6, null, tmpFobj);
-	     if(iint == theSelCats.length -1) {
-	     doQComm(oi["rq"], null, "fnishCatAdds");
-		} else {
+
 	     doQComm(oi["rq"], null, "doNada");
-		}
+
+
+ 	      }
             iint++;
         }
- 
+ setTimeout("fnishCatAdds()", 600);
     } else {
         alert("astCatEdit = false: " + b);
     }
@@ -76,6 +78,21 @@ var astMenuEdit = function(a, b, c) {
 * addds menu company to database
 */
 var aCreateMenu = function() {
+
+        hasCatInput = "no";
+	  thetSelCats = JSSHOP.shared.getFrmVals(document['frmcatsgsts'], 'nada');
+	  currtTCTarr = [];
+	  tiint = 0;
+	  while(tiint < thetSelCats.length) {
+           if(thetSelCats[tiint].v == stxt[8]) { // its default value. do nothing.
+		} else {
+             hasCatInput = "yes";
+		}
+            tiint++;
+        }
+
+
+    if(hasCatInput == "yes") {
     tc_title = document.getElementById("tmpCtitle").value;
     JSSHOP.shared.setFrmFieldVal("qco", "c_title", tc_title);
     tmpFobj = null;
@@ -83,6 +100,9 @@ var aCreateMenu = function() {
     tmpFobj["knvp"] = JSSHOP.shared.getFrmVals(document["qco"], "nada");
     oi = getNuDBFnvp("qco", 6, null, tmpFobj);
     doQComm(oi["rq"], null, "astMenuEdit");
+    } else {
+     alert(stxt[9]);
+    }
 };
 
 
@@ -95,11 +115,13 @@ var aCreateMenu = function() {
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
-JSSHOP.ui.setTinnerHTML("tdTitleBar", currPgTitle);
-    tc_title = stxt[22] + ' ' + stxt[44];
 
+if((quid == 0) || (quid == "noQvalue")) {
+document.location.href = "index.php?pid=login";
+return;
+}
 
-
+tc_title = stxt[22] + ' ' + stxt[44];
 tifo = nCurrFFieldOb();
 tifo.fid = "tmpCtitle";
 tifo.fdv = stxt[22] + " " + stxt[44];
@@ -152,9 +174,4 @@ JSSHOP.shared.initFrmComps(euiFFObjArr);
     JSSHOP.shared.setFrmFieldVal("qcat", "cat_uid", quid);
     JSSHOP.shared.setFrmFieldVal("qcat", "cat_dadded", JSSHOP.getUnixTimeStamp());
 };
-
-
-
-var aLoadCreateMenu = function() {
-
-};
+ 

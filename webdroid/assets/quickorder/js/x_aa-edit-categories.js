@@ -1,4 +1,4 @@
-currPgTitle = stxt[3];
+currPgTitle = stxt[503];
 document.title = currPgTitle; // set the page title 
 var currTtlMainMnus = 1;
 var isMnuUpdd = "m";
@@ -244,19 +244,19 @@ JSSHOP.shared.setFrmFieldVal("qcat", "cat_uid", quid);
 
 tfit = nCurrFFieldOb();
 tfit.fid = "tmp_cat_title";
-tfit.fdv = stxt[16];
+tfit.fdv = stxt[502];
 tfit.fda = "y";
 tfit.lid = "lbl_cat_title";
-tfit.ltxt = stxt[16];  
+tfit.ltxt = stxt[500];  
 euiFFObjArr.push(tfit); 
 
 
 tfip = nCurrFFieldOb();
 tfip.fid = "tmp_cat_pid";
-tfip.fdv = stxt[16];
+tfip.fdv = stxt[501];
 tfip.fda = "y";
 tfip.lid = "lbl_cat_pid";
-tfip.ltxt = stxt[16];  
+tfip.ltxt = stxt[501] + ":";  
 euiFFObjArr.push(tfip); 
 
 JSSHOP.shared.initFrmComps(euiFFObjArr);

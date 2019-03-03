@@ -5,7 +5,7 @@ tmpPrdMediaArr = [];
 tmpSQBArr = [];
 tmpVitemArr = [];
 var tmpVindex = 0;
-currPgTitle = stxt[20];
+currPgTitle = stxt[17];
 document.title = currPgTitle; // set the page title 
 var euiFFObjArr = null;
 var euiFFObjArr = [];
@@ -233,7 +233,8 @@ var preRenderTQBItems = function(a, b, c) {
 
 
 var doCBcatedit = function(a, b, c) {
-        JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+  //       JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+         JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ document.location.href=document.location.href + '&fc=y' });
 
    
 };
@@ -424,7 +425,7 @@ JSSHOP.shared.setCurrSelectOpt(tmpSlct, catid);
 
 
 
-/* overide the done filling def forms in  x_booter fnishCoForm etc., */
+ 
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
@@ -516,10 +517,4 @@ iint++;
 doSubCOpts(arrToOptFill);
 };
 
-
-/*
- * main loader function
- */
-var aLoadEditItem = function() {
-    // doDefFormsFill();
-};
+ 

@@ -1,76 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
 <table style="margin: 0 auto;max-width:420px" width="100%" align="center" id="tblSettings">
-	<tr>
-		<td>
-		 						  		 	Language:</td>
-	</tr>
-	<tr>
-		<td style="height: 23px">
-		 						  		 	<a href="javascript:JSSHOP.cookies.setCookie('usrlang','pt_pt','130','','','');document.location.href='index.php?nls=y';">
-											Portuguese</a></td>
-	</tr>
-	<tr>
-		<td>
-		 						  		 	<a href="javascript:JSSHOP.cookies.setCookie('usrlang','en_us','130','','','');document.location.href='index.php?nls=y';">English</a></td>
-	</tr>
 	<tr>
 		<td style="height: 23px">
 		 						 <div class="collection" id="dvCcxnMain">   <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
-  									  
-  									   <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
- <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
- <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
- <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
- <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
- <div class="switch collection-item">
-    <label>
-     
-      <input type="checkbox">
-      <span class="lever" style="float:right"></span>
-     
-    </label>
-  									  Show the bloat</div>	
+    								 </div>
+ 	
 
   									  
  
@@ -80,13 +25,54 @@
   									  
   									  </div>
   					 	</td>
+	</tr>
+	<tr>
+		<td style="height: 23px">
+		 						 <table cellpadding="5" cellspacing="3">
+									 <tr>
+										 <td>Language</td>
+										 <td style="text-align: right"><select size="1" name="selPrefUlang" id="selPrefUlang" class="rtable txtSmall txBold crsrPointer"  onblur="this.className='cls_input_text crsrPointer'" onfocus="this.className='cls_input_text cls_input_text_focus crsrPointer'" style="-webkit-appearance: none;height:2rem" onchange="javascript:JSSHOP.cookies.setCookie('usrlang',this.options[this.selectedIndex].value,'130','','','');document.location.href='index.php?pid=aa-settings&nls=y';">
+                                      <option value="en_us">English</option>
+                                      <option value="pt_pt">Portuguese</option>
+                                      
+                                      </select></td>
+									 </tr>
+									 <tr>
+										 <td>Show Admin Tips</td>
+										 <td style="text-align: right">
+										 <div class="switch collection-item" style="text-align: right">
+    <label>
+     
+      <input type="checkbox" id="prfSUsAT" onchange="javascript:JSSHOP.shared.setChckbxPref(this,'prfsSHOPuser','sAT','y', 'n');">
+      <span class="lever"></span>
+     
+    </label></div></td>
+									 </tr>
+									 <tr>
+										 <td>Show Admin Links</td>
+										 <td style="text-align: right">
+										 <div class="switch collection-item" style="text-align: right">
+    <label>
+     
+      <input type="checkbox" id="prfSUsAL" onchange="javascript:JSSHOP.shared.setChckbxPref(this,'prfsSHOPuser','sAL','y', 'n');">
+      <span class="lever"></span>
+     
+    </label></div></td>
+									 </tr>
+									 <tr>
+										 <td>&nbsp;</td>
+										 <td style="text-align: right">&nbsp;</td>
+									 </tr>
+									 <tr>
+										 <td>&nbsp;</td>
+										 <td style="text-align: right">&nbsp;</td>
+									 </tr>
+									 <tr>
+										 <td>Number of Items to show per page</td>
+										 <td style="text-align: right"><input type="number" id="prfSUnIPP" onchange="javascript:if(isNaN(this.value) || this.value < 3) { this.value = currProdsPPg; } else { JSSHOP.user.setCkiePrfKV('prfsSHOPuser','nIPP',this.value);}"  class="crsrPointer bkgdClrNrml brdrClrDlg txtBig txtBold txtClrHdr" value="" style="max-width:70px;min-width:50px;"></td>
+									 </tr>
+								 </table>
+  					 	</td>
 	</tr><tr><td></td></tr>
 	</table>
 <div id="tblDiv"></div>
-&nbsp;<img alt="imgldr" height="14px" width="24px" src="images/misc/trans.gif" onload="javascript:JSSHOP.loadScript('js/x_aa-mod-settings.js', JSSHOP.checkLoader,'js');"  onerror="javascript:JSSHOP.loadScript('js/x_aa-mod-settings.js', JSSHOP.checkLoader,'js');">&nbsp;
-
-
-
-          
-          
-                                           

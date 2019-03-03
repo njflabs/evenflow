@@ -27,8 +27,9 @@ newel = document.createElement('div');
 if(arrToFill[0]) {
 strTHhtml = "<th>" + stxt[22] + "</th><th>" + stxt[32] + "</th><th>" + stxt[33] + "</th>";
 } else {
-strTHhtml = "<th>" + stxt[1] + "</th>";
-tstr = "<a href=\"index.php?pid=aa-create-menu\">" + stxt[1] + "</a>";
+document.location.href = "index.php?pid=aa-add-shop";
+// strTHhtml = "<th>" + stxt[1] + "</th>";
+// tstr = "<a href=\"index.php?pid=aa-add-shop\">" + stxt[1] + "</a>";
 }
 tmpFstr = getTblSortStr(strTHhtml, tstr);
 

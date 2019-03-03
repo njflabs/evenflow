@@ -735,9 +735,15 @@ JSSHOP.shared.getFrmVals = function(oFormElement, oHdrStr) {
             if (sFieldType === "FILE") {
                 for (nFile = 0; nFile < oField.files.length; sSearch += "&" + escape(oField.name) + "=" + escape(oField.files[nFile++].name));
             } else if ((sFieldType !== "RADIO" && sFieldType !== "CHECKBOX") || oField.checked) {
+ 
+		fva = oField.value;
+		if(fva.length >= 0) {
+	
+		fvb = fva.replace("\"", " ");
+		fvv = fva.replace("'", " ");
             fn = escape(oField.name);
-		fv = escape(oField.value);
-		if(fv.length >= 0) {
+		fv = fvv;
+
 		
 		tmpSobj["t"] = fn;
 		tmpSobj["v"] = fv;
@@ -864,6 +870,26 @@ JSSHOP.shared.utf8_encode = function( argString ) {
 };
 
 
+
+
+/*
+* some shared user preferences functions
+*/
+
+
+// sets prefs by passing the checkbox, the preference array name, 
+// the preference key, selected and unselected values.
+JSSHOP.shared.setChckbxPref = function(tChckbx, tPrefArr, tPrefKey, tVsel, tVunsel) {
+	try {
+    if(tChckbx.checked) {
+    JSSHOP.user.setCkiePrfKV(tPrefArr,tPrefKey,tVsel);
+    } else {
+    JSSHOP.user.setCkiePrfKV(tPrefArr,tPrefKey,tVunsel);
+    }
+    } catch (e) {
+        JSSHOP.logJSerror(e, arguments, "JSSHOP.shared.setChckbxPref");
+    }
+};
 
 // end of shared funtions
 

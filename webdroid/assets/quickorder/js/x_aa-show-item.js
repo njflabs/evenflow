@@ -184,22 +184,7 @@ tmpVitemArr = null;
 tmpVitemArr = [];
 tmpVitemArr = arrAllForms.qitem.v;
 renderNuItem("a", JSON.stringify(tmpVitemArr), null);
-
- tmpDV = document.createElement("div");
- tmpDV.className = "collection collectionbrdr";
- tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
- document.getElementById('tdLMenu').appendChild(tmpDV);
 };
 
-
-
-
-/*
- * main loader function
- */
-var aLoadShowItem = function() {
-};
-
- 
  
   

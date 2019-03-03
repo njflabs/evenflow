@@ -158,7 +158,6 @@ D:\www\xampp\htdocs\evenflow\webdroid\bin\res\raw\selfielander_ship.png \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\blank.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\admin.php \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\app_imgselect.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\css \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\db_schema.txt \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\fonts \
@@ -167,13 +166,11 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\index.php \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\media_chooser.html \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\pics.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\return.php \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\settings.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\show.php \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\sindex.php \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\speech_editor.html \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\test_index.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\css\custom-font-styles.css \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\css\main.css \
@@ -229,6 +226,18 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\misc\icon_edit_wa
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\misc\magnifier_washed.png \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\misc\trans.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\misc\transparent.gif \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\0_1551296725.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\0_1551475641.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\18_1551297721.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\33_1551556496.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\7_1551216074.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\9_1551216305.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb0_1551296725.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb0_1551475641.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb18_1551297721.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb33_1551556496.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb7_1551216074.png \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\s_thumb9_1551216305.png \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\pimgs\transparent.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\svg\settings.png \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\aa-en_us.js \
@@ -247,8 +256,9 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\sau.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\standardista-common.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\standardista-css.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\standardista-table-sorting.js \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\TOx_aa-show-cat.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-add-item.js \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-create-menu.js \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-add-shop.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-categories.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-category.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-cos.js \
@@ -265,7 +275,6 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-show-item.js
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-show-iteml.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-settings.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-show-cart.js \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-show-cat.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-show-category.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-show-item.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-show-order.js \
@@ -284,8 +293,8 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_media_chooser.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_menu.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\js\x_speech_editor.js \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-add-item.html \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-add-shop.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-cmp-search.html \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-create-menu.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-categories.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-category.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-item.html \
@@ -293,7 +302,6 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-shop.htm
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-shops.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-synch.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-edit-user.html \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-img-upload.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-mod-about.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-mod-edit-cartitem.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-mod-edit-item.html \
@@ -310,7 +318,6 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-show-order.ht
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-show-search.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-show-thks.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\aa-sqldump.html \
-D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\iindex_main.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\index_blank.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\index_footer.html \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\tplates\index_forms.html \

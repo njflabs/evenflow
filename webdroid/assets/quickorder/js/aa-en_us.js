@@ -1,8 +1,8 @@
 
-stxt[1] = "Create Menu";
-stxt[2] = "Click on one to create or edit your shop menus";
+stxt[1] = "Add new Shop";
+stxt[2] = "Click on one to create or edit your shop categories";
 stxt[3] = "Edit Menu";
-stxt[4] = "Edit your Menus";
+stxt[4] = "Edit your Shops";
 stxt[5] = "Scan QuickBit Menu";
 stxt[6] = "Scan a QuickBit Menu with Android";
 stxt[7] = "Shops";
@@ -59,6 +59,30 @@ stxt[57] = "Preview";
 stxt[58] = "*Available";
 stxt[59] = "Shop Info";
 stxt[60] = "Refresh";
+stxt[61] = "Settings";
+stxt[62] = "More";
+stxt[63] = "Account";
+stxt[64] = "Edit Shop";
+stxt[65] = "QRcode";
+stxt[66] = "AppDB";
+stxt[67] = "Show Item";
+stxt[68] = "Shop Info";
+stxt[69] = "Copy Item";
+
+// items and categories
+stxt[500] = "Add New Category";
+stxt[501] = "Goes in category";
+stxt[502] = "Category title here";
+stxt[503] = "Edit Categories";
+stxt[504] = "Edit Category";
+stxt[505] = "View Category";
+stxt[506] = "Edit Category Title";
+stxt[507] = "Quick Item Add";
+stxt[508] = "Start by adding some items to this category."
+stxt[509] = "Or use the <b>Quick Item Add</b> by entering item title and clicking (+).";
+
+
+
 
 
 // valdiation error messages
@@ -74,4 +98,4 @@ stxt[2001] = "Setting up is easy. Enter your shops title, add some item categori
 
 
 // misc
-stxt[3001] = "New Jean Jacket";
+stxt[3001] = "Item title here";

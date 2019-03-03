@@ -1,3 +1,5 @@
+
+
 var tmpSQBArr = null;
 var tmpVitemArr = null;
 tmpSQBArr = [];
@@ -385,7 +387,7 @@ var renderNuTQBItems = function(a,b,c) {
     /// newel.innerHTML = tmpFstr;
 
     } else {
-        tmpFstr = " ";
+        strHtml += "<b>" + stxt[508] + "</b><br>" + stxt[509];
 	//  stxt[17]
     }
           tmpPtotal = Math.round(tmpVitemArr.length / currProdsPPg);
@@ -449,7 +451,8 @@ var preRenderTQBItems = function(a, b, c) {
 
 
 var doCBcatedit = function(a, b, c) {
-        JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+      //   JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+         JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ document.location.href=document.location.href + '&fc=y'  });
 };
 
 var doCatTitleEdit = function() {
@@ -470,7 +473,11 @@ doQComm(oi["rq"], null, "doCBcatedit");
  
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
-// alert("fnishCntLoad");
+if((quid == 0) || (quid == "noQvalue")) {
+JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/login.html", pfRet);
+JSSHOP.loadScript("js/x_login.js", JSSHOP.checkLoader,"js");
+return;
+}
 
 JSSHOP.shared.setFrmFieldVal("qitem", "i_uid", quid);
 JSSHOP.shared.setFrmFieldVal("qitem", "i_coid", cid);
@@ -503,8 +510,8 @@ tfim = nCurrFFieldOb();
 tfim.fid = "tmp_cat_title";
 tfim.fdv = stxt[16];
 tfim.fda = "y";
-// tfim.lid = "lbl_cat_title";
-// tfim.ltxt = stxt[16];  
+tfim.lid = "lbl_cat_title";
+tfim.ltxt = stxt[506];  
 euiFFObjArr.push(tfim); 
 
 
@@ -513,7 +520,7 @@ tfia.fid = "tmp_i_title";
 tfia.fdv = stxt[3001];
 tfim.fda = "y";
 tfia.lid = "lbl_i_title";
-tfia.ltxt = stxt[17];  
+tfia.ltxt = stxt[507];  
 
 
 tfia.fda = "y";  
@@ -529,21 +536,7 @@ JSSHOP.shared.initFrmComps(euiFFObjArr);
     doQComm(oi["rq"], null, "renderDBis");
 JSSHOP.loadScript("js/x_aqr.js", JSSHOP.checkLoader,"js");
 JSSHOP.shared.setFieldVal("tmp_cat_title", document.getElementById("cat_title").value, "....");
- tmpDV = document.createElement("div");
- tmpDV.className = "collection collectionbrdr";
- tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
- document.getElementById('tdLMenu').appendChild(tmpDV);
 
+ 
 
-
-
-    };
-
-
-
-/* TO DELETE!!!!
- * main loader function
- */
-var doPgInit = function() {
-// fnishCntLoad();
- };
+};

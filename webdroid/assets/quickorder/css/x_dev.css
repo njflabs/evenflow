@@ -1,6 +1,7 @@
 ﻿.clsDvCntntTtle {
 background-color: #26a69a;
 color: #FFFFFF;
+height: 34px;
 }
 
 
@@ -185,15 +186,25 @@ input[type=BUTTON]:hover{ color:rgb(0,0,216); }
 
 .cls_button {
     display: inline-block;
-    background: none repeat scroll 0% 0% #971232;
+    /* background: none repeat scroll 0% 0% #971232; */
     white-space: nowrap;
     border-radius: 3px;
     transition: all 0.2s linear 0s;
     cursor: pointer;
     font-family: tahoma,sans-serif;
-    background-image: linear-gradient(120deg, #155799, #159957);
+     background-color: #294759;
+    /* background-color:#26a69a;
+    background-image: linear-gradient(120deg, #155799, #159957); */
 }
  
+
+.cls_button::first-letter
+{ 
+text-decoration:underline !important:
+}
+
+
+
 .cls_bclicked {
  
     transition: all 0.2s linear 0s;
@@ -203,7 +214,7 @@ input[type=BUTTON]:hover{ color:rgb(0,0,216); }
 
 
 .cls_hoover  >  div:hover {
-  border: 1px solid #999;color:#000;
+  border: 1px solid #999; color:#000;
   }
 
 // input[type=BUTTON]:hover{ border: 1px solid #999;color:#000; }

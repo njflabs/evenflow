@@ -48,6 +48,7 @@ var currFFieldOb = {};
 var currFFinitArr = [];
 var currPgIndex = 0; // pagination starts at 1
 var currProdsPPg = 10; // pagination  - number of items per page
+var currMCollItems = {}; // the acual menu button collection links object
 var stxt = [];
 var usrlang = "en_us";
 var actbSearch;
@@ -62,6 +63,9 @@ shopDir = path.substring(0, n+ 1);
 shopDir += "/";
 }
  
+var doNada = function(tmpa, tmpb, tmpc) {
+};
+
 
 if(!window.JSSHOP){
 var JSSHOP = new Object();
@@ -765,10 +769,11 @@ JSSHOP.user.setCkieUprefs = function(ckyP) {
 try {
 // alert("setCkieUprefs: " + JSON.stringify(arrUprefs[ckyP]));
 if(JSSHOP.cookies.getCookie(ckyP)) {
-// JSSHOP.cookies.deleteCookie(ckyP, "","");
+JSSHOP.cookies.deleteCookie(ckyP, "","");
 }
 JSSHOP.cookies.setCookie(ckyP, JSSHOP.user.encPrefCky(JSON.stringify(arrUprefs[ckyP])), "30", "", "", "");
 } catch(e) {
+alert(e);
 JSSHOP.logJSerror(e, arguments, "JSSHOP.user.setCkieUprefs");
 }
 };
@@ -1153,8 +1158,24 @@ diint++;
 }
 
 
+tmpMColStr = doCollsLoad();
+
+
+
+if(document.getElementById('mmDdown')) {
+document.getElementById('mmDdown').innerHTML = "";
+document.getElementById('mmDdown').innerHTML = tmpMColStr;
+document.getElementById('tdLMenu').innerHTML = "";
+tmpDV = document.createElement("div");
+tmpDV.className = "collection collectionbrdr";
+tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
+document.getElementById('tdLMenu').appendChild(tmpDV);
+}
+
 
 fnishCntLoad();
+
+
 };
 var mfnishCoForm = function() {
 // alert("MfinishCoForm");
@@ -1740,7 +1761,7 @@ var doMainContent = function(a,b,c) {
 
 document.getElementById(a).innerHTML = b;
 fCa = getFArr();
-
+// this should be fixed. authentication.
 if((pid.indexOf("edit-") != -1)  && ((quid == 0) || (quid == "noQvalue"))) {
 // if((pid.indexOf("edit-") != -1)  && ((JSSHOP.cookies.getCookie("quid") == null) || (JSSHOP.cookies.getCookie("quid") == "noQvalue"))) {
 // page requires user login

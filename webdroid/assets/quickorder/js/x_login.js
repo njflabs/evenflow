@@ -1,3 +1,14 @@
+currPgTitle = stxt[31] + " " + stxt[56];
+document.title = currPgTitle; 
+var euiLObjArr = null;
+var euiLObjArr = [];
+
+ck_name = /^[A-Za-z0-9 ]{3,20}$/;
+ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+ck_username = /^[A-Za-z0-9_]{3,20}$/;
+ck_password =  /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+
+
 var doLoginResp = function(a,b,c) {
 try {
 if(b.indexOf("u_email") != -1) {
@@ -26,7 +37,7 @@ tmpDOs = {};
 tmpDOs["ws"] = "where u_email=? and u_pass=?";
 tmpDOs["wa"] = [tmpUstr,tmpPstr];
 oi = getNuDBFnvp("quser",5,null,tmpDOs);
-alert("doSULIn: " + oi["rq"]);
+// alert("doSULIn: " + oi["rq"]);
 doQComm(oi["rq"], null, "doLoginResp");
 }
 
@@ -68,3 +79,37 @@ doQComm(oi["rq"], null, "doLoginResp");
 }
 }
 };
+
+
+
+
+var dmyFnishCntLoad = fnishCntLoad;
+fnishCntLoad = function() {
+JSSHOP.shared.setFrmFieldVal("qcat", "cat_coid", cid);
+JSSHOP.shared.setFrmFieldVal("qcat", "cat_uid", quid);
+
+
+tflue = nCurrFFieldOb();
+tflue.fid = "tmpUemail";
+tflue.fdv = stxt[50];
+tflue.lid = "lbl_u_email"; 
+tflue.ltxt = stxt[50]; 
+tflue.fvr = ck_email;
+tflue.fve = stxt[1000];
+euiLObjArr.push(tflue);
+
+tflui = nCurrFFieldOb();
+tflui.fid = "tmpUpass";
+tflui.fdv = stxt[49];
+tflui.lid = "lbl_u_pass"; 
+tflui.ltxt = stxt[49]; 
+tflui.fvr = ck_password;
+tflui.fve = stxt[1001];
+euiLObjArr.push(tflui);
+ 
+
+JSSHOP.shared.initFrmComps(euiLObjArr);
+ 
+return dmyFnishCntLoad;
+};
+

@@ -1,4 +1,7 @@
 var currMSetArr = [];
+currPgTitle = stxt[61];
+document.title = currPgTitle; // set the page title 
+ 
 var doMbtn = function(tmpTxt, tmpCallback) {
 tmpRd = "<div class=\"crsrPointer\" style=\"margin:5px;\"><div onclick=\"javascript:JSSHOP.ui.setCBBClickClr(this,'txtBig slmtable brdrClrNrml','txtBig slmtable brdrClrHdr', function(){" + tmpCallback + "});\" class=\"slmtable txtBig brdrClrHdr\"  style=\"padding:8px;\">";
 tmpRd += tmpTxt + "</div></div>";
@@ -189,7 +192,38 @@ var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function () {
 currQcommsArr = null;
 currQcommsArr = [];
- 
+if(arrUprefs["prfsSHOPuser"]) {
+// alert(JSON.stringify(arrUprefs["prfsSHOPuser"][0]));
+if(arrUprefs["prfsSHOPuser"][0].scv) {
+if(arrUprefs["prfsSHOPuser"][0].scv == "r") {
+}
+}
+
+if(arrUprefs["prfsSHOPuser"][0].sAT) {
+if(arrUprefs["prfsSHOPuser"][0].sAT == "y") {
+document.getElementById("prfSUsAT").checked=true;
+}
+}
+if(arrUprefs["prfsSHOPuser"][0].nIPP) {
+document.getElementById("prfSUnIPP").value=arrUprefs["prfsSHOPuser"][0].nIPP;
+}
+
+if(arrUprefs["prfsSHOPuser"][0].sAL) {
+if(arrUprefs["prfsSHOPuser"][0].sAL == "y") {
+document.getElementById("prfSUsAL").checked=true;
+}
+}
+
+
+
+
+}
+
+JSSHOP.shared.setCurrSelectOpt(document.getElementById("selPrefUlang"), usrlang);
+
+
+
+/*
 if(cid == 0) {
 } else {
 if(arrAllForms.qco.v[0].c_uid == quid) {
@@ -198,8 +232,9 @@ loadAdminSettings();
 }
  
 loadUserSettings();
+*/
 // alert(JSON.stringify(currMSetArr));
-// doQComm("batch" + JSON.stringify(currMSetArr), null, "fnish");
+doQComm("batch" + JSON.stringify(currMSetArr), null, "fnish");
 
 }
 var aLoadSettings = function() {

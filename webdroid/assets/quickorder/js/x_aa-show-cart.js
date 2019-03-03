@@ -137,7 +137,7 @@ var renderNuTQBItems = function(a,b,c) {
  		// strHtml += "<img src=\"images/misc/icon_edit_washed.gif\" class=\"icnbtn\" style=\"align: center;text-align:center;margin:6px;\" align=\"absmiddle\">";
 
             strHtml += "<span style=\"margin-right: 20px\" class=\"txtSmall txtClrGrey\">" + ts.ci_price_b + " x </span>";
-            strHtml += "<input type=\"number\" onchange=\"javascrip:doNuItemQtyEdit('" + ts._id + "',this.value,'" + ts.ci_cartqty + "');\"  class=\"crsrPointer bkgdClrNrml brdrClrDlg txtBig txtBold txtClrDlg\" name=\"mod_ci_cartqty" + ts._id + "\" id=\"mod_ci_cartqty" + ts._id + "\"  value=\"" + ts.ci_cartqty + "\" style=\"max-width: 35px;\">";
+            strHtml += "<input type=\"number\" onchange=\"javascript:doNuItemQtyEdit('" + ts._id + "',this.value,'" + ts.ci_cartqty + "');\"  class=\"crsrPointer bkgdClrNrml brdrClrDlg txtBig txtBold txtClrDlg\" name=\"mod_ci_cartqty" + ts._id + "\" id=\"mod_ci_cartqty" + ts._id + "\"  value=\"" + ts.ci_cartqty + "\" style=\"max-width: 35px;\">";
             // strHtml += "";
 
             strHtml += "<span class=\"txtBig txtClrHdr txtBold\">" + tmpTttl + "</span>";
@@ -318,20 +318,5 @@ var reloadDBis = function() {
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
  reloadDBis();
- tmpDV = document.createElement("div");
- tmpDV.className = "collection collectionbrdr";
- tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
- document.getElementById('tdLMenu').appendChild(tmpDV);
 };
 
- 
-
-  /*
- * main loader function
- */
-
-var aLoadShowCart = function() {
-};
-
-
- 

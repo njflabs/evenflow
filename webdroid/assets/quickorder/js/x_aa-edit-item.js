@@ -237,7 +237,8 @@ var preRenderTQBItems = function(a, b, c) {
 
 
 var doCBcatedit = function(a, b, c) {
-        JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+       //  JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ doMMenuLd() });
+         JSSHOP.ui.setCBBClickClr(mmn,'cls_button cls_button-medium brdrClrDlg txtClrHdr','nanimenu', function(){ document.location.href=document.location.href + '&fc=y' });
 
    
 };
@@ -446,7 +447,6 @@ tmpRetStr = "<div>";
 tmpAlen = tmpPrdMediaArr.length;
         while (tmmpII < tmpAlen) {
             tsa = tmpPrdMediaArr[tmmpII];
-
 		tmpRetStr += "<img src=\"" + JSSHOP.shop.getPrdImgStr("prdmedia", tsa.m_file) +  "\" class=\"icnmnubtn crsrPointer\" onclick=\"doPrdMIcnClick(" + tmmpII + ");\">";   
             tmmpII++;
         }
@@ -487,8 +487,7 @@ JSSHOP.ui.toggleVisibility("dvUploadBtn");
 
 
 
-
-/* overide the done filling def forms in  x_booter fnishCoForm etc., */
+ 
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
@@ -594,21 +593,16 @@ document.getElementById("mod_i_rtype").checked=false;
 document.getElementById("btnEUsave").disabled=true;
 document.getElementById("btnEUsave").className = "clsDDBtnDsbd";
 }
- tmpDV = document.createElement("div");
- tmpDV.className = "collection collectionbrdr";
- tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
- document.getElementById('tdLMenu').appendChild(tmpDV);
-
 doSubCOpts(arrToOptFill);
+/*
 if(getViewportWidth() > 480) {
 } else {
 scrollToElement("tdTitleBar");
 }
-};
+*/
 
-/*
- * main loader function
- */
-var aLoadEditItem = function() {
-    // doDefFormsFill();
+
+
+
 };
+ 

@@ -385,4 +385,214 @@ doNurQComm(ctac);
 var doMMenuLd = function() {
 doNuMMenuLd("doMnuFnsh");
 };
+
+
+
+
+
+
+
+var doCollsLoad = function() {
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-add-item&cid=" + cid + "&catid=" + catid + "'";
+tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["ti"] = stxt[17];
+currMCollItems["aa-add-item"] = tmpMCollItem;
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["ti"] = stxt[67];
+currMCollItems["aa-show-item"] = tmpMCollItem;
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["ti"] = stxt[20];
+currMCollItems["aa-edit-item"] = tmpMCollItem;
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "&cmdci=y'";
+tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["ti"] = stxt[69];
+currMCollItems["aa-copy-item"] = tmpMCollItem;
+
+tmpWCollItem = null;
+tmpWCollItem = {};
+tmpWCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-category&cid=" + cid + "&catid=" + catid + "'";
+tmpWCollItem["mi"] = "content_copy";
+tmpWCollItem["ti"] = stxt[505];
+currMCollItems["aa-show-category"] = tmpWCollItem;
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["mi"] = "edit";
+tmpQCollItem["ti"] = stxt[504];
+currMCollItems["aa-edit-category"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-categories&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["mi"] = "content_copy";
+tmpQCollItem["ti"] = stxt[503];
+currMCollItems["aa-edit-categories"] = tmpQCollItem;
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-shop&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["mi"] = "edit";
+tmpQCollItem["ti"] = stxt[68];
+currMCollItems["aa-edit-shop"] = tmpQCollItem;
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-shops'";
+tmpQCollItem["mi"] = "edit";
+tmpQCollItem["ti"] = stxt[4];
+currMCollItems["aa-edit-shops"] = tmpQCollItem;
+
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-add-shop'";
+tmpQCollItem["mi"] = "add";
+tmpQCollItem["ti"] = stxt[1];
+currMCollItems["aa-add-shop"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-cart&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["mi"] = "shopping_cart";
+tmpQCollItem["ti"] = stxt[47];
+currMCollItems["aa-show-cart"] = tmpQCollItem;
+
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-settings&cid=" + cid + "'";
+tmpQCollItem["mi"] = "settings";
+tmpQCollItem["ti"] = stxt[61];
+currMCollItems["aa-settings"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-user&cid=" + cid + "'";
+tmpQCollItem["mi"] = "person";
+tmpQCollItem["ti"] = stxt[63];
+currMCollItems["aa-edit-user"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:preAQR();";
+tmpQCollItem["mi"] = "edit";
+tmpQCollItem["ti"] = stxt[65];
+currMCollItems["aa-qrcode"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:getAppDBReq();";
+tmpQCollItem["mi"] = "edit";
+tmpQCollItem["ti"] = stxt[66];
+currMCollItems["aa-appdbreq"] = tmpQCollItem;
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=login'";
+tmpQCollItem["mi"] = "lock";
+tmpQCollItem["ti"] = "Login";
+currMCollItems["aa-login"] = tmpQCollItem;
+
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:JSSHOP.cookies.deleteCookie('quid','','');document.location.href='index.php?lgo=y'";
+tmpQCollItem["mi"] = "lock";
+tmpQCollItem["ti"] = "Logout";
+currMCollItems["aa-logout"] = tmpQCollItem;
+
+currMCollArr = [];
+tmpPrfSAL = "n";
+try {
+tmpPrfSAL = arrUprefs["prfsSHOPuser"][0].sAL;
+} catch(e) {
+tmpPrfSAL = "n";
+}
+
+switch(pid) {
+case "aa-show-item":
+if((arrAllForms.qco.v[0].c_uid == quid) && (tmpPrfSAL == "y")) {
+currMCollArr.push("aa-add-item");
+currMCollArr.push("aa-edit-item");
+currMCollArr.push("aa-copy-item");
+currMCollArr.push("aa-edit-category");
+}
+break;
+
+case "aa-show-category":
+if((arrAllForms.qco.v[0].c_uid == quid) && (tmpPrfSAL == "y")) {
+currMCollArr.push("aa-add-item");
+currMCollArr.push("aa-edit-category");
+currMCollArr.push("aa-edit-categories");
+currMCollArr.push("aa-edit-shop");
+}
+break;
+
+case "aa-add-item":
+currMCollArr.push("aa-show-category");
+currMCollArr.push("aa-edit-category");
+currMCollArr.push("aa-edit-categories");
+break;
+case "aa-edit-item":
+currMCollArr.push("aa-show-item");
+currMCollArr.push("aa-copy-item");
+currMCollArr.push("aa-edit-category");
+currMCollArr.push("aa-edit-categories");
+currMCollArr.push("aa-show-category");
+break;
+case "aa-edit-category":
+currMCollArr.push("aa-show-category");
+currMCollArr.push("aa-edit-categories");
+currMCollArr.push("aa-edit-shop");
+currMCollArr.push("aa-edit-shops");
+break;
+case "aa-edit-categories":
+currMCollArr.push("aa-edit-shop");
+currMCollArr.push("aa-edit-shops");
+break;
+case "aa-edit-shop":
+currMCollArr.push("aa-edit-categories");
+currMCollArr.push("aa-edit-shops");
+break;
+default:
+break;
+}
+currMCollArr.push("aa-show-cart");
+currMCollArr.push("aa-settings");
+currMCollArr.push("aa-edit-user");
+currMCollArr.push("aa-add-shop");
+
+if((quid == 0) || (quid == "noQvalue")){
+currMCollArr.push("aa-login");
+} else {
+currMCollArr.push("aa-logout");
+}
+tmpStrbla = ""; 
+iti = 0; 
+while(iti < currMCollArr.length) {
+tmpStrbla += "<a href=\"" + currMCollItems[currMCollArr[iti]].u + "\" class=\"collection-item txtDecorNone\"><i class=\"material-icons\">" + currMCollItems[currMCollArr[iti]].mi + "</i><span style=\"vertical-align:super;padding-left:12px;\"><ti data-ison=\"" + currMCollItems[currMCollArr[iti]].ti + "\" data-desc=\"view\">" + currMCollItems[currMCollArr[iti]].ti + "</ti></span></a>";
+iti++; 
+}
+return tmpStrbla;
+}; 
 // doMMenuLd();
