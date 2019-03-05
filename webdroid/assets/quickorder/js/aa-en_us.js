@@ -82,7 +82,9 @@ stxt[508] = "Start by adding some items to this category."
 stxt[509] = "Or use the <b>Quick Item Add</b> by entering item title and clicking (+).";
 
 
-
+// admin strings
+stxt[600] = "Click to run Query";
+ 
 
 
 // valdiation error messages

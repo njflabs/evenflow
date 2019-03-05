@@ -145,8 +145,8 @@ include "_p/js-header.php";
         
         </td></tr></table></td></tr></table>
 
-         		      <table><tr><td style="width: 100%"></td><td style="min-width:150px;"  onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" nowrap="nowrap"> 
-         		      <div class="collection" id="mmDdown" style="position:absolute;display:none;visibility:hidden;z-index:999999;margin-right:10px" nowrap="nowrap">
+         		      <table   onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')"  cellpadding="15px" cellspacing="15px"><tr><td style="width: 100%"></td><td style="min-width:150px;" nowrap="nowrap"> 
+         		      <div class="collection rstable brdrClrHdr bkgdWhite" id="mmDdown" style="position:absolute;display:none;visibility:hidden;z-index:999999;margin:10px" nowrap="nowrap">
 
 
 

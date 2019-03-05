@@ -1377,8 +1377,8 @@ JSSHOP.ui.setCBBClickEnd = function(theElem, theID, theCBclss, theCB) {
 };
 
 
-// setCBBClickClr(dvBtnSTImg, 'rtable bkgdClrHdr', 'rtable bkgdClrNrml crsrPointer', function() { y = 'y'; });
-JSSHOP.ui.setCBBClickClr = function(theElem, theCclss, theCBclss, theCB) {
+ 
+JSSHOP.ui.setNuCBBClickClr = function(theElem, theCclss, theCBclss, theCB, theNBCDelay) {
     try {
     		strJobThread = JSSHOP.getUnixTimeStamp();
    		//  theMElem = document.getElementById(theElem);
@@ -1387,7 +1387,7 @@ JSSHOP.ui.setCBBClickClr = function(theElem, theCclss, theCBclss, theCB) {
             theElem.setAttribute("data-dblclick", 1);
             setTimeout(function () {
             if (theElem.getAttribute("data-dblclick") == 1) {
-		JSSHOP.startIntervalEvent(trgr_bclck[strJobThread], function() { JSSHOP.ui.setCBBClickEnd(theElem, strJobThread, theCBclss, theCB);}, 380);
+		JSSHOP.startIntervalEvent(trgr_bclck[strJobThread], function() { JSSHOP.ui.setCBBClickEnd(theElem, strJobThread, theCBclss, theCB);}, theNBCDelay);
             }
             theElem.removeAttribute("data-dblclick");
             }, 250);
@@ -1395,11 +1395,16 @@ JSSHOP.ui.setCBBClickClr = function(theElem, theCclss, theCBclss, theCB) {
             theElem.removeAttribute("data-dblclick");
             }
     } catch(e) {
-    		JSSHOP.startIntervalEvent(trgr_bclck[strJobThread], function() { JSSHOP.ui.setCBBClickEnd(theElem, strJobThread, theCBclss, theCB);}, 380);
+    		JSSHOP.startIntervalEvent(trgr_bclck[strJobThread], function() { JSSHOP.ui.setCBBClickEnd(theElem, strJobThread, theCBclss, theCB);}, theNBCDelay);
 
 		// alert(e);
          JSSHOP.logJSerror(e, arguments, "JSSHOP.ui.setCBBClickClr");
     }
+};
+
+// setCBBClickClr(dvBtnSTImg, 'rtable bkgdClrHdr', 'rtable bkgdClrNrml crsrPointer', function() { y = 'y'; });
+JSSHOP.ui.setCBBClickClr = function(theElem, theCclss, theCBclss, theCB) {
+JSSHOP.ui.setNuCBBClickClr(theElem, theCclss, theCBclss, theCB, 380); 
 };
 
 JSSHOP.ui.doDefBtn = function(tmpTxt, tmpCallback) {
@@ -1858,7 +1863,7 @@ JSSHOP.shop.getPrdPriceStr = function(thePrdsArna, prcInt, prcID, prcA, prcB){
 
 JSSHOP.shop.getPrdImgStr = function(tTAnme, tmpVala){
 
-		retIstrI = "images/menu_iconl.jpg";
+		retIstrI = "images/example.png";
 		try {
 		tmpValb = tmpVala;
  		if((tmpValb.indexOf("lcl-") != -1) || (tmpValb.indexOf("rem-") != -1)) {
@@ -2043,9 +2048,11 @@ strImgDsct = "";
 	if((thePrdsArna == "prodpg") && (pid == "aa-show-item")){
  	strHtml += "<li  class=\"prodBigBox\">";
  	} else {
- 	// strHtml += "<li  class=\"prodBigBox\"  style=\"min-width:200px;max-width:40%;min-height:250px;max-height:251px;float: left;\">";
- 	strHtml += "<li class=\"float-item\" style=\"\">";
-
+	if(upRefs == "r") {
+ 	 strHtml += "<li  class=\"prodBox\"  style=\"min-width:90%;min-height:250px;max-height:251px;float: left;\">";
+ 	} else {
+	strHtml += "<li class=\"float-item\" style=\"\">";
+	}
 	}
 
 

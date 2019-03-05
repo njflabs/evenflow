@@ -204,6 +204,7 @@ D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\cart_r.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\checked_g.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\checked_r.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\delete_r.gif \
+D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\example.png \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\favorited_g.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\favorited_r.gif \
 D:\www\xampp\htdocs\evenflow\webdroid\assets\quickorder\images\help_r.gif \

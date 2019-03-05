@@ -195,6 +195,7 @@ currQcommsArr = [];
 if(arrUprefs["prfsSHOPuser"]) {
 // alert(JSON.stringify(arrUprefs["prfsSHOPuser"][0]));
 if(arrUprefs["prfsSHOPuser"][0].scv) {
+JSSHOP.shared.setCurrSelectOpt(document.getElementById("prfSUscv"), arrUprefs["prfsSHOPuser"][0].scv);
 if(arrUprefs["prfsSHOPuser"][0].scv == "r") {
 }
 }

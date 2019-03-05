@@ -1,19 +1,37 @@
- 				  <table>
+ 				  <table style="margin:0 auto" align="center" cellpadding="6px" cellspacing="6px">
 					  <tr>
 						  <td>
-					Dump:</td>
+						  This will be mainly made to work with the included 
+						  java browser program.<br>This simple sqldump script is 
+						  mainly for db table visualization.<br>If you were 
+						  running the java browser, the spreadsheet panel would 
+						  open;<br>giving you much better spreadsheet 
+						  functionality to your remote database.<br>Here is your 
+						  current <a href="db_schema.txt" target="_blank">
+						  database structure</a>.</td>
+					    </tr>
+					  <tr>
+						  <td>
+						  <strong>Enter SQL statement:</strong></td>
+					    </tr>
+					  <tr>
+						  <td>
+<textarea name="taSql" id="taSql" style="height: 88px; max-width: 90%; min-width:290px" cols="20" rows="1">select * from qitem limit 3;</textarea></td>
+					    </tr>
+					  <tr>
+						  <td>
+				  
+					  &nbsp;<div class="cls_hoover"><div onclick="javascript:JSSHOP.ui.setNuCBBClickClr(this,'cls_button cls_button-medium brdrClrRed txtClrHdr','cls_button cls_button-medium', function(){aLoadDump()}, 50);" class="cls_button cls_button-medium">
+	<ti data-ison="stxt[600]" data-desc="btn_login">Run Query</ti></div> </div>
+</td>
+					    </tr>
+					  <tr>
+						  <td>
+						  <div id="tdSql" style="max-width:400px;overflow: scroll;border: 1px solid #000000;width: 100%">&nbsp;</div></td>
 					    </tr>
 					  </table>
-<img alt="imgldr" height="4px" width="4px" src="images/misc/trans.gif" onload="javascript:aLoadDump();"  onerror="javascript:aLoadDump();">
-<textarea name="taSql" id="taSql" style="height: 107px; width: 361px">select * from qitem;</textarea>
-				  <p>&nbsp;</p>
+&nbsp;
+				  <br>
 				  
-					  <input name="Button1" type="button" value="button" onclick="aLoadDump();">
-				  <p>&nbsp;</p>
-				  <p>&nbsp;</p>
-				  <table style="width: 100%">
-					  <tr>
-						  <td id="tdSql">&nbsp;</td>
-					  </tr>
-				  </table>
- <div id="tdSql">&nbsp;</div>
+					  &nbsp;
+ 

@@ -417,13 +417,14 @@ document.location.href = strTuel;
 };
 
 var getAppDBReq = function() {
+      qEncdQstring = currRQdb + ":|:" + currRQtable + ":|:" + currRQstr;
     try {
 	// currRQdb = "qbits";
-      qEncdQstring = currRQdb + ":|:" + currRQtable + ":|:" + currRQstr;
 	// alert(qEncdQstring);
 	app.doDB(qEncdQstring)
     } catch (e) {
-	alert("This only works with the java-browser");
+	// alert("This will be mainly made to work with the included java browser program.");
+	document.location.href="index.php?pid=aa-sqldump&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
         JSSHOP.logJSerror(e, arguments, "JSSHOP.admin.getAppReq");
     }
 };

@@ -7,7 +7,12 @@ var tmpImgCtr = 0;
 
 
 
-try {
+
+ 
+
+
+var renderCatItems = function (theCArr) {
+ try {
     var upRefs = arrUprefs["prfsSHOPuser"][0].scv;
 }
 catch (e) {
@@ -19,40 +24,33 @@ try {
 catch (e) {
     var upPrixRef = "u";
 }
- 
-
-
-var renderCatItems = function (theCArr) {
-    try {
-        spinner.stop();
-    }
-    catch (e) {
-        alert(e);
-    }
 
     try {
         strHtml = "";
         tmpTDQI = document.getElementById("dvQitems");
         tmpTDQI.innerHTML = "";
-
+	  tmpPrfStr = "<div style=\"margin-bottom:0px;\" align=\"right\">";
         tmpDVlmore = document.createElement('div');
-        if (getViewportWidth() < 500) {
+
             if (upRefs == "r") {
-                tmpDVlmore.innerHTML = JSSHOP.ui.doDefBtn("grid", "JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();");
+                tmpPrfStr += "[<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();\">grid</a>]";
             }
             else {
-                tmpDVlmore.innerHTML = JSSHOP.ui.doDefBtn("row", "JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();");
+                tmpPrfStr += "[<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();\">row</a>]";
             }
-            tmpTDQI.appendChild(tmpDVlmore);
-        }
-        tmpDVlpr = document.createElement('div');
-        if (upPrixRef == "u") {
-            tmpDVlpr.innerHTML = JSSHOP.ui.doDefBtn("pricE", "JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('u');");
+
+
+        tmpDVlpr = document.createElement('span');
+        if (upPrixRef == "a") {
+            tmpPrfStr += "   [<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('a');\">price</a>]";
         }
         else {
-            tmpDVlpr.innerHTML = JSSHOP.ui.doDefBtn("Price", "JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','u');renderPrix('d');");
+            tmpPrfStr += "    [<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','a');renderPrix('d');\">PRICE</a>]";
         }
-        // tmpTDQI.appendChild(tmpDVlpr);
+            tmpPrfStr += "</div>";
+         tmpDVlmore.innerHTML = tmpPrfStr;
+ 
+            tmpTDQI.appendChild(tmpDVlmore);
         tStrHtml = JSSHOP.shop.getPrdsFullStr("cat", theCArr, null, null, null);
 	  tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\">";
 
@@ -80,7 +78,7 @@ var renderCatItems = function (theCArr) {
 };
 var renderPrix = function (tmpStrAD) {
     tmpCnstStr = "sortDesc";
-    if (tmpStrAD == "u") {
+    if (tmpStrAD == "d") {
         tmpCnstStr = "sortDesc";
     }
     else {

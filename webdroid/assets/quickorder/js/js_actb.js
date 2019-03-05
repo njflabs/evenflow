@@ -338,7 +338,7 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
 
 	this.ep_FdsArrTtl = tepFdsArrTtl;
 	this.ep_FdsArrKwds = tepFdsArrKwds;
-
+ 
 
 
 	var actb_self = this;
@@ -346,11 +346,11 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
 	actb_curr = obj;
 	
 	addEvent(actb_curr,"focus",actb_setup);
+    
 
 
 
-
-
+ 
 
 	function actb_setup(){
 		addEvent(actb_curr,"keydown",actb_checkkey);
@@ -480,14 +480,15 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
 		r = a.insertRow(-1);
 		c = r.insertCell(-1);
 		c.innerHTML = "<div class=\"txtClrGrey\">--------</div>";
-
+            
 		for (tmpI=0;tmpI<tmpArrFKWrds.length;tmpI++){
 		r = a.insertRow(-1);
 		c = r.insertCell(-1);
 		// c.innerHTML = tmpArrFKWrds[tmpI] + "<br>" + getItemTtl(tmpArrFKTtls[tmpI]);
  		// c.innerHTML = "<a href=\"javascript:doItemAction('" + tmpArrFKTtls[tmpI] + "')\">" + tmpArrFKWrds[tmpI] + "<br>" + getItemTtl(tmpArrFKTtls[tmpI]) + "</a>";
-		c.innerHTML = getItemTable(tmpArrFKTtls[tmpI],tmpArrFKWrds[tmpI]); 
-
+	      tStrIT = getItemTable(tmpArrFKTtls[tmpI],tmpArrFKWrds[tmpI]);  
+		c.innerHTML = tStrIT; 
+ 
 		}
 		
 
@@ -1159,6 +1160,9 @@ return strItable;
 
 var loadListACTB = function(theString, theElem) {
 try {	
+
+ 
+
 ep_fs = theString;
  // alert("loadListACTB: " + ep_fs);
 ep_as = ep_fs.split("::");
@@ -1204,6 +1208,9 @@ epArrFarrKwds = epFdsArrKwds.split("|");
 if(theElem == "ijUFeedSearch") {
 acton = actb(document.getElementById(theElem),customarray2,customarray,epArrCarrTtls,epArrCarrKwds,epArrFarrTtls,epArrFarrKwds);
 }  
+
+ 
+
 return acton;
 
 }catch(e) {

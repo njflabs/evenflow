@@ -49,6 +49,7 @@ var currFFinitArr = [];
 var currPgIndex = 0; // pagination starts at 1
 var currProdsPPg = 10; // pagination  - number of items per page
 var currMCollItems = {}; // the acual menu button collection links object
+var currUserFavs = "";
 var stxt = [];
 var usrlang = "en_us";
 var actbSearch;
@@ -652,7 +653,7 @@ if(isPhP == "no") {
 try {
 
 if(name == "quid") {
-app.setConfValInt(name,"noQvalue");
+app.setConfValInt(name,0);
 } else {
 app.setConfValString(name,"noQvalue"); 
 }
@@ -1157,23 +1158,10 @@ diint++;
 }
 }
 
-
-tmpMColStr = doCollsLoad();
-
-
-
-if(document.getElementById('mmDdown')) {
-document.getElementById('mmDdown').innerHTML = "";
-document.getElementById('mmDdown').innerHTML = tmpMColStr;
-document.getElementById('tdLMenu').innerHTML = "";
-tmpDV = document.createElement("div");
-tmpDV.className = "collection collectionbrdr";
-tmpDV.innerHTML = document.getElementById('mmDdown').innerHTML;
-document.getElementById('tdLMenu').appendChild(tmpDV);
-}
-
+ 
 
 fnishCntLoad();
+
 
 
 };
@@ -1384,7 +1372,6 @@ var loadLmenu = function() {
 	linkText = document.createTextNode("Recent");
 	tmpA.appendChild(linkText);
 	tmpA.title = "Recent";
-	// tmpA.href = "void(";
 	tmpLI.appendChild(tmpA);
 	tmpRPUL = document.createElement("ul");
  
@@ -1495,14 +1482,25 @@ break;
 iint++;
 }
  
-try {
 
-// document.getElementById('tdLMenu').appendChild(tmpmainUL);
 
-// JSSHOP.ui.toggleVisibility("tdLMenu");
-} catch(e) {
-alert("loadLmenu: " + e);
-}	
+
+
+tmpMColStr = doCollsLoad();
+if(document.getElementById('mmDdown')) {
+document.getElementById('mmDdown').innerHTML = "";
+document.getElementById('mmDdown').innerHTML =  tmpMColStr;
+// document.getElementById('mmDdown').innerHTML = tmpMColStr;
+document.getElementById('tdLMenu').innerHTML = "";
+tmpDV = document.createElement("div");
+tmpDV.className = "collection collectionbrdr";
+tmpDV.innerHTML = tmpMColStr;
+document.getElementById('tdLMenu').appendChild(tmpDV);
+}
+
+
+
+
 
 
 };
@@ -1518,7 +1516,7 @@ var setLoadACTB = function(theACb) {
 var arrToFill = null;
 arrToFill = JSON.parse(theACb.rs);
 arrAllForms["qextras"] = arrToFill;
-
+ 
 strCatID =  "tip:ep:Smart Autocomplete|";
 strCatName =  "This will be a smart auto-complete search box.|";
 strULPID = "";
@@ -1546,16 +1544,28 @@ tstr = "";
 iint = 0;
 while(iint < len) {
 ts = arrToFill[iint];
+tsDTtle = ts.e_vald;
+tsATtle = ts.e_vala;
+
+if(tsDTtle.length > 20) {
+tsDTtle = tsDTtle.substring(0, 16) + "...";
+}
+if(tsATtle.length > 20) {
+tsATtle = tsATtle.substring(0, 16) + "...";
+}
 switch(ts.e_rtype) {
 case "10":
-
-strULPID += "ulp:ep:index.php?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc + "|";
+tULPID = "index.php?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc;
+strULPID += "ulp:ep:" + tULPID + "|";
 strULPTtl += ts.e_vald + "|";
-
+if(iint < 6) {
+currUserFavs += "<a href=\"" + tULPID + "\">" + tsDTtle + "</a><br>";
+}
 break;
 case "11":
 strULSID += "uls:ep:" + ts.e_vala + "|";
 strULSTtl += ts.e_vala + "|";
+currUserFavs += "<a href=\"" + ts.e_vala + "\">" + tsATtle + "</a><br>";
 break;
 default:
 break;
@@ -1615,8 +1625,8 @@ if(upSLMRef == "y") {
 
 */
 
+// alert(currUserFavs);
  loadLmenu();
- 
 
 
 

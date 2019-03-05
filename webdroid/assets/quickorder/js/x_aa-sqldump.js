@@ -1,5 +1,5 @@
-
-
+currPgTitle = "SQL dump";
+document.title = currPgTitle; // set the page title 
 
 
 var showDumpRes = function(theElem, theResp, marble){
@@ -45,7 +45,7 @@ iint++;
 }
 strTHhtml += "</tr></thead>";
 newel = document.createElement('div');
-tmpFstr = "<table class=\"striped highlight responsive-table\">" + strTHhtml +  strHtml + "</table>";
+tmpFstr = "<table class=\"striped highlight responsive-table\" cellpadding=\"12px\" cellspacing=\"12px\">" + strTHhtml +  strHtml + "</table>";
 
 newel.innerHTML = tmpFstr;
 tmpTDQI = document.getElementById("tdSql");
@@ -67,4 +67,16 @@ doQComm(JSSHOP.shared.getFieldVal("taSql", "select * from qco"), null, "showDump
 	alert(e);
 	}
 // doQComm('select * from prod_options order by OptionType desc limit 500', null, "rEditProdOptions")
+};
+
+
+var dmyFnishCntLoad = fnishCntLoad;
+fnishCntLoad = function() {
+if(currUrlArr.tqs){
+if(currUrlArr.tqs == "noQvalue") {
+} else {
+JSSHOP.shared.setFieldVal("taSql", currUrlArr.tqs);
+}
+aLoadDump();
+}
 };

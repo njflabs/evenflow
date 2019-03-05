@@ -84,6 +84,23 @@ padding:0px;
 }
 
   
+.menu-material-icons {
+  color: rgb(199,199,216);
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align:super;
+}
 
 .small-material-icons {
   font-family: 'Material Icons';
@@ -879,6 +896,65 @@ padding: 4px;
   padding: 10px 2px;
   margin: 0;
   border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+}
+
+
+
+
+.collection .coll-menu-item {
+  background-color: #fff;
+  line-height: 1.5rem;
+  padding: 10px 2px;
+  margin: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.collection a.coll-menu-item {
+  display: block;
+  -webkit-transition: .25s;
+  transition: .25s;
+  color: #000000; 
+  text-decoration: none;
+}
+
+
+.collection .coll-menu-item.active {
+  background-color: #26a69a;
+  color: #eafaf9;
+}
+
+.collection a.coll-menu-item:not(.active):hover {
+  background-color: #ddd;
+}
+
+.collection a.collection-item:not(.active):hover {
+  background-color: #ddd;
+}
+
+
+.collection .kcoll-menu-item {
+background-color: rgb(169,199,216)
+  line-height: 1.5rem;
+  padding: 10px 2px;
+  margin: 0;
+  border-bottom: 1px solid #990000;
+}
+
+.collection a.kcoll-menu-item {
+  display: block;
+  -webkit-transition: .25s;
+  transition: .25s;
+  color: #009900; 
+  text-decoration: underline;
+}
+
+.collection a.kcoll-menu-item:not(.active):hover {
+background-color: rgb(169,199,216)
+}
+
+.collection a.collection-item:not(.active):hover {
+  background-color: #ddd;
 }
 
 .collection .collection-item.avatar {
@@ -940,9 +1016,7 @@ padding: 4px;
   color: #26a69a;
 }
 
-.collection a.collection-item:not(.active):hover {
-  background-color: #ddd;
-}
+ 
 
 .collection.with-header .collection-header {
   background-color: #fff;
