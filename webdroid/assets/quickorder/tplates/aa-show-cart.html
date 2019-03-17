@@ -7,7 +7,7 @@
 <input type="hidden" name="cmd" value="_cart">
 <input type="hidden" name="upload" value="1">
 <input type="hidden" name="bn" value="QuickOrder">
-<input type="hidden" name="business" value="njfsoft-facilitator@gmail.com">
+<input type="hidden" name="business" value="change_this_in_shop_info@to_your_paypal.email">
 <input type='hidden' name='rm' value='2'>
 <input type='hidden' name='custom' value='cstm2'>
 <input type="hidden" name="return" value="">
@@ -23,14 +23,23 @@
 						  <td><div id="dvCartItems"></div>
 						  &nbsp;</td>
 					  </tr>
-					  </table>
-					  <table style="width: 100%">
-						  <tr>
-							  <td><div class="cls_hoover" style="max-width: 120px" align="center"><div class="brdrClrHdr crsrPointer bkgdClrNrml txtBold txtClrHdr" onclick="javascript:JSSHOP.ui.setCBBClickClr(this,'cls_button cls_button-medium brdrClrRed txtClrHdr','crsrPointer bkgdClrNrml txtBold txtClrHdr', function(){clearCart('dvCartItems')});">
-	<img alt="41" src="images/misc/trans.gif" width="37" height="12" onload="dw(this.parentNode, stxt[42] + ' ' + stxt[47]);"  onerror="dw(this.parentNode, stxt[42] + ' ' + stxt[47]);">Clear Cart</div> </div></td>
-							  <td><div class="cls_hoover" style="max-width: 120px" align="center"><div class="brdrClrHdr crsrPointer bkgdClrNrml txtBold txtClrHdr" onclick="javascript:JSSHOP.ui.setCBBClickClr(this,'cls_button cls_button-medium brdrClrRed txtClrHdr','crsrPointer bkgdClrNrml txtBold txtClrHdr', function(){sendOrder()});">
-	<img alt="41" src="images/misc/trans.gif" width="37" height="12" onload="dw(this.parentNode, stxt[41]);"  onerror="dw(this.parentNode, stxt[41]);">Send Order</div> </div></td>
-						  </tr>
+					  <tr>
+						  <td>
+						  <table style="width: 100%">
+							  <tr>
+								  <td><div id="dvBtnsCart" style="visibility:visible;display:block">
+									  <table style="width: 100%">
+										  <tr>
+											  <td style="text-align: center">
+											  <button id="btnEUsend" class="cls_button cls_button-medium"><ti data-ison="stxt[41]" data-desc="btn_send">Send Order</ti></button></td>
+											  <td style="text-align: center"><div id="btnEUclear" class="cls_button cls_button-small"><ti data-ison="stxt[52]" data-desc="btn_clear">Empty Cart</ti></div></td>
+										  </tr>
+									  </table>
+								  </div></td>
+							  </tr>
+						  </table>
+						  </td>
+					  </tr>
 					  </table>
 					  
 					  </form>

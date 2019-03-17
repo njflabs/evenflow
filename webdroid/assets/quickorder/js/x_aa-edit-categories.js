@@ -155,7 +155,7 @@ currTtlMainMnus++;
 	
       tmpCdiv = document.createElement("div");
 	tmpCdiv.id = "catMI" + ts._id;
-	tmpCdiv.className="clsMenuCats collection-item txtDecorNone brdrVertNone";
+	tmpCdiv.className="clsMenuCats collection-item txtDecorNone brdrVertNone txtBig txtBold";
 
 	tmpUSpn = document.createElement("span");
 
@@ -196,7 +196,7 @@ currTtlMainMnus++;
 
 }  
 tstr += "<tr>";
-tstr += "<td><a href=\"index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a></td>";
+tstr += "<td><a href=\"index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id + "\" class=\"txtBig txtBold\">" + ts.cat_title + "</a></td>";
 tstr += "</tr>";
 
 

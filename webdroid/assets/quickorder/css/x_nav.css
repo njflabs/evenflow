@@ -46,7 +46,6 @@ max-width:85%;
   max-width: 1200px;
   margin: 0 auto;
   list-style:none;
-  min-width: 100%;
 }
 .float:after {
   content: ".";
@@ -194,8 +193,8 @@ margin-top:30px;
  /*  */
   opacity: 1;
   visibility: visible;
-   display: block; 
-  margin: 0;
+  display: block; 
+  margin: 0; 
 }
  
 
@@ -206,11 +205,11 @@ margin-top:30px;
 
 .animenu__nav__child {
 
-  position: absolute;
+    position: absolute;
   top: 100%;
   left: 0;
   z-index: 1;
-   /* opacity: 0; */  
+  /*  opacity: 0;  */
   visibility: hidden;
   margin: 5px 0 0 0;
   background-color: #FFFFFF;
@@ -220,8 +219,8 @@ margin-top:30px;
 
 
 .animenu__nav__child > li {
-white-space: nowrap;
-  /*  width: 100%; border-bottom: 1px solid #DEDEDE; */
+ white-space: nowrap;
+   width: 100%; border-bottom: 1px solid #DEDEDE; /**/
   	margin: 3px;
   
 }
@@ -277,10 +276,10 @@ width: 100%;
 }
 
 .prodBox {
-
+      padding: 9px;
  	width:210px;
 	height:300px;
-	border: 1px solid rgb(169,199,216);
+	border: 1px solid rgb(199,222,216);
 	background-color: #FFFFFF;
 }
 .prodSmlBox {
@@ -290,10 +289,31 @@ width: 100%;
 	border: 1px solid rgb(169,199,216);
 	background-color: #FFFFFF;
 }
+
+
+.prodRowBox {
+	min-height:140px;
+	max-height: 180px;
+	border: 1px solid rgb(169,199,216);
+	background-color: #FFFFFF;
+	margin-left: 8px;
+	margin-right: 18px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+      padding-left: 5px;
+	max-width: 95%;
+}
+
 .prodImage {
 border-width: 0px;
 width: 100%;
 max-height: 160px;
+}
+
+.prodRowImage {
+border-width: 0px;
+max-width: 110px;
+float: left;
 }
 
 .product-grid {
@@ -440,7 +460,7 @@ float: right;
   max-width: 1200px;
   margin: 0 auto;
 list-style:none;
-padding: 0px;
+padding: 10px;
 }
 .float:after {
   content: ".";
@@ -455,7 +475,6 @@ width:100px;
 min-width:100px;
 /* max-width:100px; */
 height:280px;
-float: left;
 margin-right:20px;
 margin-bottom:20px;
 margin-top:30px;
@@ -546,9 +565,9 @@ h1 {
   
     .animenu__nav > li {
     font-weight:bolder;
-    width: 100%;
-    border-right: 0;
-     border-bottom: 1px solid #515151;  
+ 
+ 
+    /* border-bottom: 1px solid #DEDEDE;  */
     margin:8px;
   }
 
@@ -594,7 +613,8 @@ h1 {
   }
   
   .animenu__nav__child > li {
-
+   white-space: break-word;
+   max-width: 98%;
   /* width: 100%; 
   	margin: 3px;
   border: 0;*/ 

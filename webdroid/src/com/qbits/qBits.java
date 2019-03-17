@@ -2574,6 +2574,11 @@ RecognitionListener, TextToSpeech.OnInitListener {
      final int theTestInt = idomdcom;
      final String theDIGTstr = strDIGfname;
      switch (theTestInt) {
+      case 5:
+       Intent ittArtPad = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
+       ittArtPad.putExtra("apmode", "apmodeEdMain");
+       startActivityForResult(ittArtPad, 110);
+       break;
       case 20:
        Intent pickBgPhoto = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
        pickBgPhoto.putExtra("apmode", "apmodeGallery");

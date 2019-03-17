@@ -163,7 +163,7 @@ var doItemEdit = function() {
     tmpFobj["wa"] = [JSSHOP.shared.getFrmFieldVal("qitem","_id","0")];
     oi = getNuDBFnvp("qitem", 7, null, tmpFobj);
     // JSSHOP.ui.setCBBClickClr(divQitems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){JSSHOP.ui.closeLbox()});
-    JSSHOP.ui.setCBBClickClr(divQitems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){void(0)});
+    JSSHOP.ui.setCBBClickClr(divQitems,'rtable brdrclrHdr bkgdClrDlg','txtClrHdr bkgdClrWhite', function(){void(0)});
 
    // alert("oiRQ " + oi["rq"]); 
    doQComm(oi["rq"], null, "renderNuTQBItems"); 
@@ -323,7 +323,7 @@ var doQIMeta = function() {
 */
 var getQIstr = function(rid, tmprhtml) {
 
-    strTret = "<div style=\"margin-top: 10px;\" onclick=\"JSSHOP.ui.setCBBClickClr(this,'crsrPointer brdrClrHdr','crsrPointer brdrNone', function(){doQIedit(" + rid + ");});\" class=\"crsrPointer brdrNone txtBig bkgdClrNrml\">";
+    strTret = "<div style=\"margin-top: 10px;\" onclick=\"JSSHOP.ui.setCBBClickClr(this,'crsrPointer brdrClrHdr','crsrPointer brdrNone', function(){doQIedit(" + rid + ");});\" class=\"crsrPointer brdrNone txtBig\">";
     strTret += tmprhtml + "</div>";
 
     return strTret;
@@ -351,7 +351,7 @@ var renderNuTQBItems = function(a,b,c) {
         strRecID = ts._id;
         strRecType = 50;
         if (ts._id > 0) {
-     strHtml += "<div class=\"collection-item\">";
+     strHtml += "<div class=\"brdrClrNrml\" style=\"margin-bottom: 10px;\">";
             strPriceHtml = "";
 		if(ts.i_img) {
 		 tmpIstrI = JSSHOP.shop.getPrdImgStr("editcat",ts.i_img);
@@ -360,9 +360,9 @@ var renderNuTQBItems = function(a,b,c) {
 
             strPriceHtml = "<span class=\"txtBig txtClrRed txtBold\">" + ts.i_price_b + "</span>";
             strPriceHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
- 
             strHtml += getQIstr(iint, strImgDsct + ts.i_title + " " + strPriceHtml);
-            strHtml += "<div style=\"text-align: right;\" class=\"cls-form-dv\" id=\"tdIedit" + iint + "\">";
+            // strHtml += getQIstr(iint, strImgDsct + ts.i_title + " " + strPriceHtml);
+            strHtml += "<div style=\"text-align: right;\" class=\"cls-form-dv  bkgdClrNrml\" id=\"tdIedit" + iint + "\">";
  
       	strcHtml = "<a href=\"index.php?pid=aa-edit-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">edit</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[31] + "</span></a>";
       	strcHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"index.php?pid=aa-show-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">zoom_in</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[53] + "</span></a>";
@@ -489,29 +489,14 @@ JSSHOP.shared.setFrmFieldVal("qitem", "i_desc", "....");
 
 // JSSHOP.ui.setTinnerHTML("tdCoTitle", JSSHOP.shared.getFieldVal("c_title", "theCo"));
 
-
-    tmpDOs = null;
-    tmpDOs = {};
-    tmpDOs["ws"] = "where i_uid=? and i_coid=? and i_catid=? and i_rtype=?";
-    tmpDOs["wa"] = [quid,cid,catid,"5"];
-    oi = getNuDBFnvp("qitem", 5, null, tmpDOs);
-
-
  
-currRQtable = "qitem";
-currRQstr = oi["rq"];
-
-
-
-
-
 
 tfim = nCurrFFieldOb();
 tfim.fid = "tmp_cat_title";
 tfim.fdv = stxt[16];
 tfim.fda = "y";
-tfim.lid = "lbl_cat_title";
-tfim.ltxt = stxt[506];  
+// tfim.lid = "lbl_cat_title";
+// tfim.ltxt = stxt[16];  
 euiFFObjArr.push(tfim); 
 
 
@@ -520,7 +505,7 @@ tfia.fid = "tmp_i_title";
 tfia.fdv = stxt[3001];
 tfim.fda = "y";
 tfia.lid = "lbl_i_title";
-tfia.ltxt = stxt[507];  
+tfia.ltxt = stxt[17];  
 
 
 tfia.fda = "y";  
@@ -529,14 +514,15 @@ euiFFObjArr.push(tfia);
 
 JSSHOP.shared.initFrmComps(euiFFObjArr);
 
-
-    // JSSHOP.shared.setFieldVal("tmp_i_title", stxt[23]);
-
-
-    doQComm(oi["rq"], null, "renderDBis");
+tmpDOs = null;
+tmpDOs = {};
+tmpDOs["ws"] = "where i_uid=? and i_coid=? and i_catid=?";
+tmpDOs["wa"] = [quid,cid,catid];
+oi = getNuDBFnvp("qitem", 5, null, tmpDOs);
+currRQtable = "qitem";
+currRQstr = oi["rq"];
+doQComm(oi["rq"], null, "renderDBis");
 JSSHOP.loadScript("js/x_aqr.js", JSSHOP.checkLoader,"js");
 JSSHOP.shared.setFieldVal("tmp_cat_title", document.getElementById("cat_title").value, "....");
-
- 
 
 };

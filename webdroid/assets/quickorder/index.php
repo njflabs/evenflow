@@ -67,13 +67,15 @@ include "_p/js-header.php";
 <div id="includedNav">
 </div>
 </header>
-<div style="min-height:60px"></div>
+<div style="min-height:40px"></div>
 
 <div id="dvSearchBoxSlim" style="top: 60px; left:25px; position:fixed; background-color: #FFFFFF"></div>
+
+<!-- // wont use for now left menu toggle button
 <div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer bkgdClrWhite" style="position: fixed" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');">
 <div id="dvLMenuTgl"><i class="small-material-icons" style="font-size:22px">expand_more</i>
 </div></div>
-
+// end of wont use left menu toggle button -->
 <input type="hidden" name="fldChallArray" id="fldChallArray" value="noQvalue">
 <div id="includedForms">
 </div>
@@ -85,7 +87,7 @@ include "_p/js-header.php";
 	 </div></div> 
 
 	 
-	 <div id="dvMCatTree" style="z-index:99999;min-height:20px;float:right;">
+	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:10px;float:right;" class="txtSmall txtClrBlack">
 </div>
 
 
@@ -103,7 +105,7 @@ include "_p/js-header.php";
 
 	    <table style="width: 100%">
 			<tr>
-				<td class="collectionhdr"><div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer" style="float: right;" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');" nowrap="nowrap">
+				<td class="collectionhdr" style="height: 34px"><div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer" style="float: right;" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');" nowrap="nowrap">
 <div><i class="small-material-icons" style="font-size:22px">expand_less</i>
 </div></div>
 </td>
@@ -131,7 +133,7 @@ include "_p/js-header.php";
 <!-- TitleBar and left top right for mobile menus CODE BEGIN -->
 
 
-<table  class="clsDvCntntTtle" width="100%"><tr>
+<table  class="clsDvCntntTtle" width="100%" cellspacing="0"><tr>
 	<td><span class="onlySmallScreen"><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.php?pid=aa-edit-categories&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a></span>
 				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px">
 	<ti data-ison="currPgTitle" data-desc="title_bar"></td>

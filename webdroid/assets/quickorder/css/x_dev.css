@@ -170,9 +170,6 @@ background-color: #294759;
  
 }
 
-.cls_btlhoover  >  div:hover {
-input[type=BUTTON]:hover{ color:rgb(0,0,216); }
-}
 
 // 
 
@@ -193,31 +190,80 @@ input[type=BUTTON]:hover{ color:rgb(0,0,216); }
     
 }
 
-.cls_button-medium {
-    padding: 5px 5px;
+
+.cls_button-xxsmall {
+
+    font-size: 12px;
+    font-weight: 200;
+ 
+    padding: 2px 2px 2px 2px;
+}
+
+.cls_button-xsmall {
+
+    font-size: 15px;
+    font-weight: 300;
+ 
+    padding: 2px 10px 2px 10px;
+}
+
+.cls_button-small {
+
     font-size: 18px;
     font-weight: 300;
-    border: 1px solid  black;
-    color: #FFFFFF;
+ 
+    padding: 5px 15px 5px 15px;
+}
+.cls_button-medium {
+
+    font-size: 18px;
+    font-weight: 300;
+	min-width: 80px;
+    padding: 5px 45px 5px 45px;
 }
 
 .cls_button {
     display: inline-block;
-    /* background: none repeat scroll 0% 0% #971232; */
+
     white-space: nowrap;
     border-radius: 3px;
     transition: all 0.2s linear 0s;
     cursor: pointer;
     font-family: tahoma,sans-serif;
-     background-color: #294759;
-    /* background-color:#26a69a;
-    background-image: linear-gradient(120deg, #155799, #159957); */
+    color: #294759;
+   background-color: #DEDEDE;
+    border: 1px solid  black;
+    font-size: 18px;
+    font-weight: 300;
 }
  
 
+.cls_button_disabled {
+    display: inline-block;
+	min-width: 180px;
+    padding: 5px 45px 5px 45px;
+    white-space: nowrap;
+    border-radius: 3px;
+    transition: all 0.2s linear 0s;
+    font-family: tahoma,sans-serif;
+    color: #dedede;
+   background-color: #DEDEDE;
+    border: 1px solid  white;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+
+
+.cls_btlhoover  >  div:hover {
+input[type=BUTTON]:hover{ color:rgb(0,0,216); }
+}
+
+
+
 .cls_button::first-letter
 { 
-text-decoration:underline !important:
+text-decoration:underline; !important:
 }
 
 
@@ -266,6 +312,7 @@ visibility:hidden;
 
 .txtBig {
 font-size:large;
+font-family: Verdana,Helvetica,Arial;
 }
 
 .txtSmall {
@@ -283,8 +330,8 @@ font-size: 14px;
 font-family: Verdana,Helvetica,Arial;
 }
 .txtXLrg {
-font-size: 15px;
-/* font-family: Verdana,Helvetica,Arial; */
+font-size: 19px;
+font-family: Verdana,Helvetica,Arial;
 }
 
 
@@ -339,6 +386,13 @@ color: #808080;
 .txtClrDlg a:hover {color: rgb(169,199,216);}
 .txtClrDlg a.active {color: rgb(169,199,216);}
 
+.txtClrDDlg {color: rgb(119,139,216);}
+.txtClrDDlg a {color: rgb(1119,139,216);}
+.txtClrDDlg a:hover {color: rgb(119,139,216);}
+.txtClrDDlg a.active {color: rgb(119,139,216);}
+
+
+
 .txtClrGrey a {color: #808080;}
 .txtClrGrey a:hover {color: #808080;}
 .txtClrGrey a.active {color: #808080;}
@@ -347,6 +401,8 @@ color: #808080;
 .txtClrLtBlue a {color: #ECECFF;}
 .txtClrLtBlue a:hover {color: #ECECFF;}
 .txtClrLtBlue a.active {color: #ECECFF;}
+
+
 
 
 .txtDecorNone a {text-decoration: none;} 
@@ -370,6 +426,10 @@ color: #808080;
 .bkgdClrDlg {background-color: rgb(169,199,216);}
 .bkgdClrAtch {background-color: rgb(240,240,240);}
 .bkgdClrRed {background-color: rgb(255,0,0);}
+.bkgdClrGreen {background-color: rgb(0,255,0);}
+.bkgdClrDGreen {background-color: rgb(10,235,10);}
+.bkgdClrCollHdr {background-color: rgb(249,249,251);}
+
 
 
 .brdrDarkBlue {border: 1px solid #666699;}

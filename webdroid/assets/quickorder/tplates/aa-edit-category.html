@@ -1,22 +1,25 @@
 <table style="margin: 0 auto" align="center">
 		<tr>
 			<td>
-			<table style="width: 100%" class="rtable">
-				<tr>
-			<td  class="collectionhdr crsrPointer txtDecorUline" onclick="JSSHOP.ui.toggleVisibility('tdcatEdit')"><span id="lbl_cat_title"  style="vertical-align:super"></span></td>
-				</tr>
-				<tr>
-					<td id="tdcatEdit" style="display:none;visibility:hidden"><table style="margin: 0 auto" align="center" id="tblCatEdit" class="cls-form-dv">
+			<table style="width: 100%">
+				<tr><td id="tdcatEdit">
+					<table style="width: 100%">
+						<tr>
+							<td></td>
+							<td><input class="cls_input_text"  name="tmp_cat_title" id="tmp_cat_title" value="" data="disnull"   onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'"></td>
+							<td><table style="margin: 0 auto" align="center" id="tblCatEdit" class="cls-form-dv">
 	<tr>
 		<td>	
-<input class="cls_input_text"  name="tmp_cat_title" id="tmp_cat_title" value="" data="disnull"   onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'"></td>
+</td>
 		<td>	
-		<span><a href="javascript:doCatTitleEdit();" class="btn-floating clsDvCntntTtle"><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">edit</i></a>
+		<span><a href="javascript:doCatTitleEdit();" class="btn-floating icndbtn txtSmall"><i class="material-icons txtSmall" style="margin-right:16px;">edit</i></a>
 </span></td>
 	</tr>
 	</table></td>
-				</tr>
-			</table>
+						</tr>
+					</table>
+					</td></tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -36,14 +39,13 @@
 					<td  class="collectionhdr">
 					<table style="width: 100%">
 						<tr>
-							<td  class="collectionhdr crsrPointer txtDecorUline" onclick="JSSHOP.ui.toggleVisibility('tdItemAdd')"><span id="lbl_i_title"  style="vertical-align:super"></span></td>
-							<td><a href="javascript:document.location.href='index.php?pid=aa-add-item&cid=' + cid + '&catid=' + catid" class="txtSmall txtBold txtClrHdr"><span style="vertical-align:super;padding-left:12px;"><ti data-ison="stxt[17]" data-desc="add_item"></ti></span></a></td>
+							<td><a href="javascript:document.location.href='index.php?pid=aa-edit-item&cid=' + cid + '&catid=' + catid" class="txtSmall txtBold txtClrHdr"><span id="lbl_i_title"  style="vertical-align:super"></span></a></td>
 						</tr>
 					</table>
 					</td>
 				</tr>
 				<tr>
-					<td id="tdItemAdd" style="display:none;visibility:hidden"><table style="margin:0 auto" align="center"  class="cls-form-dv">
+					<td id="tdItemAdd"><table style="margin:0 auto" align="center"  class="cls-form-dv">
 	<tr>
 		<td><input  name="tmp_i_title" id="tmp_i_title" value="" class="cls_input_text" value="" data="disnull"   onblur="this.className='cls_input_text'" onfocus="this.className='cls_input_text cls_input_text_focus'" style="margin-bottom:0px"></td>
 		<td><a class="btn-floating clsDvCntntTtle" href="javascript:doItemAdd('qitem',5)"><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">add</i></a>

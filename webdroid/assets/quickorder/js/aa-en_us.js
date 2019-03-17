@@ -56,7 +56,7 @@ stxt[54] = "Copy";
 stxt[55] = "Media";
 stxt[56] = "Account";
 stxt[57] = "Preview";
-stxt[58] = "*Available";
+stxt[58] = "Item Available";
 stxt[59] = "Shop Info";
 stxt[60] = "Refresh";
 stxt[61] = "Settings";
@@ -68,6 +68,7 @@ stxt[66] = "AppDB";
 stxt[67] = "Show Item";
 stxt[68] = "Shop Info";
 stxt[69] = "Copy Item";
+stxt[70] = "Add";
 
 // items and categories
 stxt[500] = "Add New Category";
@@ -99,5 +100,10 @@ stxt[1005] = "Item price must be good.";
 stxt[2001] = "Setting up is easy. Enter your shops title, add some item categories and click Save.";
 
 
+
 // misc
 stxt[3001] = "Item title here";
+ 
+
+// android java app
+stxt[4001] = "Art Pad";

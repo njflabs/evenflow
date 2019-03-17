@@ -1,7 +1,5 @@
 var tmpSTrSorE = "show";
 
-
-
 if(currAdmnMode == "y") {
 tmpSTrSorE = "edit";
 }
@@ -56,7 +54,7 @@ iint++;
 JSSHOP.logJSerror(e, arguments, "doSubMenuLoad");
 } 
 if(catid == 0) {
-hstring = "Home";
+hstring = "";
 mstring = "<a href=\"index.php?cid=" + +cid + "\">" + hstring + "</a>";
 fmcstr = "<div style=\"margin-left: 15px\" class=\"crsrPointer txtSmall txtClrBlack\">" + mstring +  "</div>";
 } else {
@@ -68,7 +66,7 @@ var pcid = 0;
 tstr = "";
 currTmpPID = 0;
 ts = null;
-hstring = "Home";
+hstring = "";
 mstring = "<a href=\"index.php\">" + hstring + "</a>";
 fmcstr = mstring;
 mcat = " ";
@@ -79,15 +77,15 @@ ts = newMTmpArr[iint];
 if(ts._id == catid) { 
 if(ts.cat_pid == "0") {
 if(pid == "aa-show-category") {
-mcat = "&nbsp;.&nbsp;&nbsp;" + ts.cat_title;
+mcat = "&nbsp;&nbsp;&nbsp;" + ts.cat_title;
 } else {
-mcat = "&nbsp;.&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+mcat = "<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 }
 } else {
 if(pid == "aa-show-category") {
-subcat = "&nbsp;.&nbsp;&nbsp;" + ts.cat_title;
+subcat = "&nbsp;-&nbsp;&nbsp;" + ts.cat_title;
  } else {
-subcat = "&nbsp;.&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+subcat = "&nbsp;-&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 }
 currTmpPID = ts.cat_pid;
 }
@@ -96,7 +94,7 @@ currTmpPID = ts.cat_pid;
 
 if(ts._id == currTmpPID) { 
 
-mcat = "&nbsp;.&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+mcat = "&nbsp;&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 
  
 }
@@ -106,7 +104,7 @@ iint++;
 
 
 // alert("setMFormArr: "  + JSON.stringify(arrAllForms));
-fmcstr = "<div style=\"margin-left: 15px\" class=\"txtClrBlack\">" + mcat +  "  " +  subcat + "</div>";
+fmcstr = "<div>" + mcat +  "  " +  subcat + "</div>";
 
 
  
@@ -142,7 +140,7 @@ ifnlref = "y";
 // fmcstr += "\">Lmenu1</div>";
 // fmcstr += "<div style=\"margin-left: 15px\" class=\"txtSmall txtClrBlack\"  onclick=\"javascript:doPopCartMod();\" >Cart</div>";
 
-// JSSHOP.ui.setTinnerHTML("dvMCatTree", fmcstr);
+JSSHOP.ui.setTinnerHTML("dvMCatTree", fmcstr);
 
 
 // alert("mArr " + JSON.stringify(currMenuArr));
@@ -214,9 +212,7 @@ mnotAppended = "n";
      // var mainUL = document.getElementById("mnuULmain");// 
 
 strMLink = "index.php?pid=aa-show-category";
-if(strCurl.indexOf("admin.php") != -1) {
-strMLink = "admin.php?pid=aa-add-qbit";
-}
+ 
 var mainUL = getMMenu();
 
 try {
@@ -398,8 +394,8 @@ var doCollsLoad = function() {
 
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-add-item&cid=" + cid + "&catid=" + catid + "'";
-tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "'";
+tmpMCollItem["mi"] = "add";
 tmpMCollItem["ti"] = stxt[17];
 tmpMCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-add-item"] = tmpMCollItem;
@@ -407,7 +403,7 @@ currMCollItems["aa-add-item"] = tmpMCollItem;
 tmpMCollItem = null;
 tmpMCollItem = {};
 tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
-tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["mi"] = "zoom_in";
 tmpMCollItem["ti"] = stxt[67];
 tmpMCollItem["c"] = "collection-item";
 currMCollItems["aa-show-item"] = tmpMCollItem;
@@ -415,7 +411,7 @@ currMCollItems["aa-show-item"] = tmpMCollItem;
 tmpMCollItem = null;
 tmpMCollItem = {};
 tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
-tmpMCollItem["mi"] = "content_copy";
+tmpMCollItem["mi"] = "edit";
 tmpMCollItem["ti"] = stxt[20];
 tmpMCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-edit-item"] = tmpMCollItem;
@@ -431,11 +427,19 @@ currMCollItems["aa-copy-item"] = tmpMCollItem;
 tmpWCollItem = null;
 tmpWCollItem = {};
 tmpWCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-category&cid=" + cid + "&catid=" + catid + "'";
-tmpWCollItem["mi"] = "content_copy";
+tmpWCollItem["mi"] = "zoom_in";
 tmpWCollItem["ti"] = stxt[505];
 tmpWCollItem["c"] = "collection-item";
 currMCollItems["aa-show-category"] = tmpWCollItem;
 
+
+tmpWCollItem = null;
+tmpWCollItem = {};
+tmpWCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-category&fc=y&cid=" + cid + "&catid=" + catid + "'";
+tmpWCollItem["mi"] = "autorenew";
+tmpWCollItem["ti"] = "Refresh";
+tmpWCollItem["c"] = "collection-item";
+currMCollItems["aa-force-clear"] = tmpWCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
@@ -448,7 +452,7 @@ currMCollItems["aa-edit-category"] = tmpQCollItem;
 tmpQCollItem = null;
 tmpQCollItem = {};
 tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-categories&cid=" + cid + "&catid=" + catid + "'";
-tmpQCollItem["mi"] = "content_copy";
+tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = stxt[503];
 tmpQCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-edit-categories"] = tmpQCollItem;
@@ -551,7 +555,13 @@ tmpQCollItem["c"] = "collection-item";
 currMCollItems["aa-logout"] = tmpQCollItem;
 
  
-
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-app-tools&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["mi"] = "build";
+tmpMCollItem["ti"] = "App Tools";
+tmpMCollItem["c"] = "coll-menu-item";
+currMCollItems["aa-show-app-tools"] = tmpMCollItem;
 
 
 currMCollArr = [];
@@ -579,6 +589,7 @@ currMCollArr.push("aa-edit-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shop");
 currMCollArr.push("aa-appdbreq");
+currMCollArr.push("aa-force-clear");
 }
 break;
 
@@ -589,12 +600,14 @@ currMCollArr.push("aa-edit-categories");
 break;
 case "aa-edit-item":
 currMCollArr.push("aa-show-item");
+currMCollArr.push("aa-add-item");
 currMCollArr.push("aa-copy-item");
 currMCollArr.push("aa-edit-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-show-category");
 break;
 case "aa-edit-category":
+currMCollArr.push("aa-add-item");
 currMCollArr.push("aa-show-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shop");
@@ -609,15 +622,32 @@ case "aa-edit-shop":
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shops");
 break;
-default:
+case "aa-edit-user":
+currMCollArr.push("aa-edit-shop");
+currMCollArr.push("aa-edit-shops");
+currMCollArr.push("aa-settings");
+currMCollArr.push("aa-add-shop");
 break;
-}
-;
+
+
+default:
 currMCollArr.push("aa-show-cart");
 currMCollArr.push("aa-settings");
 currMCollArr.push("aa-edit-user");
 currMCollArr.push("recent")
 currMCollArr.push("aa-add-shop");
+break;
+}
+
+/*
+currMCollArr.push("aa-show-cart");
+currMCollArr.push("aa-settings");
+currMCollArr.push("aa-edit-user");
+currMCollArr.push("recent")
+currMCollArr.push("aa-add-shop");
+*/
+if((isJApp !== "no") && (isPhP == "no")) {}
+currMCollArr.push("aa-show-app-tools");
 
 if((quid == 0) || (quid == "noQvalue")){
 currMCollArr.push("aa-login");
@@ -625,20 +655,23 @@ currMCollArr.push("aa-login");
 currMCollArr.push("aa-logout");
 }
 tmpStrbla = ""; 
+tmpStrAdmnM = "";
 iti = 0; 
 while(iti < currMCollArr.length) {
 if(currMCollArr[iti] == "break") {
 tmpStrbla += "<div>---</div>";
 } else if(currMCollArr[iti] == "recent") {
 tmpStrbla += "<div class=\"collection-item txtSmall txtBold\"><div style=\"margin-left:20px\">Recent:<br>" + currUserFavs + "</div></div>";
-
 } else {
+if(currMCollItems[currMCollArr[iti]].c == "collection-item") {
 tmpStrbla += "<a href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','" + currMCollItems[currMCollArr[iti]].c + "', function(){"  + currMCollItems[currMCollArr[iti]].u + "}, 20);\" class=\"" + currMCollItems[currMCollArr[iti]].c + "\"><span><i class=\"menu-material-icons\">" + currMCollItems[currMCollArr[iti]].mi + "</i></span><span style=\"vertical-align:super;padding-left:12px;\">" + currMCollItems[currMCollArr[iti]].ti + "</span></a>";
+} else {
+tmpStrAdmnM += "<a href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','" + currMCollItems[currMCollArr[iti]].c + "', function(){"  + currMCollItems[currMCollArr[iti]].u + "}, 20);\" class=\"" + currMCollItems[currMCollArr[iti]].c + "\"><span><i class=\"menu-material-icons\">" + currMCollItems[currMCollArr[iti]].mi + "</i></span><span style=\"vertical-align:super;padding-left:12px;\">" + currMCollItems[currMCollArr[iti]].ti + "</span></a>";
+}
 }
 // tmpStrbla += "<a href=\"" + currMCollItems[currMCollArr[iti]].u + "\" class=\"" + currMCollItems[currMCollArr[iti]].c + "\"><span><i class=\"menu-material-icons\">" + currMCollItems[currMCollArr[iti]].mi + "</i></span><span style=\"vertical-align:super;padding-left:12px;\"><ti data-ison=\"" + currMCollItems[currMCollArr[iti]].ti + "\" data-desc=\"view\">" + currMCollItems[currMCollArr[iti]].ti + "</ti></span></a>";
 iti++; 
 }
-
-return tmpStrbla;
+return tmpStrAdmnM + tmpStrbla;
 }; 
 // doMMenuLd();

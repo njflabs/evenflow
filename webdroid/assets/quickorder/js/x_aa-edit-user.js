@@ -10,8 +10,7 @@ ck_password =  /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
 
 
 var cbFedit = function(a,b,c) {
- JSSHOP.ui.setCBBClickClr(divCntEdit,'bkgdClrDlg','clsDummy', function(){void(0)});
-document.getElementById("btnEUsave").disabled=false;
+JSSHOP.ui.setCBBClickClr(btnEUsave,'cls_button cls_button-medium brdrclrDlg bkgdClrDGreen txtClrWhite','cls_button cls_button-medium', function(){document.getElementById("btnEUsave").disabled=false;});
 // smlspinner.stop();
 };
 
@@ -112,7 +111,8 @@ euiFFObjArr.push(tfuh);
 tfsb = nCurrFFieldOb();
 tfsb.fid = "btnEUsave";
 tfsb.fty = "button";
-tfsb.fcl = function() { doUserEdit() };
+tfsb.fcl = function() { JSSHOP.ui.setSaveBtnClick(this, function(){doUserEdit()}) };
+
 
 euiFFObjArr.push(tfsb);
 

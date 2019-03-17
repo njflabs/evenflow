@@ -86,7 +86,4 @@ JSSHOP.shared.initFrmComps(euiFFObjArr);
 
 JSSHOP.shared.setDynFrmVals(document["qco"], "tmp_");
 };
-
-var aEditShop = function() {
-// fnishCntLoad();
-};
+ 

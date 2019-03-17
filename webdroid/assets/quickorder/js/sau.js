@@ -2222,7 +2222,8 @@ var doAIU = function() {
       progressOuter = document.getElementById('progressOuter'),
       msgBox = document.getElementById('msgBox'),
 	tmpDAIurl = '_p/file_upload.php?in=' + JSSHOP.shared.getFrmFieldVal("qitem","_id","5") + '_' +  JSSHOP.getUnixTimeStamp();
-  var uploader = new ss.SimpleUpload({
+	var uploader = null;
+  	uploader = new ss.SimpleUpload({
         button: btn,
         // url: '_p/file_upload.php?in=' + JSSHOP.shared.getFrmFieldVal("qitem","_id","5") + '_' + JSSHOP.getUnixTimeStamp(),
         url: tmpDAIurl,

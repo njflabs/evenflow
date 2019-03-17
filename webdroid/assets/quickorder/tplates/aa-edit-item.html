@@ -1,22 +1,137 @@
-<div id="dvWrapper" class="clsDummt"><table style="width: 100%;" class="cls-form-dv">
-	<tr>
-		<td>
-		<div class="cls-error-div" id="dvVdtnError"></div></td>
-	</tr>
-	<tr>
-		<td>
-		
-		</td>
-	</tr>
+<div id="dvWrapper" class="clsDummt" style="width: 100%;max-width: 600px;margin: 0 auto"><table style="width: 100%;max-width: 600px;margin: 0 auto" class="cls-form-dv">
 	<tr>
 		<td>
 		
 		<table style="width: 100%" id="tblImedia">
 			<tr>
-				<td class="">
+				<td><table style="width: 100%" id="tblItitle">
+			<tr>
+				<td><span id="lbl_i_title">title</span></td>
+			</tr>
+			<tr>
+				<td style="height: 23px"><div name="mod_i_title"  id="mod_i_title"  style="min-height:20px;" contenteditable="true"  class="cls_input_tarea"></div></td>
+			</tr>
+		</table></td>
+			</tr>
+			<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+			<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+			<tr>
+			<td class="bkgdClrCollHdr" style="height: 34px"><table id="tblIprice" cellspacing="0" cellpadding="3">
+			<tr>
+				<td><table><tr><td><span id="lbl_i_price_b"  style="vertical-align:super"></span></td></tr></table></td>
+				<td>&nbsp;&nbsp;&nbsp; &nbsp;</td>
+				<td><input type="number" name="mod_i_price_b" id="mod_i_price_b" value="" class="txtSmall" style="max-width:100px"></td>
+			</tr>
+			</table></td>	 
+			</tr>
+			<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+			<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+<tr>
+		<td>
+		<table style="width: 100%" id="tblIdesc">
+			<tr>
+				<td><span id="lbl_i_desc" style="vertical-align:super">description</span></td>
+			</tr>
+			<tr>
+				<td><div  name="mod_i_desc"  id="mod_i_desc"  style="padding:5px;min-height:20px;overflow:auto;max-height:300px" contenteditable="true" class="cls_input_tarea"></div></td>
+			</tr>
+			</table>
+		</td>
+	</tr>				
+			</table></td>
+	</tr>
+<tr>
+		<td>
+		
+		<table style="width: 100%">
+			<tr>
+				
+				
+			</tr>
+		</table>
+		
+		</td>
+	</tr>
+	
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	
+	<tr>
+		<td class="bkgdClrCollHdr">
+		<div><table style="width: 100%">
+			<tr>
+				<td   style="text-align:left" align="absmiddle">
+				<span id="lbl_i_catid">Category:</span> <select style="margin-left:10px" size="1" name="mod_i_catid" id="mod_i_catid" class="crsrPointer"  style="-webkit-appearance: none;height:2rem" onchange="javascript:doCatChange(this, document.getElementById('tdSpin'))">
+                                      <option value="0">Top Main</option>
+                                      </select></td>
+			</tr>
+			</table>
+		</div></td>
+	</tr>
+	
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	
+	<tr>
+		<td>
+                         <table style="width: 100%">
+							 <tr>
+								<td style="width:100%" valign="top"><table style="width: 100%" cellspacing="0" cellpadding="3">
+				 <tr>
+					 <td><div id="progressOuter"></div><div id="msgBox"></div></td>
+				 </tr>
+				 <tr>
+					 <td><table cellpadding="3px" cellspacing="3px"><tr>
+						 <td><img alt="Product Image" src="images/trans.gif"  class="slmtable icnsmlbtn brdrClrDlg" style="text-align:center;max-height:18px; margin-right:12px" align="absmiddle" id="imgIedit"   onclick="javascript:JSSHOP.ui.toggleVisibility('tdImedia');" ></td><td  onclick="javascript:JSSHOP.ui.toggleVisibility('tdImedia');"  class="crsrPointer" style="text-align:center" align="absmiddle">Media
+					
+					</td><td><div id="dvUploadBtn"  style="display:block;visibility:visible;margin-right:10px"><button id="uploadBtn" onclick="JSSHOP.shared.setFrmFieldVal('qmedia', 'm_dadded', JSSHOP.getUnixTimeStamp();" class="cls_button cls_button-small"><ti data-ison="stxt[70]" data-desc="btn_save">Add</ti></button></div>
+					
+				 
+             </td><td style="text-align: center; vertical-align:top"><div id="dvPrdMedia"></div></td></tr></table></td>
+				 </tr>
+				 <tr>
+					 <td><div id="dvAppBCodeBtn"></div></td>
+				 </tr>
+			 </table></td>
+							 </tr>
+						 </table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+                         <input type="hidden" name="mod_i_img" id="mod_i_img" value="" data="disnull"> 
+                   <input type="hidden" name="mod_i_valb" id="mod_i_valb" value="" data="disnull"> <input type="hidden" name="mod_i_vala" id="mod_i_vala" value="" data="disnull">   <input type="hidden" name="mod_i_dimen_v" id="mod_i_dimen_v" value="" data="disnull"> <input type="hidden" name="mod_i_price_a" id="mod_i_price_a" value="" data="disnull"></td>
+	</tr>
+	
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	<tr>
+			<td>&nbsp;</td>	 
+			</tr>
+	
+	<tr>
+				<td class="bkgdClrCollHdr">
 				<table>
 					<tr>
-						<td><table><tr><td><span id="lbl_i_rtype"  style="vertical-align:super"></span></td></tr></table></td>
+						<td style="width: 10px"><table><tr><td nowrap="nowrap"><span id="lbl_i_rtype"  style="vertical-align:super" nowrap="nowrap"></span></td></tr></table></td>
 						<td><div class="switch">
     <label>
      
@@ -29,135 +144,19 @@
 				</table>
 				</td>
 			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td><table style="width: 100%"><tr><td style="width:100%"><table style="width: 100%" id="tblItitle">
-			<tr>
-				<td class="collectionhdr"><span><i class="small-material-icons">title</i></span><span id="lbl_i_title"  style="vertical-align:super"></span></td>
-			</tr>
-			<tr>
-				<td><div name="mod_i_title"  id="mod_i_title"  style="min-height:20px;" contenteditable="true"  class="cls_input_tarea"></div></td>
-			</tr>
-		</table></td></tr></table></td>
-			</tr>
-			<tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
-			</tr>
-			<tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
-			</tr>
-<tr>
-		<td>
-		<table style="width: 100%" id="tblIdesc">
-			<tr>
-				<td class="collectionhdr"><span><i class="small-material-icons">description</i></span><span id="lbl_i_desc" style="vertical-align:super"></span></td>
-			</tr>
-			<tr>
-				<td><div  name="mod_i_desc"  id="mod_i_desc"  style="padding:5px;min-height:20px;overflow:auto;max-height:300px" contenteditable="true" class="cls_input_tarea"></div></td>
-			</tr>
-			</table>
-		</td>
-	</tr>				
-			<tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
-			</tr>
-			<tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
-			</tr>
-			<tr>
-			<td><div class="collectionbrdr">
-			 <table style="width: 100%" cellspacing="0" cellpadding="3">
-				 <tr>
-					 <td><div onclick="javascript:JSSHOP.ui.toggleVisibility('tdImedia');"  class="collectionhdr crsrPointer">Media</div></td>
-				 </tr>
-				 <tr>
-					 <td><div id="progressOuter"></div><div id="msgBox"></div></td>
-				 </tr>
-				 <tr>
-					 <td  id="tdImedia"><table cellpadding="3px" cellspacing="3px"><tr><td style="text-align: center; vertical-align:top"><span><img alt="Product Image" src="images/menu_iconl.jpg"  class="slmtable icndbtn brdrClrDlg" style="text-align:center;max-height:22px;" align="absmiddle" id="imgIedit"   onclick="javascript:JSSHOP.ui.toggleVisibility('tdImedia');" ></span>&nbsp;
-					
-					</td><td><div id="dvUploadBtn"  id="tdBtnUpload" style="display:block;visibility:visible"><button id="uploadBtn" onclick="JSSHOP.shared.setFrmFieldVal('qmedia', 'm_dadded', JSSHOP.getUnixTimeStamp();" style="background-color:white;border:0px"><i class="material-icons slmtable icnbtn clsDvCntntTtle">add</i></button></div>
-					
-				 
-             </td><td style="text-align: center; vertical-align:top"><div id="dvPrdMedia"></div></td></tr></table></td>
-				 </tr>
-				 <tr>
-					 <td><div id="dvAppBCodeBtn"></div></td>
-				 </tr>
-			 </table> 
-			 
-			 </div>
-			 
-			 
-			 
-			 
-				</td>
-	 
-			</tr>
-			</table></td>
-	</tr>
-	 <tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
-			</tr>
-	 <tr>
-		<td class="txtSmall">
-		&nbsp;</td>
-	 </tr>
-<tr>
-		<td>
-		<table id="tblIprice" cellspacing="0" cellpadding="3">
-			<tr>
-				<td  class="collectionhdr"><table><tr><td style="width: 107px"><span><i class="small-material-icons">monetization_on</i></span></td><td><span id="lbl_i_price_b"  style="vertical-align:super"></span></td></tr></table></td>
-				<td  class="collectionhdr"></td>
-			</tr>
-			<tr>
-				<td><input type="number" name="mod_i_price_b" id="mod_i_price_b" value="" class="cls_input_text"></td>
+	
+	<tr>
 				<td>
-</td>
-			</tr>
-			</table>
-		</td>
-	</tr>
-	 <tr>
-			<td class="txtSmall">
-			 &nbsp;</td>
-	 
+				&nbsp;</td>
 			</tr>
 	
 	<tr>
-		<td>
-		<div><table style="width: 100%">
-			<tr>
-				<td class="collectionhdr"><span><i class="small-material-icons">category</i></span>
-				<span id="lbl_i_catid" style="vertical-align:super"></span></td>
+				<td>
+				&nbsp;</td>
 			</tr>
-			<tr>
-				<td><select size="1" name="mod_i_catid" id="mod_i_catid" class="cls_input_text crsrPointer"  onblur="this.className='cls_input_text crsrPointer'" onfocus="this.className='cls_input_text cls_input_text_focus crsrPointer'" style="-webkit-appearance: none;height:2rem" onchange="javascript:doCatChange(this, document.getElementById('tdSpin'))">
-                                      <option value="0">Top Main</option>
-                                      </select></td>
-			</tr>
-		</table>
-		</div></td>
-	</tr>
 	
 	<tr>
-		<td>
-                         <input type="hidden" name="mod_i_img" id="mod_i_img" value="" data="disnull"> 
-                   <input type="hidden" name="mod_i_valb" id="mod_i_valb" value="" data="disnull"> <input type="hidden" name="mod_i_vala" id="mod_i_vala" value="" data="disnull">   <input type="hidden" name="mod_i_dimen_v" id="mod_i_dimen_v" value="" data="disnull"> <input type="hidden" name="mod_i_price_a" id="mod_i_price_a" value="" data="disnull"></td>
-	</tr>
+		<div class="cls-error-div" id="dvVdtnError"></div>	</tr>
 </table>
 </div>
-
-<button id="btnEUsave" class="clsDDBtnSave"><img alt="18" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=" width="4" height="4" onload="dw(this.parentNode, stxt[21]);"  onerror="dw(this.parentNode, stxt[21]);">save</button>
+<div align="center"><button id="btnEUsave" class="cls_button cls_button-medium"><ti data-ison="stxt[21]" data-desc="btn_save">Save</ti></button></div>

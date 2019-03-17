@@ -435,7 +435,7 @@ JSSHOP.ui.addEvent(theB,"click",ts.fcl);
 if(ts.lid !== "noQvalue") {
 tlid = ts.lid;
 try {
-document.getElementById(tlid).className = "txtSmall txtBold txtClrDlg";
+// document.getElementById(tlid).className = "txtSmall txtBold txtClrDDlg";
 document.getElementById(tlid).innerText = ts.ltxt;
 
 
@@ -1292,16 +1292,7 @@ JSSHOP.ui.toggleVisibility = function(rowname) {
 };
 
 JSSHOP.ui.toggleMnuVisibility = function(rowname) {
-	// alert("toggleMnuVisibility");
-	// scrollToElement("idlogo");
-    try {
-            theRow = document.getElementById(rowname);    
-            // 	alert(theRow.style.display);
-
-    	// JSSHOP.ui.showHideElement("mmn","hide");
-    	    } catch (e) {
-    JSSHOP.logJSerror(e, arguments, "JSSHOP.ui.toggleVisibility");
-    }
+ 
     try {
         theRow = document.getElementById(rowname);    
          
@@ -1319,7 +1310,7 @@ JSSHOP.ui.toggleMnuVisibility = function(rowname) {
                  		 document.getElementById("dvMnuT").innerHTML = gmnu;
             theRow.style.display = "block";
             theRow.style.visibility = "visible";
-        //  alert(gmnu);
+ 
 
         }
 	
@@ -1366,10 +1357,7 @@ JSSHOP.ui.toggleNuModule = function(linkElem, tglElemID) {
 
 
 JSSHOP.ui.setCBBClickEnd = function(theElem, theID, theCBclss, theCB) {
-    try {
-   } catch(e) {
-	JSSHOP.logJSerror(e, arguments, "JSSHOP.ui.setCBBClickEnd");
-    }
+ 
       theElem.className = theCBclss;
       JSSHOP.stopIntervalEvent(trgr_bclck[theID]);
       theCB();
@@ -1402,10 +1390,19 @@ JSSHOP.ui.setNuCBBClickClr = function(theElem, theCclss, theCBclss, theCB, theNB
     }
 };
 
-// setCBBClickClr(dvBtnSTImg, 'rtable bkgdClrHdr', 'rtable bkgdClrNrml crsrPointer', function() { y = 'y'; });
+ 
 JSSHOP.ui.setCBBClickClr = function(theElem, theCclss, theCBclss, theCB) {
 JSSHOP.ui.setNuCBBClickClr(theElem, theCclss, theCBclss, theCB, 380); 
 };
+
+
+JSSHOP.ui.setSaveBtnClick = function(theObj,theCB) {
+theObj.disabled=true;
+JSSHOP.ui.setNuCBBClickClr(theObj,'cls_button cls_button-medium brdrClrHdr txtClrGrey','cls_button cls_button-medium', theCB, 380);
+};
+
+
+
 
 JSSHOP.ui.doDefBtn = function(tmpTxt, tmpCallback) {
 tmpRd = "<div class=\"crsrPointer\"><div onclick=\"javascript:JSSHOP.ui.setCBBClickClr(this,'slmtable brdrClrNrml','slmtable brdrClrHdr', function(){" + tmpCallback + "});\" class=\"txtBig slmtable brdrClrHdr\">";
@@ -1564,8 +1561,8 @@ JSSHOP.ui.setLblHighlight = function(theTmpFld,theTmpFldTxt,theTmpLbl,theTmpLblT
 try {
 // var fvTFI = theTmpFld.id;
 
-JSSHOP.ui.addEvent(theTmpFld, "focus", function() {  theTmpLbl.className = "txtSmall txtBold txtClrHdr";ax = theTmpFld.value;theTmpFld.value = '';theTmpFld.value=ax;  theTmpFld.selectionStart = theTmpFld.selectionEnd = 10000;});
-JSSHOP.ui.addEvent(theTmpFld, "blur", function() {  theTmpLbl.className = "txtSmall txtBold txtClrDlg";return false; });
+JSSHOP.ui.addEvent(theTmpFld, "focus", function() {  theTmpLbl.className = "txtClrHdr";ax = theTmpFld.value;theTmpFld.value = '';theTmpFld.value=ax;  theTmpFld.selectionStart = theTmpFld.selectionEnd = 10000;});
+JSSHOP.ui.addEvent(theTmpFld, "blur", function() {  theTmpLbl.className = "txtClrDDlg";return false; });
 // JSSHOP.ui.addEvent(theTmpfld, "blur", function() { theTmpLbl.className = 'txtClrDlg' });
 
 } catch(e) {
@@ -1850,8 +1847,8 @@ JSSHOP.shop.getPrdPriceStr = function(thePrdsArna, prcInt, prcID, prcA, prcB){
  	na = prcA - prcB;
 	nd = Math.round((na / prcA) * 100);
 	retStrPrHtml = "";
-
-	retStrPrHtml =  "<br><span class=\"txtBig txtClrDlg\">" + prcB + "</span>";
+        retStrPrHtml =  prcB ;
+	 // retStrPrHtml =  "<br><span class=\"txtBig txtClrDlg\">" + prcB + "</span>";
 	// retStrPrHtml +=  "<img src=\"images/cart_r.gif\" class=\"crsrPointer icndbtn\"  id=\"tdCI" + thePrdsArna + prcID + "\" onclick=\"javascript:JSSHOP.shop.doQIadd('" + thePrdsArna + "',this.id," + prcID + "," + prcInt + ");\">";
 
 
@@ -1944,6 +1941,9 @@ ntImgCtr[tsCatArrNm] = ntImgCtr[tsCatArrNm] + 1;
 };
  
  
+
+
+
 JSSHOP.shop.setCatPrdImgs = function(tCatArrNm) {
 try {
  
@@ -1983,6 +1983,12 @@ alert("setCatPrdImgs " + e);
 };
  
 
+
+
+/* 
+* this function takes an items array and returns 
+* the html for displaying those items
+*/
 
 JSSHOP.shop.getPrdsFullStr = function(thePrdsArna, thePrdsArr, thePrdsClss, thePrdsElem, thePrdsCB){
  
@@ -2032,12 +2038,12 @@ strImgDsct = "";
 
 	if((thePrdsArna == "prodpg") || (pid == "aa-show-item")){
 	subIdesc = subTIdesc;
-      strImgDsct += "<img onclick=\"document.location.href = this.src\" id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"activator prodBigImage crsrPointer\">";
+      strImgDsct += "<div><img onclick=\"document.location.href = this.src\" id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"activator prodBigImage crsrPointer\"></div>";
 	} else {
 	subIdesc = subTIdesc.substring(0, 15);
       strImgDsct += "<a href=\"index.php?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
 	if(upRefs == "r") {
-      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodBigImage\">";
+      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodRowImage\">";
 	} else {	
       strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodImage\">";
 	}
@@ -2049,21 +2055,29 @@ strImgDsct = "";
  	strHtml += "<li  class=\"prodBigBox\">";
  	} else {
 	if(upRefs == "r") {
- 	 strHtml += "<li  class=\"prodBox\"  style=\"min-width:90%;min-height:250px;max-height:251px;float: left;\">";
+ 	 strHtml += "<li  class=\"prodRowBox\" style=\"width:100%;\">";
+ 
+
  	} else {
-	strHtml += "<li class=\"float-item\" style=\"\">";
+	strHtml += "<li class=\"float-item prodBox\" style=\"\">";
+
 	}
 	}
 
 
 
 	strHtml += "<div class=\"txtBold\" style=\"padding: 3px;\">";
- 
 	strHtml += ts.i_title;
-
 	strHtml += "</div>";
+	strHtml +=  strImgDsct;
 
-	strHtml += "<div>" + strImgDsct + "</div>";
+
+
+
+
+
+
+
 
 	if(thePrdsArna == "prodpg") {
 
@@ -2078,24 +2092,26 @@ strImgDsct = "";
 
 	}
 
-	strHtml +=  "<span class=\"txtSmall txtClrHdr\" style=\"padding:6px;\">";
+	strHtml +=  "<div class=\"txtSmall txtClrHdr\" style=\"padding:6px;\">";
 	strHtml +=  subIdesc;
-	strHtml +=  "</span>";
+	strHtml +=  "</div>";
 
  
  	
-
-	strHtml += "<div  id=\"tdCI" + ts._id + "\" onclick=\"javascript:JSSHOP.shop.doQIadd('" + thePrdsArna + "',this.id,'" + ts._id + "','" + iint + "');\"><img src=\"images/cart_r.gif\" class=\"icnmedbtn brdrClrWhite crsrPointer\">";
-	strHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
-	strHtml += "</div>";
 
 
 
  	strPriceHtml =  JSSHOP.shop.getPrdPriceStr(thePrdsArna, iint, ts._id, ts.i_price_a, ts.i_price_b);
 
-	 strHtml += "<div style=\"float: left;\">" + strPriceHtml + "</div>";
+	 strHtml += "<span class=\"txtBig txtBold txtClrDGreen\"  style=\"margin: 15px;\">" + strPriceHtml + "</span>";
 
  
+	strHtml += "<div  id=\"tdCI" + ts._id + "\" onclick=\"javascript:JSSHOP.shop.doQIadd('" + thePrdsArna + "',this.id,'" + ts._id + "','" + iint + "');\" class=\"cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrDlg\">";
+	strHtml += "<i class=\"material-icons\" alt=\"add cart\" title=\"add\" value=\"add\">shopping_cart</i>";
+	strHtml += "<i class=\"material-icons\" alt=\"add cart\" title=\"add\" value=\"add\">add</i>";
+         // <img src=\"images/cart_r.gif\" class=\"icnsmlbtn brdrClrWhite crsrPointer\">";
+	strHtml += "</div>";
+	strHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
 
 	strHtml += "</li>";
  

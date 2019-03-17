@@ -1,6 +1,7 @@
 currPgTitle = stxt[47];
 document.title = currPgTitle; 
-
+var euiFFObjArr = null;
+var euiFFObjArr = [];
 
 var tmpSQBArr = [];
 var tmpVitemArr = [];
@@ -171,8 +172,12 @@ var renderNuTQBItems = function(a,b,c) {
  
       strHtml += "<div>Total:" + cartTtl.toFixed(2) + "</div>"; 
    } else {
+
       strHtml += "<div>" + stxt[34] + "</div>";
- 
+	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+
+       JSSHOP.ui.toggleVisibility("dvBtnsCart");
+
     }
 
 
@@ -292,31 +297,60 @@ JSSHOP.ui.setfaction('orderform',true,null);
 
 
 
-
-var renderDBis = function(theElem, theResp, marble) {
+var renderDBis = function(theTmpCORobj) {
+ 
+// var renderDBis = function(theElem, theResp, marble) {
     // alert("renderDBis: " + theResp);
     tmpVitemArr = null;
     tmpVitemArr = [];
-    tmpVitemArr = JSON.parse(theResp);
-    renderNuTQBItems("add",tmpVitemArr,"dddc");
+    tmpVitemArr = JSON.parse(theTmpCORobj.rs);
+    renderNuTQBItems(null,tmpVitemArr,null);
 };
 
 
  
 var reloadDBis = function() {
+
+
+
+
+
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["ws"] = "where ci_uid=? and ci_coid=? and ci_cartqty >? and ci_rtype=? and ci_cartid=?";
     tmpDOs["wa"] = [quid,cid,0,5,cartID]; 
  
     oi = getNuDBFnvp("qcartitem",5,null,tmpDOs);
-    doQComm(oi["rq"], null, "renderDBis");
+    // doQComm(oi["rq"], null, "renderDBis");
+tmpGetCco = nCurrCnxOb();
+// tac["lz"] = "y";
+tmpGetCco["q"] = oi["rq"];
+tmpGetCco["cb"] = "renderDBis";
+doNurQComm(tmpGetCco);
+	
 };
 
 
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
- reloadDBis();
+
+tfsb = nCurrFFieldOb();
+tfsb.fid = "btnEUsend";
+tfsb.fty = "button";
+tfsb.fcl = function() { sendOrder() };
+euiFFObjArr.push(tfsb);
+
+tfsa = nCurrFFieldOb();
+tfsa.fid = "btnEUclear";
+tfsa.fty = "button";
+tfsa.fcl = function() { clearCart('dvCartItems') };
+euiFFObjArr.push(tfsa);
+
+JSSHOP.shared.initFrmComps(euiFFObjArr);
+tmpPPemalstr = JSSHOP.shared.getFrmFieldVal("qco","c_email","change_this_in_shop_info@to_your_paypal.email");
+JSSHOP.shared.setFrmFieldVal("orderform","business",tmpPPemalstr);
+// alert(JSSHOP.shared.getFrmFieldVal("orderform","business","change_this_in_shop_info@to_your_paypal.email"));
+reloadDBis();
 };
 

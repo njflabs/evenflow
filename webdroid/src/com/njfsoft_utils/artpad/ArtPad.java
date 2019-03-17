@@ -26,6 +26,7 @@ import com.njfsoft_utils.artpad.ap_utils.TouchImageView;
 import com.njfsoft_utils.artpad.filters.BitmapFilter;
 import com.njfsoft_utils.artpad.JSI_ArtPad;
 import com.njfsoft_utils.core.Base64;
+import com.njfsoft_utils.cutOuts.CutOuts;
 import com.njfsoft_utils.webviewutil.UtilWebView;
 import com.njfsoft_utils.webviewutil.UtilWebDialog;
 import com.njfsoft_utils.webviewutil.JSI_Simple;
@@ -207,6 +208,9 @@ public void setToggleMView(final boolean fnlBooltoShow) {
                     String encodedImage = Base64.encodeBytes(bMapArray);
                     Intent intent = new Intent();
                     intent.putExtra("encdBmp", encodedImage);
+
+
+
                     setResult(RESULT_OK, intent);
                     finish();
                 } catch (Exception e) {
@@ -217,24 +221,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
 
 
-
-
-/*
-        //doDialogDismiss();
-        try {
-            runOnUiThread(new Runnable() {
-                public void run() {
-
-                    scaleIView();
-
-                }
-            });
-
-        } catch (Exception e) {
-            System.out.println("artPad setBmp: " + e.toString());
-            e.printStackTrace();
-        }
-*/
+ 
         setVisible(true);
 	preparePagePopUps("blank.html", "noQvalue");
 
@@ -296,11 +283,14 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
                     if(currAPmode.indexOf("Ed") != -1){
 		        // setToggleMView(true);
+			doApNewPopDialog("Effects", "artpad/ap_file.html");
 	} else {
+/*
 	btnShare.setVisibility(View.GONE);
 	btnFile.setVisibility(View.GONE);
 	btnHome.setVisibility(View.GONE);
 	btnEffects.setVisibility(View.GONE);
+*/
 	}
     }
 
@@ -318,7 +308,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
     }
 
     public void onResume() {
-        img.setOnTapListener(this);
+        // img.setOnTapListener(this);
         img.setDrawingCacheEnabled(true);
         img.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
@@ -548,16 +538,18 @@ public void setToggleMView(final boolean fnlBooltoShow) {
         if (theJSCommID > 0) {
             switch (theJSCommID) {
                 case 1: {
-/*
-                   Intent intent = new Intent(getApplicationContext(), com.cutOuts.DecoderActivity.class);
+
+                   Intent intent = new Intent(getApplicationContext(), com.njfsoft_utils.cutOuts.CutOuts.class);
                   //  intent.setData(getIntent().getData());
                   startActivityForResult(intent, 110);
 
-*/
+/*
 
                     currBitmap = getOrigBmp();
                     img.setImageBitmap(currBitmap);
                     picture = currBitmap;
+
+*/
                     break;
  
                }
@@ -958,7 +950,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 		        runAPJSComm(14);
                     } else {
 			  
-			   doFinishData();
+			   // doFinishData();
 			 }
 
 				
