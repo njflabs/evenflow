@@ -139,18 +139,30 @@ return bmp;
     public void onDraw(Canvas canvas) {
  
 		try {
-		if(incrFdone < covIntFCount) {
+		if((incrFdone < covIntFCount) && (covIntFCount > 0)){
             System.out.println("AnimPrevView: Ondraw: " + incrFdone);
             Bitmap tbmp = covAnimFnlFrames.get(incrFdone).getMBitmap();
-		int ti = covAnimFnlFrames.get(incrFdone).getIpst();
-		int ty = covAnimFnlFrames.get(incrFdone + 1).getIpst();
+            int ti = 0;
+            int ty = 0;
+		if(incrFdone == covIntFCount - 1) {
+		ti = covAnimFnlFrames.get(incrFdone - 1).getIpst();
+		ty = covAnimFnlFrames.get(incrFdone).getIpst();
+		} else {
+		ti = covAnimFnlFrames.get(incrFdone).getIpst();
+		ty = covAnimFnlFrames.get(incrFdone + 1).getIpst();
+		}
 		int dlay = (int) (ty - ti);
       	canvas.drawBitmap(tbmp, null, rectGPV, null);
 		incrFdone++;
         	System.out.println("onDraw.dlay: " + dlay);
             postInvalidateDelayed(Long.valueOf(dlay));
+		} else {
+		if(covIntFCount > 0) {
+		incrFdone = 0;
+		covIntFCount = 0;
+            cOuts.animPlayEnded();
+		} 
 		}
- 		  // canvas.drawBitmap(currDmap, 0, 0, null);
 		} catch(Exception e) {
         	System.out.println("onDraw.error: " + e);
 		e.printStackTrace();

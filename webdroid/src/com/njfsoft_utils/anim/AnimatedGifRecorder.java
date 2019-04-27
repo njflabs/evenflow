@@ -130,7 +130,7 @@ public class AnimatedGifRecorder {
 
           mediaStorageDir = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order");
 
-      //  mediaStorageDir = new File(MediaStore.Images.Media.EXTERNAL_CONTENT_URI+"/picScenes");
+ 
 
  	arrAnimFnlFrames = new ArrayList<AnimFrameSingleton>();
 
@@ -185,16 +185,8 @@ static <T> List<List<T>> chopped(List<T> list, final int L) {
    public boolean saveMov() {
  
         try {
-
-
- 
- 
-
  		boolean fileCreated = false;
 	     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-	 	// File filePath = new File(Environment.getExternalStorageDirectory()+"/smsScenes");
-		// File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "smsScenes");
-		// String filename = "51.gif";
           	String filename = recStrFName;
 	  	if(mediaStorageDir.exists()) {
 		fileCreated = true;
@@ -226,8 +218,6 @@ static <T> List<List<T>> chopped(List<T> list, final int L) {
     try {
             System.out.println("doNoMedScan START:");
  		boolean fileCreated = false;
-	 	// File filePath = new File(Environment.getExternalStorageDirectory()+"/smsScenes");
-		// File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "smsScenes");
 	 	String filename =  ".nomedia";
 		File ffile = new File(mediaStorageDir,filename);
 	  	if(ffile.exists()) {
@@ -306,7 +296,6 @@ static <T> List<List<T>> chopped(List<T> list, final int L) {
 	}
            } else {   
          	boolean bb = addAnimMovFrame();
-           //   boolean bb = addAnimMovBmp();
 
            }
            System.out.println("AnimAsync:doInBackground: " + dString);

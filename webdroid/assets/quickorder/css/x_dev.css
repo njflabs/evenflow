@@ -897,6 +897,19 @@ max-width: 33px;
 
 
 
+.roundbtn {
+
+vertical-align:center;
+max-height: 33px;
+max-width: 33px;
+padding:8px;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
+
+
+
 .lightbox {
     position:fixed;
     top:0;

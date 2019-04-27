@@ -30,6 +30,12 @@ public class AnimMovSingleton  {
         return instance;
     }
 
+    public void clearAMS() {
+       amsArrAFS = null;
+ 	amsAnimation = null;
+ 	amsBgAnimation = null;
+ 	 amsAnimInt = null;
+    }
 
     public void setMamsArrAFS(ArrayList<AnimFrameSingleton> tmpval) {
         this.amsArrAFS = tmpval;

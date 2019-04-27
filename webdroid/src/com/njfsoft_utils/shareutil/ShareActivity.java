@@ -434,7 +434,7 @@ public class ShareActivity extends Activity {
 
         try {
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://www.elastic-pad.com/story/index.php");
+            HttpPost httppost = new HttpPost("http://localhost/story/index.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             strOutput = convertResponseToString(response);

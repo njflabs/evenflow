@@ -523,7 +523,8 @@ var procNuUIitem = function(thetble,thecol,theid,theVal,tmpCB) {
     doQComm(oi["rq"], null, tmpCB);
 };
 
-// to delete
+
+
 var procUIitem = function(theElem) {
 ts = JSSHOP.shared.getElemDUrl(theElem);
 if(theElem.getAttribute("data-prval") != null) {
@@ -532,7 +533,7 @@ if(totw != null){
 if(totw == theElem.value) {
 } else {
 theElem.setAttribute("data-prval", theElem.value);
-JSADMSHOP.prepAdmPipe(theElem,ts,JSADMSHOP.procNuAdmPipe)
+JSADMSHOP.prepAdmPipe(theElem,ts,JSADMSHOP.procNuAdmPipe);
 }
 }
 }

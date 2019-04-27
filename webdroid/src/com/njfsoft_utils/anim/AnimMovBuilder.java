@@ -347,6 +347,115 @@ static File SDPathToFile(String filePatho, String fileName)
         return (float) dp * density;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Bitmap getItemBmp(Bitmap bmpAToMask) {
+
+
+ 	  Paint fntPaint = new Paint();
+	  Typeface tfbold = Typeface.create("Arial", Typeface.BOLD);
+	  fntPaint.setTypeface(tfbold);
+        fntPaint.setTextSize(12);
+        fntPaint.setColor(Color.parseColor("#FFFFFF"));
+ 
+ 
+
+	String tstrP =  "quick-order  ";
+       try {
+ 	 JSONObject jdata = apmetaObject.getJSONObject("qco");
+ 	 JSONObject ji = apmetaObject.getJSONObject("qitem");
+
+ 
+       tstrP = jdata.getString("c_title");
+ 
+       tstrP = ji.getString("i_title") + " - " + ji.getString("i_price_a");
+
+ 
+
+       } catch(Exception e) {
+	}
+
+
+ 
+
+    Rect rs = new Rect();
+    rs.left = rs.top = 0;
+    rs.right = bmpAToMask.getWidth();
+    rs.bottom = bmpAToMask.getHeight();
+
+ 
+     Bitmap bmpMainCanvImg = Bitmap.createBitmap((int)(rs.right), (int)(rs.bottom) + 50, Bitmap.Config.RGB_565);
+
+    Rect rsa = new Rect();
+    rsa.left = rs.top = 0;
+    rsa.right = bmpMainCanvImg.getWidth();
+    rsa.bottom = bmpMainCanvImg.getHeight();
+
+     Canvas cnvMask = new Canvas(bmpMainCanvImg); 
+
+ 	 Bitmap bmpToMask = rUtilsBitmap.drawTextToBitmap(bmpMainCanvImg, tstrP, fntPaint, 8);
+
+       cnvMask.drawBitmap(bmpToMask, null, rsa, null);
+       cnvMask.drawBitmap(bmpAToMask, null, rs, null);
+      
+
+ 
+ 
+ 
+
+	// b.recycle();
+	bmpToMask.recycle();
+ 
+    System.out.println("getItemBmp: " + bmpMainCanvImg.getWidth() + " :: " + bmpMainCanvImg.getHeight());
+      newMovWidth = bmpMainCanvImg.getWidth();
+      newMovHeight = bmpMainCanvImg.getHeight();
+  	return bmpMainCanvImg;
+ 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public Bitmap getMovBmp(int ibmi) {
 
 
@@ -386,7 +495,7 @@ static File SDPathToFile(String filePatho, String fileName)
  	//  Bitmap bmpAToMask = rUtilsBitmap.scaleBoundBitmap(b, 320);
  	 Bitmap bmpAToMask =  arrAnimFnlFrames.get(ibmi).getMBitmap();
 
-	String tstrP =  "njflabs  ";
+	String tstrP =  "quick-order  ";
        try {
  	 JSONObject jdata = apmetaObject.getJSONObject("qco");
  	 JSONObject ji = apmetaObject.getJSONObject("qitem");

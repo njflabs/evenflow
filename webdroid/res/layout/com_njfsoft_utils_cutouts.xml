@@ -77,29 +77,108 @@
     android:layout_height="fill_parent"
    />
 
-   <com.njfsoft_utils.camcapture.VerticalTextView android:id="@+id/status_view"
+
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_horizontal"
-          android:textColor="#88ffffff"
+            android:orientation="horizontal"
+            android:layout_gravity="left|top"
+ 		>
+
+
+
+   <TextView android:id="@+id/status_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
 	    android:background="@drawable/rounded_corners"
             android:text="  Click for Picture  "
  android:paddingLeft="10dip"
     android:paddingRight="10dip"
-            android:textSize="18sp">
-</com.njfsoft_utils.camcapture.VerticalTextView>
+ 
+            android:textSize="14sp">
+</TextView>
 
-   <com.njfsoft_utils.camcapture.VerticalTextView android:id="@+id/status_stop"
+   <TextView android:id="@+id/status_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-          android:textColor="#88ffffff"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
 	    android:background="@drawable/rounded_corners"
             android:text="  Stop for Picture  "
  android:paddingLeft="10dip"
     android:paddingRight="10dip"
-            android:textSize="18sp">
-</com.njfsoft_utils.camcapture.VerticalTextView>
+            android:textSize="14sp">
+</TextView>
+        </LinearLayout>
+
+
+
+
+
+
+
+ <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal|center_vertical"
+ 		>
+
+
+
+   <TextView android:id="@+id/btnAPVPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Preview  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+ 
+            android:textSize="14sp">
+</TextView>
+
+   <TextView android:id="@+id/btnAPVSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Save  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+            android:textSize="14sp">
+</TextView>
+
+
+   <TextView android:id="@+id/btnAPVClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Cleae  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+            android:textSize="14sp">
+</TextView>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <LinearLayout
             android:layout_width="wrap_content"
@@ -107,6 +186,21 @@
             android:orientation="vertical"
             android:layout_gravity="right|center_vertical"
  		>
+
+
+                <ImageButton
+                        android:id="@+id/btn_gifvid"
+                        android:layout_width="36dip"
+                        android:layout_height="36dip"
+			  android:layout_margin="3dp"
+	    android:background="@drawable/rounded_corners"
+                        android:src="@drawable/icon_vid"  
+                        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="1dp"
+        android:scaleType="fitCenter"      
+          		 />
+
 
                 <ImageButton
                         android:id="@+id/btn_vid"
@@ -127,6 +221,19 @@
 			  android:layout_margin="3dp"
 	    		android:background="@drawable/rounded_corners"
                  	android:src="@drawable/icon_cam"    
+                        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="1dp"
+        android:scaleType="fitCenter"     
+          		 />
+
+                <ImageButton
+                        android:id="@+id/btn_settings"
+                        android:layout_width="36dip"
+                        android:layout_height="36dip"
+			  android:layout_margin="3dp"
+	    		android:background="@drawable/rounded_corners"
+                 	android:src="@drawable/ep_brwsr_menu_manage"    
                         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:padding="1dp"

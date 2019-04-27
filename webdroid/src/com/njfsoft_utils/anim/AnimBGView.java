@@ -88,18 +88,18 @@ public void setBmap(Bitmap dMap) {
 currBGDmap = dMap;
 invalidate();
 }
-
+public void clearBmap() {
+currBGDmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+invalidate();
+}
 /*
 */
 public Bitmap get(){
 // The variable that will guard the frame number
-
- 
 this.setDrawingCacheEnabled(true);
 this.buildDrawingCache(true);
 Bitmap bmp = Bitmap.createBitmap(this.getDrawingCache());
 this.setDrawingCacheEnabled(false);
- 
 return bmp;
 }
 

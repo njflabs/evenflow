@@ -105,7 +105,7 @@ import android.view.WindowManager;
 import android.widget.ZoomControls;
 import android.widget.Toast;
 import android.widget.ImageView;
- 
+import android.widget.TextView;
 import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -188,7 +188,7 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
 
       SurfaceView surfaceView;
       SurfaceHolder surfaceHolder;
-      VerticalTextView vtv;
+      TextView vtv;
 
       private boolean mPreviewRunning = false;
       private boolean mCaptureFrame = false;
@@ -216,11 +216,16 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
       Animation animPropA;
       Animation animPropB;
       AnimationSet animSet;
-      VerticalTextView stv;
+      TextView stv;
       Bitmap bmpMainCanvImg;
+      TextView tvAPVPreview;
+      TextView tvAPVSave;
+      TextView tvAPVClear;
 
 	ImageButton btnCam;
 	ImageButton btnVid;
+	ImageButton btnGifVid;
+	ImageButton btnSettings;
       Timer tmrMovRec;
       int iMovStartTstamp;
       long lMovStartTstamp;
@@ -289,6 +294,10 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
 
 
 /*
+
+
+
+
 
  	// gifView.setBackgroundResource(R.drawable.selfielander_earthrise_mask);
        // gifView.setImageDrawable(getResources().getDrawable(R.drawable.com_elastic_pad_utils_cutouts_horse));
@@ -371,7 +380,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
             viewfinderView = (CutOutsView) findViewById(R.id.cutouts_view);
        currMovFName = "outa.mp4";
 
-        vtv = (VerticalTextView) findViewById(R.id.status_view);
+        vtv = (TextView) findViewById(R.id.status_view);
         vtv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
@@ -389,8 +398,9 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
  
  	  arrAnimFSing = new ArrayList<AnimFrameSingleton>();
 	  btnVid = (ImageButton) findViewById(R.id.btn_vid);
+	  btnGifVid = (ImageButton) findViewById(R.id.btn_gifvid);
 	  btnCam = (ImageButton) findViewById(R.id.btn_cam);
-
+	  btnSettings = (ImageButton) findViewById(R.id.btn_settings);
 
 
         btnVid.setOnClickListener(new View.OnClickListener() {
@@ -400,10 +410,16 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
             }
         });
 
+        btnGifVid.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                  currMovType = "gif";
+			onRecClick(view);
+            }
+        });
 
         btnCam.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
+		 currMovType = "jpeg";
     cameraManager.getCamera().autoFocus(new AutoFocusCallback() {
         public void onAutoFocus(boolean success, Camera camera) {
             if(success){
@@ -419,6 +435,11 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
  
 
 
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                setPagePopUp("quickorder/media_chooser.html","noQvalue");
+            }
+        });
 
 
 
@@ -426,14 +447,81 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 
 
 
+ 
 
 
+        tvAPVPreview = (TextView) findViewById(R.id.btnAPVPreview);
+	  tvAPVPreview.setVisibility(View.INVISIBLE);
+        tvAPVPreview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
+
+				AnimMovSingleton tmpAMS = animMovBuilder.getAnimMovSing();
+				if(tmpAMS != null) {
+				setToggleAPViewBtns(false);
+     			 	 boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
+				 playFile();
+				}
+                } catch (Exception e) {
+ 			System.out.println("tvAPVPreview.error: " + e.toString());
+                }
+            }
+        });
 
 
+        tvAPVSave = (TextView) findViewById(R.id.btnAPVSave);
+	  tvAPVSave.setVisibility(View.INVISIBLE);
+        tvAPVSave.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
+			if(currMovType == "jpeg") {
 
 
+ 	 Bitmap bmpTrmpface = gifBgView.get();
+	if(bmpTrmpface != null) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bmpTrmpface.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+		ShareDataResult.getInstance().setCallingApp("CutOuts");		
+		 ShareDataResult.getInstance().setImgBytes(bMapArray);
+		 ShareDataResult.getInstance().setImgExt("jpeg");
+               Intent intent = new Intent();
+              setResult(RESULT_OK, intent);
+		 finish();
 
-        stv = (VerticalTextView) findViewById(R.id.status_stop);
+     		}
+			
+			} else {
+			}
+                } catch (Exception e) {
+ 			System.out.println("tvAPVSave.error: " + e.toString());
+                }
+            }
+        });
+
+
+        tvAPVClear = (TextView) findViewById(R.id.btnAPVClear);
+	  tvAPVClear.setVisibility(View.INVISIBLE);
+        tvAPVClear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
+			gifBgView.clearBmap();     
+			 
+			setToggleAPViewBtns(false);
+ 
+		AnimMovSingleton anms = AnimMovSingleton.getInstance();
+		anms.clearAMS();
+		arrAnimFSing = null;
+		arrAnimFSing = new ArrayList<AnimFrameSingleton>();
+                } catch (Exception e) {
+ 			System.out.println("tvAPVClear.error: " + e.toString());
+                }
+            }
+        });
+
+
+        stv = (TextView) findViewById(R.id.status_stop);
         stv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
@@ -476,9 +564,11 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 
         gifBgView = new AnimBGView(this, this);  
         gifBgView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-
+/*
         gifBgView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+           
+
 
     cameraManager.getCamera().autoFocus(new AutoFocusCallback() {
         public void onAutoFocus(boolean success, Camera camera) {
@@ -488,10 +578,12 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
             }
         }
      });
+
+
 	}
     });
 
-
+*/
 
 
 	  lnrLyGBGView = (RelativeLayout) this.findViewById(R.id.gbgv_main);
@@ -531,7 +623,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 	 iMovStartTstamp = 0;
 	lMovStartTstamp = 11;
 	currGiphyGID = "123";
-	preparePagePopUps("selfieLander/share.html", "noQvalue");
+	preparePagePopUps("quickorder/media_chooser.html", "noQvalue");
 
         if (extras != null) {
             if (extras.containsKey("apmode")) {
@@ -643,6 +735,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 
     }
 
+/*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_FOCUS || keyCode == KeyEvent.KEYCODE_CAMERA) {
@@ -652,6 +745,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
         return super.onKeyDown(keyCode, event);
     }
 
+*/
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         if (holder == null)
@@ -869,8 +963,9 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
     Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
  	 Bitmap adbmpAToMask = utilsBitmap.scaleBoundBitmap(b, 520);
  
-
-
+    gifBgView.setBmap(animMovBuilder.getItemBmp(adbmpAToMask));
+	setToggleAPViewBtns(true);
+/*
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     adbmpAToMask.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     baos.close();
@@ -891,10 +986,10 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
                Intent intent = new Intent();
               setResult(RESULT_OK, intent);
 		 finish();
-
+*/
      
             } catch (Exception e) {
-                System.out.println("prevCallBack: " + e.toString());
+            System.out.println("prevCallBack: " + e.toString());
 		e.printStackTrace();
             }
         }
@@ -962,7 +1057,7 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 
 
 
-// ----------------- bullshit recording stuff
+// ----------------- unused native recording stuff
 
 
 
@@ -1095,7 +1190,30 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 
 
 
+public void setToggleAPViewBtns(final boolean fnlBooltoShow) {
+		this.runOnUiThread(new Runnable() {
+		   public void run() {
+				try {
 
+        if(fnlBooltoShow) {
+	tvAPVPreview.setVisibility(View.VISIBLE);
+	tvAPVSave.setVisibility(View.VISIBLE);
+	tvAPVClear.setVisibility(View.VISIBLE);
+ 
+	  } else {
+	tvAPVPreview.setVisibility(View.INVISIBLE);
+	tvAPVSave.setVisibility(View.INVISIBLE);
+	tvAPVClear.setVisibility(View.INVISIBLE);
+ 
+	  }
+
+	  } catch(Exception e) {
+        System.out.println("dev:ERROR:setToggleAPViewBtns: " + e);
+	  }
+	   }
+         });
+
+	}
 
 
 
@@ -1228,7 +1346,7 @@ public void playFile()
 	 aanfs.setMBitmap(adbmpAToMask);
        arrAnimFSing.add(aanfs);
 
-
+stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
        if(iAnimFrmIdx == 7) {
 			// playFile();
 	// animMovSoundPool.playSound(1);
@@ -1267,9 +1385,9 @@ public void playFile()
 			if(currMovType.equals("mp4")) {
  
 
- 		 currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".mp4";
-
-                  new com.njfsoft_utils.anim.MPFourParser().procMPFourPars(currMovFName, new com.njfsoft_utils.core.OnTaskExecutionFinished()
+ 		 // currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".mp4";
+                  String tmpFnae = ShareDataResult.getInstance().getImgName() + ".mp4";
+                  new com.njfsoft_utils.anim.MPFourParser().procMPFourPars(tmpFnae, new com.njfsoft_utils.core.OnTaskExecutionFinished()
                   {
                   @Override
                   public void OnTaskFihishedEvent(String result)
@@ -1279,8 +1397,8 @@ public void playFile()
  
 				AnimMovSingleton tmpAMS = agRecorder.getAnimMovSing();
 				if(tmpAMS != null) {
-                        System.out.println("Cutouts:timeMovParse:getAnimMovSing tmpAMS" +  tmpAMS.getMamsArrAFS().size());
-				boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
+                        // System.out.println("Cutouts:timeMovParse:getAnimMovSing tmpAMS" +  tmpAMS.getMamsArrAFS().size());
+				// boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
 				// playFile();
 				onEPResult();
 				}
@@ -1298,8 +1416,11 @@ public void playFile()
 
   }
 
-
-
+ 
+  public void animPlayEnded() {
+       setToggleAPViewBtns(true);
+     // setPagePopUp("quickorder/media_chooser.html","noQvalue");
+  }
   public void timeAnimMovBuild() {
                         System.out.println("Cutouts:timeAnimMovBuild: nada ");
 
@@ -1317,15 +1438,17 @@ public void playFile()
      				// prepMovCrunch();
 				AnimMovSingleton tmpAMS = animMovBuilder.getAnimMovSing();
 				if(tmpAMS != null) {
-                        System.out.println("Cutouts:timeAnimMovBuild:getAnimMovSing tmpAMS" +  tmpAMS.getMamsArrAFS().size());
-				boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
+				setToggleAPViewBtns(true);
+     				// setPagePopUp("quickorder/media_chooser.html","noQvalue");
+                        // System.out.println("Cutouts:timeAnimMovBuild:getAnimMovSing tmpAMS" +  tmpAMS.getMamsArrAFS().size());
+				// boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
 				// playFile();
 				}
  
 
               		} else {
 				iPrepArrPFrame++;
- 				 // stv.setText("Cutouts:timeAnimMovBuild++: " + animMovBuilder.allBmaps  + " of " + animMovBuilder.getAnimMovSing().getMamsArrAFS().size());
+ 				 // stv.setText("Recording Frame : " + animMovBuilder.allBmaps  + " of " + animMovBuilder.getAnimMovSing().getMamsArrAFS().size());
               	       timeAnimMovBuild();
               		}
                         System.out.println("Cutouts:timeAnimMovBuild Response From Asynchronous task: " + animMovBuilder.allBmaps + " :: " +  (String)result);
@@ -1604,7 +1727,7 @@ public static byte[] convertFileToByteArray(File f)
     	   JSONObject jobj = new JSONObject(res);
 	   JSONObject jdata = jobj.getJSONObject("data");
          String param =  jdata.getString("id");
-	   currGiphyGID = param;
+	   currGiphyGID = param; // sending back the giphyID
 		onEPResult();
  		System.out.println("CutOuts:doGiphyShare:param: " + param);
 		 // Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.giphy.com/gifs/" + param));
@@ -1629,7 +1752,7 @@ public void postGiphyVid() {
 
 
 	  String fnime = agRecorder.getFNameString();
-	 String fNewM = Environment.getExternalStorageDirectory() + "/elastic-pad/" + fnime + ".gif";
+	 String fNewM = Environment.getExternalStorageDirectory() + "/quick-order/" + fnime + ".gif";
         String strOutput = "noQvalue";
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("username", "njflabs"));
@@ -1678,10 +1801,10 @@ public void postVid() {
     HttpPost httpPost = new HttpPost("http://a-njfsoft.rhcloud.com/index.php");
 
 
-	 //  String fNewM = Environment.getExternalStorageDirectory() + "/elastic-pad/outputa_append.mp4";
+ 
         String strCurrSID = Long.toString(System.currentTimeMillis());
 	  String fnime = agRecorder.getFNameString();
-	 String fNewM = Environment.getExternalStorageDirectory() + "/elastic-pad/" + fnime + ".gif";
+	 String fNewM = Environment.getExternalStorageDirectory() + "/quick-orerder/" + fnime + ".gif";
         String strOutput = "noQvalue";
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("do", "add"));
@@ -1754,7 +1877,7 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 
     protected void onPicResult() {
  
-        Log.v(TAG, "onEPResult()");
+        Log.v(TAG, "onPicResult()");
  
  
 
@@ -1766,7 +1889,7 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 		ShareDataResult.getInstance().setImgStr(currGiphyGID);
  
  
-		ShareDataResult.getInstance().setImgName(currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".jpeg");
+		// ShareDataResult.getInstance().setImgName(currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".jpeg");
 
 		// ShareDataResult.getInstance().setImgBytes(agRecorder.boaAGR.toByteArray());
 		ShareDataResult.getInstance().setTitle("selfieLander Landing Title");
@@ -1804,32 +1927,22 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 		
         }
 
-		
-
-		// String fNewM = Environment.getExternalStorageDirectory() + "/elastic-pad/outputa_append.mp4";
+ 
 
 		ShareDataResult.getInstance().setCallingApp("CutOuts");		
-		// ShareDataResult.getInstance().setImgStr(getImgLoadStr());
-		ShareDataResult.getInstance().setImgStr(currGiphyGID);
+ 
 
 			if(currMovType.equals("mp4")) {
-		ShareDataResult.getInstance().setImgName(agRecorder.getFNameString());
+		// ShareDataResult.getInstance().setImgName(agRecorder.getFNameString());
 			} else {
-		ShareDataResult.getInstance().setImgName(gagRecorder.getFNameString());
+		// ShareDataResult.getInstance().setImgName(gagRecorder.getFNameString());
 			}	
-
-		ShareDataResult.getInstance().setImgName(currMovFName);
-
-		// ShareDataResult.getInstance().setImgBytes(agRecorder.boaAGR.toByteArray());
-		ShareDataResult.getInstance().setTitle("selfieLander Landing Title");
-		ShareDataResult.getInstance().setDesc("selfieLander Landing Desc");
-		ShareDataResult.getInstance().setMsg("selfieLander User Message");
  
 
                Intent intent = new Intent();
               setResult(RESULT_OK, intent);
 		 finish();
-		///setPagePopUp("selfieLander/share.html", "noQvalue");
+ 
 
 
     }
@@ -1856,6 +1969,41 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 */
 		return currGiphyGID;
     }
+
+
+
+
+ public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_FOCUS || keyCode == KeyEvent.KEYCODE_CAMERA) {
+            // Handle these events so they don't launch the Camera app
+            return true;
+        }
+  if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+         if (handler != null) {
+            handler.quitSynchronously();
+            handler = null;
+        }
+
+        cameraManager.closeDriver();
+
+        if (!hasSurface) {
+            SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+            SurfaceHolder surfaceHolder = surfaceView.getHolder();
+            surfaceHolder.removeCallback(this);
+		
+        }
+               Intent intent = new Intent();
+              setResult(RESULT_OK, intent);
+		 finish();
+
+		 finish();  
+		}
+  return super.onKeyDown(keyCode, event);
+ }
+
+
 
 
 }

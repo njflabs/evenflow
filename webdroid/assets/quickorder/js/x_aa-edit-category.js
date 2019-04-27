@@ -111,7 +111,7 @@ document.getElementById("mod_i_img").value = "lcl-" + tmpUri;
 document.getElementById("fldChallArray").value = theImg;
 tmpImg = document.getElementById("fldChallArray").value;
 tImgstr = "data:image/jpeg;base64, " + tmpImg;
-document.getElementById(pImgid).src = tImgstr;
+// document.getElementById(pImgid).src = tImgstr;
 // JSSHOP.shared.setFrmFieldVal("qitem","i_img",tmpImg);
 // document.getElementById("mod_i_img").value = tmpImg;
 
@@ -136,7 +136,7 @@ JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
 // btn = document.getElementById('uploadBtn');
 // JSSHOP.ui.addEvent(btn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/app_imgselect.html", "noQvalue") });
 // tstr = JSSHOP.ui.doDefBtn("Barcode",app.setImgEdit());
-JSSHOP.ui.setTinnerHTML("dvAppBCodeBtn", "nada!");
+JSSHOP.ui.setTinnerHTML("dvAppBCodeBtn", "nada");
 }
 };
 

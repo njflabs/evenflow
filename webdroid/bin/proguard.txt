@@ -18,8 +18,6 @@
 -keep class com.njfsoft_utils.camcapture.DecoderActivity { <init>(...); }
 
 # view res/layout/com_njfsoft_utils_camcapture_decoderactivity.xml #generated:31
-# view res/layout/com_njfsoft_utils_cutouts.xml #generated:80
-# view res/layout/com_njfsoft_utils_cutouts.xml #generated:92
 -keep class com.njfsoft_utils.camcapture.VerticalTextView { <init>(...); }
 
 # view res/layout/com_njfsoft_utils_camcapture_decoderactivity.xml #generated:24

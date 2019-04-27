@@ -2,13 +2,7 @@ package com.njfsoft_utils.anim;
 
 
 import android.graphics.Bitmap;
-/**
- * Created by IntelliJ IDEA.
- * User: boss
- * Date: 16-03-2014
- * Time: 17:29
- * To change this template use File | Settings | File Templates.
- */
+ 
 public class AnimFrameSingleton {
     String tagValA = "noQvalue";
     byte[] mBytes;

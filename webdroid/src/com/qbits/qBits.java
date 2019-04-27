@@ -65,6 +65,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.*;
 import android.widget.*;
+import android.widget.TextView;
 import android.view.WindowManager;
 import android.widget.AbsListView.OnScrollListener;
 
@@ -559,6 +560,30 @@ RecognitionListener, TextToSpeech.OnInitListener {
     }
     System.out.println("Cutouts.onActivityResult:  " + currFileName + " :: " + getShareImgName() + " :: " + tmpSSstrn);
     break;
+
+   case (333):
+    currFileName = getShareImgName() + "." + getShareImgExt();
+ 
+    if ((currFileName.indexOf(".gif") != -1) || (currFileName.indexOf(".mp4") != -1)) {
+     mWebView.loadUrl("javascript:appFnshImgUload('" + getShareImgName() + "','" + getThmbStr(getShareImgName()) + "');");
+     AnimMovSingleton tmpAMS = AnimMovSingleton.getInstance();
+     if (tmpAMS != null) {
+      mWebView.loadUrl("javascript:JSSHOP.logJSdbug('onActivityResult', 'nada', 'sum: " + tmpAMS.getMamsArrAFS().size() + "');");
+     }
+    } else {
+     try {
+      byte[] sdrbset = getShareImgBytes();
+      JSONArray aresultSet = jarrFileSaved(sdrbset, currFileName);
+      mWebView.loadUrl("javascript:appFnshImgUload('" + currFileName + "','" + aresultSet.get(1) + "');");
+     } catch (Exception e) {
+      System.out.println("Cutouts.onActivityResult.error : " + e.toString());
+      e.printStackTrace();
+     }
+    }
+    System.out.println("Cutouts.onActivityResult:  " + currFileName + " :: " + getShareImgName() + " :: " + getShareImgExt());
+    break;
+
+
    case (SHARE_SOCIAL_RES):
     currFileName = getShareImgName();
     if ((currFileName.indexOf(".gif") != -1) || (currFileName.indexOf(".mp4") != -1)) {
@@ -947,7 +972,9 @@ RecognitionListener, TextToSpeech.OnInitListener {
        startActivityForResult(pickBgPhoto, 111);
        break;
       case 102:
-       doImgGet(40, datestring + ".jpeg", "noQvalue");
+
+
+ 	doImgGet(40, datestring + ".jpeg", "noQvalue");
        break;
       case 103:
        doImgGet(41, datestring + ".jpeg", "noQvalue");
@@ -2434,6 +2461,13 @@ RecognitionListener, TextToSpeech.OnInitListener {
  public String getShareImgName() {
   return ShareDataResult.getInstance().getImgName();
  }
+ public String getShareImgExt() {
+  return ShareDataResult.getInstance().getImgExt();
+ }
+ public String getShareImgFile() {
+  return ShareDataResult.getInstance().getImgFile();
+ }
+
  public String getShareImgStr() {
   return ShareDataResult.getInstance().getImgStr();
  }
@@ -2568,6 +2602,9 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
  public void doImgGet(final int idomdcom, String fname, final String strDIGfname) {
   currFileName = fname;
+
+ 		ShareDataResult.getInstance().setImgName(currFileName);
+ 		ShareDataResult.getInstance().setData(strDIGfname);
   try {
    this.runOnUiThread(new Runnable() {
    public void run() {
@@ -2582,7 +2619,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
       case 20:
        Intent pickBgPhoto = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
        pickBgPhoto.putExtra("apmode", "apmodeGallery");
-       startActivityForResult(pickBgPhoto, 110);
+       startActivityForResult(pickBgPhoto, 333);
        break;
       case 25:
        Intent pictureBgIntent = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
@@ -2608,7 +2645,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
        nttCOapmWB.putExtra("apmode", "mp4");
        nttCOapmWB.putExtra("apfile", currFileName);
        nttCOapmWB.putExtra("apmeta", theDIGTstr);
-       startActivityForResult(nttCOapmWB, SHARE_SOCIAL_RES);
+       startActivityForResult(nttCOapmWB, 333);
        break;
       case 41:
        Intent nttCOapmTR = new Intent(getApplicationContext(), CutOuts.class);

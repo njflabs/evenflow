@@ -171,10 +171,13 @@ ttbtn = document.getElementById('uploadBtn');
 
 if((isJApp !== "no") && (isPhP == "no")) { 
 // alert("japp-no-php");
-JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/media_chooser.html", "noQvalue");return false; });
+JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
+
+// JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/media_chooser.html", "noQvalue");return false; });
 // alert("he");
 } else {
-JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+// JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
 
 // JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/app_imgselect.html", "noQvalue") });
 // tstr = JSSHOP.ui.doDefBtn("Barcode",app.setImgEdit());
