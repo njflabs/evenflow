@@ -18,7 +18,7 @@ while(iint < len) {
 ts = arrToFill[iint];
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(ts.cat_title,"document.location.href='index.php?pid=aa-edit-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "'"); 	
+tmpCella.innerHTML = doMbtn(ts.cat_title,"document.location.href='index.html?pid=aa-edit-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "'"); 	
 iint++;
 }
 };
@@ -36,7 +36,7 @@ while(iint < len) {
 ts = arrToFill[iint];
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(ts.cat_title,"document.location.href='index.php?pid=aa-edit-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "'"); 	
+tmpCella.innerHTML = doMbtn(ts.cat_title,"document.location.href='index.html?pid=aa-edit-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "'"); 	
 iint++;
 }
 };
@@ -54,7 +54,7 @@ while(iint < len) {
 ts = arrToFill[iint];
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(ts.c_title,"document.location.href='index.php?pid=aa-edit-menu&cid=" + ts._id + "'"); 	
+tmpCella.innerHTML = doMbtn(ts.c_title,"document.location.href='index.html?pid=aa-edit-menu&cid=" + ts._id + "'"); 	
 iint++;
 }
 };
@@ -77,7 +77,7 @@ var loadAdminSettings = function() {
 tmpTblStgs = document.getElementById("tblSettings");
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(stxt[7],"document.location.href='index.php?pid=aa-edit-shops'"); 		
+tmpCella.innerHTML = doMbtn(stxt[7],"document.location.href='index.html?pid=aa-edit-shops'"); 		
 
 
 
@@ -115,7 +115,7 @@ tmpCellBBB.innerHTML = doMbtn("View",tmpSHRef);
 }
 tmpRowCC = tmpTblStgs.insertRow(-1);
 tmpCellCC = tmpRowCC.insertCell(-1);
-tmpSHRef = "document.location.href='" + JSSHOP.shared.getFrmFieldVal("qco","c_web","./") + "/index.php?pid=aa-edit-synch&tt=" + JSSHOP.getUnixTimeStamp() +  "&cid=" + cid + "'";
+tmpSHRef = "document.location.href='" + JSSHOP.shared.getFrmFieldVal("qco","c_web","./") + "/index.html?pid=aa-edit-synch&tt=" + JSSHOP.getUnixTimeStamp() +  "&cid=" + cid + "'";
 tmpCellCC.innerHTML = doMbtn("Synch",tmpSHRef); 
 
 
@@ -137,7 +137,7 @@ var loadUserSettings = function() {
 tmpTblStgs = document.getElementById("tblSettings");
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);   
-tmpCella.innerHTML = doMbtn(stxt[7],"document.location.href='index.php?pid=aa-edit-shops'"); 		
+tmpCella.innerHTML = doMbtn(stxt[7],"document.location.href='index.html?pid=aa-edit-shops'"); 		
 if(currRQstr == "noQvalue") { // no app query string passed
 } else {
 tmpRowB = tmpTblStgs.insertRow(-1);
@@ -151,16 +151,16 @@ tmpCellB.innerHTML = doMbtn(stxt[28],"getAppDBReq()");
 
 tmpRow0 = tmpTblStgs.insertRow(-1);
 tmpCell0 = tmpRow0.insertCell(-1);
-tmpCell0.innerHTML = doMbtn("Your Info","JSSHOP.ui.closeLbox();document.location.href='index.php?pid=aa-edit-user';"); 	
+tmpCell0.innerHTML = doMbtn("Your Info","JSSHOP.ui.closeLbox();document.location.href='index.html?pid=aa-edit-user';"); 	
 
 if((quid == 0) || (quid == "noQvalue")){
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(stxt[29],"JSSHOP.ui.closeLbox();document.location.href='index.php?pid=login';"); 	
+tmpCella.innerHTML = doMbtn(stxt[29],"JSSHOP.ui.closeLbox();document.location.href='index.html?pid=login';"); 	
 } else {
 tmpRowA = tmpTblStgs.insertRow(-1);
 tmpCella = tmpRowA.insertCell(-1);
-tmpCella.innerHTML = doMbtn(stxt[39],"JSSHOP.cookies.deleteCookie('quid','','');document.location.href='index.php?lgo=y'"); 	
+tmpCella.innerHTML = doMbtn(stxt[39],"JSSHOP.cookies.deleteCookie('quid','','');document.location.href='index.html?lgo=y'"); 	
 tmpRowB = tmpTblStgs.insertRow(-1);
 tmpCellB = tmpRowB.insertCell(-1);
 if(arrUprefs["prfsSHOPuser"]) {
@@ -175,7 +175,7 @@ tmpCellB.innerHTML = doMbtn("row","JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv'
 
 tmpRowD = tmpTblStgs.insertRow(-1);
 tmpCelld = tmpRowD.insertCell(-1);
-tmpCelld.innerHTML = doMbtn('Clear Prefs',"JSSHOP.cookies.deleteCookie('prfsSHOPuser','','');setTimeout(document.location.href='index.php?lgo=r',800)"); 	
+tmpCelld.innerHTML = doMbtn('Clear Prefs',"JSSHOP.cookies.deleteCookie('prfsSHOPuser','','');setTimeout(document.location.href='index.html?lgo=r',800)"); 	
 
 getMenuShopsList();	
 }

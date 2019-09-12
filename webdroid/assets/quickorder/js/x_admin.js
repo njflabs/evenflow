@@ -121,7 +121,7 @@ var removeDiacritics = function(str) {
 
 
 var doSaveRedir = function(a,b,c) {
-document.location.href = "index.php?pid=" + pid + "&ppid=" + ppid;
+document.location.href = "index.html?pid=" + pid + "&ppid=" + ppid;
 };
 
    var getTblSortStr = function(theTBhdr, theTBbdy) {
@@ -263,7 +263,7 @@ while(iint < len) {
 ts = arrToFill[iint];
 for(var gkey in ts) {
 if(gkey == "_id") {
-fullstr += "<td><a href=\"index.php?pid=aa-edit-category&ppid=" + ts[gkey] +  "\">" + ts[gkey] + "</a></td>";
+fullstr += "<td><a href=\"index.html?pid=aa-edit-category&ppid=" + ts[gkey] +  "\">" + ts[gkey] + "</a></td>";
 } else {
 fullstr += "<td>" + ts[gkey] +  "</td>";
 }
@@ -289,7 +289,7 @@ while(iint < len) {
 ts = arrToFill[iint];
 for(var gkey in ts) {
 if(gkey == "_id") {
-fullstr += "<td><a href=\"index.php?pid=aa-edit-product&ppid=" + ts[gkey] +  "\">" + ts[gkey] + "</a></td>";
+fullstr += "<td><a href=\"index.html?pid=aa-edit-product&ppid=" + ts[gkey] +  "\">" + ts[gkey] + "</a></td>";
 } else {
 fullstr += "<td>" + ts[gkey] +  "</td>";
 }
@@ -407,7 +407,7 @@ iint++;
 };
 
 var doMCartLink = function() {
-strTuel = "index.php";
+strTuel = "index.html";
 if((cid == 0) || (ppid == 0)) {
 document.location.href = strTuel;
 } else {
@@ -424,7 +424,7 @@ var getAppDBReq = function() {
 	app.doDB(qEncdQstring)
     } catch (e) {
 	// alert("This will be mainly made to work with the included java browser program.");
-	document.location.href="index.php?pid=aa-sqldump&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+	document.location.href="index.html?pid=aa-sqldump&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
         JSSHOP.logJSerror(e, arguments, "JSSHOP.admin.getAppReq");
     }
 };

@@ -19,3 +19,12 @@ tmpCell0 = tmpRow0.insertCell(-1);
 tmpCell0.innerHTML = doMbtn("Camera","app_dlg.getEpMDcom('102','Camera')"); 	
 };
 
+var doQIMeta = function() {
+/*
+    tmpMetaObj = {};
+    tmpMetaObj.qco = arrAllForms.qco.v[0];
+    tmpMetaObj.qitem = JSSHOP.shop.getCurrItemArr();
+    return JSON.stringify(tmpMetaObj);
+*/
+};
+

@@ -109,7 +109,7 @@ a.innerHTML = "<span style=\"vertical-align:super\">" + ts.cat_title + "</span>"
 // var linkText = document.createTextNode("        " + ts.cat_title);
 // a.appendChild(linkText);
 a.title = ts.cat_title;
-a.href = "index.php?pid=aa-edit-category&ppid="+ts._id+"&cid="+ts.cat_coid+"&catid="+ts._id;
+a.href = "index.html?pid=aa-edit-category&ppid="+ts._id+"&cid="+ts.cat_coid+"&catid="+ts._id;
 nsDv.appendChild(a);
 
 
@@ -176,7 +176,7 @@ currTtlMainMnus++;
  
 	tmpA.innerHTML = "<span style=\"vertical-align:super\">" + ts.cat_title + "</span>";
 	// tmpA.title = ts.cat_title;
-	tmpA.href = "index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id;
+	tmpA.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id;
 
 	// tmpA.className = "collection-item txtDecorNone";
 	tmpCdiv.appendChild(tmpA);
@@ -196,7 +196,7 @@ currTtlMainMnus++;
 
 }  
 tstr += "<tr>";
-tstr += "<td><a href=\"index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id + "\" class=\"txtBig txtBold\">" + ts.cat_title + "</a></td>";
+tstr += "<td><a href=\"index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id + "\" class=\"txtBig txtBold\">" + ts.cat_title + "</a></td>";
 tstr += "</tr>";
 
 

@@ -493,6 +493,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
      		}
 			
 			} else {
+				prepMovCrunch();
 			}
                 } catch (Exception e) {
  			System.out.println("tvAPVSave.error: " + e.toString());
@@ -1385,8 +1386,15 @@ stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
 			if(currMovType.equals("mp4")) {
  
 
+ 
+    				
+
  		 // currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".mp4";
-                  String tmpFnae = ShareDataResult.getInstance().getImgName() + ".mp4";
+  		 String tmpFnae = ShareDataResult.getInstance().getImgName() + ".mp4";
+ 				AnimMovSingleton tmpTMPAMS = agRecorder.getAnimMovSing();
+				if(tmpTMPAMS != null) {
+					tmpFnae = tmpTMPAMS.getIMovFileStr();
+				}
                   new com.njfsoft_utils.anim.MPFourParser().procMPFourPars(tmpFnae, new com.njfsoft_utils.core.OnTaskExecutionFinished()
                   {
                   @Override
@@ -1408,7 +1416,8 @@ stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
 
                   }
                  });
-
+			
+ 
 
 			} else {
 				onEPResult();
@@ -1798,7 +1807,7 @@ public void postGiphyVid() {
 public void postVid() {
     HttpClient httpClient = new DefaultHttpClient();
     HttpContext localContext = new BasicHttpContext();
-    HttpPost httpPost = new HttpPost("http://a-njfsoft.rhcloud.com/index.php");
+    HttpPost httpPost = new HttpPost("http://a-njfsoft.rhcloud.com/index.html");
 
 
  
@@ -1997,8 +2006,6 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
                Intent intent = new Intent();
               setResult(RESULT_OK, intent);
 		 finish();
-
-		 finish();  
 		}
   return super.onKeyDown(keyCode, event);
  }

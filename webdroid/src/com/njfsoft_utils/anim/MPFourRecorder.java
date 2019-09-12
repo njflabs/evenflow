@@ -76,8 +76,8 @@ import com.njfsoft_utils.anim.UtilsBitmap;
 import com.qbits.R;
 
 public class MPFourRecorder {
-    private static final String MOVIE_LOCATION = "http://jcodec.org/downloads/sample.mov";
-
+   //  private static final String MOVIE_LOCATION = "http://jcodec.org/downloads/sample.mov";
+   private static final String MOVIE_LOCATION = "sample.mov";
  
 Context contxt;
 Activity mActivity;

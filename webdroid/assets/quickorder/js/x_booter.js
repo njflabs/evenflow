@@ -388,7 +388,7 @@ fullSError += theError.constructor;
 */
 
 var getMainSearch = function(theSstr) {
-document.location.href= 'index.php?pid=aa-show-search&cid=' + cid + '&sw=' + theSstr;
+document.location.href= 'index.html?pid=aa-show-search&cid=' + cid + '&sw=' + theSstr;
 };
 
 
@@ -1430,7 +1430,7 @@ ts = theLMarr[iint];
 switch(ts.e_rtype) {
 case "10":
 
-strLML = "index.php?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc;
+strLML = "index.html?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc;
 strLMTtl = ts.e_vald;
 
 
@@ -1452,7 +1452,7 @@ strLMTtl = ts.e_vald;
 	inop++;
 break;
 case "11":
-strLML = "index.php?pid=aa-show-search&cid=" + ts.e_valb + "&sw=" + ts.e_vala;
+strLML = "index.html?pid=aa-show-search&cid=" + ts.e_valb + "&sw=" + ts.e_vala;
 strLMTtl = ts.e_vala;
 
 
@@ -1555,7 +1555,7 @@ tsATtle = tsATtle.substring(0, 16) + "...";
 }
 switch(ts.e_rtype) {
 case "10":
-tULPID = "index.php?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc;
+tULPID = "index.html?pid=aa-" + tmpSTrSorE + "-item&itemid=" + ts.e_vala + "&cid=" + ts.e_valb + "&catid=" + ts.e_valc;
 strULPID += "ulp:ep:" + tULPID + "|";
 strULPTtl += ts.e_vald + "|";
 if(iint < 6) {

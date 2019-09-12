@@ -178,7 +178,7 @@ var fnshRespItemAdd = function(a, b, c) {
     if(b.indexOf("_id") != -1) {
     ttddA =  JSON.parse(b);
     tmpIva = ttddA[0]._id;
-document.location.href = "index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + tmpIva + "&t=" + JSSHOP.getUnixTimeStamp();
+document.location.href = "index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + tmpIva + "&t=" + JSSHOP.getUnixTimeStamp();
 }
     // renderTQBItems();
 };
@@ -364,8 +364,8 @@ var renderNuTQBItems = function(a,b,c) {
             // strHtml += getQIstr(iint, strImgDsct + ts.i_title + " " + strPriceHtml);
             strHtml += "<div style=\"text-align: right;\" class=\"cls-form-dv  bkgdClrNrml\" id=\"tdIedit" + iint + "\">";
  
-      	strcHtml = "<a href=\"index.php?pid=aa-edit-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">edit</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[31] + "</span></a>";
-      	strcHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"index.php?pid=aa-show-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">zoom_in</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[53] + "</span></a>";
+      	strcHtml = "<a href=\"index.html?pid=aa-edit-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">edit</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[31] + "</span></a>";
+      	strcHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\">zoom_in</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[53] + "</span></a>";
 
       //       strHtml += "<td  onclick=\"javascript:doItemDelete(this," + ts._id + "," + iint + ");\"><img src=\"images/delete_r.gif\" class=\"icnsmlbtn brdrClrWhite\">";
             strHtml += strcHtml + "</div>";

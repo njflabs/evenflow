@@ -19,8 +19,13 @@ public class AnimMovSingleton  {
  	int iMovFPS;
 	int iMovFDelay;
 	int[] amsAnimInt = null;
+	String iMovType = null;
+	String iMovName = null;
+	String iMovFileStr = null;
     protected AnimMovSingleton() {
     }
+
+
 
 
     public static AnimMovSingleton getInstance() { 
@@ -35,6 +40,7 @@ public class AnimMovSingleton  {
  	amsAnimation = null;
  	amsBgAnimation = null;
  	 amsAnimInt = null;
+	iMovType = null;
     }
 
     public void setMamsArrAFS(ArrayList<AnimFrameSingleton> tmpval) {
@@ -73,6 +79,18 @@ public class AnimMovSingleton  {
     public void setMmovFDelay(int tmpval) {
         this.iMovFDelay = tmpval;
     }
+
+    public void setIMovName(String tmpval) {
+        this.iMovName = tmpval;
+    }
+
+    public void setIMovType(String tmpval) {
+        this.iMovType = tmpval;
+    }
+    public void setIMovFileStr(String tmpval) {
+        this.iMovFileStr = tmpval;
+    }
+
     public AnimationDrawable getMamsAnimation() {
         return amsAnimation;
     }
@@ -99,6 +117,16 @@ public class AnimMovSingleton  {
     public int getMmovFDelay() {
         return iMovFDelay;
     }
+    public String getIMovName() {
+        return iMovName;
+    }
+    public String getIMovType() {
+        return iMovType;
+    }
+    public String getIMovFileStr() {
+        return iMovFileStr;
+    }
+
     @Override
     public String toString() {
         return tagValA;

@@ -17,7 +17,7 @@ ck_password =  /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
 ck_title = /^[A-Za-z0-9.\s]{3,120}$/;
 
 var doDelIRdir = function(a,b,c) {
-document.location.href = "index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "&t=" + JSSHOP.getUnixTimeStamp();
+document.location.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "&t=" + JSSHOP.getUnixTimeStamp();
 };
 
 

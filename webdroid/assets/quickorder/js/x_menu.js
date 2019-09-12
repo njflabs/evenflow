@@ -36,13 +36,13 @@ var a = document.createElement('a');
 var linkText = document.createTextNode(ts.cat_title);
 a.appendChild(linkText);
 a.title = ts.cat_title;
-a.href = "index.php?pid=aa-" + tmpSTrSorE + "-category&ppid="+ts._id+"&cid="+ts.cat_coid+"&catid="+ts._id;
+a.href = "index.html?pid=aa-" + tmpSTrSorE + "-category&ppid="+ts._id+"&cid="+ts.cat_coid+"&catid="+ts._id;
  
 
 
     li.appendChild(a);
     ul.appendChild(li);
-   //tmpUstr = "<li><a href=\index.php?pid=aa-add-qbit&ppid="+ts._id+"&cid="+ts.cat_coid+"\">"+ts.cat_title+"</a></li>";
+   //tmpUstr = "<li><a href=\index.html?pid=aa-add-qbit&ppid="+ts._id+"&cid="+ts.cat_coid+"\">"+ts.cat_title+"</a></li>";
    // ul.append(tmpUstr);
 
 }
@@ -55,7 +55,7 @@ JSSHOP.logJSerror(e, arguments, "doSubMenuLoad");
 } 
 if(catid == 0) {
 hstring = "";
-mstring = "<a href=\"index.php?cid=" + +cid + "\">" + hstring + "</a>";
+mstring = "<a href=\"index.html?cid=" + +cid + "\">" + hstring + "</a>";
 fmcstr = "<div style=\"margin-left: 15px\" class=\"crsrPointer txtSmall txtClrBlack\">" + mstring +  "</div>";
 } else {
 newMTmpArr = [];
@@ -67,7 +67,7 @@ tstr = "";
 currTmpPID = 0;
 ts = null;
 hstring = "";
-mstring = "<a href=\"index.php\">" + hstring + "</a>";
+mstring = "<a href=\"index.html\">" + hstring + "</a>";
 fmcstr = mstring;
 mcat = " ";
 subcat = "";
@@ -79,13 +79,13 @@ if(ts.cat_pid == "0") {
 if(pid == "aa-show-category") {
 mcat = "&nbsp;&nbsp;&nbsp;" + ts.cat_title;
 } else {
-mcat = "<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+mcat = "<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 }
 } else {
 if(pid == "aa-show-category") {
 subcat = "&nbsp;-&nbsp;&nbsp;" + ts.cat_title;
  } else {
-subcat = "&nbsp;-&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+subcat = "&nbsp;-&nbsp;&nbsp;<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 }
 currTmpPID = ts.cat_pid;
 }
@@ -94,7 +94,7 @@ currTmpPID = ts.cat_pid;
 
 if(ts._id == currTmpPID) { 
 
-mcat = "&nbsp;&nbsp;&nbsp;<a href=\"index.php?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+mcat = "&nbsp;&nbsp;&nbsp;<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
 
  
 }
@@ -155,7 +155,7 @@ var getMMenu = function() {
 	linkText = document.createTextNode("Home");
 	tmpA.appendChild(linkText);
 	tmpA.title = "Home";
-	tmpA.href = "index.php?cid=" + cid;
+	tmpA.href = "index.html?cid=" + cid;
 	tmpLI.appendChild(tmpA);
 	tmpUL = document.createElement("ul");
 	tmpUL.id = "mnuIHome";
@@ -178,7 +178,7 @@ var doAdmnMnuLd = function() {
 	linkText = document.createTextNode("Companies");
 	tmpA.appendChild(linkText);
 	tmpA.title = "Companies";
-	tmpA.href = "admin.php?pid=aa-edit-cos";
+	tmpA.href = "admin.html?pid=aa-edit-cos";
 	tmpLI.appendChild(tmpA);
 	tmpUL = document.createElement("ul");
 	tmpUL.className="animenu__nav__child";
@@ -211,7 +211,7 @@ fullstr = "";
 mnotAppended = "n";
      // var mainUL = document.getElementById("mnuULmain");// 
 
-strMLink = "index.php?pid=aa-show-category";
+strMLink = "index.html?pid=aa-show-category";
  
 var mainUL = getMMenu();
 
@@ -278,7 +278,7 @@ fullstr = "";
 mnotAppended = "n";
      // var mainUL = document.getElementById("mnuULmain");// 
 
-strMLink = "index.php?pid=aa-show-category";
+strMLink = "index.html?pid=aa-show-category";
  
 var mainUL = getMMenu();
 
@@ -394,7 +394,7 @@ var doCollsLoad = function() {
 
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "'";
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "'";
 tmpMCollItem["mi"] = "add";
 tmpMCollItem["ti"] = stxt[17];
 tmpMCollItem["c"] = "coll-menu-item";
@@ -402,7 +402,7 @@ currMCollItems["aa-add-item"] = tmpMCollItem;
 
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-show-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
 tmpMCollItem["mi"] = "zoom_in";
 tmpMCollItem["ti"] = stxt[67];
 tmpMCollItem["c"] = "collection-item";
@@ -410,7 +410,7 @@ currMCollItems["aa-show-item"] = tmpMCollItem;
 
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
 tmpMCollItem["mi"] = "edit";
 tmpMCollItem["ti"] = stxt[20];
 tmpMCollItem["c"] = "coll-menu-item";
@@ -418,7 +418,7 @@ currMCollItems["aa-edit-item"] = tmpMCollItem;
 
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "&cmdci=y'";
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "&cmdci=y'";
 tmpMCollItem["mi"] = "content_copy";
 tmpMCollItem["ti"] = stxt[69];
 tmpMCollItem["c"] = "coll-menu-item";
@@ -426,7 +426,7 @@ currMCollItems["aa-copy-item"] = tmpMCollItem;
 
 tmpWCollItem = null;
 tmpWCollItem = {};
-tmpWCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-category&cid=" + cid + "&catid=" + catid + "'";
+tmpWCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-show-category&cid=" + cid + "&catid=" + catid + "'";
 tmpWCollItem["mi"] = "zoom_in";
 tmpWCollItem["ti"] = stxt[505];
 tmpWCollItem["c"] = "collection-item";
@@ -435,7 +435,7 @@ currMCollItems["aa-show-category"] = tmpWCollItem;
 
 tmpWCollItem = null;
 tmpWCollItem = {};
-tmpWCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-category&fc=y&cid=" + cid + "&catid=" + catid + "'";
+tmpWCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-show-category&fc=y&cid=" + cid + "&catid=" + catid + "'";
 tmpWCollItem["mi"] = "autorenew";
 tmpWCollItem["ti"] = "Refresh";
 tmpWCollItem["c"] = "collection-item";
@@ -443,7 +443,7 @@ currMCollItems["aa-force-clear"] = tmpWCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "'";
 tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = stxt[504];
 tmpQCollItem["c"] = "coll-menu-item";
@@ -451,7 +451,7 @@ currMCollItems["aa-edit-category"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-categories&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-categories&cid=" + cid + "&catid=" + catid + "'";
 tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = stxt[503];
 tmpQCollItem["c"] = "coll-menu-item";
@@ -460,7 +460,7 @@ currMCollItems["aa-edit-categories"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-shop&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-shop&cid=" + cid + "&catid=" + catid + "'";
 tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = stxt[68];
 tmpQCollItem["c"] = "coll-menu-item";
@@ -469,7 +469,7 @@ currMCollItems["aa-edit-shop"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-shops'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-shops'";
 tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = stxt[4];
 tmpQCollItem["c"] = "coll-menu-item";
@@ -479,7 +479,7 @@ currMCollItems["aa-edit-shops"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-add-shop'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-add-shop'";
 tmpQCollItem["mi"] = "add";
 tmpQCollItem["ti"] = stxt[1];
 tmpQCollItem["c"] = "collection-item";
@@ -487,7 +487,7 @@ currMCollItems["aa-add-shop"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-cart&cid=" + cid + "&catid=" + catid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-show-cart&cid=" + cid + "&catid=" + catid + "'";
 tmpQCollItem["mi"] = "shopping_cart";
 tmpQCollItem["ti"] = stxt[47];
 tmpQCollItem["c"] = "collection-item";
@@ -497,7 +497,7 @@ currMCollItems["aa-show-cart"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-settings&cid=" + cid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-settings&cid=" + cid + "'";
 tmpQCollItem["mi"] = "settings";
 tmpQCollItem["ti"] = stxt[61];
 tmpQCollItem["c"] = "collection-item";
@@ -505,7 +505,7 @@ currMCollItems["aa-settings"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-edit-user&cid=" + cid + "'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-user&cid=" + cid + "'";
 tmpQCollItem["mi"] = "person";
 tmpQCollItem["ti"] = stxt[63];
 tmpQCollItem["c"] = "collection-item";
@@ -530,7 +530,7 @@ currMCollItems["aa-appdbreq"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-sqldump'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-sqldump'";
 tmpQCollItem["mi"] = "edit";
 tmpQCollItem["ti"] = "SQL dump";
 tmpQCollItem["c"] = "coll-menu-item";
@@ -539,7 +539,7 @@ currMCollItems["aa-sqldump"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:document.location.href='index.php?pid=login'";
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=login'";
 tmpQCollItem["mi"] = "lock";
 tmpQCollItem["ti"] = "Login";
 tmpQCollItem["c"] = "collection-item";
@@ -548,7 +548,7 @@ currMCollItems["aa-login"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
-tmpQCollItem["u"] = "javascript:JSSHOP.cookies.deleteCookie('quid','','');document.location.href='index.php?lgo=y&cid=" + cid + "'";
+tmpQCollItem["u"] = "javascript:JSSHOP.cookies.deleteCookie('quid','','');document.location.href='index.html?lgo=y&cid=" + cid + "'";
 tmpQCollItem["mi"] = "lock";
 tmpQCollItem["ti"] = "Logout";
 tmpQCollItem["c"] = "collection-item";
@@ -557,7 +557,7 @@ currMCollItems["aa-logout"] = tmpQCollItem;
  
 tmpMCollItem = null;
 tmpMCollItem = {};
-tmpMCollItem["u"] = "javascript:document.location.href='index.php?pid=aa-show-app-tools&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-show-app-tools&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
 tmpMCollItem["mi"] = "build";
 tmpMCollItem["ti"] = "App Tools";
 tmpMCollItem["c"] = "coll-menu-item";

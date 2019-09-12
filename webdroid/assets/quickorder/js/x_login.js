@@ -16,7 +16,7 @@ var arrToFill = JSON.parse(b);
 ts = arrToFill[0];
 if(ts._id) {
 JSSHOP.cookies.setCookie("quid",ts._id,"30","","","");
-document.location.href = "./index.php?isr=y";
+document.location.href = "./index.html?isr=y";
 } else {
 alert("Something wrong: " + b);
 }

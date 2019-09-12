@@ -19,8 +19,8 @@ rFFFVs(null,JSON.stringify(tArr),null);
  
 tstr += "<tr>";
 tstr += "<td>" + ts._id + "</td>";
-tstr += "<td>" + ts.c_title + "</td><td><a href=\"index.php?pid=aa-edit-cat&cid=" + ts._id + "\">Edit</a></td><td><a href=\"index.php?pid=aa-edit-cos&ppid=" + ts._id + "\">Edit</a></td>";
-tstr += "<td><a href=\"index.php?pid=aa-add-qbit&cid=" + ts._id + "\">Add</a></td>";
+tstr += "<td>" + ts.c_title + "</td><td><a href=\"index.html?pid=aa-edit-cat&cid=" + ts._id + "\">Edit</a></td><td><a href=\"index.html?pid=aa-edit-cos&ppid=" + ts._id + "\">Edit</a></td>";
+tstr += "<td><a href=\"index.html?pid=aa-add-qbit&cid=" + ts._id + "\">Add</a></td>";
 tstr += "</tr>";
 iint++;
 }
@@ -48,7 +48,7 @@ ts = arrToFill[iint];
  
 tstr += "<tr>";
 tstr += "<td>" + ts._id + "</td>";
-tstr += "<td>" + ts.q_title + "</td><td>" + ts.q_pid + "</td><td><a href=\"index.php?pid=aa-add-qbit&ppid=" + ts._id + "\">Edit</a></td>";
+tstr += "<td>" + ts.q_title + "</td><td>" + ts.q_pid + "</td><td><a href=\"index.html?pid=aa-add-qbit&ppid=" + ts._id + "\">Edit</a></td>";
 tstr += "</tr>";
 iint++;
 }
@@ -69,7 +69,7 @@ JSSHOP.shared.setFieldVal("tmpCweb", JSSHOP.shared.getFrmFieldVal("qco","c_web",
 
 var cbFedit = function(a,b,c) {
 alert(b);
-document.location.href="index.php?pid=aa-edit-cos&sa=y";
+document.location.href="index.html?pid=aa-edit-cos&sa=y";
 };
 
 var checkCoEdit = function() {

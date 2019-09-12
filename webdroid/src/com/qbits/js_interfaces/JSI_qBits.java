@@ -408,5 +408,8 @@ public void doWhatsApp(String strNumber, String msgStr) {
 webMobia.sendWhatsApp(strNumber, msgStr);
 }
 
+public void setFix(String msgStr) {
+webMobia.doFix(msgStr);
+}
 
 }

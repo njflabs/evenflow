@@ -52,7 +52,54 @@ include "_p/js-header.php";
 
 
 <table style="margin: 0 auto;" width="100%" align="center" id="tblMChooser"><td></td><tr></tr></table>
-
+ <table align="center" style="margin: 0 auto">
+	 <tr>
+		 <td>
+		 <table style="width: 100%">
+			 <tr>
+				 <td style="text-align: center">
+				 Select from:</td>
+			 </tr>
+			 <tr>
+				 <td>
+				 <table style="width: 100%">
+					 <tr>
+						 <td style="text-align: center;"><div onclick="javascript:app_dlg.getEpMDcom('101','file');" class="cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr" style="padding: 3px; min-width:100px">
+							 <i class="material-icons icnbtn" alt="description" title="description" value="description"  style="vertical-align:middle;margin-right: 3px;">description</i>File</div></td>
+						 <td style="text-align: center;"><div onclick="javascript:app_dlg.getEpMDcom('102','camera');" class="cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr" style="padding: 3px; min-width:100px">
+<i class="material-icons icnbtn" alt="camera" title="camera" value="camera"  style="vertical-align: middle;margin-right: 3px;">camera</i>Camera</div></td>
+					 </tr>
+				 </table>
+				 </td>
+			 </tr>
+			 <tr>
+				 <td style="text-align: center">
+				&nbsp;</td>
+			 </tr>
+			 <tr>
+				 <td style="text-align: center">
+				<i class="material-icons icnbtn" alt="settings" title="settings" value="settings"  style="vertical-align: middle;margin-right: 3px;">settings</i> Settings:</td>
+			 </tr>
+			 <tr>
+				 <td><table cellpadding="5" cellspacing="3">
+									 <tr>
+										 <td>Insert product info:</td>
+										 <td style="text-align: right">
+										 <div class="switch collection-item">
+    <label>
+     
+      <input type="checkbox" id="prfSUsAT" onchange="javascript:JSSHOP.shared.setChckbxPref(this,'prfsSHOPuser','sAT','y', 'n');">
+      <span class="lever"></span>
+     
+    </label></div></td>
+									 </tr>
+									 </table>
+</td>
+			 </tr>
+		 </table>
+		 </td>
+	 </tr>
+ </table>
 
           
 <div id="dvDummy"></div>

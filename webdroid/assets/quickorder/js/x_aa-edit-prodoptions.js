@@ -78,8 +78,8 @@ arrDBFNames.push(gkey);
 
 
 if(ts.OptionType == 1001) {
-fullstr += "<td><a href=\"index.php?pid=aa-edit-prodoptions&ppid=" + ts._id +  "\">" + ts._id + "</a></td>";
-fullstr += "<td><a href=\"index.php?pid=aa-edit-prodoptions&ppid=" + ts._id +  "\">" + ts.OptionTitle + "</a></td>";
+fullstr += "<td><a href=\"index.html?pid=aa-edit-prodoptions&ppid=" + ts._id +  "\">" + ts._id + "</a></td>";
+fullstr += "<td><a href=\"index.html?pid=aa-edit-prodoptions&ppid=" + ts._id +  "\">" + ts.OptionTitle + "</a></td>";
 fullstr += "<td><select id=\"selprdop" + ts._id + "\" name=\"selprdop" + ts._id + "\"><option value=\"0\">Add Choice</option></select></td>";
 fullstr += "<td>Edit</td>";
 addCurrListVal(document.getElementById('tmpOptionType'), ts.OptionTitle, ts._id);

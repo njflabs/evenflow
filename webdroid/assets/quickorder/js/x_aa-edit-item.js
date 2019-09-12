@@ -18,7 +18,7 @@ ck_title = /^[A-Za-z0-9.\s]{3,120}$/;
 ck_desc = /^[A-Za-z0-9.\s]{3,1820}$/;
 
 var doDelIRdir = function(a,b,c) {
-document.location.href = "index.php?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "&t=" + JSSHOP.getUnixTimeStamp();
+document.location.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "&t=" + JSSHOP.getUnixTimeStamp();
 };
 
 
@@ -171,13 +171,14 @@ ttbtn = document.getElementById('uploadBtn');
 
 if((isJApp !== "no") && (isPhP == "no")) { 
 // alert("japp-no-php");
+ JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
 JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
 
 // JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/media_chooser.html", "noQvalue");return false; });
 // alert("he");
 } else {
-// JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
-JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
+ JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+//JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
 
 // JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/app_imgselect.html", "noQvalue") });
 // tstr = JSSHOP.ui.doDefBtn("Barcode",app.setImgEdit());
@@ -295,7 +296,7 @@ var fnshRespItemAdd = function(a, b, c) {
     if(b.indexOf("_id") != -1) {
     ttddA =  JSON.parse(b);
     tmpIva = ttddA[0]._id;
-document.location.href = "index.php?pid=aa-edit-item&cid=" + cid + "&catid=" + JSSHOP.shared.getCurrSelectOpt(document.getElementById("mod_i_catid")) + "&itemid=" + tmpIva + "&t=" + JSSHOP.getUnixTimeStamp();
+document.location.href = "index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + JSSHOP.shared.getCurrSelectOpt(document.getElementById("mod_i_catid")) + "&itemid=" + tmpIva + "&t=" + JSSHOP.getUnixTimeStamp();
 }
     // renderTQBItems();
 };

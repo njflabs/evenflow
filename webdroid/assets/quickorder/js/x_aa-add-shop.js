@@ -14,10 +14,10 @@ var ck_ctitle = /^[A-Za-z0-9 ]{3,20}$/;
 var fnishCatAdds = function() {
        // alert(b);
         try {
-             document.location.href = "index.php?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
+             document.location.href = "index.html?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
 
         } catch (e) {
-            document.location.href = "index.php?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
+            document.location.href = "index.html?pid=aa-edit-categories&cid=" + JSSHOP.shared.getFieldVal("cat_coid", "0");
         }
 
 };
@@ -117,7 +117,7 @@ var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
 
 if((quid == 0) || (quid == "noQvalue")) {
-document.location.href = "index.php?pid=login";
+document.location.href = "index.html?pid=login";
 return;
 }
 

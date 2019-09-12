@@ -173,7 +173,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
  private Handler mHandler;
  private LinearLayout lnrLyt_UWView;
  private LinearLayout lnrLyt_UWVBtns;
- String strHomeUrl = "file:///android_asset/quickorder/index.php";
+ String strHomeUrl = "file:///android_asset/quickorder/index.html";
  String currHomeUrl = strHomeUrl;
  String currShareUrl = strHomeUrl;
  private final String strSettingsSaved = "Settings saved.";
@@ -402,7 +402,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    if ("text/plain".equals(type)) {
     String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
     if (sharedText != null) {
-     currHomeUrl = "file:///android_asset/quickorder/index.php?pid=aa-share";
+     currHomeUrl = "file:///android_asset/quickorder/index.html?pid=aa-share";
      currShareUrl = sharedText;
     }
    }
@@ -562,10 +562,20 @@ RecognitionListener, TextToSpeech.OnInitListener {
     break;
 
    case (333):
-    currFileName = getShareImgName() + "." + getShareImgExt();
+
+     AnimMovSingleton tmpIRAMS = AnimMovSingleton.getInstance();
+     if (tmpIRAMS != null) {
+     currFileName = tmpIRAMS.getIMovName() + "." + tmpIRAMS.getIMovType();
+ 
+     }
+	String tmpMUstr = mWebView.getAddressUrl();
+	if (tmpMUstr.startsWith("file://")) {
+ 
+
  
     if ((currFileName.indexOf(".gif") != -1) || (currFileName.indexOf(".mp4") != -1)) {
-     mWebView.loadUrl("javascript:appFnshImgUload('" + getShareImgName() + "','" + getThmbStr(getShareImgName()) + "');");
+	
+     mWebView.loadUrl("javascript:appFnshImgUload('" + currFileName + "','" + getThmbStr(currFileName) + "');");
      AnimMovSingleton tmpAMS = AnimMovSingleton.getInstance();
      if (tmpAMS != null) {
       mWebView.loadUrl("javascript:JSSHOP.logJSdbug('onActivityResult', 'nada', 'sum: " + tmpAMS.getMamsArrAFS().size() + "');");
@@ -580,6 +590,13 @@ RecognitionListener, TextToSpeech.OnInitListener {
       e.printStackTrace();
      }
     }
+
+	} else {
+      File ffile = new File(mediaStorageDir, currFileName);
+      Uri daUri = getImageContentUri(getApplicationContext(), ffile);
+      mUploadMessage.onReceiveValue(daUri);
+      mUploadMessage = null;
+	}
     System.out.println("Cutouts.onActivityResult:  " + currFileName + " :: " + getShareImgName() + " :: " + getShareImgExt());
     break;
 
@@ -1194,7 +1211,6 @@ RecognitionListener, TextToSpeech.OnInitListener {
    // System.out.println("startSpeechCopy: wbsettings.getDefaultFontSize: " + mWebView.getSettings().getDefaultFontSize());
   }
  }
-
 
 
 
@@ -2378,7 +2394,6 @@ RecognitionListener, TextToSpeech.OnInitListener {
   nameValuePairs.add(new BasicNameValuePair("do", "add"));
   nameValuePairs.add(new BasicNameValuePair("sttl", strStoryTitle));
   nameValuePairs.add(new BasicNameValuePair("sdesc", strStoryDesc));
-  nameValuePairs.add(new BasicNameValuePair("sdesc", strStoryDesc));
   nameValuePairs.add(new BasicNameValuePair("stime", strCurrSID));
   nameValuePairs.add(new BasicNameValuePair("snwork", strSnwork));
   try {
@@ -2389,7 +2404,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    // System.out.println("image_str: " + image_str);
   }
    HttpClient httpclient = new DefaultHttpClient();
-   HttpPost httppost = new HttpPost("http://www.mysite.com/story/index.php");
+   HttpPost httppost = new HttpPost("http://www.mysite.com/story/index.html");
    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
    HttpResponse response = httpclient.execute(httppost);
    strOutput = convertResponseToString(response);
@@ -2641,6 +2656,16 @@ RecognitionListener, TextToSpeech.OnInitListener {
        startActivityForResult(nttCOapmGIF, SHARE_ACTIVITY_RES);
        break;
       case 40:
+
+     AnimMovSingleton tmpIttAMS = AnimMovSingleton.getInstance();
+     if (tmpIttAMS != null) {
+	String tmpFNstr = Long.toString(System.currentTimeMillis());
+	tmpIttAMS.setIMovType("mp4");
+	tmpIttAMS.setIMovFileStr(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order" + File.separator + tmpFNstr + ".mp4");
+	tmpIttAMS.setIMovName(tmpFNstr);
+     }
+
+
        Intent nttCOapmWB = new Intent(getApplicationContext(), CutOuts.class);
        nttCOapmWB.putExtra("apmode", "mp4");
        nttCOapmWB.putExtra("apfile", currFileName);

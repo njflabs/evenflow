@@ -1661,7 +1661,7 @@ public class adminApp extends JFrame
             navigate(goBack());
         }
         if (mouseevent.getSource() == broWbtnGTrans) {
-            navigate(hostfolder + "adminshop/index.php");
+            navigate(hostfolder + "adminshop/index.html");
         }
         if (mouseevent.getSource() == broWbtnBlaunch) {
             navigate(maddress.getText());
@@ -2158,17 +2158,17 @@ public class adminApp extends JFrame
         String browAddress = maddress.getText();
 
         if (theTrick == "editprod") {
-            if (browAddress.indexOf(hostfolder + "index.php?productID=") != -1) {
+            if (browAddress.indexOf(hostfolder + "index.html?productID=") != -1) {
                 int j = browAddress.indexOf("productID=", 0);
                 String s3 = browAddress.substring(j + 10, browAddress.length());
                 System.out.println("Ok, got the editprod Trick: " + s3);
 //         setQuery(hostdbase, "product", "ProductID", s3);
             } else {
-                setQstatus("You must be on a product page.\nEx:  index.php?productID=myProd01", true);
+                setQstatus("You must be on a product page.\nEx:  index.html?productID=myProd01", true);
             }
         }
         if (theTrick == "editcat") {
-            if (browAddress.indexOf(hostfolder + "index.php?categoryID=") != -1) {
+            if (browAddress.indexOf(hostfolder + "index.html?categoryID=") != -1) {
                 getDBapp();
                 int j = browAddress.indexOf("categoryID=", 0);
                 String s3 = browAddress.substring(j + 11, browAddress.length());
@@ -2177,7 +2177,7 @@ public class adminApp extends JFrame
                 System.out.println("Ok, got the editprod Trick: " + s3);
 
             } else {
-                setQstatus("You must be on a category page.\nEx:  index.php?categoryID=My ProductsCategory", true);
+                setQstatus("You must be on a category page.\nEx:  index.html?categoryID=My ProductsCategory", true);
             }
         }
         if (theTrick == "showdbpan") {
@@ -2949,8 +2949,8 @@ public class adminApp extends JFrame
 		   //  scene.getStylesheets().add(getClass().getResource("custom-font-styles.css").toExternalForm());
 		   scene.getStylesheets().add("http://localhost/css/custom-font-styles.css");
 		   scene.getStylesheets().add("http://localhost/fonts/materialicons/mi.ttf");
-		   scene.getStylesheets().add("http://localhost/fonts/materialicons/mi.woff");
-
+		   // scene.getStylesheets().add("http://localhost/fonts/materialicons/mi.woff");
+			// Font.loadFont
                 stage.setScene(scene);
                 // Set up the embedded browser:
                 browser = new WebView();

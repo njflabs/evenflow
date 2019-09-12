@@ -15,7 +15,7 @@ is written, rewritten and mashed according to the current imagination spool.<br>
 <a href="webdroid/assets/quickorder">webdroid/assets/quickorder</a> folder to your web page.<br>create a mysql database 
 named evenflow.<br>open <a href="browser/db_schema.txt">browser/db_schema.txt</a> and import it to your database.<br>
 open<a href="webdroid/assets/quickorder/_p/do.php"> quickorder/_p/do.php</a> and edit the dbusername and password variables.<br>
-point your native web browser to http://...assets/quickorder/index.php<br>
+point your native web browser to http://...assets/quickorder/index.html<br>
 <a href="webdroid/bin/b.bat">build</a> and or 
 <a href="webdroid/bin/i.bat">install</a> the
 <a href="webdroid/bin/evenflowr-debug.apk">android app apk</a>.<br>
@@ -29,7 +29,12 @@ e-commerce webpage]<br>
 <br><strong>- Usage:</strong><br>In the included example, all web-pages are 
 found in the webdroid/assets folder.<br>LAMP stack should 
 be able to pull this folder assets as a web folder and show
-http://...evenflow/webdroid/assets/quickorder/index.php.<br>For local 
+<a href="http://...evenflow/webdroid/assets/quickorder/index.html">http://...evenflow/webdroid/assets/quickorder/index.html</a>.<br>
+<strong>Changes</strong> have been made: the main file was index.php, but due to 
+incompatibility issues with androids webview, it has been renamed to index.html. 
+See the .htaccess file on how AddHandler is used to parse .html extension in 
+php. You can also change your actual php.ini file to do this, but requires more 
+steps.<br>For local 
 development, this
 <a href="webdroid/assets/quickorder">assets/quickorder</a> folder can be linked through your LAMP config or just dump 
 the evenflow project into your htdocs,web,&nbsp; folder.<br>The android assets/ 
@@ -40,7 +45,7 @@ to Java Interface Bridge:</strong><br>
 evenflow javafx browser and android app rely heavily onthe JSI_ javascript 
 inerface files to interact with the WebViews, etc.<br><br>- <strong>User Interface:</strong><br>
 Rendering of the user interface mostly relies on simple html and javascript, json.<br>
-The main index.php file uses ajax requests to include the html/tplates files 
+The main index.html file uses ajax requests to include the html/tplates files 
 according to the pid variable passed in the URL.<br>The corresponding javascript 
 file is also included. These functions are found in x_booter.js<br>The search and nav bar are found in index_nav.html.<br>
 The UI is not currently using any 3rd party JS frameowrks.<br>Trying to keep it 

@@ -128,7 +128,7 @@ var renderNuTQBItems = function(a,b,c) {
 
             strHtml += "<div class=\"collectionbrdr\">";
             strHtml += "<div class=\"collectionhdr\">";
-  		strHtml += "<a class=\"txtDecorNone\" href=\"index.php?pid=aa-show-item&itemid=" + ts.ci_pid + "&cid=" + ts.ci_coid + "&catid=" + ts.ci_catid + "\">";
+  		strHtml += "<a class=\"txtDecorNone\" href=\"index.html?pid=aa-show-item&itemid=" + ts.ci_pid + "&cid=" + ts.ci_coid + "&catid=" + ts.ci_catid + "\">";
 
  		strHtml += "<img src=\"" + tmpIstrI + "\" class=\"slmtable brdrClrDlg icndbtn\" style=\"align: center;text-align:center;margin:6px;\" align=\"absmiddle\">" +  ts.ci_title;
             strHtml += "</a></div>";
@@ -286,7 +286,7 @@ doQComm(qStr, null, "retProcCart");
 */
 
 var sendOrder = function() {
-tmpRstr = "http://localhost/evenflow/webdroid/assets/quickorder/index.php?pid=aa-show-thks&ppid=" + ppid + "&cid=" + cid + "&c=" + cartID;
+tmpRstr = "http://localhost/evenflow/webdroid/assets/quickorder/index.html?pid=aa-show-thks&ppid=" + ppid + "&cid=" + cid + "&c=" + cartID;
 JSSHOP.shared.setFrmFieldVal("orderform","return",tmpRstr);
 JSSHOP.shared.setFrmFieldVal("orderform","cancel",tmpRstr);
 JSSHOP.shared.setFrmFieldVal("orderform","notify_url","http://localhost/evenflow/webdroid/assets/quickorder/_p/pp_notify.php");

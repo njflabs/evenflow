@@ -254,8 +254,12 @@ public class MPFourParser  {
    }
 
 
+	// where file name is passed on to be saved
+
     public void procMPFourPars(String s, OnTaskExecutionFinished theEvent){
-   fNewM = Environment.getExternalStorageDirectory() + "/quick-order/" + s;
+
+	
+   fNewM = s; // file name string
 
     System.out.println("MPFParsAsync:isCalled: " + s);
     MPFParsAsync mpfptasync = new MPFParsAsync();

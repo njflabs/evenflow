@@ -2041,7 +2041,7 @@ strImgDsct = "";
       strImgDsct += "<div><img onclick=\"document.location.href = this.src\" id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"activator prodBigImage crsrPointer\"></div>";
 	} else {
 	subIdesc = subTIdesc.substring(0, 15);
-      strImgDsct += "<a href=\"index.php?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
+      strImgDsct += "<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
 	if(upRefs == "r") {
       strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodRowImage\">";
 	} else {	
