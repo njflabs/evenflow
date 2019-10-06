@@ -90,7 +90,7 @@ nsDv.className = "collection-item txtDecorNone";
 
 	tmpUSpn = document.createElement("span");
 
-	tmpUSpn.innerHTML = "<i class=\"material-icons\">arrow_drop_up</i>";
+	tmpUSpn.innerHTML = "<i class=\"material-icons\" alt=\"arrow_drop_up\" title=\"arrow_drop_up\">&#xe5c7;</i>";
 
 	tmpPA.appendChild(tmpUSpn);
 	tmpPA.title = "Move Up";
@@ -159,7 +159,7 @@ currTtlMainMnus++;
 
 	tmpUSpn = document.createElement("span");
 
-	tmpUSpn.innerHTML = "<i class=\"material-icons\">arrow_drop_up</i>";
+	tmpUSpn.innerHTML = "<i class=\"material-icons\" alt=\"arrow_drop_up\" title=\"arrow_drop_up\">&#xe5c7;</i>";
 	tmpPA = document.createElement("a");
 	tmpPA.className="txtClrDlg txtSmall";
 	tmpPA.appendChild(tmpUSpn);

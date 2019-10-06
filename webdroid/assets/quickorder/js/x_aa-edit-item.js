@@ -494,22 +494,44 @@ alert("rndrPrdMedia " + e);
 
 
 
-var doSubCOpts = function(theArr) {
-var len = theArr.length;
-var iint = 0;
-ts = null;
+var doSubCOpts = function() {
+
 tmpSlct = document.getElementById("mod_i_catid");
-while(iint < len) {
-ts = theArr[iint];
-if(ts.cat_pid == "0") {
+if(isJavaFx == "ayes") { 
+
+JSSHOP.ui.showHideElement("tdCatSelect", "hide");
 } else {
-JSSHOP.shared.addOptAtVal(tmpSlct, ts.cat_pid, ts._id, "      " + ts.cat_title, "txtClrDlg");
+theDAArr = currMenuArr;
+ilen = theDAArr.length;
+rweint = 0;
+
+
+
+while(rweint < ilen) {
+tssa = null;
+tssa = theDAArr[rweint];
+
+if(tssa.cat_pid == 0) {
+nada = "doNada";
+} else {
+ JSSHOP.shared.addOptAtVal(tmpSlct, tssa.cat_pid, tssa._id, "      " +  tssa.cat_title, "");
+
 }
-iint++;
+ 
+rweint++;
+ 
 }
-JSSHOP.shared.setCurrSelectOpt(tmpSlct, catid);
+
+ 
+
 if((itemid == 0) || (currUrlArr.cmdci)){ 
 JSSHOP.ui.toggleVisibility("dvUploadBtn");
+}
+
+
+JSSHOP.shared.setCurrSelectOpt(document.getElementById("mod_i_catid"), catid);
+
+
 }
 };
 
@@ -519,6 +541,10 @@ JSSHOP.ui.toggleVisibility("dvUploadBtn");
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
+
+
+// hide the category select on javafx. it freezez the screen
+
 
 doFUJSLoad();
 // JSSHOP.ui.setTinnerHTML("tdTitleBar", currPgTitle);
@@ -604,13 +630,15 @@ var len = currMenuArr.length;
 var iint = 0;
 var pcid = 0;
 tstr = "";
+arrToOptFill = null;
 arrToOptFill = currMenuArr;
 while(iint < len) {
 ts = arrToOptFill[iint];
-if(ts.cat_pid == "0") { // add only main categories to list
+if(ts.cat_pid == 0) { // add only main categories to list
 JSSHOP.shared.addOptAtVal(tmpSlct, "noQvalue", ts._id, ts.cat_title, "txtClrWhite bkgdClrHdr");
 // JSSHOP.shared.addCurrSelectOpt(tmpSlct, ts._id, ts.cat_title);
 } 
+
 iint++;
 }
 
@@ -624,7 +652,9 @@ document.getElementById("mod_i_rtype").checked=false;
 document.getElementById("btnEUsave").disabled=true;
 document.getElementById("btnEUsave").className = "cls_button_disabled";
 }
-doSubCOpts(arrToOptFill);
+
+setTimeout("doSubCOpts()", 3000);
+
 /*
 if(getViewportWidth() > 480) {
 } else {
@@ -633,6 +663,7 @@ scrollToElement("tdTitleBar");
 */
 
 
+ 
 
 
 };

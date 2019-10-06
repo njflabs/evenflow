@@ -406,7 +406,7 @@ alert("rndrPrdMedia " + e);
 
 
 
-var doSubCOpts = function(theArr) {
+var doSubCOpts = function() {
 var len = theArr.length;
 var iint = 0;
 ts = null;
@@ -415,7 +415,7 @@ while(iint < len) {
 ts = theArr[iint];
 if(ts.cat_pid == "0") {
 } else {
-JSSHOP.shared.addOptAtVal(tmpSlct, ts.cat_pid, ts._id, "      " + ts.cat_title, "txtClrDlg");
+JSSHOP.shared.addOptAtVal(tmpSlct, ts.cat_pid, ts._id,  ts.cat_title, "noQvalue");
 }
 iint++;
 }
@@ -514,7 +514,7 @@ JSSHOP.shared.addOptAtVal(tmpSlct, "noQvalue", ts._id, ts.cat_title, "txtClrWhit
 iint++;
 }
 
-doSubCOpts(arrToOptFill);
+setTimeout("doSubCOpts()", 1000);
 };
 
  

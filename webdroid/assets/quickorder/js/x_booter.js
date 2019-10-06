@@ -1143,6 +1143,8 @@ iint++;
 }
 
 
+
+/*  to delete. fixed.
 if(isJavaFx == "yes") {
 xid = document.getElementsByTagName("i");
 var diint = 0;
@@ -1152,12 +1154,12 @@ var diint = 0;
 while(diint < xid.length) {
 tmpItxt = xid[diint].innerText;
 tmpNtxt = tmpItxt.substring(0, 1).toUpperCase();
-xid[diint].innerHTML = tmpNtxt;
-xid[diint].className = "txtXLrg";
+// xid[diint].innerHTML = tmpNtxt;
+// xid[diint].className = "txtXLrg";
 diint++;
 }
 }
-
+*/
  
 
 fnishCntLoad();
@@ -1510,11 +1512,12 @@ document.getElementById('tdLMenu').appendChild(tmpDV);
 
 
 var setLoadACTB = function(theACb) {
-// alert("setLoadACTB: " + theACb);
+// alert("setLoadACTB: " + JSON.stringify(theACb));
 // alert("mArrFb " + JSON.stringify(currMenuArr));
 
 var arrToFill = null;
 arrToFill = JSON.parse(theACb.rs);
+// alert("setLoadACTB: " + JSON.stringify(theACb.rs));
 arrAllForms["qextras"] = arrToFill;
  
 strCatID =  "tip:ep:Smart Autocomplete|";
@@ -1636,6 +1639,7 @@ if(upSLMRef == "y") {
 
 
 var doLoadACTB = function() {
+
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["l"] = "30"; 
