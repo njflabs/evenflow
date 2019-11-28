@@ -171,7 +171,7 @@ JSSHOP.ui.setTinnerHTML("dvPrdMedia","");
 JSSHOP.ui.setTinnerHTML("dvPrdMedia",tmpRetStr);
 }
 } catch(e) {
-alert("rndrPrdMedia " + e);
+// alert("dadido:" + e);
 }
 };
 

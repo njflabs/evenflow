@@ -49,11 +49,19 @@ public class JSI_adminApp {
         return cpv;
     }
 
+     public String doStrDBTitles() {
+	  String cpv = webMobia.getStrDBTitles();
+        System.out.print("doStrDBTitles: " + cpv);
+        return cpv;
+    }
 
+    public void doNewDBdialog(String tstrHfolder) {
+        webMobia.getNewDBdialog(tstrHfolder);
+    }
 
-
-
-
+    public void doDBQBox() {
+        webMobia.getDBQBox();
+    }
 
 public String getNuDBselectQ(String tmpStrQstr) {
 String strHtml = "noQvalue";

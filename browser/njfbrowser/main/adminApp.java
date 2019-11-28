@@ -28,6 +28,7 @@ import njfbrowser.spreadsheet.*;
 import njfbrowser.tasks.taskAAUComTextQs;
 import njfbrowser.tasks.taskAAUploadQs;
 import njfbrowser.js_interfaces.JSI_adminApp;
+import njfbrowser.utils.BasicUtils;
 import njfbrowser.utils.Bundle;
 import njfbrowser.utils.UtilSQLAdapter;
 import org.jibble.simplewebserver.SimpleWebServer;
@@ -40,9 +41,15 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.net.CookieManager;
+import java.net.CookieStore;
+import java.net.CookiePolicy;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.StringTokenizer;
@@ -103,8 +110,7 @@ public class adminApp extends JFrame
     public JLabel QqueryTextlabel;
     public java.awt.List comtext;
     public String hostdbase;
-    // to delete ExcelPan ivjXLpan;
-//    CartToolsLeft carttoolsleft;
+ 
     public JTextField maddress;
     public String aapassword;
     public String hostfolder;
@@ -119,31 +125,12 @@ public class adminApp extends JFrame
     public String aahelppassword;
     public String aahelpdbname;
 
-    /*        --------------     Delete These ???????
-        public void setMadUrl(String mstring) {
-          mnmstring = mstring.trim().toLowerCase();
-          // if((mnmstring.startsWith("www")) || (mnmstring.startsWith("http"))) {
-          // maddress.setText("");
-          // maddress.setText(mnmstring);
-          // return;
-          // }
-          }
-        public void getMadUrl() {
-          System.out.println(mnmstring);
-          try {
-          maddress.setText(mnmstring);
-          statusLabel.setText(mnmstring);
-          } catch (Exception ex) {
-           System.out.println(ex.toString());
-          }
-          }
-
-    */
+ 
     public String aahelpnick;
     // to delete ?
     public String mmipScript;
     //-----------------------------------------------------------
-//--------------------     Query Shit
+//--------------------     Query stuff
     public String mmsmtpServer;
     public String mmserverPort;
     public String mmemailSubject;
@@ -174,18 +161,7 @@ public class adminApp extends JFrame
     Image img8;
     Image img9;
 
-
-    /* to delete using editdbdialog
-        public void getAddDBPrefs() {
-            if(boolAddDBDlgOpen) {
-            //  addDBDlg.aaprfsdummy();
-          addDBDlg.requestFocus();
-            } else {
-            addDBDlg = new AddDBdialog(this, "noQvalue");
-            boolAddDBDlgOpen = true;
-            }
-       }
-    */
+ 
     Image img22;
     Image img23;
     Image img26;
@@ -201,30 +177,15 @@ public class adminApp extends JFrame
     ImageButton btnmainbrowpan;
 
 
-    /*
-     * Authentication Class for password protected URLS
-    */
+ 
     ImageButton btnLiveHelp;
     ImageButton btnSnapShot;
     ImageButton bannerbut1;
 
-
-    /*
-     * functions used in AddDBdialog and DBQueryBox
-     * fix this to allow only letters, numbers and spaces
-     * code:
-        for(int i = 0; i < s.length(); i++)
-        {
-            char c1 = s.charAt(i);
-            if(fullstring.indexOf(c1) != -1) {
-            {
-                s1 = s1 + c1;
-                c = c1;
-            }
-        }
-    */
+ 
     ImageButton winOntopImg;
-    ImageButton browircImg;
+    ImageIcon btnDBPan;
+    JButton jbtnDBPan;
     ImageButton btnchckserv;
     ImageButton btnAAhelp;
     Image offscrimg;
@@ -233,33 +194,7 @@ public class adminApp extends JFrame
     String t[];
     String o;
     String ous;
-
-
-    /*
-    function encrypt_url($string) {
-            $key = "123abc"; //preset key to use on all encrypt and decrypts.
-            $result = '';
-       for($i=0; $i<strlen($string); $i++) {
-         $char = substr($string, $i, 1);
-         $keychar = substr($key, ($i % strlen($key))-1, 1);
-         $char = chr(ord($char)+ord($keychar));
-         $result.=$char;
-       }
-       return urlencode(base64_encode($result));
-    }
-    function decrypt_url($string) {
-            $key = "123abc";
-            $result = '';
-            $string = base64_decode(urldecode($string));
-       for($i=0; $i<strlen($string); $i++) {
-         $char = substr($string, $i, 1);
-         $keychar = substr($key, ($i % strlen($key))-1, 1);
-         $char = chr(ord($char)-ord($keychar));
-         $result.=$char;
-       }
-       return $result;
-    }
-    */
+ 
     int ihi;
     String url1[];
     int clbanner;
@@ -278,7 +213,7 @@ public class adminApp extends JFrame
     CommLabel runAllComs;
     CommLabel deleteCom;
     CommLabel deleteAllComs;
-    //delete!! CommLabel runTextAreaQ;
+ 
     CommLabel getDstamp;
     CommLabel reloadQs;
     Button QdeleteQ;
@@ -303,8 +238,7 @@ public class adminApp extends JFrame
     JMenu mView;
     JMenu mTools;
     JMenu mWidgets;
-
-    // protected Thread listener;
+ 
     JMenu mEdit;
     JMenu mData;
     JMenu mHelp;
@@ -376,21 +310,21 @@ public class adminApp extends JFrame
     ClientHttpRequest chttpreq;
     DBQueryBox dbqueryBox;
     AAPrefsdialog aaPrefsDlg;
-    // to delete AddDBdialog addDBDlg;
+ 
     EditDBdialog editDBDlg;
     JBrowserOpen jbrowserOpen;
     SharpPopmenu shrppopmenu;
-    // to delete BrowDBAction dbactionBox;
+ 
     StatusBox statusBox;
     BrowDBAction dbactionBox;
-    // to delete !! sharptools - in JProgressBar progressBarAA;
+ 
     taskAAUploadQs taskAAUQs;
     taskAAUComTextQs taskAAUCTQs;
     String strngTempDB;
     String strngTempTable;
     String strngTempQStrng;
     Thread dm;
-    // the Ebay Pinger
+ 
     getCatResPinger getCATRP;
     JFileChooser fileChAdmnApp;
     DefaultListModel tempModelDataList;
@@ -403,6 +337,7 @@ public class adminApp extends JFrame
 
 	JSI_adminApp jsiAdminApp;
 	SimpleWebServer simpleWebServer;
+	BasicUtils basicUtils;
 	public Bundle currConfBundle;
 
 
@@ -463,16 +398,16 @@ public class adminApp extends JFrame
         udString = System.getProperty("user.dir");
         fsString = File.separator;
         mySplash = new Splash(this, getUfile("cbox/images/splash.gif"));
-        //      mySplash = new Splash(this, udString + "cbox/images/main.gif");
+ 
         loadAAprefs();
         loadAPlangStrings();
         getContentPane().setLayout(new BorderLayout());
-        setFont(new java.awt.Font("Arial", 0, 12));
+        setFont(new java.awt.Font("Arial", 0, 14));
         setBackground(new java.awt.Color(225, 225, 225));
         statusBox = new StatusBox(this);
 	  currPageVars = "noQvalue";
  
-	    // Font.loadFont(adminApp.class.getResource("mi.woff2").toExternalForm(), 10);
+ 
 	  /*
       * JFileChooser Code
 	  */
@@ -481,19 +416,15 @@ public class adminApp extends JFrame
 
         System.out.println("ud: " + udString + "   fs: " + fsString);
 
-// To delete or use, check for calls to this label
+ 
         QqueryTextlabel = new JLabel("Query Results:");
         QqueryTextArea = new JTextArea("", 50, 300);
         QqueryTextArea.addMouseListener(this);
 
-        //       JPanel panel16 = new JPanel(new BorderLayout());
-        // the other 3 old top comlabels
-        // panel16.add(clearbox);
-        // panel16.add(reloadQs);
-        //  panel16.add(searchrepQs);
+ 
 
 
-// end to delete or use
+ 
 
 
         myipnumber = "";
@@ -550,7 +481,7 @@ public class adminApp extends JFrame
 
 
 
-        currConfBundle = getConfBundle(); 
+        
         tempModelDataList = new DefaultListModel();
         strngTempDB = "";
         strngTempTable = "";
@@ -796,7 +727,7 @@ public class adminApp extends JFrame
         btnAAhelp = new ImageButton("Helper", img8);
         irclogo = new ImageButton("BuddyB Irc", img9);
         winOntopImg = new ImageButton("winOntop", img22);
-        browircImg = new ImageButton("browirc", img23);
+        btnDBPan = new ImageIcon("cbox/images/dbpan.gif");
         btnadminPop = new ImageButton("TriBrowser", img26);
         btnmainbrowpan = new ImageButton("Main Browser JPanel", img27);
         btnLiveHelp = new ImageButton("Live Help", img28);
@@ -811,27 +742,29 @@ public class adminApp extends JFrame
         broWbtnGTrans = new ImageButton("trans launch", broWimg7);
         broWbtnGoHome = new ImageButton("Go Home", broWimg8);
         addressLabel = new JLabel(aplangstrings.getProperty("text195") + " ", 2);
-        maddress = new JTextField("");
+        maddress = new JTextField(64);
+	  maddress.setFont(new java.awt.Font("Arial", 0, 14));
 
 
-        // delete!! runTextAreaQ = new CommLabel(this, "Run Query", "runTAquery");
+        jbtnDBPan = new JButton(aplangstrings.getProperty("  Databse/Spread-Sheet ", "  Databse/Spread-Sheet "), btnDBPan);
+ 
 
 
         closebox = new CommLabel(this, "Close", "close");
         hidebox = new CommLabel(this, "Hide", "hide");
         clearbox = new CommLabel(this, "Clear Results", "clearQtext");
-        // insertQs = new CommLabel(this, "Insert Record(s)", "insertrecords");
+ 
         searchrepQs = new CommLabel(this, "Search&Replace", "searchrepQs");
         reloadQs = new CommLabel(this, "Reload", "reloadQs");
 
-// !! delete this shit, its been replaced with buttons
+// !! delete this stuff, its been replaced with buttons
 
         runCom = new CommLabel(this, "Run Selected Query", "runcomquery");
         runAllComs = new CommLabel(this, "Run All", "runallcomqueries");
         deleteCom = new CommLabel(this, "Remove Query", "delcomquery");
         deleteAllComs = new CommLabel(this, "Remove All", "delallcomqueries");
 
-// !! end of   delete this shit, its been replaced with buttons
+// !! end of   delete this stuff, its been replaced with buttons
 
 
         getDstamp = new CommLabel(this, "DStamp", "getDatestamp");
@@ -858,7 +791,7 @@ public class adminApp extends JFrame
         JPanel TopTipBtnPanel = new JPanel(new BorderLayout());
         JPanel TopBtnPanel = new JPanel(new GridLayout(0, 5));
         // TopBtnPanel.add(btnmainbrowpan);
-       // TopBtnPanel.add(browircImg);
+       // TopBtnPanel.add(btnDBPan);
         TopBtnPanel.add(btnLiveHelp);
         // TopBtnPanel.add(btnAAprefs);
         // TopBtnPanel.add(btnadminPop);
@@ -888,17 +821,29 @@ public class adminApp extends JFrame
         browBtnPan.add(broWbtnFavs);
         // browBtnPan.add(broWbtnGTrans);
         browBtnPan.add(broWbtnGoHome);
-        browBtnPan.add(browircImg);
+        // browBtnPan.add(btnDBPan);
+
+        JPanel panel2 = new JPanel(new FlowLayout());
+        panel2.add(browBtnPan);
+        panel2.add(addressLabel);
+        panel2.add(maddress);
 
 
-        JPanel panel2 = new JPanel(new BorderLayout());
-        panel2.add("Center", maddress);
-        panel2.add("West", addressLabel);
+        JPanel panel33a = new JPanel(new BorderLayout());
+ 
+        panel33a.add("Center", panel2);
+
+        JLabel tJlbl = new JLabel("      ");
+        JPanel panel3east = new JPanel(new BorderLayout());
+        panel3east.add("Center", tJlbl);
+
+	   
         JPanel panel3 = new JPanel(new BorderLayout());
-
-        panel3.add("North", TopTipBtnPanel);
-        panel3.add("West", browBtnPan);
-        panel3.add("Center", panel2);
+ 
+        panel3.add("Center", panel33a);
+        panel3.add("West", jbtnDBPan);
+        panel3.add("East", panel3east);        
+ 
 
 
         JPanel blipPanel = new JPanel();
@@ -967,15 +912,7 @@ public class adminApp extends JFrame
         btnRunAllPendQuery.addMouseListener(this);
 
         JPanel pendQCommLblPan = new JPanel(new GridLayout(0, 4));
-
-/* delete this, replaced by buttons below
-
-        pendQCommLblPan.add(deleteCom);
-        pendQCommLblPan.add(deleteAllComs);
-        pendQCommLblPan.add(runCom);
-        pendQCommLblPan.add(runAllComs);
-
-*/
+ 
 
         JPanel pendQCommTopPan = new JPanel(new BorderLayout());
 
@@ -1054,17 +991,15 @@ public class adminApp extends JFrame
         btnSnapShot.addMouseListener(this);
         winOntopImg.addActionListener(this);
         winOntopImg.addMouseListener(this);
-        browircImg.addActionListener(this);
-        browircImg.addMouseListener(this);
-
-
+ 
+	  jbtnDBPan.addActionListener(this);
+	  jbtnDBPan.addMouseListener(this);
         cards = new JPanel();
         cards.setLayout(new CardLayout());
+        cards.add("mainBrowserCard", mainBrowserPanel);
         cards.add("sharpToolsCard", sharpToolsPanel);
-        if (isIEversion) {
-            cards.add("mainBrowserCard", mainBrowserPanel);
-        }
-        // cards.add("slicpan", panel8);
+
+ 
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -1075,17 +1010,7 @@ public class adminApp extends JFrame
 
         setJMenuBar(mb);
 
-
-/*
-  try {
-    UIManager.setLookAndFeel(
-      UIManager.getSystemLookAndFeelClassName());
-    }
-  catch (Exception e) {
-    e.printStackTrace();
-    }
-
-*/
+ 
 
 
         maddress.setText("about:blank");
@@ -1093,62 +1018,75 @@ public class adminApp extends JFrame
         setVisible(true);
         setLocation(0, 0);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        // resize(Toolkit.getDefaultToolkit().getScreenSize());
+ 
         createScene();
-        // show();
-
-        // int iauch = Toolkit.getDefaultToolkit().getScreenSize().height - 160;
-        // int iiaa = sharpSpltMainPanel.getDividerLocation();
-
-        // System.out.println("iiaa: " + iiaa);
-        // System.out.println("iauch: " + iauch);
-        // sharpSpltMainPanel.setDividerLocation(iauch);
-
-        //    loadDBPrefs():
-        // -pcsw ! use the getCatResPinger for creating database tasks
-        // getCATRP = new getCatResPinger(this);
-        // loadAAprefs();
-        //Authenticator.setDefault(new MyAuthenticator());
+ 
 
 
         String stringSplitLocation = aamainprefs.getProperty("splitLocation");
         sharpSpltMainPanel.setDividerLocation(Integer.parseInt(stringSplitLocation));
 
 
-        /* TODO: fix this getDBQBox(). not thread safe to get DBQuery Box untill adminapp is fully loaded
-         * will just wait now till its actually called from the user clicking SearchDB button
 
-        Platform.runLater(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    getDBQBox();
-                } catch (Exception e) {
-                    System.out.println("[1120] getDBQbox: " + e);
-
-                }
-            }
-        });
-
-	  */
 
 
 
         this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
-                // This is only called when the user releases the mouse button.
-                System.out.println("componentResized");
+			try {
+ 
+		    // need this here. notifies web css of resize in case im seeing layout in mobile dimensions
+		    
                 browser.setPrefSize(pnlBrowserCage.getWidth() - 1, pnlBrowserCage.getHeight() - 1);
-                System.out.println("[3049] browser s: " + browser.getWidth() + " :: " + browser.getHeight());
-
-                System.out.println("[3049] browser resize: " + pnlBrowserCage.getWidth() + " :: " + pnlBrowserCage.getHeight());
-
+                // System.out.println("[3049] browser resize: " + pnlBrowserCage.getWidth() + " :: " + pnlBrowserCage.getHeight());
+                } catch (Exception cpe) {
+                    System.out.println(cpe.toString());
+                }
             }
         });
 
+	 currConfBundle = getConfBundle();
+	basicUtils = new BasicUtils();
 
-    }
+
+
+/*
+* this is a JavaFX dilema with Cookie Storage.
+* Just saving them to the aamainprefs and calling them to set cookies on start-up
+* namely quid (userID), prfsSHOPuser (user prefs string), which are actually the html cookies used
+*/
+
+CookieManager cookie_manager = new CookieManager();
+CookieStore Cookie_Store = new MyCookieStore(cookie_manager.getCookieStore());
+CookieManager acookie_manager = new CookieManager(Cookie_Store, CookiePolicy.ACCEPT_ALL);
+CookieHandler.setDefault(acookie_manager);
+URI ccuri = URI.create("https://localhost/evenflow/webdroid/assets/quickorder");
+Map<String, java.util.List<String>> ccheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> ccaheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> ccbheaders = new LinkedHashMap<String, java.util.List<String>>();
+ccheaders.put("Set-Cookie", Arrays.asList("quid=" + aamainprefs.getProperty("quid", "1")));
+ccaheaders.put("Set-Cookie", Arrays.asList("prfsSHOPuser=" + aamainprefs.getProperty("prfsSHOPuser", "x1prfDspLmenux4falsex5scvx2gx6")));
+ccbheaders.put("Set-Cookie", Arrays.asList("cartID=" + aamainprefs.getProperty("cartID", "noQvalue")));
+
+try {
+java.net.CookieHandler.getDefault().put(ccuri, ccheaders);
+java.net.CookieHandler.getDefault().put(ccuri, ccaheaders);
+java.net.CookieHandler.getDefault().put(ccuri, ccbheaders);
+} catch(Exception e) {
+e.printStackTrace();
+}
+
+}
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String args1[]) {
 
@@ -1329,8 +1267,7 @@ public class adminApp extends JFrame
     public void saveAAPrefs(String strAA, String strBB, String strCC, String strDD) {
         try {
 
-            int splitLocation = sharpSpltMainPanel.getDividerLocation();
-            aamainprefs.setProperty("splitLocation", Integer.toString(splitLocation));
+
 
 
             FileOutputStream fileoutputstream = new FileOutputStream(getUfile("cbox/prefs/AAPrefs.prfs"));
@@ -1350,11 +1287,13 @@ public class adminApp extends JFrame
 
     public void saveAllPrefs() {
         try {
- 
-   
+		 aamainprefs.setProperty("lastWebPage", maddress.getText());
+
+            int splitLocation = sharpSpltMainPanel.getDividerLocation();
+            aamainprefs.setProperty("splitLocation", Integer.toString(splitLocation));
 
 
-            FileOutputStream fileoutputstream = new FileOutputStream(getUfile("cbox/prefs/AAPrefs.prfs"));
+              FileOutputStream fileoutputstream = new FileOutputStream(getUfile("cbox/prefs/AAPrefs.prfs"));
             PrintStream printstream = new PrintStream(fileoutputstream);
 
             aamainprefs.store(fileoutputstream, "---No Comment---");
@@ -1378,6 +1317,7 @@ public class adminApp extends JFrame
             fileinputstream.close();
             datainputstream.close();
             setStatusText("Loaded Main Preferences");
+		 
         } catch (Exception exception) {
             setQstatus("Error 808A [adminApp]: \n" + exception.toString(), false);
         }
@@ -1494,18 +1434,7 @@ public class adminApp extends JFrame
         }
         if (obj == miOpen) {
             dbfpanel.doFileOpen();
-/*
-        int returnVal = fileChAdmnApp.showOpenDialog(this);
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fileChAdmnApp.getSelectedFile();
-            //This is where a real application would open the file.
-            setQstatus("Opening: " + file.getName(), false);
-        } else {
-            setQstatus("Open command cancelled by user.", false);
-        }
-
- */
+ 
 
         }
 
@@ -1628,11 +1557,29 @@ public class adminApp extends JFrame
             isitOntop();
         }
 
-        if (mouseevent.getSource() == browircImg) {
+ 
+        if (mouseevent.getSource() == jbtnDBPan) {
             getDBapp();
         }
         if (mouseevent.getSource() == broWbtnGoHome) {
-            navigate(hostfolder);
+
+
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                webEngine.loadContent(basicUtils.readFileAsString(basicUtils.getUfile("cbox/misc/intro.html")));
+
+                } catch (Throwable e) {
+                    System.out.println("[1555] loadContent.intro: " + e);
+
+                }
+
+
+            }
+        });
+ 
         }
         if (mouseevent.getSource() == broWbtnRefresh) {
 
@@ -1742,7 +1689,8 @@ public class adminApp extends JFrame
                 tiplabel.setText(aplangstrings.getProperty("text154"));
                 return;
             }
-        if (component == browircImg) {
+ 
+        if (component == jbtnDBPan) {
             setCursor(Cursor.getPredefinedCursor(12));
             tiplabel.setText(aplangstrings.getProperty("text534"));
             return;
@@ -1840,10 +1788,7 @@ public class adminApp extends JFrame
         setVisible(false);
     }
 
-    public void getSlic() {
-        ((CardLayout) cards.getLayout()).show(cards, "slicpan");
-        browircStat = false;
-    }
+ 
 
     public void showTriPan() {
         ((CardLayout) cards.getLayout()).show(cards, "triUserPanes");
@@ -1867,11 +1812,9 @@ public class adminApp extends JFrame
     }
 
     public void gettheBrowser() {
-        if (isIEversion) {
+ 
             ((CardLayout) cards.getLayout()).show(cards, "mainBrowserCard");
-        } else {
-            setQstatus("Only implemented with Internet Explorer Version.", false);
-        }
+ 
     }
 
     public void setStatusText(String s) {
@@ -1912,8 +1855,7 @@ public class adminApp extends JFrame
             setQstatus("Screen Shot error: " + exception.toString(), false);
             return;
         }
-//         new SmartImage(this, outFileName, "hehe");
-        // dispose();
+ 
     }
 
     public void reloadTheCanvas() {
@@ -1963,7 +1905,7 @@ public class adminApp extends JFrame
 
     public void getCatProds(String s) {
         QqueryTextArea.setText("");
-//        setQuery(hostdbase, "product", "CategoryID", s);
+ 
     }
 
     public void searchAndRep(String s, String s1) {
@@ -2057,12 +1999,7 @@ public class adminApp extends JFrame
             setQstatus(aplangstrings.getProperty("text092"), false);
             return;
         }
-/*
-       System.out.println("writeFile");
-        for(int j = 0; j < 5000; j++) {
-            System.out.println(String.valueOf(j));
-        }
-*/
+ 
 
         nowQ = "";
         String s = "";
@@ -2444,16 +2381,7 @@ public class adminApp extends JFrame
 
                 String s1;
                 String s2 = getGzipAsString(instream);
-/*
-
-
-            BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(instream));
-
-
-            while((s1 = bufferedreader.readLine()) != null) {
-                s2 = s2 + s1;
-            }
-*/
+ 
 
 
 
@@ -2729,25 +2657,10 @@ public class adminApp extends JFrame
             hostdbase = currentDB;
             currentDBID = newDBProps.getProperty("dbID", "555").trim();
             userpassString = "auser=" + aaEncryptUrl(aausername) + "&apass=" + aaEncryptUrl(aapassword) + "&" + "dyndbase=" + hostdbase + "&host=" + currentDBHost;
-
-//            Qdbasefield.setText(hostdbase);
             System.out.println("loadnewDBprefs: " + hostfolder + "&" + currentDB + "&" + currentDBID);
             QstatusTextArea.setText("HostFolder: " + hostfolder);
-            // tell the dbqueryBox to check if there are any databases added
-            // if not, remind to add database
-            // dbqueryBox.checkBeginner();
-
-
             fileinputstream.close();
             datainputstream.close();
-/*
-        if(currentDB == aplangstrings.getProperty("text137")) {
-        System.out.println("Default DB");
-        } else {
-
-        dbfpanel.dummyfunction(dmystring);
-        }
-*/
             return;
         } catch (Exception exception) {
             System.out.println("loadnewPref Ex" + exception.toString());
@@ -2946,11 +2859,7 @@ public class adminApp extends JFrame
 
                 Group root = new Group();
                 Scene scene = new Scene(root, pnlBrowserCage.getWidth(), pnlBrowserCage.getHeight());
-		   //  scene.getStylesheets().add(getClass().getResource("custom-font-styles.css").toExternalForm());
-		   scene.getStylesheets().add("http://localhost/css/custom-font-styles.css");
-		   scene.getStylesheets().add("http://localhost/fonts/materialicons/mi.ttf");
-		   // scene.getStylesheets().add("http://localhost/fonts/materialicons/mi.woff");
-			// Font.loadFont
+ 
                 stage.setScene(scene);
                 // Set up the embedded browser:
                 browser = new WebView();
@@ -3002,6 +2911,8 @@ public class adminApp extends JFrame
 			//  webEngine.load(temp[0]);
             }
 
+ 
+
                                 strdates = "ready...";
                                 maddress.setText(webEngine.getLocation());
                                 JSObject win = (JSObject) webEngine.executeScript("window");
@@ -3024,11 +2935,16 @@ public class adminApp extends JFrame
                     }
 
                 });
-
-
-                webEngine.load("about:blank");
-
-
+                try {
+		    String tstrLV = currConfBundle.getString("lastWebPage");
+		    if((tstrLV.equals("about:blank") || tstrLV.length() < 3)) {
+                webEngine.loadContent(basicUtils.readFileAsString(basicUtils.getUfile("cbox/misc/intro.html")));
+		    } else {
+                webEngine.load(currConfBundle.getString("lastWebPage"));
+		    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 webEngine.setOnAlert(new EventHandler<WebEvent<String>>() {
                     @Override
                     public void handle(WebEvent<String> event) {
@@ -3041,27 +2957,52 @@ public class adminApp extends JFrame
 
                 ObservableList<Node> children = root.getChildren();
                 children.setAll(browser);
-                // children.add(progIndicator);
-                //   scene.resize(pnlBrowserCage.getWidth(), pnlBrowserCage.getHeight());
+ 
 
 
                 System.out.println("[3049] browser s: " + scene.getWidth() + " :: " + scene.getHeight());
 
                 System.out.println("[3049] browser resize: " + pnlBrowserCage.getWidth() + " :: " + pnlBrowserCage.getHeight());
 
-                //	jfxPanel.setPreferredSize(new Dimension(100, 15));
+ 
 
 
                 jfxPanel.setScene(scene);
+
+
+
+
+
             }
         });
+
+
+
+
+        /* TODO: fix this getDBQBox(). not thread safe to get DBQuery Box untill adminapp is fully loaded
+         * will just wait now till its actually called from the user clicking SearchDB button
+	  */
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    getDBQBox();
+			  
+                } catch (Exception e) {
+                    System.out.println("[1120] getDBQbox: " + e);
+
+                }
+            }
+        });
+
+
     }
 
     public void getDynDBapp(String theString) {
         System.out.println("getDynDBapp theString: " + theString);
         try {
-            // byte[] barr = Base64.getDecoder().decode(theString);
-            //  String dStr = new String(barr);
+ 
             String dStr = theString;
             System.out.println("getDynDBapp dStr: " + dStr);
 
@@ -3118,7 +3059,11 @@ public class adminApp extends JFrame
             @Override
             public void run() {
                 try {
-                    webEngine.load(strNav);
+                    if (strNav.indexOf("(") != -1) {
+                        webEngine.executeScript(strNav);
+                    } else {
+                        webEngine.load(strNav);
+                    }
                 } catch (Throwable e) {
                     System.out.println("[3210] navigate: " + e);
 
@@ -3170,9 +3115,8 @@ public class adminApp extends JFrame
         }
 
         public void windowActivated(WindowEvent windowevent) {
-// System.out.println("windowActivated" + windowevent.getSource().toString());
+        System.out.println("windowActivated" + windowevent.getSource().toString());
         }
-
         public void windowClosing(WindowEvent windowevent) {
             shutdown();
         }
@@ -3201,11 +3145,10 @@ public class adminApp extends JFrame
     public class JavaApp {
 
         public void doDB(String dbString) {
-            // String decoding = new sun.misc.BASE64Decoder().decode(dbString);
+ 
             getDynDBapp(dbString);
         }
-        // startComtextQuery();
-        // doMsg(new String(barr));
+ 
 
     }
 
@@ -3216,6 +3159,7 @@ public class adminApp extends JFrame
         theConfBundle.putString("cartID", aamainprefs.getProperty("cartID"));
         theConfBundle.putString("usrlang", aamainprefs.getProperty("usrlang"));
         theConfBundle.putString("prfsSHOPuser", aamainprefs.getProperty("prfsSHOPuser"));
+        theConfBundle.putString("lastWebPage", aamainprefs.getProperty("lastWebPage", "about:blank"));
         return theConfBundle;
     }
 
@@ -3224,6 +3168,7 @@ public class adminApp extends JFrame
         String strTheKey = "noQvalue";
         try {
             strTheKey = currConfBundle.getString(theKey);
+            System.out.println("getConValString: " + strTheKey);
         } catch (Exception err) {
             System.out.println("Error.getConValString: " + err);
         }
@@ -3235,7 +3180,7 @@ public class adminApp extends JFrame
         int strTheKey = 1234;
         try {
             strTheKey = currConfBundle.getInteger(theKey);
-       // showDaToast("getConfValInt: " + theKey + " : " + strTheKey);
+            System.out.println("getConfValInt: " + strTheKey);
         } catch (Exception err) {
             System.out.println("Error.getConValInt: " + err);
         }
@@ -3249,6 +3194,7 @@ public class adminApp extends JFrame
 
         aamainprefs.setProperty(theKey, theVal);
         currConfBundle = getConfBundle();
+             System.out.println("putConfValInt: " + theKey);
 
  
 
@@ -3258,7 +3204,7 @@ public class adminApp extends JFrame
        try {
         aamainprefs.setProperty(theKey, String.valueOf(theVal));
         currConfBundle = getConfBundle();
-
+            System.out.println("putConfValInt: " + theKey);
  
 
 	} catch(Exception e) {
@@ -3270,4 +3216,20 @@ public class adminApp extends JFrame
  
         return currPageVars;
     }
+    public String getStrDBTitles() {
+        return dbqueryBox.giveStrDBTitles();
+    }
+
+    public void getNewDBdialog(String tstrHfolder) {
+        hostfolder = tstrHfolder;
+	  getEditDBPrefs("noQvalue");
+    }
+    public void setWebDBTitle(String tstrDBt) {
+	  try {
+        navigate("setNewDBTitle('" + tstrDBt + "');");
+	} catch(Exception e) {
+            System.out.println("Error.setWebDBTitle: " + e);	
+	}
+    }
+
 }

@@ -22,7 +22,10 @@ point your native web browser to http://...assets/quickorder/index.html<br>
 in the browser/ folder <a href="browser/sun2Run.bat">launch</a> the adminApp browser app.<br>load the help docs in 
 the adminApp to see how to get it setup with your remote and/or local databases.<br>
 edit the quickorder folder and javascript files to use the <strong>app</strong> object javascript 
-interface to conect call functions from your android and java-browser apps to enhance your e-commerce site.<br><br><strong>- Structure:</strong><br>/browser [main browser app with spreadsheet 
+interface to conect call functions from your android and java-browser apps to enhance your e-commerce site.<br>
+The javascript shoots for backwords compatibility.<br>No functions like <em>
+Promise async await </em>etc, It will rin in IE6+, Android Froyo Webview and up, 
+along with the JavaFX WebView.<br><br><br><strong>- Structure:</strong><br>/browser [main browser app with spreadsheet 
 panel]<br>/docs [help docs used mainly for browser - spreadsheet set-up]<br>
 /webdroid [android app]<br>/webdroid/assets/quickorder [android app content and 
 e-commerce webpage]<br>

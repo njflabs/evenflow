@@ -1,0 +1,96 @@
+<html>
+<head>
+<style>
+.rtable {
+	padding: 5px 5px 5px 5px;
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 15px;
+	border: 1px solid #e5e5e5;
+	font-size: 16px;
+	font: Arial;
+
+}
+.striped > tbody > tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.striped > tbody > tr > td {
+  border-radius: 0;
+}
+
+.collectionhdr {
+font-size: 14px;
+font-family: Verdana,Helvetica,Arial;
+font-weight:bold;
+color: rgb(169,199,216);
+background-color: rgb(249,249,251);
+padding: 4px;  
+}
+</style>
+</head>
+<body>
+<br><br>
+<div id="dvIntro">
+	<table style="max-width: 600px; min-width:400px; margin:0 auto;" class="rtable striped" align="center" cellpadding="3" cellspacing="3">
+		<tr>
+			<td class="collectionhdr">Welcome to adminApp!&nbsp; Home button 
+			above will take you back here.</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>adminApp contains both a web-browser and a database spread-sheet 
+			panel.</strong></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="height: 28px">You can interact with these panels to automate most of your 
+			website and database.</td>
+		</tr>
+		<tr>
+			<td><strong>Start Using adminApp by entering your evenflow web sites url 
+			above in the address bar.</strong></td>
+		</tr>
+		<tr>
+			<td style="height: 28px">Log into quickorder/ folder.</td>
+		</tr>
+		<tr>
+			<td><strong>Add some item to your shop.</strong></td>
+		</tr>
+		<tr>
+			<td style="height: 42px">When viewing or editing a category of items on your website, you 
+			will see the <strong>AppDB</strong> link on your left.<br>You will 
+			only see these AppDB links if you are using this adminApp browser.<br>It will toggle adminApp&nbsp;to 
+			Database/Spread-Sheet panel with all database records from that category.<br>
+			When your done editing the spreadsheet, just click the Upload 
+			Records buttonc<br>Cnfirm your changes by going back to Web Browser 
+			panel and clicking<br>left menu Refresh llink in the product 
+			category page..</td>
+		</tr>
+		<tr>
+			<td>The quickorder 
+		website uses the Custom Title you give to the sites database in your&nbsp;
+			<a href="javascript:app.doDBQBox();" style="font-weight: 700">Database Query Box</a>&nbsp; 
+			database list.<br>You can use the <strong><a href="javascript:app.doNewDBdialog('https://url.to/quickorder/_p/');">Add Database</a></strong> 
+			button in the DB Query Box to add your sites database.<br></td>
+		</tr>
+		<tr>
+			<td><strong>Dont 
+			forget</strong> to use the <strong>Reload Database Information</strong> 
+			button after adding database; to test if database is connected 
+			properly.<br>This Custom Title chosen <strong>must be entered</strong> into your 
+			<strong>Shop 
+			Settings</strong> web page for the websites left menu AppDB links to work.</td>
+		</tr>
+	</table>
+</div>
+<p style="text-align: center">hosted at:
+<a href="https://github.com/tumbleDryCode/evenflow">
+github.com/tumbleDryCode/evenflow</a></p>
+
+</body></html>

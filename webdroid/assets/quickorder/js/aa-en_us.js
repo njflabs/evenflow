@@ -66,7 +66,7 @@ stxt[64] = "Edit Shop";
 stxt[65] = "QRcode";
 stxt[66] = "AppDB";
 stxt[67] = "Show Item";
-stxt[68] = "Shop Info";
+stxt[68] = "Shop Settings";
 stxt[69] = "Copy Item";
 stxt[70] = "Add";
 
@@ -107,3 +107,5 @@ stxt[3001] = "Item title here";
 
 // android java app
 stxt[4001] = "Art Pad";
+stxt[4002] = "Note: In order to interact with the Database/Spread-Sheet<br>This Title must match the Custom Title given to your database in DBQuery Box.";
+stxt[4003] = "See Using adminApp";

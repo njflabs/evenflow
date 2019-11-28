@@ -79,7 +79,7 @@ var renderNuCartItems = function(a,b,c) {
     }
     if (tmpVitemArr[0]) {
  
-      strHtml += "<div>Total:" + cartTtl.toFixed(2) + "</div>"; 
+      strHtml += "<div style=\"text-align: right\">Total:<b>" + cartTtl.toFixed(2) + "</b></div>"; 
    } else {
       strHtml += "<div>" + stxt[34] + "</div>";
  
@@ -102,18 +102,13 @@ tmpNTDQI.appendChild(newelN);
  * main loader function
  */
 var aLoadModShowCA = function() {
- 		// alert(JSON.stringify(tmpVitemArr[tmpVindex]));
-
-
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["o"] = "ci_dadded Desc";
     tmpDOs["ws"] = "where ci_uid=? and ci_coid=? and ci_cartqty >? and ci_rtype=? and ci_cartid=?";
     tmpDOs["wa"] = [quid,cid,0,5,cartID]; 
- 
     oi = getNuDBFnvp("qcartitem",5,null,tmpDOs);
     doQComm(oi["rq"], null, "renderNuCartItems");
- 
 };
 
  

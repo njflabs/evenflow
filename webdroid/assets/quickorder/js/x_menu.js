@@ -521,6 +521,15 @@ tmpQCollItem["ti"] = stxt[66];
 tmpQCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-appdbreq"] = tmpQCollItem;
 
+
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-use-adminapp&cid=" + cid + "'";
+tmpQCollItem["mi"] = "&#xe3c9;"; // edit
+tmpQCollItem["ti"] = "Use Java adminApp";
+tmpQCollItem["c"] = "coll-menu-item";
+currMCollItems["aa-use-adminapp"] = tmpQCollItem;
+
 tmpQCollItem = null;
 tmpQCollItem = {};
 tmpQCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-sqldump'";
@@ -554,11 +563,11 @@ tmpMCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-show-app-tools"] = tmpMCollItem;
 
 currMCollArr = [];
-tmpPrfSAL = "n";
+tmpPrfSAL = "y";
 try {
 tmpPrfSAL = arrUprefs["prfsSHOPuser"][0].sAL;
 } catch(e) {
-tmpPrfSAL = "n";
+tmpPrfSAL = "y";
 }
 
 switch(pid) {
@@ -577,7 +586,11 @@ currMCollArr.push("aa-add-item");
 currMCollArr.push("aa-edit-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shop");
+if(isJavaFx == "yes") {
 currMCollArr.push("aa-appdbreq");
+} else {
+currMCollArr.push("aa-use-adminapp");
+}
 currMCollArr.push("aa-force-clear");
 }
 break;
@@ -601,7 +614,11 @@ currMCollArr.push("aa-show-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shop");
 currMCollArr.push("aa-edit-shops");
+if(isJavaFx == "yes") {
 currMCollArr.push("aa-appdbreq");
+} else {
+currMCollArr.push("aa-use-adminapp");
+}
 break;
 case "aa-edit-categories":
 currMCollArr.push("aa-edit-shop");
@@ -634,8 +651,9 @@ currMCollArr.push("aa-edit-user");
 currMCollArr.push("recent")
 currMCollArr.push("aa-add-shop");
 */
-if((isJApp !== "no") && (isPhP == "no")) {}
+if(isJApp == "y") {
 currMCollArr.push("aa-show-app-tools");
+}
 
 if((quid == 0) || (quid == "noQvalue")){
 currMCollArr.push("aa-login");

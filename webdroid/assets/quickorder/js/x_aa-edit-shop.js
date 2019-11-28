@@ -80,6 +80,14 @@ tfev.ltxt = stxt[26];
 euiFFObjArr.push(tfev);
 
 
+tfxa = null;
+tfxa = nCurrFFieldOb();
+tfxa.fid = "tmp_c_vala";
+tfxa.lid = "lbl_c_vala"; 
+tfxa.ltxt = "Custom-Database-Title"; 
+// document.getElementById(tfxa.fid).disabled = true;
+euiFFObjArr.push(tfxa);
+
 JSSHOP.shared.initFrmComps(euiFFObjArr);
 // JSSHOP.ui.setTinnerHTML("tdCoTitle", JSSHOP.shared.getFieldVal("c_title", "theCo"));
 // JSSHOP.shared.setDynFieldVals(arrAllForms.qco.v[0],"tmp_");

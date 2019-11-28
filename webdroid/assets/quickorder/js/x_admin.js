@@ -415,17 +415,36 @@ strTuel += "?pid=aa-show-cart&ppid=" + ppid + "&cid=" + cid;
 document.location.href = strTuel;
 }
 };
-
+ 
 var getAppDBReq = function() {
-      qEncdQstring = currRQdb + ":|:" + currRQtable + ":|:" + currRQstr;
     try {
-	// currRQdb = "qbits";
-	// alert(qEncdQstring);
-	app.doDB(qEncdQstring)
+	tmpstrGDBT = app.doStrDBTitles(); // JSI_Interface, gets list od dbtitles
+	tmpclnTGC = getCleanAppStr(tmpstrGDBT);
+	if(tmpclnTGC == "Demo-Database") {
+	document.location.href="index.html?pid=aa-using-adminapp&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+	}
+	if(arrAllForms.qco.v[0].c_vala) {
+	tmpDBTTL = arrAllForms.qco.v[0].c_vala;
+	if(tmpDBTTL.length >= 2) {
+	currRQdb = tmpDBTTL;
+	if(tmpclnTGC.indexOf(tmpDBTTL) != -1) {
+      qEncdQstring = currRQdb + ":|:" + currRQtable + ":|:" + currRQstr;
+	// alert("qEncdQstring: " + qEncdQstring);
+	app.doDB(qEncdQstring);
+	} else { // tmpDBTTL not in database title list
+	document.location.href="index.html?pid=aa-using-adminapp&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+	}
+ 	} else { // arrAllForms.qco.v[0].c_vala not a valid string
+	document.location.href="index.html?pid=aa-using-adminapp&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+	}
+	} else { // arrAllForms.qco.v[0].c_vala does not even exist
+	document.location.href="index.html?pid=aa-using-adminapp&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+	}
+
     } catch (e) {
-	// alert("This will be mainly made to work with the included java browser program.");
-	document.location.href="index.html?pid=aa-sqldump&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
-        JSSHOP.logJSerror(e, arguments, "JSSHOP.admin.getAppReq");
+	alert("getAppDBReq " + e);
+	document.location.href="index.html?pid=aa-using-adminapp&cid=" + cid + "&tqs=" + encodeURIComponent(currRQstr); 
+      JSSHOP.logJSerror(e, arguments, "JSSHOP.admin.getAppReq");
     }
 };
 

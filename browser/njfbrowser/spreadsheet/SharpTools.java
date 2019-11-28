@@ -67,7 +67,7 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
         sLdeleteRow = new JMenuItem(parent.aplangstrings.getProperty("text193", "Delete Row(s)"));
         sLEditRecord = new JMenuItem(parent.aplangstrings.getProperty("text163", "Edit Record"));
         sLdbqBox = new JMenuItem(parent.aplangstrings.getProperty("text214", "Search Database"));
-        sLbrowserpan = new JMenuItem(parent.aplangstrings.getProperty("text177", "Admin Browser"));
+        sLbrowserpan = new JMenuItem(parent.aplangstrings.getProperty("text185", "Web Browser Panel"));
 
 
         jppupmenu.add(sLEditRecord);
@@ -182,7 +182,7 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
         deleteRowButton = new ImageButton("test", deleteRowIcon);
         deleteColumnButton = new ImageButton("test", deleteColumnIcon);
         dbuiButton = new ImageButton("test", dbuiIcon);
-
+	 
         JPanel toolBarPan = new JPanel(new FlowLayout());
 
         toolBarPan.add(undoButton);
@@ -222,7 +222,7 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
         uploadqs.setForeground(new Color(0, 0, 180));
         uploadqs.addActionListener(this);
 
-        jbtnDBQBox = new JButton(parent.aplangstrings.getProperty("text214", "Search Database"), imgdbqbox);
+        jbtnDBQBox = new JButton(parent.aplangstrings.getProperty("text539", "Search Database"), imgdbqbox);
         jbtnDBQBox.setToolTipText(parent.aplangstrings.getProperty("text323", "Open") + " " + parent.aplangstrings.getProperty("text322", "Database Query Box"));
         jbtnDBQBox.setBackground(new Color(225, 180, 180));
         jbtnDBQBox.setForeground(new Color(0, 0, 180));
@@ -235,12 +235,20 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
         // jbtnTools.addActionListener(this);
         jbtnTools.addMouseListener(this);
 
+
+        ImageIcon imgIbrowser = new ImageIcon("cbox/images/browlaunch.gif");
+        jbtBrowLaunch = new JButton(parent.aplangstrings.getProperty("text177", "Wen Browser"), imgIbrowser);
+        jbtBrowLaunch.addMouseListener(this);
+
+
         currtDBMnlabel = new JLabel("  " + parent.aplangstrings.getProperty("text079") + ":  ");
         currentDBlabel = new JLabel(parent.aplangstrings.getProperty("text137"));
         currentDBlabel.setForeground(Color.blue);
         currtTblMnlabel = new JLabel(parent.aplangstrings.getProperty("text032") + ":  ");
         currentTbllabel = new JLabel(parent.aplangstrings.getProperty("text137"));
         currentTbllabel.setForeground(Color.blue);
+
+
 
         JPanel sharpcurDBPan = new JPanel(new BorderLayout());
         sharpcurDBPan.add("West", currtDBMnlabel);
@@ -250,7 +258,8 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
         sharpcurTblPan.add("West", currtTblMnlabel);
         sharpcurTblPan.add("Center", currentTbllabel);
 
-        JPanel sharpTopCommlblPan = new JPanel(new GridLayout(0, 2, 3, 3));
+        JPanel sharpTopCommlblPan = new JPanel(new GridLayout(0, 3, 3, 3));
+        sharpTopCommlblPan.add(jbtBrowLaunch);
         sharpTopCommlblPan.add(sharpcurDBPan);
         sharpTopCommlblPan.add(sharpcurTblPan);
 
@@ -766,7 +775,9 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
             tableOp.remove(false);
             table.requestFocus();
         }
-
+        if (mouseevent.getSource() == jbtBrowLaunch) {
+            parent.gettheBrowser();
+        }
         if (mouseevent.getSource() == jbtnTools) {
 
             Point relative = mouseevent.getPoint();
@@ -1112,6 +1123,7 @@ public class SharpTools extends JPanel implements MouseListener, KeyListener, Ac
     JButton uploadqs;
     JButton jbtnDBQBox;
     JButton jbtnTools;
+    JButton jbtBrowLaunch;
 
     protected int maxNumPage = 1;
 

@@ -424,9 +424,9 @@ public class EditDBdialog extends JDialog
                 copyDBscheme(dbIDString);
             } else {
                 parent.loadnewDBprefs(dbTitleAAPTField.getText().trim());
-                parent.setQstatus(parent.aplangstrings.getProperty("text213"), false);
             }
             // copyDBscheme(dbIDString);
+                parent.setQstatus(parent.aplangstrings.getProperty("text213") + "\r\n" + parent.aplangstrings.getProperty("text806") + "\r\n" + parent.aplangstrings.getProperty("text808"), false);
 
         } catch (Exception exception) {
             parent.setQstatus(exception.toString(), true);
@@ -489,6 +489,8 @@ public class EditDBdialog extends JDialog
         if (pboolstring.equals("noQvalue")) {
             parent.loadNewDB(dbTitleAAPTField.getText().trim());
             parent.boolAddDBDlgOpen = false;
+		
+		parent.setWebDBTitle(parent.getTitleToFile(dbTitleAAPTField.getText().trim()));
             dispose();
         }
 

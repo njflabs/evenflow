@@ -34,7 +34,8 @@ public class JBrowserOpen extends Dialog
             isbolder = false;
             return;
         } else {
-            parent.setQstatus(parent.aplangstrings.getProperty("text014"), false);
+		show();
+            // parent.setQstatus(parent.aplangstrings.getProperty("text014"), false);
         }
 
     }
@@ -53,7 +54,7 @@ public class JBrowserOpen extends Dialog
         httpconfig = new Properties();
         try {
             inifile = "cbox/slic/01exe.ini";
-            FileInputStream fileinputstream = new FileInputStream("cbox/slic/01exe.ini");
+            FileInputStream fileinputstream = new FileInputStream("cbox/prefs/links.prfs");
             DataInputStream datainputstream = new DataInputStream(fileinputstream);
             httpconfig.load(fileinputstream);
             String s = URLEncoder.encode(httpconfig.getProperty("search1"));
@@ -148,10 +149,10 @@ public class JBrowserOpen extends Dialog
         setForeground(new Color(225, 225, 225));
         tracker = new MediaTracker(this);
         img1 = Toolkit.getDefaultToolkit().getImage("cbox/images/newmess.gif");
-        img5 = Toolkit.getDefaultToolkit().getImage("cbox/images/delchann.gif");
-        img6 = Toolkit.getDefaultToolkit().getImage("cbox/images/addchann.gif");
+        img5 = Toolkit.getDefaultToolkit().getImage("cbox/images/delete.gif");
+        img6 = Toolkit.getDefaultToolkit().getImage("cbox/images/add.gif");
         img7 = Toolkit.getDefaultToolkit().getImage("cbox/images/minimiz.gif");
-        img8 = Toolkit.getDefaultToolkit().getImage("cbox/images/jbrowlaunch.gif");
+        img8 = Toolkit.getDefaultToolkit().getImage("cbox/images/browlaunch.gif");
         img12 = Toolkit.getDefaultToolkit().getImage("cbox/images/searchbut.gif");
         tracker.addImage(img1, 1);
         tracker.addImage(img5, 5);
@@ -169,8 +170,8 @@ public class JBrowserOpen extends Dialog
         } catch (InterruptedException _ex) {
         }
         bugReport = new ImageButton("Visite our Sponsors", img1);
-        chandelete = new ImageButton("Delete Channel", img5);
-        addchan = new ImageButton("Add Channel", img6);
+        chandelete = new ImageButton("Delete Url", img5);
+        addchan = new ImageButton("Add Url", img6);
         bold = new ImageButton("Minimize", img7);
         btnbrowlaunch = new ImageButton("Help", img8);
         searchbut = new ImageButton("searchbut", img12);
@@ -309,7 +310,7 @@ public class JBrowserOpen extends Dialog
     public void loadWatchlist() {
         quicklist.removeAll();
         try {
-            FileInputStream fileinputstream = new FileInputStream("cbox/iecanvaz/links.ini");
+            FileInputStream fileinputstream = new FileInputStream("cbox/prefs/links.prfs");
             DataInputStream datainputstream = new DataInputStream(fileinputstream);
             String s;
             while ((s = datainputstream.readLine()) != null)
@@ -324,7 +325,7 @@ public class JBrowserOpen extends Dialog
 
     public void savenewlist() {
         try {
-            FileOutputStream fileoutputstream = new FileOutputStream("cbox/iecanvaz/links.ini");
+            FileOutputStream fileoutputstream = new FileOutputStream("cbox/prefs/links.prfs");
             PrintStream printstream = new PrintStream(fileoutputstream);
             for (int i = 0; i < quicklist.getItemCount(); i++)
                 printstream.println(quicklist.getItem(i));
@@ -342,7 +343,7 @@ public class JBrowserOpen extends Dialog
         try {
             String s = urlEdit.getText();
             quicklist.addItem(s);
-            FileOutputStream fileoutputstream = new FileOutputStream("cbox/iecanvaz/links.ini");
+            FileOutputStream fileoutputstream = new FileOutputStream("cbox/prefs/links.prfs");
             PrintStream printstream = new PrintStream(fileoutputstream);
             for (int i = 0; i < quicklist.getItemCount(); i++)
                 printstream.println(quicklist.getItem(i));
@@ -369,9 +370,9 @@ public class JBrowserOpen extends Dialog
             String s = quicklist.getSelectedItem();
             urlEdit.setText("" + s + "");
             parent.gotoit(urlEdit.getText(), thebrow);
-            return;
+            dispose();
         } else {
-            return;
+            // return;
         }
     }
 

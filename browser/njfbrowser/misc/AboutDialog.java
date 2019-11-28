@@ -29,7 +29,7 @@ public class AboutDialog extends JDialog
         ImageIcon imgdbqbox = new ImageIcon("cbox/images/browlaunch.gif");
 
         JLabel topLabel = new JLabel(parent.aplangstrings.getProperty("text000"), JLabel.CENTER);
-        urlLabel = new JLabel("visit: profitCode Software", imgdbqbox, JLabel.CENTER);
+        urlLabel = new JLabel("tunbleDryCode", imgdbqbox, JLabel.CENTER);
         urlLabel.setForeground(new Color(0, 0, 180));
         urlLabel.addMouseListener(this);
 
@@ -68,7 +68,7 @@ public class AboutDialog extends JDialog
 
     public void mousePressed(MouseEvent mouseevent) {
         if (mouseevent.getSource() == urlLabel) {
-            parent.favs("http://www.profitcode.net");
+            parent.favs("http://www.github.com/tunbleDryCode");
             dispose();
         }
 

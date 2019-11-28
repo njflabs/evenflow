@@ -1,9 +1,6 @@
 package njfbrowser.spreadsheet;
-
-
-// todo:
-// fix the query commands
-
+ 
+ 
 
 import njfbrowser.main.adminApp;
 import njfbrowser.misc.HelpWindow;
@@ -111,6 +108,7 @@ public class DBQueryBox extends JDialog
         File file;
         String list[];
         dbListVector.removeAllElements();
+	currStrDBTitles = "";
         try {
             file = new File(parent.getUfile("cbox/data/dbs/"));
             if (file.isDirectory()) {
@@ -119,6 +117,8 @@ public class DBQueryBox extends JDialog
                     String dbsString = parent.getFileToTitle(list[i]);
 
                     dbsDBQChoice.addItem(dbsString);
+			  currStrDBTitles += dbsString + "::";
+
                 }
             }
 
@@ -165,6 +165,7 @@ public class DBQueryBox extends JDialog
         File file;
         String list[];
         dbListVector.removeAllElements();
+	  currStrDBTitles = "";
         try {
             file = new File(parent.getUfile("cbox/data/dbs/"));
             if (file.isDirectory()) {
@@ -173,21 +174,18 @@ public class DBQueryBox extends JDialog
                     String dbsString = parent.getFileToTitle(list[i]);
 
                     dbsDBQChoice.addItem(dbsString);
+			  currStrDBTitles += dbsString + "::";
                 }
             }
         } catch (Exception ex) {
             parent.setQstatus("Error 156A [DBQueryBox]: \n" + ex.toString(), false);
-            // System.out.println(ex.toString());
+            ex.printStackTrace();
             return;
         }
-        if (justdbs) {
-            System.out.println("just the dbs");
-            //  dbsDBQChoice.select(defaultDBname);
+ 
             loadDBSscheme(dbsDBQChoice.getSelectedItem());
-        } else {
-            loadDBSscheme(dbsDBQChoice.getSelectedItem());
-        }
-//     parent.setDBPrefs(dbsDBQChoice.getSelectedItem());
+ 
+ 
     }
 
 
@@ -627,6 +625,7 @@ public class DBQueryBox extends JDialog
         strngDBQBTempTable = "";
         strngDBQBTempQStrng = ""; // temp query string
         tempDBQBoxResString = ""; // the actual connection stream results given back
+	  currStrDBTitles = "";
         getContentPane().setLayout(new BorderLayout());
         boolDbQBold = false;
         boolminChck = false;
@@ -1173,7 +1172,7 @@ public class DBQueryBox extends JDialog
         // setLocation(50, 100);
 
         loadDBQProps();
-        show();
+        // show();
         addWindowListener(new DBQueryBoxWindowListener());
         System.out.println("loading parent currentDB with DBQueryBox: " + parent.currentDB);
         // checkCurrentDB();
@@ -1414,9 +1413,8 @@ public class DBQueryBox extends JDialog
     }
 
 
-    public void loadDBtblflds(String dbSCname, String curtble) {
-        hide();
-        System.out.println("XX_loadDBtblflds: 1291 - dbSCname: " + dbSCname + " :: curtble: " + curtble);
+    public void loadDBtblflds(String dbTLoadID, String curtble) {
+        // hide();
         dbFieldsAchoice.removeAll();
         dbFieldsBchoice.removeAll();
         dbFieldsCchoice.removeAll();
@@ -1424,10 +1422,11 @@ public class DBQueryBox extends JDialog
         dbCriteriaAfield.setText("");
         dbCriteriaBfield.setText("");
         dbCriteriaCfield.setText("");
+ 	  if(dbTLoadID.equals("555")) { curtble = "DemoTableA"; } // adhoc fix
+        System.out.println("XX_loadDBtblflds: 1291 - dbTLoadID: " + dbTLoadID + " :: curtble: " + curtble);
 
-        // dbSCname =  = parent.getDBID(dbsDBQChoice.getSelectedItem());
         try {
-            FileInputStream fileinputstream = new FileInputStream(parent.getUfile("cbox/data/dbtables/" + dbSCname + "---" + curtble + "---dbtbls.dat"));
+            FileInputStream fileinputstream = new FileInputStream(parent.getUfile("cbox/data/dbtables/" + dbTLoadID + "---" + curtble + "---dbtbls.dat"));
             DataInputStream datainputstream = new DataInputStream(fileinputstream);
             String s;
             while ((s = datainputstream.readLine()) != null) {
@@ -1440,13 +1439,13 @@ public class DBQueryBox extends JDialog
             fileinputstream.close();
         } catch (Exception _ex) {
              System.out.println("loadDBtblflds.ERROR: " + _ex.toString());
-           //  parent.setQstatus("XX_loadDBtblflds: 1291 - dbSCname: " + dbSCname + " :: curtble: " + curtble, false);
+ 
 
             //   parent.setQstatus("Error 1060A [DBQueryBox]: \n" + _ex.toString(), false);
-            show();
+             // show();
             return;
         }
-        show();
+        // show();
         giveThequery(true, false);
         parent.loadnewDBprefs(dbsDBQChoice.getSelectedItem());
         setTipLable("Database: " + dbsDBQChoice.getSelectedItem() + "   ->   Table: " + dbTablesAchoice.getSelectedItem());
@@ -1557,7 +1556,7 @@ public class DBQueryBox extends JDialog
 
             } catch (Exception exception) {
 
-                String fullErrorString = getFullErrString(exception.toString()) + "Output: \n" + s1;
+                String fullErrorString = getFullErrString(exception.toString()) + "Output: \nTry loading this url browser:\n" + s;
 
                 parent.setQstatus(fullErrorString, false);
                 setDBChoice(parent.currentDBTitle, "noQvalue");
@@ -1725,8 +1724,7 @@ public class DBQueryBox extends JDialog
         }
         // getDBlistVector();
         setDBChoice(parent.currentDBTitle, "noQvalue");
-        // getDBQdbs(false);
-        // loadDBSscheme(dbSCname);
+ 
         dbnameDBQField.setText("");
         new alertDialog(parent, parent.aplangstrings.getProperty("text004"));
     }
@@ -1757,7 +1755,7 @@ public class DBQueryBox extends JDialog
             parent.setQstatus(parent.aplangstrings.getProperty("text604"), false);
             return;
         }
-        // System.out.println("dbnameString: " + dbnameString + " :" + "  -  " + ": " + defaultDB);
+        System.out.println("dbnameString: " + dbnameString + " :" + "  -  " + ": " + defaultDB);
 
         dbnameString = dbnameString.trim();
         defaultDB = defaultDB.trim();
@@ -1770,12 +1768,11 @@ public class DBQueryBox extends JDialog
                 File dbfileToDel = new File(parent.getUfile("cbox/data/dbs/" + dbnameString + ".dat"));
 
                 dbfileToDel.delete();
-                // System.out.print(dbfileToDel);
-                // System.out.println(dbfileToDel + "  deleted " + dbfileToDelBool);
+ 
 
             } catch (Exception ex) {
                 parent.setQstatus("Error 1383A [DBQueryBox]: \n" + ex.toString(), true);
-                // return;
+ 
             }
 
             try {
@@ -1875,34 +1872,11 @@ public class DBQueryBox extends JDialog
             parent.aamainprefs.setProperty("prefsDefTableName", dbTablesAchoice.getSelectedItem());
             parent.aamainprefs.setProperty("prefsNumResults", fieldResultLimit.getText());
 
-
-        /* to delete below props file
-	  * moved over to adminApp saveAAPrefs
-
-        	
-        FileOutputStream fileoutputstream = new FileOutputStream(parent.getUfile("cbox/prefs/DBQBox.prfs"));
-        PrintStream printstream = new PrintStream(fileoutputstream);
-        printstream.println("defaultdb = " + parent.currentDBID);
-        printstream.println("defaultDBname = " + dbsDBQChoice.getSelectedItem());
-        printstream.println("minonquery = " + chckbxstring);
-        printstream.println("propDBQBWidth = " + String.valueOf(fW));
-        printstream.println("propDBQBHeight = " + String.valueOf(fH));
-        printstream.println("propDBQBLocationX = " + String.valueOf(pLocX));
-        printstream.println("propDBQBLocationY = " + String.valueOf(pLocY));
-        printstream.close();
-        fileoutputstream.close();
-        }
-        catch(Exception exception)
-        {
-          parent.setQstatus("Error 1524A [DBQueryBox]: \n" + exception.toString(), true);
-          return;
-        }
-
-	 *
-	 * // end of to delete */
+ 
 
         } catch (Exception exception) {
-            parent.setQstatus("Error 1524A [DBQueryBox]: \n" + exception.toString(), true);
+            parent.setQstatus("Error 1525A [DBQueryBox]: \n" + exception.toString(), true);
+	    	exception.printStackTrace();
             return;
         }
 
@@ -2169,6 +2143,9 @@ public class DBQueryBox extends JDialog
         String isDone = "no";
 
 
+        String senced = URLEncoder.encode(s);
+
+        String s1 = parent.hostfolder + "qcomms/qcomms.php?" + parent.userpassString + "&action=runQuery&tablename=" + tname + "&qstring=" + senced;
         try {
 
 
@@ -2183,9 +2160,6 @@ public class DBQueryBox extends JDialog
 
 
 
-        String senced = URLEncoder.encode(s);
-
-        String s1 = parent.hostfolder + "qcomms/qcomms.php?" + parent.userpassString + "&action=runQuery&tablename=" + tname + "&qstring=" + senced;
         parent.setStatusText(s1);
         String s5 = "";
         String s7 = "";
@@ -2286,7 +2260,7 @@ public class DBQueryBox extends JDialog
         } catch (Exception exception) {
 
             String writefstring = "select * from " + tname + ";";
-            String fullErrorString = getFullErrString(exception.toString()) + "Output: \n" + tempDBQBoxResString;
+            String fullErrorString = getFullErrString(exception.toString()) + "Output: \n" + tempDBQBoxResString + "\nTry loading this url browser:\n" + s1;
             // why do this? parent.writeFile(dname, writefstring);
 
             // fullErrorString += "\n\nOUTPUT:" + xmlStr;
@@ -2338,6 +2312,7 @@ public class DBQueryBox extends JDialog
         File file;
         String list[];
         String hasDefDB = "no";
+        currStrDBTitles = "";
         dbListVector.removeAllElements();
         try {
             file = new File(parent.getUfile("cbox/data/dbs/"));
@@ -2349,6 +2324,7 @@ public class DBQueryBox extends JDialog
                         hasDefDB = "yes";
                     }
                     dbsDBQChoice.addItem(dbsString);
+			  currStrDBTitles += dbsString + "::";
                 }
             }
         } catch (Exception ex) {
@@ -2411,6 +2387,7 @@ public class DBQueryBox extends JDialog
         String list[];
         String hasDefDB = "no";
         dbListVector.removeAllElements();
+	  currStrDBTitles = "";
         try {
             file = new File(parent.getUfile("cbox/data/dbs/"));
             if (file.isDirectory()) {
@@ -2421,6 +2398,7 @@ public class DBQueryBox extends JDialog
                         hasDefDB = "yes";
                     }
                     dbsDBQChoice.addItem(dbsString);
+			  currStrDBTitles += dbsString + "::";
                 }
             }
         } catch (Exception ex) {
@@ -2440,17 +2418,7 @@ public class DBQueryBox extends JDialog
 
     public String getFullErrString(String theError) {
 
-/* try loading from locale file
-		String fullErrorString = "We have an error in trying to contact the qcomms.php file\n";
-		fullErrorString += "PLEASE CONFIRM THAT:\n";
-		fullErrorString += "1. You are currently connected to internet.\n";
-		fullErrorString += "2. Your qcomms.php file is located here: " + parent.hostfolder + "qcomms/qcomms.php\n";
-		fullErrorString += "3. The [dbqs] folder is in the [qcomms] folder and is chommed to 777\n\n";
-		fullErrorString += "If you get a [Server redirected] error, check your protected folder username and password.\n\n";
-		fullErrorString += "If you are adding or refreshing database, once confirming steps above, use the DataBase -> Reload Database menu to try again.\n\n";
-		fullErrorString += "Error 2303A [DBQueryBox]: \n" + theError + "\n\n";
-
-*/
+ 
         String fullErrorString = parent.aplangstrings.getProperty("text800", "We have an error in trying to contact the qcomms.php file") + "\n";
         fullErrorString += parent.aplangstrings.getProperty("text801", "PLEASE CONFIRM THAT") + ":\n";
         fullErrorString += "1. " + parent.aplangstrings.getProperty("text802", "You are currently connected to internet") + ".\n";
@@ -2468,135 +2436,13 @@ public class DBQueryBox extends JDialog
 
 
 
-/*
-to delete  !!   organize the properties !! using  saveQMinMaxProp
-
-
-
-    public void setDBQBoxProps(boolean dbtoo)
-    {
-
-    MsgBox message = new MsgBox(parent, parent.aplangstrings.getProperty("text061"), parent.aplangstrings.getProperty("text061") + "    " + parent.aplangstrings.getProperty("text079") + ": " + dbsDBQChoice.getSelectedItem(), true);
-    requestFocus();
-    if (message.id) {     
-      try
-        {
-
-
-
-
-
-        String chckbxstring = "";
-        String defdbString = "";
-        message.dispose();
-        boolean isSel = minChckBx.isSelected();
-        if(isSel) {
-        chckbxstring = "yes";
-        boolminChck = true;
-        } else {
-        chckbxstring = "no";  
-        boolminChck = false;
-        } 
-             
-        if(dbtoo) {
-        defdbString = dbsDBQChoice.getSelectedItem();
-        } else {
-        defdbString = defaultDB; 
-        }  
-
-
-        FileOutputStream fileoutputstream = new FileOutputStream(parent.getUfile("cbox/prefs/DBQBox.prfs"));
-        PrintStream printstream = new PrintStream(fileoutputstream);
-        printstream.println("defaultdb = " + defdbString);
-        printstream.println("minonquery = " + chckbxstring);
-
-
-
-        printstream.close();
-        fileoutputstream.close();
-
-        if(dbtoo) {
-            defaultDB = defdbString;
-            parent.setQstatus(dbsDBQChoice.getSelectedItem() + " " + parent.aplangstrings.getProperty("text061"), false);
-        }
-        }
-        catch(Exception exception)
-        {
-          parent.setQstatus("Error 1572A [DBQueryBox]: \n" + exception.toString(), true);
-          return;
-        }
-       } else {
-      
-        message.dispose();
-       System.out.println("Cancel pressed");
-      }
-   }
-
-
-
-
-// !!!!!!!!!!!!!!!!!! delete this, not used, last database is always shown
-
-    public void saveDefDBProps()
-    {
- 	  System.out.println("XX_saveDefDBProps: 1711");
-    if(dbsDBQChoice.getSelectedItem().trim() == defaultDB) {
-    parent.setQstatus("Error 1457A [DBQueryBox]: \n" + dbsDBQChoice.getSelectedItem() + " " + parent.aplangstrings.getProperty("text206"), false);
-    return;
-    }
-    MsgBox message = new MsgBox(parent, parent.aplangstrings.getProperty("text061"), parent.aplangstrings.getProperty("text061") + "    " + parent.aplangstrings.getProperty("text079") + ": " + dbsDBQChoice.getSelectedItem(), true);
-    requestFocus();
-    if (message.id) {     
-      try
-        {
-        String chckbxstring = "";
-        String defdbString = "";
-        message.dispose();
-        boolean isSel = minChckBx.isSelected();
-        if(isSel) {
-        chckbxstring = "yes";
-        boolminChck = true;
-        } else {
-        chckbxstring = "no";  
-        boolminChck = false;
-        } 
-        defdbString = dbsDBQChoice.getSelectedItem();
-        FileOutputStream fileoutputstream = new FileOutputStream(parent.getUfile("cbox/prefs/DBQBox.prfs"));
-        PrintStream printstream = new PrintStream(fileoutputstream);
-        printstream.println("defaultdb = " + parent.currentDBID);
-        printstream.println("defaultDBname = " + parent.currentDB);
-        printstream.println("minonquery = " + chckbxstring);
-        printstream.close();
-        fileoutputstream.close();
-        defaultDB = defdbString;
-        parent.setQstatus(dbsDBQChoice.getSelectedItem() + " " + parent.aplangstrings.getProperty("text061"), false);
-
-        }
-        catch(Exception exception)
-        {
-          parent.setQstatus("Error 1489A [DBQueryBox]: \n" + exception.toString(), true);
-          return;
-        }
-       } else {
-      
-        message.dispose();
-       System.out.println("Cancel pressed");
-      }
-   }
-
-
-
-
-*/
 
     public void checkBeginner() {
         int idb = dbsDBQChoice.getItemCount();
         try {
             if (idb <= 0) {
-                parent.setQstatus("ha", false);
-
-                // parent.setQstatus(parent.aplangstrings.getProperty("text142") + "\n" + parent.aplangstrings.getProperty("text016") + "\n" + parent.aplangstrings.getProperty("text123"), false);
-                // return;
+                parent.setQstatus(parent.aplangstrings.getProperty("text142") + "\n" + parent.aplangstrings.getProperty("text016") + "\n" + parent.aplangstrings.getProperty("text123"), false);
+		    // show();
             }
         } catch (Exception cbExecption) {
             System.out.println("cbExecption: " + cbExecption.toString());
@@ -2605,6 +2451,11 @@ to delete  !!   organize the properties !! using  saveQMinMaxProp
     }
 
 
+    public String giveStrDBTitles() {
+		String tmpCDBTstr = currStrDBTitles.substring(0, currStrDBTitles.length() - 2);
+        return tmpCDBTstr;
+
+    }
     public void dbqbEnableButtons() {
         btnDBreload.setEnabled(true);
         btnDBsettings.setEnabled(true);
@@ -2747,7 +2598,7 @@ to delete  !!   organize the properties !! using  saveQMinMaxProp
     String strngDBQBTempTable;
     String strngDBQBTempQStrng;
     String tempDBQBoxResString;
-
+    String currStrDBTitles;
     JEditorPane jeditPaneTables;
 
 }
