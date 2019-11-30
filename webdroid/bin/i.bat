@@ -1,2 +1,2 @@
-cmd /k D:\Android\platform-tools\adb install -r D:\www\xampp\htdocs\evenflow\webdroid\bin\evenflowr-debug.apk
+cmd /k D:\Android\platform-tools\adb install -r D:\www\htdocs\evenflow\webdroid\bin\QuickOrder-debug.apk
 

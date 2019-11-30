@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jsmoothproject>
+<JVMSearchPath>javahome</JVMSearchPath>
+<JVMSearchPath>jrepath</JVMSearchPath>
+<JVMSearchPath>exepath</JVMSearchPath>
+<JVMSearchPath>registry</JVMSearchPath>
+<JVMSearchPath>jdkpath</JVMSearchPath>
+<JVMSearchPath>jview</JVMSearchPath>
+<arguments> -cp ".\*;lib\*;.\;org\*;njfbrowser\*"</arguments>
+<currentDirectory>${EXECUTABLEPATH}</currentDirectory>
+<embeddedJar>false</embeddedJar>
+<executableName>..\..\..\browser\adminApp.exe</executableName>
+<iconLocation>..\..\..\browser\cbox\images\logo.gif</iconLocation>
+<initialMemoryHeap>-1</initialMemoryHeap>
+<mainClassName>Launcher</mainClassName>
+<maximumMemoryHeap>-1</maximumMemoryHeap>
+<maximumVersion></maximumVersion>
+<minimumVersion></minimumVersion>
+<skeletonName>Custom Web Download Wrapper</skeletonName>
+<skeletonProperties>
+<key>Message</key>
+<value>Java has not been found on your computer. Do you want to download it?</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>DownloadURL</key>
+<value>http://</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>SingleProcess</key>
+<value>0</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>SingleInstance</key>
+<value>0</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>JniSmooth</key>
+<value>1</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>Debug</key>
+<value>1</value>
+</skeletonProperties>
+</jsmoothproject>

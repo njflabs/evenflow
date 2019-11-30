@@ -25,7 +25,9 @@ edit the quickorder folder and javascript files to use the <strong>app</strong> 
 interface to conect call functions from your android and java-browser apps to enhance your e-commerce site.<br>
 The javascript shoots for backwords compatibility.<br>No functions like <em>
 Promise async await </em>etc, It will rin in IE6+, Android Froyo Webview and up, 
-along with the JavaFX WebView.<br><br><br><strong>- Structure:</strong><br>/browser [main browser app with spreadsheet 
+along with the JavaFX WebView.<br><br><strong>- Build:</strong><br>the build 
+folder is boil/<br>the javafx, ndroid app and web page compression are done from 
+command line.<br>See boil/README.txt<br><br><strong>- Structure:</strong><br>/browser [main browser app with spreadsheet 
 panel]<br>/docs [help docs used mainly for browser - spreadsheet set-up]<br>
 /webdroid [android app]<br>/webdroid/assets/quickorder [android app content and 
 e-commerce webpage]<br>
@@ -96,17 +98,20 @@ saved to text file, etc.cacheing can occur.<br>User Interface is also taken into
 account; product images all loaded in scroll order for mobile devices. The 
 auto-complete website search box delimits the category items while typing, shows 
 last seen, gives suggesrions etc.<br><br>
-<strong>- Changes:<br>-</strong>&nbsp; have been made: the main file was index.php, but due to 
+<strong>- Changes:<br>Feb 30, 2019</strong><br>-&nbsp; boil/ folder added 
+containing pages-scrips-classes to clean and build evenflow project.-<br>-&nbsp; 
+adminApp jar file added. read&nbsp; browser/README for more info.<br>-.. 
+adminApp javafx browser made more user friendly.<br>-&nbsp; README.txt files 
+added to most main project folders. [READ THEM. it may save you tons of time]<br>
+-&nbsp; android main package changed to com.quickorder<br><br>
+<strong>Nov 19, 2019</strong><br>-&nbsp; have been made: the main file was index.php, but due to 
 incompatibility issues with androids webview, it has been renamed to index.html. 
 See the .htaccess file on how AddHandler is used to parse .html extension in 
 php. You can also change your actual php.ini file to do this, but requires more 
 steps.<br>- material icon html tags converted to use numeric reference 
 (compatibility with javafx browser
 <a href="webdroid/assets/quickorder/fonts/materialicons/numerical_vhar_ref.txt">
-see reference here</a>).<br>- For backward copatibility, the javafx 
-browser/spreadsheet app code was compiled and run on java2. Compiling now should 
-be done on java13, but will be using 8 for now; which seems to have major&nbsp; 
-performance over java2. example .bat files included.<br><br>- <strong>
+see reference here</a>).<br><br>- <strong>
 TODO:</strong><br>
 clean up and comment code.<br>clean up the UI.<br>
 <br>- <strong>

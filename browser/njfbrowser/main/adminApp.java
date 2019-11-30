@@ -676,7 +676,7 @@ public class adminApp extends JFrame
 
         tracker = new MediaTracker(this);
         img1 = Toolkit.getDefaultToolkit().getImage(s);
-        img4 = Toolkit.getDefaultToolkit().getImage("cbox/images/buddyb.gif");
+        img4 = Toolkit.getDefaultToolkit().getImage("cbox/images/logo.gif");
         img7 = Toolkit.getDefaultToolkit().getImage("cbox/images/minimiz.gif");
         img8 = Toolkit.getDefaultToolkit().getImage("cbox/images/aa-help.gif");
         img9 = Toolkit.getDefaultToolkit().getImage("cbox/images/irclogo.gif");
@@ -725,7 +725,7 @@ public class adminApp extends JFrame
         bannerbut1 = new ImageButton("Visite our Sponsors", img1);
         bold = new ImageButton("Minimize", img7);
         btnAAhelp = new ImageButton("Helper", img8);
-        irclogo = new ImageButton("BuddyB Irc", img9);
+        irclogo = new ImageButton("adminApp", img9);
         winOntopImg = new ImageButton("winOntop", img22);
         btnDBPan = new ImageIcon("cbox/images/dbpan.gif");
         btnadminPop = new ImageButton("TriBrowser", img26);

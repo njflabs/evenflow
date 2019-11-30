@@ -39,5 +39,5 @@
 -keep class com.njfsoft_utils.shareutil.ShareActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:45
--keep class com.qbits.qBits { <init>(...); }
+-keep class com.quickorder.QuickOrder { <init>(...); }
 
