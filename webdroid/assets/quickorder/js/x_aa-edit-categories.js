@@ -76,30 +76,35 @@ checkNuCatEdit();
 var doSubCLinks = function(theArr) {
 var len = theArr.length;
 var iint = 0;
+var sblen = 0;
+var lastcatID = "";
 ts = null;
+var tmpScatA = {};
 while(iint < len) {
 ts = theArr[iint];
 if(ts.cat_pid == "0") {
 } else {
 nsDv = document.createElement('div');
-nsDv.className = "collection-item txtDecorNone"; 
+nsDv.className = "collection-item txtDecorNone margleft"; 
 
+      if(tmpScatA[ts.cat_pid]) {
 	tmpPA = document.createElement('a');
-
- 
-
 	tmpUSpn = document.createElement("span");
-
-	tmpUSpn.innerHTML = "<i class=\"material-icons\" alt=\"arrow_drop_up\" title=\"arrow_drop_up\">&#xe5c7;</i>";
-
+	tmpUSpn.innerHTML = "<i class=\"material-icons\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
 	tmpPA.appendChild(tmpUSpn);
 	tmpPA.title = "Move Up";
-	tmpPA.className="txtClrDlg txtSmall";
+	tmpPA.className="txtClrDlg txtSmall margleft";
       intTtlUp = Math.round(ts.cat_valb) + 1;
 	tmpPA.href = "javascript:procNuUIitem('qcat','cat_valb','" + ts._id + "','" + intTtlUp + "','astCatEdit');";
-
 	nsDv.appendChild(tmpPA); 
+	} else {
+	tmpUSpn = document.createElement("span");
+	tmpUSpn.innerHTML = "<i class=\"material-icons txtClrWhite\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
 
+	tmpUSpn.className="slmtable margleft";
+	nsDv.appendChild(tmpUSpn); 
+      tmpScatA[ts.cat_pid] = ts._id;
+	}
 
 crMI = "catMI" + ts.cat_pid;
 ptspn = document.getElementById(crMI);
@@ -111,12 +116,8 @@ a.innerHTML = "<span style=\"vertical-align:super\">" + ts.cat_title + "</span>"
 a.title = ts.cat_title;
 a.href = "index.html?pid=aa-edit-category&ppid="+ts._id+"&cid="+ts.cat_coid+"&catid="+ts._id;
 nsDv.appendChild(a);
-
-
-
-
-
 ptspn.appendChild(nsDv);
+sblen++;
 }
 iint++;
 }
@@ -147,6 +148,7 @@ JSSHOP.shared.addCurrSelectOpt(tmpSlct, "0", "Top Main");
 var len = arrToFill.length;
 var iint = 0;
 var pcid = 0;
+var mlen = 0;
 tstr = "";
 while(iint < len) {
 ts = arrToFill[iint];
@@ -155,83 +157,58 @@ currTtlMainMnus++;
 	
       tmpCdiv = document.createElement("div");
 	tmpCdiv.id = "catMI" + ts._id;
-	tmpCdiv.className="clsMenuCats collection-item txtDecorNone brdrVertNone txtBig txtBold";
+	tmpCdiv.className="collection-item";
 
+
+
+      if((mlen > 0) && (iint > 0)) {
 	tmpUSpn = document.createElement("span");
-
-	tmpUSpn.innerHTML = "<i class=\"material-icons\" alt=\"arrow_drop_up\" title=\"arrow_drop_up\">&#xe5c7;</i>";
+	tmpUSpn.innerHTML = "<i class=\"material-icons txtLrg\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
 	tmpPA = document.createElement("a");
-	tmpPA.className="txtClrDlg txtSmall";
+	tmpPA.className="txtDecorNone brdrVertNone txtBold txtClrDlg";
 	tmpPA.appendChild(tmpUSpn);
 	tmpPA.title = "Move Up";
-      intTtlUp = Math.round(ts.cat_valb) + 1;
-	tmpPA.href = "javascript:procNuUIitem('qcat','cat_valb','" + ts._id + "','" + intTtlUp + "','astCatEdit');";
+      intTtlUpOrDown = Math.round(ts.cat_valb) + 1;
+      // intTtlUpOrDown = Math.round(ts.cat_valb) - 1;
+	tmpPA.href = "javascript:procNuUIitem('qcat','cat_valb','" + ts._id + "','" + intTtlUpOrDown + "','astCatEdit');";
 	// tmpPA.className = "collection-item txtDecorNone";
 	tmpCdiv.appendChild(tmpPA); 
-
+	} else {
+	tmpUSpn = document.createElement("span");
+	tmpUSpn.innerHTML = "&nbsp;"
+	tmpUSpn.innerHTML = "<i class=\"material-icons txtLrg txtClrWhite\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
+	tmpUSpn.className="slmtable";
+	tmpCdiv.appendChild(tmpUSpn); 
+	}
 
  	
 	tmpA = document.createElement("a");
-
  
 	tmpA.innerHTML = "<span style=\"vertical-align:super\">" + ts.cat_title + "</span>";
 	// tmpA.title = ts.cat_title;
 	tmpA.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id;
 
-	// tmpA.className = "collection-item txtDecorNone";
+	tmpA.className = "slmtable txtClrHdr txtBold bkgdClrTNrml";
 	tmpCdiv.appendChild(tmpA);
 		 
 	tmpSpn = document.createElement("span");
-
-
-
 
 	tmpCdiv.appendChild(tmpSpn);
 	mainCDiv.appendChild(tmpCdiv);
 
 	JSSHOP.shared.addCurrSelectOpt(tmpSlct, ts._id, ts.cat_title);
 
-
-
-
+	mlen++;
 }  
 tstr += "<tr>";
 tstr += "<td><a href=\"index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id + "\" class=\"txtBig txtBold\">" + ts.cat_title + "</a></td>";
 tstr += "</tr>";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 iint++;
 }
 
-
-
 doSubCLinks(currMenuArr);
-
-
-
-
-
-/*
-if(ppid == 0) {
-newel = document.createElement('div');
-strTHhtml = "<th>Categoria</th>";
-tmpFstr = getTblSortStr(strTHhtml, tstr);
-document.getElementById("dvMainOut").innerHTML = tmpFstr;
-// standardistaTableSortingInit();
-}
-*/
+ 
 };
  
  

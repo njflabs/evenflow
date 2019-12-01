@@ -229,7 +229,6 @@ var doItemDelete = function(theElem, qid, theRid) {
     tmpVitemArr = null;
     tmpVitemArr = narr;
     JSSHOP.ui.setCBBClickClr(dvCartItems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){JSSHOP.ui.closeLbox()});
-
     procNuUIitem("qcartitem","ci_rtype",qid,"0","renderNuTQBItems") 
  
 };
@@ -238,10 +237,15 @@ var doItemDelete = function(theElem, qid, theRid) {
 var fnishClearCart = function(thefCCObj,b,c) {
 alert("fnishClearCart: " + b);
 newel = document.createElement('div');
-newel.innerHTML = "Cart Cleared";
+newel.innerHTML = "Cart Cleared<br>";
+newel.innerHTML += "<div>" + stxt[34] + "</div>";
+newel.innerHTML += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+
 tmpTDQI = document.getElementById(thefCCObj);
 tmpTDQI.innerHTML = "";
 tmpTDQI.appendChild(newel);
+JSSHOP.ui.toggleVisibility("dvBtnsCart");
+
 };
 
 

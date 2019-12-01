@@ -93,5 +93,6 @@ JSSHOP.shared.initFrmComps(euiFFObjArr);
 // JSSHOP.shared.setDynFieldVals(arrAllForms.qco.v[0],"tmp_");
 
 JSSHOP.shared.setDynFrmVals(document["qco"], "tmp_");
+return dmyFnishCntLoad;
 };
  

@@ -16,8 +16,8 @@ ts = arrToFill[iint];
 tstr += "<tr>";
 // tstr += "<td>" + ts._id + "</td>";
 tstr += "<td><a href=\"index.html?pid=aa-edit-shop&cid=" + ts._id + "\">" + ts.c_title + "</a></td>";
-tstr += "<td>&nbsp;&nbsp;&nbsp;</td>";
-tstr += "<td><a href=\"index.html?pid=aa-edit-categories&cid=" + ts._id + "\">" + stxt[31] + "</a></td>";
+tstr += "<td style=\"min-width: 38px;\" class=\"txtClrHdr\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+tstr += "<td class=\"txtClrHdr\"><i class=\"small-material-icons txtClrDlg smltable\" alt=\"edit\" title=\"edit\">&#xe3c9;</i><a href=\"index.html?pid=aa-edit-categories&cid=" + ts._id + "\"><span  style=\"vertical-align:super;margin-left: 10px\" class=\"txtBold\">" + stxt[31] + "</span></a></td>";
 // tstr += "<td><a href=\"index.html?pid=aa-edit-shop&cid=" + ts._id + "\">" + ts.c_title + "</a></td>";
 
 tstr += "</tr>";
@@ -26,7 +26,8 @@ iint++;
 newel = document.createElement('div');
 
 if(arrToFill[0]) {
-strTHhtml = "<th>" + stxt[22] + "</th><th></th><th>" + stxt[32] + "</th>";
+strTHhtml = "<th><span style=\"margin-right: 10px; margin-top: 10px\" class=\"txtBold\"><i class=\"menu-material-icons\">&#xe264</i></span>" + stxt[22] + "</th><th></th>";
+strTHhtml += "<th><span style=\"margin-right: 10px; margin-top: 10px\" class=\"txtBold\"><i class=\"menu-material-icons\">&#xe896</i></span>" + stxt[32] + "</th>";
 } else {
 document.location.href = "index.html?pid=aa-add-shop";
 // strTHhtml = "<th>" + stxt[1] + "</th>";

@@ -173,9 +173,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\settings.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\show.php \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\speech_editor.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\tplates \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-custom-font-styles.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-main.css \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-materialize.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-normalize.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-standardista-style.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_admn.css \
@@ -183,9 +181,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_dev.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_forms.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_japp.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_nav.css \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\custom-font-styles.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\main.css \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\materialize.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\normalize.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\standardista-style.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\x_admn.css \

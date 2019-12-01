@@ -1941,11 +1941,13 @@ tmpUrl = getCurrUrl();
 if(tmpUrl == "noQvalue") {
 } else {
 currUrlArr = JSSHOP.shared.urlToArray(tmpUrl); 
-if(currUrlArr.fc) {
+
+// adding variable fc [index.html?...&fc=y] to end of url
+// forces refreshing cache and using non compressed .js files.
+if(currUrlArr.fc){
 forceCache = currUrlArr.fc;
+jscssprefix = ""; // null the .js file prefix. use normal js files.
 }
-
-
 if(currUrlArr.pid){
 pid = currUrlArr.pid;
 }
