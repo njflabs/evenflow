@@ -351,7 +351,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
     boolean CURR_SHOW_WEB_IMAGES = Boolean.parseBoolean(currConfBundle.getString("confShowWebImgs"));
     mWebView.getSettings().setLoadsImagesAutomatically(CURR_SHOW_WEB_IMAGES);
     mWebView.getSettings().setSupportZoom(true);
-    mWebView.getSettings().setBuiltInZoomControls(true);
+    // mWebView.getSettings().setBuiltInZoomControls(true);
     // mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     // avoids flickering
     mWebView.setBackgroundColor(Color.parseColor("#FFFFFF"));

@@ -15,6 +15,7 @@ D:\www\htdocs\evenflow\webdroid\res\drawable\an_drag9.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\balloon.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\bmplogo.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\bob.png \
+D:\www\htdocs\evenflow\webdroid\res\drawable\browlaunch.gif \
 D:\www\htdocs\evenflow\webdroid\res\drawable\camera_crop_height.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\camera_crop_width.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\com_njfsoft_utils_cropimage_crop_height.png \

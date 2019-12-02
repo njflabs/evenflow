@@ -249,8 +249,8 @@ public class UtilWebView extends WebView {
 
 
         btnGotoUrl = (Button) mBrowserFrameLayout.findViewById(R.id.btn_gotourl);
-        btnGotoUrl.setTextColor(Color.parseColor("#000000"));
-        btnGotoUrl.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        btnGotoUrl.setTextColor(Color.parseColor("#FFFFFF"));
+        btnGotoUrl.setBackgroundColor(Color.parseColor("#000000"));
         String[] fullBlist;
         panBtnsWebView = (RelativeLayout) mBrowserFrameLayout.findViewById(R.id.rLayoutWVbtns);
  	 //  panBtnsWebView.setBackgroundColor(Color.argb(7,220,220,220));	
@@ -457,7 +457,7 @@ public class UtilWebView extends WebView {
        //  boolean CURR_SHOW_WEB_IMAGES = Boolean.parseBoolean(currConfBundle.getString("confShowWebImgs"));
        //  webSettings.setLoadsImagesAutomatically(CURR_SHOW_WEB_IMAGES);
 
-        webSettings.setBuiltInZoomControls(false);
+        webSettings.setBuiltInZoomControls(true);
 	  // webSettings.setPluginsEnabled(true);
  
 	  webSettings.setDomStorageEnabled(true);
