@@ -15,7 +15,7 @@ D:\www\htdocs\evenflow\webdroid\res\drawable\an_drag9.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\balloon.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\bmplogo.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\bob.png \
-D:\www\htdocs\evenflow\webdroid\res\drawable\browlaunch.gif \
+D:\www\htdocs\evenflow\webdroid\res\drawable\browlaunch.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\camera_crop_height.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\camera_crop_width.png \
 D:\www\htdocs\evenflow\webdroid\res\drawable\com_njfsoft_utils_cropimage_crop_height.png \
@@ -112,6 +112,7 @@ D:\www\htdocs\evenflow\webdroid\bin\res\drawable\an_drag9.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\balloon.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\bmplogo.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\bob.png \
+D:\www\htdocs\evenflow\webdroid\bin\res\drawable\browlaunch.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\camera_crop_height.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\camera_crop_width.png \
 D:\www\htdocs\evenflow\webdroid\bin\res\drawable\com_njfsoft_utils_cropimage_crop_height.png \
@@ -214,11 +215,13 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\checked_g.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\checked_r.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\delete_r.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\example.png \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\favicon.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\favorited_g.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\favorited_r.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\help_r.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\history_g.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\history_r.gif \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\icons_help.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\img4.jpg \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\img6.jpg \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\lists_r.gif \
@@ -244,7 +247,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\svg\settings.png \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-aa-en_us.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-aa-pt_pt.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-app_all.js \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-jq.min.js \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-helpstrings_en_us.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-json_parse.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-js_actb.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-js_actb_fwb.js \
@@ -301,7 +304,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_speech_editor.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\aa-en_us.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\aa-pt_pt.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\app_all.js \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\jq.min.js \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\helpstrings_en_us.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\json_parse.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\js_actb.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\js_actb_fwb.js \

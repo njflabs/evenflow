@@ -1,17 +1,17 @@
 if (!window.JSSHOP) {
-    JSSHOP = new Object();
+    var JSSHOP = new Object();
 }
 if (!window.JSSHOP.ajax) {
     JSSHOP.ajax = new Object();
 }
 if (!window.JSSHOP.hookloader) {
-    JSSHOP.hookloader = new Object();
+     JSSHOP.hookloader = new Object();
 }
 if (!window.JSSHOP.jndroid) {
     JSSHOP.jndroid = new Object();
 }
 if (!window.JSSHOP.shared) {
-    JSSHOP.shared = new Object();
+     JSSHOP.shared = new Object();
 }
 if (!window.JSSHOP.ui) {
     JSSHOP.ui = new Object();
@@ -1238,6 +1238,30 @@ JSSHOP.hookloader.call = function(name, arguments) {
 
 
 
+JSSHOP.ui.showPopHelp = function(){
+try {
+tmpHlpD = document.createElement('div');
+tmpHlpD.innerHTML = hlpT["aa-show-item"];
+JSSHOP.ui.popAndAppendLbox(tmpHlpD,"y");
+} catch(e) {
+alert("no help");
+}
+ 
+};
+
+
+
+JSSHOP.ui.getPopHelp = function(tmpHlpStr){
+try {
+if(hlpT.default) {
+JSSHOP.ui.showPopHelp();
+}
+} catch(e) {
+tmpGetHCO = "js/" + jscssprefix + "helpstrings_" + usrlang + ".js?"; // help-arr url
+JSSHOP.loadScript(tmpGetHCO, JSSHOP.ui.showPopHelp,"js");
+}
+ 
+};
 
 
 JSSHOP.ui.textAreaAdjust = function(theTarea){
@@ -1690,6 +1714,18 @@ JSSHOP.ui.stopEvent = function(evt){
 	}
 	return false;
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

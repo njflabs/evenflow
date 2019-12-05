@@ -20,7 +20,14 @@ var isJApp = "no";
 var isJavaFx = "no";
 var dw = function(theElem, tStr) { theElem.innerHTML = tStr; };
 var nuDW = function(theElem) { 
-if(theElem.getAttribute("data-ison") != null) {
+if(theElem.getAttribute("data-isscript") != null) {
+try {
+tDison = theElem.getAttribute("data-isscript");
+eval(tDison);
+} catch(e) {
+alert(e);
+}
+} else if(theElem.getAttribute("data-ison") != null) {
 try {
 tDison = theElem.getAttribute("data-ison");
 theElem.innerHTML = eval(tDison);
@@ -140,7 +147,7 @@ include "_p/js-header.php";
 <table  class="clsDvCntntTtle" width="100%" cellspacing="0"><tr>
 	<td><span class="onlySmallScreen"><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.html?pid=aa-edit-categories&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a></span>
 				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px">
-	<ti data-ison="currPgTitle" data-desc="title_bar"></td>
+	<ti data-ison="currPgTitle" data-desc="title_bar"></ti></td>
 	<td align="right"><table class="onlySmallScreen"><tr><td>
 				 
   <a class="btn txtBold" href="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" style="text-transform:none"><ti data-ison="stxt[62]" data-desc="btn_more">More</ti></a>

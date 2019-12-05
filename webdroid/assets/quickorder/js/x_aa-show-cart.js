@@ -235,7 +235,7 @@ var doItemDelete = function(theElem, qid, theRid) {
  
 
 var fnishClearCart = function(thefCCObj,b,c) {
-alert("fnishClearCart: " + b);
+// alert("fnishClearCart: " + b);
 newel = document.createElement('div');
 newel.innerHTML = "Cart Cleared<br>";
 newel.innerHTML += "<div>" + stxt[34] + "</div>";

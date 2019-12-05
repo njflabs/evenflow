@@ -1,4 +1,3 @@
-
 stxt[1] = "Add new Shop";
 stxt[2] = "Click on one to create or edit your shop categories";
 stxt[3] = "Edit Menu";
@@ -69,6 +68,7 @@ stxt[67] = "Show Item";
 stxt[68] = "Shop Settings";
 stxt[69] = "Copy Item";
 stxt[70] = "Add";
+stxt[71] = "Help";
 
 // items and categories
 stxt[500] = "Add New Category";

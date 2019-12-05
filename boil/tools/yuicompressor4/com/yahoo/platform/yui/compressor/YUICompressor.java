@@ -190,7 +190,7 @@ public class YUICompressor {
                         }
 
                     } else if (type.equalsIgnoreCase("css")) {
-
+                        try {
                         CssCompressor compressor = new CssCompressor(in);
 
                         // Close the input stream first, and then open the output stream,
@@ -204,6 +204,15 @@ public class YUICompressor {
                         }
 
                         compressor.compress(out, linebreakpos);
+                        } catch (EvaluatorException e) {
+                           System.err.println("\n[ERROR] compressing file: " + inputFilename);
+				 saveTextString(readFileAsString(inputFilename), outputFilename);
+                            e.printStackTrace();
+                            // Return a special error code used specifically by the web front-end.
+                            //   System.exit(2);
+
+                        }
+                      
                     }
 
                 } catch (IOException e) {

@@ -394,6 +394,15 @@ var doCollsLoad = function() {
 
 tmpMCollItem = null;
 tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:JSSHOP.ui.getPopHelp('page');";
+tmpMCollItem["mi"] = "&#xe887;"; // help
+tmpMCollItem["ti"] = stxt[71];
+tmpMCollItem["c"] = "collection-item";
+currMCollItems["aa-show-help"] = tmpMCollItem;
+
+
+tmpMCollItem = null;
+tmpMCollItem = {};
 tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-item&cid=" + cid + "&catid=" + catid + "'";
 tmpMCollItem["mi"] = "&#xe145;"; // add
 tmpMCollItem["ti"] = stxt[17];
@@ -641,6 +650,7 @@ currMCollArr.push("aa-settings");
 currMCollArr.push("aa-edit-user");
 currMCollArr.push("recent")
 currMCollArr.push("aa-add-shop");
+
 break;
 }
 
@@ -660,6 +670,7 @@ currMCollArr.push("aa-login");
 } else {
 currMCollArr.push("aa-logout");
 }
+currMCollArr.push("aa-show-help");
 tmpStrbla = ""; 
 tmpStrAdmnM = "";
 iti = 0; 
