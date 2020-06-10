@@ -888,6 +888,7 @@ JSSHOP.shared.setChckbxPref = function(tChckbx, tPrefArr, tPrefKey, tVsel, tVuns
     JSSHOP.user.setCkiePrfKV(tPrefArr,tPrefKey,tVunsel);
     }
     } catch (e) {
+	alert(e);
         JSSHOP.logJSerror(e, arguments, "JSSHOP.shared.setChckbxPref");
     }
 };
@@ -1238,27 +1239,64 @@ JSSHOP.hookloader.call = function(name, arguments) {
 
 
 
-JSSHOP.ui.showPopHelp = function(){
+JSSHOP.ui.showPopHelp = function(tmpHlpKey){
 try {
 tmpHlpD = document.createElement('div');
-tmpHlpD.innerHTML = hlpT["aa-show-item"];
+if(hlpT[tmpHlpKey] && hlpC[tmpHlpKey]){
+tmpHlpD.innerHTML = "<b>" + hlpT[tmpHlpKey] + "</b><br><br>" + hlpC[tmpHlpKey];
+} else {
+tmpHlpD.innerHTML = hlpT["default"] + " key: "  + tmpHlpKey;
+}
 JSSHOP.ui.popAndAppendLbox(tmpHlpD,"y");
 } catch(e) {
-alert("no help");
+alert("no JSSHOP.ui.showPopHelp: " + e);
 }
  
 };
 
 
 
-JSSHOP.ui.getPopHelp = function(tmpHlpStr){
+
+JSSHOP.ui.showNPopHelp = function(){
 try {
-if(hlpT.default) {
-JSSHOP.ui.showPopHelp();
+
+tmpHlpD = document.createElement('div');
+if(hlpT[currHlpKey] && hlpC[currHlpKey]){
+tmpHlpD.innerHTML = "<b>" + hlpT[currHlpKey] + "</b><br><br>" + hlpC[currHlpKey];
+} else {
+tmpHlpD.innerHTML = hlpT["default"] + " key: "  + currHlpKey;
 }
+JSSHOP.ui.popAndAppendLbox(tmpHlpD,"y");
 } catch(e) {
+alert("no showPopHelp: " + e);
+}
+ 
+};
+
+
+
+JSSHOP.ui.setNPopHelp = function(){
+ try {
+setTimeout("JSSHOP.ui.showNPopHelp()", 1080);
+} catch(e) {
+alert("no setPopHelp : " + e);
+}
+};
+
+var currHlpKey = "page";
+
+JSSHOP.ui.getPopHelp = function(tmpHlpStr){
+if(tmpHlpStr == "page") {
+tmpHlpStr = pid;
+}
+try {
+tmpv = hlpT.default;
+JSSHOP.ui.showPopHelp(tmpHlpStr);
+} catch(e) {
+// alert("no getPopHelp : " + e);
+currHlpKey = tmpHlpStr;
 tmpGetHCO = "js/" + jscssprefix + "helpstrings_" + usrlang + ".js?"; // help-arr url
-JSSHOP.loadScript(tmpGetHCO, JSSHOP.ui.showPopHelp,"js");
+JSSHOP.loadScript(tmpGetHCO, JSSHOP.ui.setNPopHelp,"js");
 }
  
 };
@@ -1462,7 +1500,6 @@ JSSHOP.logJSerror(e, arguments, "JSSHOP.ui.deleteRow");
 
 
 JSSHOP.ui.popAndAppendLbox = function(theFill, clearLB) {
-spinner.stop();
 try {
 tmpLbox = document.getElementById('lightbox');
 tmpLCbox = document.getElementById('lightbox_content');
@@ -1495,13 +1532,14 @@ JSSHOP.logJSerror(e, arguments, "JSSHOP.popAndAppendLbox");
 
 
 JSSHOP.ui.popAndFillLbox = function(theFill) {
-spinner.stop();
+// spinner.stop();
 try {
 tmpLbox = document.getElementById('lightbox');
 tmpLCbox = document.getElementById('lightbox_content');
 tmpLbox.style.display='inline';
 if(theFill == "noQvalue") {
-} else if(theFill == "trans") {
+} else if(theFill == "dbug") {
+tmpLCbox.innerHTML= "<div style=\"overflow:auto;min-height: 231px; min-width: 368px\"  contenteditable=\"true\">" + currDBUGstr + "</div>";
 // tmpLCbox.className = "lightbox_table";
 } else {
 tmpLCbox.innerHTML=theFill;
@@ -1912,16 +1950,36 @@ JSSHOP.shop.getPrdImgStr = function(tTAnme, tmpVala){
 		}
 		if(isPhP == "no") {
 
- 		if((tmpVala.indexOf(".gif") != -1) && (tTAnme == "prodpg")) {
+ 		if(tmpVala.indexOf(".gif") != -1) {
+
+		if(tTAnme == "prdmedia") {
+		tmpEstr = app.doThmbStr(tmpVala);
+		document.getElementById("fldChallArray").value = tmpEstr;
+		fullIstr = document.getElementById("fldChallArray").value;
+		retIstrI = "data:image/jpeg;base64, " + fullIstr;
+            } else {
 		tmpEstr = app.doGifStr(tmpVala);
 		document.getElementById("fldChallArray").value = tmpEstr;
 		fullIstr = document.getElementById("fldChallArray").value;
 		retIstrI = "data:image/gif;base64, " + fullIstr;
+		}
+
 		} else if(tmpVala.indexOf(".mp4") != -1) {
+
+		if(tTAnme == "prdmedia") {
+		tmpEstr = app.doThmbStr(tmpVala);
+		document.getElementById("fldChallArray").value = tmpEstr;
+		fullIstr = document.getElementById("fldChallArray").value;
+		retIstrI = "data:image/jpeg;base64, " + fullIstr;
+
+            } else {
+ 
 		tmpEstr = app.doGifStr(tmpVala);
 		document.getElementById("fldChallArray").value = tmpEstr;
 		fullIstr = document.getElementById("fldChallArray").value;
 		retIstrI = "data:video/mp4;base64, " + fullIstr;
+		}
+
 		} else {
 		tmpEstr = app.doThmbStr(tmpVala);
 		document.getElementById("fldChallArray").value = tmpEstr;
@@ -2015,7 +2073,7 @@ try {
     oi = getNuDBFnvp("qmedia", 5, null, tmpDOs);
     doQComm(oi["rq"], null,tmpGPMCB); 
 } catch(e) {
-alert("setCatPrdImgs " + e);
+alert("JSSHOP.shop.getPrdMedia: " + e);
 }
 };
  
@@ -2245,6 +2303,7 @@ JSSHOP.jndroid.doPagePopUp = function(theUrl, theHTML) {
 	try {
 	app.doPagePopUp(theUrl, theHTML);
 } catch(e) {
+alert(e);
 JSSHOP.logJSerror(e, arguments, "JSSHOP.jndroid.doPagePopUp");
 }
 };
@@ -2264,3 +2323,10 @@ alert(e);
 };
 
 
+JSSHOP.jndroid.doCutOuts = function() {
+try {
+app.getCutOuts();
+} catch(e) {
+alert("Camera functions only work with our android app and: " + e);
+}
+};

@@ -34,6 +34,7 @@ import android.graphics.Paint;
 import android.graphics.Color;
 import android.media.ExifInterface;
 import android.media.MediaPlayer;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -93,6 +94,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -118,6 +120,7 @@ import com.njfsoft_utils.anim.AnimMovSingleton;
 import com.njfsoft_utils.core.StringUtils;
 import com.njfsoft_utils.core.SpaceTokenizer;
 import com.njfsoft_utils.core.Base64;
+
 import com.njfsoft_utils.cutOuts.CutOuts;
 import com.njfsoft_utils.dbutil.UtilDbRecord;
 import com.njfsoft_utils.dbutil.UtilSQLAdapter;
@@ -139,7 +142,7 @@ import org.json.JSONObject;
 
 
 import com.jwetherell.quick_response_code.CaptureActivity;
-
+import com.jwetherell.quick_response_code.DecoderActivity;
 
 
 public class QuickOrder extends Activity implements
@@ -176,6 +179,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
  String strHomeUrl = "file:///android_asset/quickorder/index.html";
  String currHomeUrl = strHomeUrl;
  String currShareUrl = strHomeUrl;
+ String currScanType;
  private final String strSettingsSaved = "Settings saved.";
  static final int CAMERA_REQUEST = 3;
  static final int GALLERY_REQUEST = 4;
@@ -247,8 +251,8 @@ RecognitionListener, TextToSpeech.OnInitListener {
  public final int SPK_CMND_WHATSAPP = 23;
 
 
-
-
+ String currQIMeta;
+ String currFFetchMode;
  String currPopPageUrl;
  String currPopPageHtml;
 
@@ -267,6 +271,9 @@ RecognitionListener, TextToSpeech.OnInitListener {
   currConfBundle = getConfBundle();
   currPopPageUrl = "noQvalue";
   currPopPageHtml = "noQvalue";
+  currFFetchMode = "file";
+
+  currScanType = "add";
   int CURR_SCREEN_ORIENT = currConfBundle.getInt("confScreenOrient", 0);
   setContentView(R.layout.com_ezflyr_mains);
   cServiceListener = new ServiceListener() {
@@ -285,7 +292,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    }
   };
 
-  initEFui();
+
   isSpeaking = "no";
 
 
@@ -318,13 +325,15 @@ RecognitionListener, TextToSpeech.OnInitListener {
   stringUtils = new StringUtils();
   mHandler = new Handler();
   dbMSQLA = new UtilSQLAdapter(this);
-  preparePagePopUps("blank.html", "noQvalue");
+  preparePagePopUps("quickorder/blank.html", "noQvalue");
   currStoryID = 0;
   currStoryType = 50;
   currPageVars = "noQvalue";
   currAQRstring = "noQvalue";
   currFileName = "noQvalue.jpeg";
+  currQIMeta = "noQvalue";
   mediaStorageDir = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order");
+ 
  }
 
 
@@ -333,6 +342,9 @@ RecognitionListener, TextToSpeech.OnInitListener {
   try {
    if (mScrollView == null) {
     mScrollView = (ScrollView) QuickOrder.this.findViewById(R.id.scrlEditText);
+   }
+   if (dbMSQLA == null) {
+  dbMSQLA = new UtilSQLAdapter(this);
    }
    if (mWebView == null) {
     UtilWebView.UtilWVListener tWVListener = new UtilWebView.UtilWVListener() {
@@ -345,12 +357,16 @@ RecognitionListener, TextToSpeech.OnInitListener {
     mWebView = new UtilWebView(this, this, currHomeUrl, "noQvalue", tWVListener, new JSI_quickOrder(this), "app");
     mWebView.getSettings().setJavaScriptEnabled(true);
     mWebView.clearSslPreferences();
+
     // mWebView.enablePlatformNotifications();
     mWebView.addJavascriptInterface(new JSI_quickOrder(this), "app");
-    mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+    // mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+	mWebView.setInitialScale(1);
+        mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
     boolean CURR_SHOW_WEB_IMAGES = Boolean.parseBoolean(currConfBundle.getString("confShowWebImgs"));
     mWebView.getSettings().setLoadsImagesAutomatically(CURR_SHOW_WEB_IMAGES);
-    mWebView.getSettings().setSupportZoom(true);
+    // mWebView.getSettings().setSupportZoom(true);
     // mWebView.getSettings().setBuiltInZoomControls(true);
     // mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     // avoids flickering
@@ -379,22 +395,31 @@ RecognitionListener, TextToSpeech.OnInitListener {
  public void onRestoreInstanceState(Bundle savedInstanceState) {
   super.onRestoreInstanceState(savedInstanceState);
   strHomeUrl = savedInstanceState.getString("lurl");
+ 	
  }
  @Override
  public void onSaveInstanceState(Bundle savedInstanceState) {
   super.onSaveInstanceState(savedInstanceState);
   savedInstanceState.putString("lurl", mWebView.getAddressUrl());
+
   // etc.
  }
+
+
+
  @Override
  protected void onPause() {
   super.onPause();
-  // strHomeUrl = mWebView.getAddressUrl(); 
+  strHomeUrl = mWebView.getAddressUrl(); 
  }
+
+
+
+
  @Override
  public void onResume() {
   super.onResume();
-  // currHomeUrl = strHomeUrl;
+  currHomeUrl = strHomeUrl;
   Intent intent = getIntent();
   String action = intent.getAction();
   String type = intent.getType();
@@ -506,6 +531,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 // need get back to this. mostly used for media-fetching and editing, and speech functions.
  @Override
  protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+     System.out.println("onActivityResult.resultCode:  " + resultCode);
   switch (requestCode) {
    case (2):
     if (resultCode == Activity.RESULT_OK) {
@@ -562,42 +588,81 @@ RecognitionListener, TextToSpeech.OnInitListener {
     break;
 
    case (333):
+  
 
-     AnimMovSingleton tmpIRAMS = AnimMovSingleton.getInstance();
-     if (tmpIRAMS != null) {
-     currFileName = tmpIRAMS.getIMovName() + "." + tmpIRAMS.getIMovType();
- 
-     }
-	String tmpMUstr = mWebView.getAddressUrl();
-	if (tmpMUstr.startsWith("file://")) {
- 
+       String tcurrMovType = "noQvalue";
+       String tcurrMovFName = "noQvalue";
+       String tcurrMovUri = "noQvalue";
+       String tcurrMovPath = "noQvalue";
 
  
-    if ((currFileName.indexOf(".gif") != -1) || (currFileName.indexOf(".mp4") != -1)) {
-	
-     mWebView.loadUrl("javascript:appFnshImgUload('" + currFileName + "','" + getThmbStr(currFileName) + "');");
-     AnimMovSingleton tmpAMS = AnimMovSingleton.getInstance();
-     if (tmpAMS != null) {
-      mWebView.loadUrl("javascript:JSSHOP.logJSdbug('onActivityResult', 'nada', 'sum: " + tmpAMS.getMamsArrAFS().size() + "');");
-     }
-    } else {
+
+
+
+
+    	System.out.println("QuickOrder.onActivityResult:333 resultCode :  " + resultCode);
+    if ((resultCode == Activity.RESULT_OK) || (resultCode == 0)) {
+    	System.out.println("QuickOrder.onActivityResult:333 Activity.RESULT_OK:  ");
      try {
-      byte[] sdrbset = getShareImgBytes();
-      JSONArray aresultSet = jarrFileSaved(sdrbset, currFileName);
-      mWebView.loadUrl("javascript:appFnshImgUload('" + currFileName + "','" + aresultSet.get(1) + "');");
-     } catch (Exception e) {
-      System.out.println("Cutouts.onActivityResult.error : " + e.toString());
-      e.printStackTrace();
-     }
-    }
+	String tmpThmbstring = "noQvalue";
+
+	      Bundle aextras = data.getExtras();
+        if (aextras != null && aextras.containsKey("currMovUri")) {
+	tcurrMovUri = aextras.getString("currMovUri");
+
+      if (aextras.containsKey("currMovType")) {
+	tcurrMovType = aextras.getString("currMovType");
+	}
+      if (aextras.containsKey("currMovFName")) {
+	tcurrMovFName = aextras.getString("currMovFName");
+	}
+      if (aextras.containsKey("currMovPath")) {
+	tcurrMovPath = aextras.getString("currMovPath");
+	}
+      currFileName = tcurrMovFName + "." + tcurrMovType;
+       System.out.println("QuickOrder.onActivityResult.currFileName AEXTRAS: " + currFileName);
+
 
 	} else {
-      File ffile = new File(mediaStorageDir, currFileName);
-      Uri daUri = getImageContentUri(getApplicationContext(), ffile);
-      mUploadMessage.onReceiveValue(daUri);
-      mUploadMessage = null;
+	Uri bcurrMovUri = data.getData();
+	tcurrMovUri = bcurrMovUri.toString();
+	tcurrMovPath = bcurrMovUri.getPath();	
+			  String aresult = "noQvalue";
+			  String nresult = "noQvalue";	        
+
+    int cut = tcurrMovPath.lastIndexOf('/');
+    if (cut != -1) {
+      aresult = tcurrMovPath.substring(cut + 1);
+    int fcut = aresult.indexOf(".");
+    if (fcut != -1) {
+      tcurrMovFName = aresult.substring(0, fcut);
+	tcurrMovType =  aresult.substring(fcut + 1);
 	}
-    System.out.println("Cutouts.onActivityResult:  " + currFileName + " :: " + getShareImgName() + " :: " + getShareImgExt());
+    }
+
+      currFileName = tcurrMovFName.trim() + "." + tcurrMovType.trim();
+       System.out.println("QuickOrder.onActivityResult.currFileName: " + currFileName);
+	// tmpThmbstring = getUriThmbStr(tcurrMovUri);
+
+ 	}
+	tmpThmbstring = getThmbStr(currFileName.trim());
+	String tmpMUstr = mWebView.getAddressUrl();
+
+
+	if (tmpMUstr.startsWith("file://")) {
+       mWebView.loadUrl("javascript:appFnshImgUload('" + currFileName + "','" + tmpThmbstring + "');");
+	} else {
+      mUploadMessage.onReceiveValue(Uri.parse(tcurrMovUri));
+	}
+     } catch (Exception e) {
+      System.out.println("QuickOrder.onActivityResult: " + e.toString());
+      e.printStackTrace();
+     }
+
+	} else {
+      System.out.println("QuickOrder.onActivityResult: CANCELED");
+	}
+
     break;
 
 
@@ -644,7 +709,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
     }
     break;
    case (111):
-    if (resultCode == Activity.RESULT_OK) {
+    if ((resultCode == Activity.RESULT_OK) || (resultCode == 0)) {
      try {
       Bundle aextras = data.getExtras();
       System.out.println("onActitivyResult[111] OK");
@@ -671,20 +736,38 @@ RecognitionListener, TextToSpeech.OnInitListener {
     }
     break;
    case (11):
-    if (resultCode == Activity.RESULT_OK) {
+
+     if ((resultCode == Activity.RESULT_OK) || (resultCode == 0)) {
+      System.out.println("onActivityResult.case (11)");
+      // System.out.println("onActivityResult.data: " + ShareDataResult.getInstance().getData());
      try {
-      String strRecValC = data.getStringExtra("encdBmp").toString();
-      System.out.println("onActivityResult: " + strRecValC);
-      currAQRstring = strRecValC;
-      // mWebView.loadlclUrl("javascript:transRes('" + strRecValC + "');");
-      // doLoadLclUrl("quickorder/show.php");
-      mWebView.loadUrl("javascript:alert('" + currAQRstring + "');");
+
+        if (data.getExtras() != null) {
+       Bundle qrextras = data.getExtras();
+      if (qrextras.containsKey("qrresults")) {
+	String tmpQRstr = qrextras.getString("qrresults");
+      System.out.println("onActivityResult.data: " + tmpQRstr);
+	if(currScanType.equals("search")) {
+      // doLoadLclUrl("quickorder/index.html?pid=aa-show-search&sw=barcode:" + tmpQRstr);
+      mWebView.loadUrl("javascript:getMainSearch('barcode:" + tmpQRstr + "');");
+	} else {
+      mWebView.loadUrl("javascript:appFnshBCodeScan('" + tmpQRstr + "');");
+ 	}
+    	showDaToast("onActivityResult.case (11) " + tmpQRstr);
+	} else {
+    	showDaToast("onActivityResult.case (11) noResult: ");
+	}
+	}
+
+
      } catch (Exception e) {
-      System.out.println("onActivityResult: " + e.toString());
+   	showDaToast("oonActivityResult.case (11):error:  " + e.toString());
+      System.out.println("onActivityResult:error " + e.toString());
+      doLoadLclUrl("quickorder/index.html?pid=aa-show-scan");
+	e.printStackTrace();
+	// mWebView.loadUrl("javascript:alert('" + e.toString() + "');");
      }
-    } else {
-     // CANCELLED
-    }
+	}
     break;
    case (FILECHOOSER_RESULTCODE):
     if (null == mUploadMessage)
@@ -818,6 +901,21 @@ RecognitionListener, TextToSpeech.OnInitListener {
    } else if (url.contains(".mp4")) {
     setPlayMPF(url);
     return true;
+   } else if (url.contains("waze.com")) {
+try
+{
+  // Launch Waze to look for Hawaii:
+  String wazeurl = "https://waze.com/ul?q=Hawaii";
+  Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
+  startActivity( intent );
+}
+catch ( Exception ex  )
+{
+  // If Waze is not installed, open it in Google Play:
+  Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "market://details?id=com.waze" ) );
+  startActivity(intent);
+}
+    return true;
    } else {
     // extraHeaders dont work
     // mWebView.loadUrl(url, extraHeaders);
@@ -919,6 +1017,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
   // inlined file-chooser dialog
   public void openFileChooser(ValueCallback < Uri > uploadMsg) {
+   System.out.println("openFileChooser called");
    mUploadMessage = uploadMsg;
    // doImgGet(40, datestring + ".jpeg", "noQvalue");
    setPagePopUp("quickorder/media_chooser.html", "noQvalue");
@@ -930,6 +1029,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
   // For Android 3.0+
   public void openFileChooser(ValueCallback uploadMsg, String acceptType) {
+   System.out.println("openFileChooser called 3+");
    mUploadMessage = uploadMsg;
    //doImgGet(40, datestring + ".jpeg", "noQvalue");
    setPagePopUp("quickorder/media_chooser.html", "noQvalue");
@@ -938,6 +1038,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
   //For Android 4.1
   public void openFileChooser(ValueCallback < Uri > uploadMsg, String acceptType, String capture) {
+   System.out.println("openFileChooser called 4.1");
    mUploadMessage = uploadMsg;
    // doImgGet(40, datestring + ".jpeg", "noQvalue");
    setPagePopUp("quickorder/media_chooser.html", "noQvalue");
@@ -950,6 +1051,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
 // opens up a Dialog with WebView  pop-up [com.njfsoft_utils.webviewutil.UtilWebDialog]
  public void setPagePopUp(String fnlPageUrl, String fnlPageHtml) {
+   System.out.println("setPagePopUp called: " + fnlPageUrl);
   currPopPageUrl = fnlPageUrl;
   currPopPageHtml = fnlPageHtml;
   try {
@@ -959,13 +1061,43 @@ RecognitionListener, TextToSpeech.OnInitListener {
     }
    });
   } catch (Exception e) {
-   System.out.println("doStoryShare dialog" + e.toString());
+   System.out.println("setPagePopUp dialog" + e.toString());
   }
  }
 
 
+public void openFDlg(String mimeType) {
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType(mimeType);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        // special intent for Samsung file manager
+        Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
+         // if you want any file type, you can skip next line
+        sIntent.putExtra("CONTENT_TYPE", mimeType);
+        sIntent.addCategory(Intent.CATEGORY_DEFAULT);
+
+        Intent chooserIntent;
+        if (getPackageManager().resolveActivity(sIntent, 0) != null){
+            // it is device with Samsung file manager
+            chooserIntent = Intent.createChooser(sIntent, "Open file");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { intent});
+        } else {
+            chooserIntent = Intent.createChooser(intent, "Open file");
+        }
+
+        try {
+            startActivityForResult(chooserIntent, 333);
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(), "No suitable File Manager was found.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
  // callback functions for the WebView Dialog PopUp
  public void doMDcom(final int idomdcom, final String strfnlDoMD) {
+   System.out.println("QuickOrder:doMDcom:" + idomdcom + " :: " + strfnlDoMD);
+   System.out.println("QuickOrder:doMDcom:currQIMeta: " + getQIMeta());
   try {
    this.runOnUiThread(new Runnable() {
     public void run() {
@@ -973,6 +1105,8 @@ RecognitionListener, TextToSpeech.OnInitListener {
      utilWDialog.doHide();
      long nowLong = System.currentTimeMillis() / 1000;
      String datestring = Long.toString(nowLong);
+	
+
      switch (theTestInt) {
       case 20:
        Intent pickAPhoto = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
@@ -984,17 +1118,28 @@ RecognitionListener, TextToSpeech.OnInitListener {
        startActivityForResult(pictureBgIntent, 110);
        break;
       case 101:
+  currFFetchMode = "file";
+	openFDlg("*/*");
+/*
+                    Intent pickPhoto = new Intent(Intent.ACTION_GET_CONTENT);
+	
+                    //  Intent intent = new Intent(Intent.ACTION_PICK,(MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+                    //   startActivityForResult(intent,PICK_EXISTING_PHOTO_RESULT_CODE);
+                    startActivityForResult(pickPhoto, 333);
+
+
        Intent pickBgPhoto = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
        pickBgPhoto.putExtra("apmode", "apmodeGallery");
-       startActivityForResult(pickBgPhoto, 111);
+       startActivityForResult(pickBgPhoto, 333);
+*/
        break;
       case 102:
 
 
- 	doImgGet(40, datestring + ".jpeg", "noQvalue");
+ 	doImgGet(40, datestring + ".jpeg", getQIMeta());
        break;
       case 103:
-       doImgGet(41, datestring + ".jpeg", "noQvalue");
+       doImgGet(41, datestring + ".jpeg", getQIMeta());
        break;
       case 125:
        doCopyTxtFrmSpch(strfnlDoMD);
@@ -1032,12 +1177,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
  }
 
 
-
-
-
-
-
-
+ 
 
 
 // to move. speach functions.
@@ -2515,7 +2655,14 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
  public void setCutOuts() {
   Intent toMain = new Intent(getApplicationContext(), CutOuts.class);
-  startActivityForResult(toMain, SHARE_ACTIVITY_RES);
+  	 long nowLong = System.currentTimeMillis() / 1000;
+  	 String datestring = Long.toString(nowLong);
+       toMain.putExtra("apfile", nowLong);
+	currFileName = datestring;
+ 		ShareDataResult.getInstance().setImgName(currFileName);
+ 		ShareDataResult.getInstance().setData("noQvalue");
+ 		ShareDataResult.getInstance().setMsg("noQvalue");
+  	 startActivityForResult(toMain, 333);
  }
 
  public byte[] getLocalImageAsBytes(Uri theUri) {
@@ -2577,6 +2724,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    System.out.println("setPlayMPF: " + myFile + "    ::   " + myUri.toString());
    // showDaToast("setPlayMPF: " + myFile + "    ::   " + myUri.toString());
    Intent mIntent = new Intent(Intent.ACTION_VIEW, myUri);
+   
    if (myFile.indexOf(".gif") != -1) {
     mIntent.setDataAndType(myUri, "image/gif");
    } else {
@@ -2617,7 +2765,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
 
  public void doImgGet(final int idomdcom, String fname, final String strDIGfname) {
   currFileName = fname;
-
+   System.out.println("QuickOrder:doImgGet: " + idomdcom + "    ::   " + fname + " :: " + strDIGfname);
  		ShareDataResult.getInstance().setImgName(currFileName);
  		ShareDataResult.getInstance().setData(strDIGfname);
   try {
@@ -2625,6 +2773,9 @@ RecognitionListener, TextToSpeech.OnInitListener {
    public void run() {
      final int theTestInt = idomdcom;
      final String theDIGTstr = strDIGfname;
+ 
+   System.out.println("QuickOrder:doImgGet:cQIstr " + getQIMeta());
+
      switch (theTestInt) {
       case 5:
        Intent ittArtPad = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
@@ -2645,38 +2796,32 @@ RecognitionListener, TextToSpeech.OnInitListener {
        Intent nttCOapmMPF = new Intent(getApplicationContext(), CutOuts.class);
        nttCOapmMPF.putExtra("apmode", "mp4");
        nttCOapmMPF.putExtra("apfile", currFileName);
-       nttCOapmMPF.putExtra("apmeta", theDIGTstr);
+       nttCOapmMPF.putExtra("apmeta", getQIMeta());
        startActivityForResult(nttCOapmMPF, SHARE_ACTIVITY_RES);
        break;
       case 35:
        Intent nttCOapmGIF = new Intent(getApplicationContext(), CutOuts.class);
        nttCOapmGIF.putExtra("apmode", "gif");
        nttCOapmGIF.putExtra("apfile", currFileName);
-       nttCOapmGIF.putExtra("apmeta", theDIGTstr);
+       nttCOapmGIF.putExtra("apmeta", getQIMeta());
        startActivityForResult(nttCOapmGIF, SHARE_ACTIVITY_RES);
        break;
       case 40:
-
-     AnimMovSingleton tmpIttAMS = AnimMovSingleton.getInstance();
-     if (tmpIttAMS != null) {
+ 
 	String tmpFNstr = Long.toString(System.currentTimeMillis());
-	tmpIttAMS.setIMovType("mp4");
-	tmpIttAMS.setIMovFileStr(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order" + File.separator + tmpFNstr + ".mp4");
-	tmpIttAMS.setIMovName(tmpFNstr);
-     }
-
-
+	currFileName = tmpFNstr;
+	currFFetchMode = "camera";
        Intent nttCOapmWB = new Intent(getApplicationContext(), CutOuts.class);
        nttCOapmWB.putExtra("apmode", "mp4");
-       nttCOapmWB.putExtra("apfile", currFileName);
-       nttCOapmWB.putExtra("apmeta", theDIGTstr);
+       nttCOapmWB.putExtra("apfile", tmpFNstr);
+       nttCOapmWB.putExtra("apmeta", getQIMeta());
        startActivityForResult(nttCOapmWB, 333);
        break;
       case 41:
        Intent nttCOapmTR = new Intent(getApplicationContext(), CutOuts.class);
        nttCOapmTR.putExtra("apmode", "trumpster");
        nttCOapmTR.putExtra("apfile", currFileName);
-       nttCOapmTR.putExtra("apmeta", theDIGTstr);
+       nttCOapmTR.putExtra("apmeta", getQIMeta());
        startActivityForResult(nttCOapmTR, SHARE_ACTIVITY_RES);
        break;
      }
@@ -2689,6 +2834,39 @@ RecognitionListener, TextToSpeech.OnInitListener {
  }
 
 
+public void setQIMeta(String tmpStrBnce) {
+	try {
+ShareDataResult.getInstance().setMsg(tmpStrBnce);
+    currQIMeta = tmpStrBnce;
+   System.out.println("QuickOrder:setQIMeta:APMETA" + currQIMeta);
+  } catch (Exception e) {
+   System.out.println("dev:ERROR:setQIMeta:" + e.toString());
+   e.printStackTrace();
+  }
+}
+public String getQIMeta() {
+	try {
+   currQIMeta = getShareMsg();
+   System.out.println("QuickOrder:getQIMeta:APMETA" + currQIMeta);
+   return currQIMeta;
+  } catch (Exception e) {
+   System.out.println("dev:ERROR:getQIMeta:" + e.toString());
+   e.printStackTrace();
+   return "noQvalue";
+  }
+}
+ public void getBarCodeScan(String acurrScanType) {
+  currScanType = acurrScanType;
+  /**/
+  try {
+   Intent toMain = new Intent(this, com.jwetherell.quick_response_code.DecoderActivity.class);
+   // toMain.putExtra("encdBmp", currImgString);
+   startActivityForResult(toMain, 11);
+  } catch (Exception e) {
+   System.out.println("getBarCodeScan" + e.toString());
+  }
+
+ }
 
  public void doArtPadBitmap() {
   /**/
@@ -2778,8 +2956,10 @@ RecognitionListener, TextToSpeech.OnInitListener {
  }
 
 
- public static Uri getImageContentUri(Context context, File imageFile) {
+ public  Uri getImageContentUri(Context context, File imageFile) {
+  try {
   String filePath = imageFile.getAbsolutePath();
+    System.out.println("getImageContentUri.filePath: " + filePath);
   Cursor cursor = context.getContentResolver().query(
    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
    new String[] {
@@ -2795,13 +2975,29 @@ RecognitionListener, TextToSpeech.OnInitListener {
    return Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "" + id);
   } else {
    if (imageFile.exists()) {
+if(imageFile.toString().contains(".mp4")) {
+ContentValues values = new ContentValues();
+values.put(MediaStore.Video.Media.TITLE, "Title1");
+values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
+values.put(MediaStore.Video.Media.DATA, filePath);
+// return Uri.parse(filePath);
+return context.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
+} else {
+
+
     ContentValues values = new ContentValues();
     values.put(MediaStore.Images.Media.DATA, filePath);
-    return context.getContentResolver().insert(
-     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+    return context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+}
+
    } else {
     return null;
    }
+  }
+  } catch (Exception e) {
+     System.out.println("getImageContentUri.error: " + e);
+   e.printStackTrace();
+   return null;
   }
  }
 
@@ -2825,12 +3021,74 @@ RecognitionListener, TextToSpeech.OnInitListener {
  }
 
 
- public String getThmbStr(String thefile) {
+
+ public String getUriThmbStr(Uri daUri) {
   String uString;
   uString = "noQvalue";
   try {
+   long id = ContentUris.parseId(daUri);
+   byte[] byteArray = getTemporaryImage(daUri);
+   if (byteArray != null) {
+    uString = Base64.encodeBytes(byteArray);
+    System.out.println("gektUriThmbStr.exif-thumb: " + uString);
+   } else {
+    Bitmap aabitmap = MediaStore.Images.Thumbnails.getThumbnail(
+     getContentResolver(), id,
+     3,
+     (BitmapFactory.Options) null);
+    if (aabitmap != null) {
+     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+     aabitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+     byte[] abyteArray = byteArrayOutputStream.toByteArray();
+     uString = Base64.encodeBytes(abyteArray);
+     System.out.println("gektUriThmbStr.thumb: " + uString);
+    } else {
+	Bitmap ttbmap = ThumbnailUtils.createVideoThumbnail(daUri.getPath(), MediaStore.Images.Thumbnails.MINI_KIND);
+     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+     ttbmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+     byte[] abyteArray = byteArrayOutputStream.toByteArray();
+     uString = Base64.encodeBytes(abyteArray);
+     System.out.println("gektUriThmbStr.createVideoThumbnail: " + uString);
+    }
+
+   }
+   return uString;
+  } catch (Exception e) {
+   System.out.println("gektUriThmbStr.error: " + uString);
+   System.out.println("gektUriThmbStr.error: " + e.toString());
+   e.printStackTrace();
+   return uString;
+  }
+ }
+
+
+ public String getThmbStr(String thefile) {
+
+  String uString;
+  uString = "noQvalue";
+
+   System.out.println("getThmbStr.thefile: " + thefile);
+  try {
+
    File ffile = new File(mediaStorageDir, thefile);
+   System.out.println("getThmbStr.ffile: " + ffile.toString());
+ 
+
+if(thefile.toString().contains(".mp4")) {
+	Bitmap ttbmap = ThumbnailUtils.createVideoThumbnail(ffile.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+     ttbmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+     byte[] abyteArray = byteArrayOutputStream.toByteArray();
+     uString = Base64.encodeBytes(abyteArray);
+     System.out.println("getThmbStr.createVideoThumbnail: " + uString);
+} else {
+
+
+  //  Uri daUri = Uri.parse(ffile.getAbsolutePath());
+
    Uri daUri = getImageContentUri(getApplicationContext(), ffile);
+   // System.out.println("getThmbStr.daUri: " + daUri.toString());
+
    long id = ContentUris.parseId(daUri);
    byte[] byteArray = getTemporaryImage(daUri);
    if (byteArray != null) {
@@ -2847,15 +3105,63 @@ RecognitionListener, TextToSpeech.OnInitListener {
      byte[] abyteArray = byteArrayOutputStream.toByteArray();
      uString = Base64.encodeBytes(abyteArray);
      System.out.println("getThmbStr.thumb: " + uString);
+    } else {
+	Bitmap ttbmap = ThumbnailUtils.createVideoThumbnail(ffile.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+     ttbmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+     byte[] abyteArray = byteArrayOutputStream.toByteArray();
+     uString = Base64.encodeBytes(abyteArray);
+     System.out.println("getThmbStr.createVideoThumbnail: " + uString);
     }
+
    }
+
+  }
    return uString;
   } catch (Exception e) {
-   System.out.println("getThmbStr.error: " + e.toString());
+   System.out.println("gektThmbStr.error: " + e.toString());
    e.printStackTrace();
    return uString;
   }
  }
+
+
+ public String copyfileFromUri(String sourceuriPath, String destinationPath)
+{
+
+    BufferedInputStream bis = null;
+    BufferedOutputStream bos = null;
+
+    String sourceFilename= sourceuriPath;
+    String destinationFilename = destinationPath;
+
+
+	try {
+
+
+
+ 
+      bis = new BufferedInputStream(new FileInputStream(sourceFilename));
+      bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
+      byte[] buf = new byte[1024];
+      bis.read(buf);
+      do {
+        bos.write(buf);
+      } while(bis.read(buf) != -1);
+    } catch (IOException e) {
+      e.printStackTrace();
+	   return "ERROR";
+    } finally {
+      try {
+        if (bis != null) bis.close();
+        if (bos != null) bos.close();
+	   return "OK";
+      } catch (IOException e) {
+            e.printStackTrace();
+	   return "ERROR";
+      }
+    }
+}
 
 
 // --
@@ -2983,6 +3289,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    e.printStackTrace();
    s2 = e.toString();
    System.out.println("QuickOrder:writeFile:error: " + e);
+   showDaToast("QuickOrder:writeFile:error: " + e);
    return s2;
   }
  }

@@ -530,6 +530,13 @@ tmpQCollItem["ti"] = stxt[66];
 tmpQCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-appdbreq"] = tmpQCollItem;
 
+tmpQCollItem = null;
+tmpQCollItem = {};
+tmpQCollItem["u"] = "javascript:JSSHOP.jndroid.doCutOuts();";
+tmpQCollItem["mi"] = "&#xe3b3;"; // edit
+tmpQCollItem["ti"] = "CutOuts Cam";
+tmpQCollItem["c"] = "coll-menu-item";
+currMCollItems["aa-docutouts"] = tmpQCollItem;
 
 tmpQCollItem = null;
 tmpQCollItem = {};
@@ -570,6 +577,25 @@ tmpMCollItem["mi"] = "&#xe869;"; // build
 tmpMCollItem["ti"] = "App Tools";
 tmpMCollItem["c"] = "coll-menu-item";
 currMCollItems["aa-show-app-tools"] = tmpMCollItem;
+
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:document.location.href='index.html?pid=aa-edit-synch&cid=" + cid + "&catid=" + catid + "&itemid=" + itemid + "'";
+tmpMCollItem["mi"] = "&#xe869;"; // build
+tmpMCollItem["ti"] = "Synch";
+tmpMCollItem["c"] = "coll-menu-item";
+currMCollItems["aa-edit-synch"] = tmpMCollItem;
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+		
+
+tmpMCollItem["u"] = "JSSHOP.ui.popAndFillLbox('dbug');";
+tmpMCollItem["mi"] = "&#xe869;"; // build
+tmpMCollItem["ti"] = "debug";
+tmpMCollItem["c"] = "coll-menu-item";
+currMCollItems["aa-show-dbug"] = tmpMCollItem;
 
 currMCollArr = [];
 tmpPrfSAL = "y";
@@ -623,6 +649,7 @@ currMCollArr.push("aa-show-category");
 currMCollArr.push("aa-edit-categories");
 currMCollArr.push("aa-edit-shop");
 currMCollArr.push("aa-edit-shops");
+currMCollArr.push("aa-edit-synch");
 if(isJavaFx == "yes") {
 currMCollArr.push("aa-appdbreq");
 } else {
@@ -670,7 +697,9 @@ currMCollArr.push("aa-login");
 } else {
 currMCollArr.push("aa-logout");
 }
+currMCollArr.push("aa-docutouts");
 currMCollArr.push("aa-show-help");
+currMCollArr.push("aa-show-dbug");
 tmpStrbla = ""; 
 tmpStrAdmnM = "";
 iti = 0; 

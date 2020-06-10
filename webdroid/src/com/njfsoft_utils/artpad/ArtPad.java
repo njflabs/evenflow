@@ -3,6 +3,8 @@ package com.njfsoft_utils.artpad;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.provider.OpenableColumns;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -72,6 +75,15 @@ public class ArtPad extends Activity implements TouchImageView.OnTapListener {
     Handler effectsHandler;
     ProgressDialog effectsProgDlog = null;
     static final int AP_N_CAMERA_REQUEST = 15;
+
+
+
+	String currAPMovType;
+    	String currAPMovFName;
+    	String currAPMovUri;
+    	String currAPMovPath;
+
+
 
     LinearLayout panBtnsAPEdit;
     public UtilWebDialog utilWDialog;
@@ -152,6 +164,13 @@ public void setToggleMView(final boolean fnlBooltoShow) {
         Log.i("TAG", "Image Displayed");
         img = (TouchImageView) findViewById(R.id.ImageView1);
 
+
+        currAPMovType = "jpeg";
+        currAPMovFName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        currAPMovUri = "noQvalue";
+        currAPMovPath = "noQvalue";
+
+
         currAPmode = "noQvalue";
         currURIstr = "noQvalue";
 	  panBtnsAPEdit = (LinearLayout)findViewById(R.id.lnrlyBtns);
@@ -167,7 +186,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
         btnHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    finish();
+                  //   finish();
                 } catch (Exception e) {
 
                 }
@@ -178,7 +197,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
         btnFile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                doApNewPopDialog("Effects", "artpad/ap_file.html");
+                doApNewPopDialog("File", "artpad/ap_file.html");
 
             }
         });
@@ -201,6 +220,8 @@ public void setToggleMView(final boolean fnlBooltoShow) {
         btnShare.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
+doFinishData("yes");
+/*
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     currBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     baos.close();
@@ -212,7 +233,8 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
 
                     setResult(RESULT_OK, intent);
-                    finish();
+                    // finish();
+*/
                 } catch (Exception e) {
                     System.out.println("btnShare onClick: " + e.toString());
                 }
@@ -282,8 +304,8 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 	// panBtnsAPEdit.setVisibility(View.GONE);
 
                     if(currAPmode.indexOf("Ed") != -1){
-		        // setToggleMView(true);
-			doApNewPopDialog("Effects", "artpad/ap_file.html");
+		        setToggleMView(true);
+			// doApNewPopDialog("Effects", "artpad/ap_file.html");
 	} else {
 /*
 	btnShare.setVisibility(View.GONE);
@@ -329,7 +351,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaStorageDir = Environment.getExternalStorageDirectory();
-        //File mediaStorageDir = new File(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "selfie-Lander");
+        //File mediaStorageDir = new File(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "Quick-Order");
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 showDaToast("Filed to create directory");
@@ -342,6 +364,11 @@ public void setToggleMView(final boolean fnlBooltoShow) {
 
             String saved = MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "title", "description");
             Uri sdCardUri = Uri.parse("file://" + Environment.getExternalStorageDirectory());
+
+
+
+
+
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, sdCardUri));
             showDaToast("File has been saved: " + saved);
         } catch (Exception e) {
@@ -538,18 +565,18 @@ public void setToggleMView(final boolean fnlBooltoShow) {
         if (theJSCommID > 0) {
             switch (theJSCommID) {
                 case 1: {
-
+/*
                    Intent intent = new Intent(getApplicationContext(), com.njfsoft_utils.cutOuts.CutOuts.class);
                   //  intent.setData(getIntent().getData());
                   startActivityForResult(intent, 110);
 
-/*
+*/
 
                     currBitmap = getOrigBmp();
                     img.setImageBitmap(currBitmap);
                     picture = currBitmap;
 
-*/
+
                     break;
  
                }
@@ -654,8 +681,7 @@ public void setToggleMView(final boolean fnlBooltoShow) {
                     //  Intent intent = new Intent(Intent.ACTION_PICK,(MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
                     //   startActivityForResult(intent,PICK_EXISTING_PHOTO_RESULT_CODE);
                     startActivityForResult(pickPhoto, 4);
-                    //  doEPPicture("gallery");
-                    // finish();
+ 
                     break;
                 }
                 case 16: {
@@ -1152,7 +1178,7 @@ break;
 		        runAPJSComm(14);
                     } else {
 				// doSaveFileDlg();
-			  doFinishData();
+			  //doFinishData();
 			  }
                     System.out.println("ArtPadRequest: aextras not null and encdBmp: " + aextras.getString("encdBmp"));
                 //We have picture picked from gallery
@@ -1459,7 +1485,7 @@ public String getRealPathFromURI(Context context, Uri contentUri) {
                     String encodedImage = Base64.encodeBytes(bMapArray);
  			  return encodedImage;
         } catch(Exception e) {
-            System.out.println("selfieLander:getImgLoadStr: " + e.toString());
+            System.out.println("ArtPad:getImgLoadStr: " + e.toString());
 		return "noQvalue";
         }
     }
@@ -1467,28 +1493,154 @@ public String getRealPathFromURI(Context context, Uri contentUri) {
 
 
 
-	public void doFinishData() {
+
+ public static Uri getMovContentUri(Context context, File imageFile) {
+  String filePath = imageFile.getAbsolutePath();
+  Cursor cursor = context.getContentResolver().query(
+   MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+   new String[] {
+    MediaStore.Images.Media._ID
+   },
+   MediaStore.Images.Media.DATA + "=? ",
+   new String[] {
+    filePath
+   }, null);
+  if (cursor != null && cursor.moveToFirst()) {
+   int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+   cursor.close();
+   return Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "" + id);
+  } else {
+   if (imageFile.exists()) {
+    ContentValues values = new ContentValues();
+    values.put(MediaStore.Images.Media.DATA, filePath);
+    return context.getContentResolver().insert(
+     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+   } else {
+    return null;
+   }
+  }
+ }
+
+
+
+ public String picFileSaved(byte[] byte_arr, String theOutfile) {
+ 
+  File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order");
+
+  try {
+   boolean fileCreated = false;
+
+   File ffile = new File(mediaStorageDir, theOutfile);
+   if (mediaStorageDir.exists()) {
+    fileCreated = true;
+    System.out.println("Cutouts.picFileSaved.exists: " + fileCreated);
+   } else {
+    mediaStorageDir.mkdirs();
+   }
+
+   fileCreated = ffile.createNewFile();
+   if (fileCreated) {
+    FileOutputStream os = new FileOutputStream(ffile, true);
+    os.write(byte_arr);
+    os.flush();
+    os.close();
+    System.out.println("ArtPad.picFileSaved.created: " + fileCreated);
+
+    Uri daUri = getMovContentUri(getApplicationContext(), ffile);
+   return daUri.toString();
+    } else {
+      return "novalue";
+	}
+  } catch (Exception e) {
+   System.out.println("ArtPad.picFileSaved error: " + theOutfile + " : " + currAPMovFName + " : " + currAPMovUri  + " : " + currAPMovPath);
+   e.printStackTrace();
+      return "novalue";
+  }
+ }
+
+public String getFileName(Uri uri) {
+  String result = null;
+  if (uri.getScheme().equals("content")) {
+    Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+    try {
+      if (cursor != null && cursor.moveToFirst()) {
+        result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+      }
+    } finally {
+      cursor.close();
+    }
+  }
+  if (result == null) {
+    result = uri.getPath();
+    int cut = result.lastIndexOf('/');
+    if (cut != -1) {
+      result = result.substring(cut + 1);
+    }
+  }
+  return result;
+}
+
+
+
+
+	public void doFinishData(String andSave) {
                 try {
-			  if(currAPmode.indexOf("apmodeShareEdit") != -1){
-                    System.out.println("nothing to return");
-			  } else {
+ 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     currBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     baos.close();
                     byte[] bMapArray = baos.toByteArray();
                     String encodedImage = Base64.encodeBytes(bMapArray);
-                    Intent intent = new Intent();
-                    intent.putExtra("encdBmp", encodedImage);
-                    intent.putExtra("apmode", currAPmode);
-			   if(currURIstr == "noQvalue") {
-			   } else {
-			  intent.putExtra("image-path",currURIstr);
-                    }
-			  setResult(RESULT_OK, intent);
+                    if(andSave.equals("yes"))  {
+
+		        currAPMovType = "jpeg";
+		        currAPMovFName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			  currURIstr = picFileSaved(bMapArray, currAPMovFName + "." + currAPMovType);
+                    System.out.println("ArtPad.doFinishData andSave currURIstr: " + currURIstr);
+		        currAPMovUri = currURIstr;
+
 			  }
+
+		        currAPMovUri = currURIstr;
+			  Uri retUri = Uri.parse(currAPMovUri); 
+			  String uresult = retUri.getPath();	
+		        currAPMovPath = uresult;		
+			  String aresult = "noQvalue";
+			  String nresult = "noQvalue";	        
+
+    int cut = uresult.lastIndexOf('/');
+    if (cut != -1) {
+      aresult = uresult.substring(cut + 1);
+    int fcut = aresult.indexOf(".");
+    if (fcut != -1) {
+      currAPMovFName = aresult.substring(0, fcut - 1);
+	currAPMovType =  aresult.substring(fcut + 1);
+                    System.out.println("ArtPad.doFinishData fcut currAPMovType: " + currAPMovType);
+                    System.out.println("ArtPad.doFinishData fcut currMovFName: " + currAPMovFName);
+	}
+    }
+     
+
+                    Intent retintent = new Intent();
+		       retintent.putExtra("currMovType", currAPMovType);
+       		retintent.putExtra("currMovFName", currAPMovFName);
+       		retintent.putExtra("currMovUri", currAPMovUri);
+		       retintent.putExtra("currMovPath", currAPMovPath);
+ 		       retintent.putExtra("encdBmp", encodedImage);
+
+ 
+                    System.out.println("ArtPad.doFinishData currAPMovType: " + currAPMovType);
+                    System.out.println("ArtPad.doFinishData currMovFName: " + currAPMovFName);
+                    System.out.println("ArtPad.doFinishData currMovUri: " + currAPMovUri);
+                    System.out.println("ArtPad.doFinishData currMovPath: " + currAPMovPath);
+                    System.out.println("ArtPad.doFinishData fcut currAPMovType: " + currAPMovType);
+                    System.out.println("ArtPad.doFinishData fcut currMovFName: " + currAPMovFName);
+ 
+			  setResult(RESULT_OK, retintent);
                     finish();
                 } catch (Exception e) {
-                    System.out.println("btnShare onClick: " + e.toString());
+                    System.out.println("ArtPad.doFinishData: " + e.toString());
+			  e.printStackTrace();
                 }
 	}
 

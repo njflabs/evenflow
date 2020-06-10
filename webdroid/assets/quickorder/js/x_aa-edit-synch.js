@@ -136,6 +136,7 @@ drstr = app.doWriteFile(JSON.stringify(tmpArrSynchObj));
 
 doImgSynch("local");
 } 
+
 } catch(e) {
  JSSHOP.logJSdbug("doNextSynch.ERROR", arguments, tStrTbl + ":tmpSTblIdx > tStrTJO.length: " + tmpSTblIdx + " - tStrTJO.length: " + tStrTJO.length + " adrstr: " + adrstr);
 }
@@ -153,6 +154,7 @@ JSSHOP.logJSdbug("fSQLoad.ERROR", arguments, " : " + e);
 };
 
 var doILcludate = function(a,theResp,c) {
+try {
 // alert("doILcludate: " + theResp);
 hasr = "n";
 fullstr = "";
@@ -192,12 +194,17 @@ doNextSynch("local","b","c");
 iint++;
 }
 
+} catch(e) {
+ JSSHOP.logJSdbug("doILcludate.ERROR", arguments, tStrTbl + ":tmpSTblIdx > tStrTJO.length: " + theResp);
+}
+
 };
 
 
 
 
 var doRemupdate = function(a,theResp,c) {
+try {
 // alert("doIupdate: " + theResp);
 hasr = "n";
 fullstr = "";
@@ -239,6 +246,10 @@ doNextSynch("remote","b","c");
 // fullstr += oi["rq"] + "\n";
 iint++;
  
+}
+
+} catch(e) {
+alert("doRemupdate.error: " + e);
 }
 // document.getElementById("dvCoTitle").innerHTML = tStrTbl + "-------" + tStrTDA + "<br>" + JSON.stringify(tmpArrSynchObj);
 
@@ -302,7 +313,7 @@ alert("getSyncRemDadded.error: " + e);
 
 
 var getSyncLclDadded = function(a,b,c) {
-
+JSSHOP.logJSdbug("getSyncLclDadded", arguments, b);
 try {
 if(b.indexOf(tStrTDA) != -1) {
 var arrToFill = null;
@@ -334,6 +345,8 @@ alert("getSyncLclDadded:error " + e);
  
  
 var doNuSynchItemsQ = function(tmpTstr, tmptTDAstr) {
+try {
+JSSHOP.logJSdbug("doSynchItemsQ", arguments, tmpTstr + " : " + tmptTDAstr);
     // alert("pre: " + JSON.stringify(b));
 tStrTbl = tmpTstr;
 tStrTDA = tmptTDAstr;
@@ -349,16 +362,23 @@ tStrTDA = tmptTDAstr;
     doQAppComm(oi["rq"], "dvCoTitle", "getSyncLclDadded");
      // alert(oi["rq"]);
     // renderTQBItems();
+} catch(e) {
+alert("doNuSynchItemsQ:error " + e);
+}
 };
 
 
 var doSynchItemsQ = function(fromWhere) {
-
+try {
 kakac = tStrTJO[tmpSTblIdx];
         for (var gkey in kakac) {
 	    JSSHOP.logJSdbug("doSynchItemsQ", arguments, gkey + " : " + kakac[gkey]);
           doNuSynchItemsQ(gkey,kakac[gkey]);
 	    }
+
+} catch(e) {
+alert("doSynchItemsQ:error " + e);
+}
 };
 
 var dmyFnishCntLoad = fnishCntLoad;

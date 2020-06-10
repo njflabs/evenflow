@@ -33,7 +33,10 @@ var doneImgInsrt = function(a,b,c) {
 try {
 JSSHOP.shop.getPrdMedia(catid,itemid,"dadido");
 // JSSHOP.shared.setFrmFieldVal("qmedia", "m_dadded", JSSHOP.getUnixTimeStamp());
+if((isJApp !== "no") && (isPhP == "no")) { 
+} else {
 doAIU();
+}
 // doItemEdit();
 } catch(e) {
 alert(e);
@@ -121,12 +124,49 @@ JSSHOP.shared.setFrmFieldVal("qitem", "i_img", JSSHOP.shared.getFrmFieldVal("qme
 
 
 var doQIMeta = function() {
+    tmpMetaObj = null;
     tmpMetaObj = {};
     tmpMetaObj.qco = arrAllForms.qco.v[0];
-    tmpMetaObj.qitem = JSSHOP.shop.getCurrItemArr();
+    tmpMetaObj.qitem = arrAllForms.qitem.v[0];
     return JSON.stringify(tmpMetaObj);
 };
 
+
+
+
+
+
+
+
+var doDelIRdir = function(a,b,c) {
+document.location.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + catid + "&t=" + JSSHOP.getUnixTimeStamp();
+};
+
+
+
+var doFnshBCodeScan = function(a,b,c){
+try {
+tmpBCfld = document.getElementById("mod_i_bcode");
+tmpBCfnish = null;
+tmpBCfnish = [];
+// tmpBCfnish = JSON.parse(b);
+// document.getElementById("mod_i_bcode").innerHTML = b;  //tmpBCfnish.rs;
+JSSHOP.ui.setCBBClickClr(tmpBCfld,'bkgdClrDlg','clsDummy', function(){void(0)});
+} catch(e) {
+alert("doFnshBCodeScan:error:  " + e);
+}
+};
+
+var appFnshBCodeScan = function(theBCdata) {
+try {
+document.getElementById("fldChallArray").value = theBCdata;
+tmpBCdata = document.getElementById("fldChallArray").value;
+document.getElementById("mod_i_bcode").innerHTML = tmpBCdata;  //tmpBCfnish.rs;
+procNuUIitem("qitem","i_bcode",JSSHOP.shared.getFrmFieldVal("qitem", "_id", 0),tmpBCdata,"doFnshBCodeScan");
+} catch(e) {
+alert("appFnshBCodeScan:error:  " + e  + "\r\n" + theBCdata);
+}
+};
 
 var appFnshImgUload = function(theUri, theImg) {
 try {
@@ -155,34 +195,54 @@ document.getElementById("mod_i_img").value = "lcl-" + tmpUri;
 document.getElementById("fldChallArray").value = theImg;
 tmpImg = document.getElementById("fldChallArray").value;
 tImgstr = "data:image/jpeg;base64, " + tmpImg;
-document.getElementById(pImgid).src = tImgstr;
+
+            imgplay = null;
+            imgplay = new Image();
+ 
+            imgplay.src = tImgstr;
+ 
+
+document.getElementById("dvPrdMedia").appendChild(imgplay);
+
+
+
+// document.getElementById(pImgid).src = tImgstr;
 // JSSHOP.shared.setFrmFieldVal("qitem","i_img",tmpImg);
  
 finishImgInsrt(tmpUri);
 } catch(e) {
-alert("appFnshImgUload: " + e);
+alert("appFnshImgUload:error:  " + e  + "\r\n" + theUri + "\r\n" + tImgstr);
 }
 };
 
 
 
 var doFUJSLoad = function() {
+try {
 ttbtn = document.getElementById('uploadBtn');
 
 if((isJApp !== "no") && (isPhP == "no")) { 
 // alert("japp-no-php");
- JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
-JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
+//  JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+// JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
 
-// JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/media_chooser.html", "noQvalue");return false; });
-// alert("he");
+JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/media_chooser.html", "noQvalue");return false; });
+
+
+JSSHOP.ui.showHideElement("tdAppBCodeBtn", "show");
+app.setQIMeta(doQIMeta());
 } else {
- JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+
+JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
+
 //JSSHOP.ui.addEvent(ttbtn, "click", function() { loadJSModal("tplates/aa-mod-media-chooser.html?tt=" + JSSHOP.getUnixTimeStamp()) });
 
 // JSSHOP.ui.addEvent(ttbtn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/app_imgselect.html", "noQvalue") });
-// tstr = JSSHOP.ui.doDefBtn("Barcode",app.setImgEdit());
-// JSSHOP.ui.setTinnerHTML("dvAppBCodeBtn", tstr);
+
+}
+ 
+} catch(e) {
+alert(e);
 }
 };
 
@@ -470,12 +530,23 @@ tmpRPMArr = JSON.parse(bb);
 tmpPrdMediaArr = null;
 tmpPrdMediaArr = [];
 tmpPrdMediaArr = JSON.parse(bb); 
+
 tmmpII = 0;
 tmpRetStr = "<div>";
 tmpAlen = tmpPrdMediaArr.length;
         while (tmmpII < tmpAlen) {
             tsa = tmpPrdMediaArr[tmmpII];
-		tmpRetStr += "<img src=\"" + JSSHOP.shop.getPrdImgStr("prdmedia", tsa.m_file) +  "\" class=\"icnmnubtn crsrPointer\" onclick=\"doPrdMIcnClick(" + tmmpII + ");\">";   
+tmpClsBrdrClr = "brdrGrey";
+if(tsa.m_file.indexOf(".mp4") != -1) {
+tmpClsBrdrClr = "brdrClrHdr";
+}
+if(tsa.m_file.indexOf(".gif") != -1) {
+tmpClsBrdrClr = "brdrClrRed";
+}
+
+
+
+		tmpRetStr += "<img src=\"" + JSSHOP.shop.getPrdImgStr("prdmedia", tsa.m_file) +  "\" class=\"icnprdmediabtn crsrPointer " + tmpClsBrdrClr + "\" onclick=\"doPrdMIcnClick(" + tmmpII + ");\">";   
             tmmpII++;
         }
 tmpRetStr += "</div>";
@@ -604,7 +675,7 @@ euiFFObjArr.push(tfok);
 
 tfim = nCurrFFieldOb();
 tfim.fid = "uploadBtn"; 
-euiFFObjArr.push(tfim); 
+// euiFFObjArr.push(tfim); 
 
 
 tfsb = nCurrFFieldOb();
@@ -642,7 +713,9 @@ JSSHOP.shared.addOptAtVal(tmpSlct, "noQvalue", ts._id, ts.cat_title, "txtClrWhit
 iint++;
 }
 
-
+if(JSSHOP.shared.getFrmFieldVal("qitem", "i_bcode", 5) == "5") {
+document.getElementById("mod_i_bcode").innerHTML="";
+}
 if(JSSHOP.shared.getFrmFieldVal("qitem", "i_rtype", 5) == "5") {
 document.getElementById("mod_i_rtype").checked=true;
 document.getElementById("btnEUsave").disabled=false;

@@ -135,7 +135,7 @@ JSSHOP.loadScript("js/sau.js", JSSHOP.checkLoader,"js");
 } else {
 // btn = document.getElementById('uploadBtn');
 // JSSHOP.ui.addEvent(btn, "click", function() { JSSHOP.jndroid.doPagePopUp("quickorder/app_imgselect.html", "noQvalue") });
-// tstr = JSSHOP.ui.doDefBtn("Barcode",app.setImgEdit());
+tstr = JSSHOP.ui.doDefBtn("Barcode Scan",app.doBarCodeScan());
 JSSHOP.ui.setTinnerHTML("dvAppBCodeBtn", "nada");
 }
 };

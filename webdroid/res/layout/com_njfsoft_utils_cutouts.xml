@@ -125,9 +125,23 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal|center_vertical"
  		>
+<!--
+
+   <TextView android:id="@+id/btnAPVEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+          android:textColor="#99ffffff"
+	    android:background="@drawable/rounded_corners"
+            android:text="  Edit  "
+ android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+            android:textSize="14sp">
 
 
 
+</TextView>
+-->
    <TextView android:id="@+id/btnAPVPreview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,6 +199,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="right|center_vertical"
+		android:background="@color/transparent"
  		>
 
 
@@ -194,7 +209,7 @@
                         android:layout_height="36dip"
 			  android:layout_margin="3dp"
 	    android:background="@drawable/rounded_corners"
-                        android:src="@drawable/icon_vid"  
+                        android:src="@drawable/dwet_btn_createscene_med"  
                         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:padding="1dp"

@@ -84,6 +84,7 @@ D:\www\htdocs\evenflow\webdroid\res\layout\customtitlebar.java \
 D:\www\htdocs\evenflow\webdroid\res\layout\decoder.xml \
 D:\www\htdocs\evenflow\webdroid\res\layout\encoder.xml \
 D:\www\htdocs\evenflow\webdroid\res\layout\ep_do_pop_dialog.xml \
+D:\www\htdocs\evenflow\webdroid\res\layout\jwqrc_decoder_activity.xml \
 D:\www\htdocs\evenflow\webdroid\res\layout\main_list_item.xml \
 D:\www\htdocs\evenflow\webdroid\res\layout\mp3_main.xml \
 D:\www\htdocs\evenflow\webdroid\res\layout\splash.xml \

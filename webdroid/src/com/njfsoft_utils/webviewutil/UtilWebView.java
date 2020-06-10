@@ -206,9 +206,10 @@ public class UtilWebView extends WebView {
         strAppName = theAppName;
         strHomeUrl = url;
         strHTML = htmlStr;
+        setDaWebViewClient();
 	  utilWVListener = theMainVListener;
         // epMainHbook = theHbook;
-        setDaWebViewClient();
+
     }
 
     @Override
@@ -246,7 +247,7 @@ public class UtilWebView extends WebView {
         btnHome = (ImageButton) mBrowserFrameLayout.findViewById(R.id.btn_Home);
         btnSettings = (ImageButton) mBrowserFrameLayout.findViewById(R.id.btn_settings);
 
-
+ 
 
         btnGotoUrl = (Button) mBrowserFrameLayout.findViewById(R.id.btn_gotourl);
         btnGotoUrl.setTextColor(Color.parseColor("#FFFFFF"));
@@ -284,7 +285,13 @@ public class UtilWebView extends WebView {
         // you can also prompt the user with a hint
         autoCompleteTextView.setHint("http://");
         autoCompleteTextView.setTokenizer(new SpaceTokenizer());
-        btnGotoUrl = (Button) mBrowserFrameLayout.findViewById(R.id.btn_gotourl);
+
+
+
+
+
+
+
         slideButton = (ImageButton) mBrowserFrameLayout.findViewById(R.id.slideButton);
         slidingDrawer = (SlidingDrawer) mBrowserFrameLayout.findViewById(R.id.slidingDrawer);
         slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
@@ -446,6 +453,8 @@ public class UtilWebView extends WebView {
         webSettings.setJavaScriptEnabled(true);
 
         webSettings.setSupportZoom(true);
+	  UtilWebView.this.setInitialScale(1);
+ 
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
 /*
@@ -457,7 +466,7 @@ public class UtilWebView extends WebView {
        //  boolean CURR_SHOW_WEB_IMAGES = Boolean.parseBoolean(currConfBundle.getString("confShowWebImgs"));
        //  webSettings.setLoadsImagesAutomatically(CURR_SHOW_WEB_IMAGES);
 
-        webSettings.setBuiltInZoomControls(true);
+        webSettings.setBuiltInZoomControls(false);
 	  // webSettings.setPluginsEnabled(true);
  
 	  webSettings.setDomStorageEnabled(true);

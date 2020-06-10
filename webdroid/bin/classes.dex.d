@@ -242,8 +242,10 @@ D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$19
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$2.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$20$1.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$20.class \
-D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$21$1.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$21.class \
+D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$22$1.class \
+D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$22.class \
+D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$23.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$3.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$4$1.class \
 D:\www\htdocs\evenflow\webdroid\bin\classes\com\njfsoft_utils\cutOuts\CutOuts$4.class \

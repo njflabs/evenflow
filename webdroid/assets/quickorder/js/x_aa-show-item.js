@@ -135,16 +135,24 @@ return tpPIEDv;
 };
 
 var doPrdMIcnClick = function(tpDPRC) {
+try {
 tsa = null;
 tsa = {};
 tsa = tmpPrdMediaArr[tpDPRC];
 isrc = JSSHOP.shop.getPrdImgStr("prodpg", tsa.m_file);
 istr = "prodpg" + itemid;
-document.getElementById(istr).src = isrc;
+	if(tsa.m_file.indexOf(".mp4") != -1) {
+		JSSHOP.shared.setFrmVals('qmedia', tmpRPMArr[tpDPRC], function() {  app.getPlayMPF(tsa.m_file) } );
+	} else {
+		document.getElementById(istr).src = isrc;
+	}
 // JSSHOP.shared.setFrmVals('qmedia', tmpRPMArr[tpDPRC], function() { JSSHOP.ui.popAndAppendLbox(getPrdImgEditDv(tpDPRC),'y') } );
 
 // JSSHOP.shared.setFrmVals('qmedia', tmpRPMArr[tpDPRC], function() { JSSHOP.ui.popAndAppendLbox(getPrdImgEditDv(tpDPRC),'y') } );
 // JSSHOP.shared.setFrmFieldVal("qmedia", "m_dadded", JSSHOP.getUnixTimeStamp());
+} catch(e) {
+alert("doPrdMIcnClick:" + e);
+}
 };
 
 var dadido = function(aa,bb,cc) {
@@ -163,6 +171,7 @@ tmpAlen = tmpPrdMediaArr.length;
             tsa = tmpPrdMediaArr[tmmpII];
 
 		tmpRetStr += "<img src=\"" + JSSHOP.shop.getPrdImgStr("prdmedia", tsa.m_file) +  "\" class=\"icnmnubtn crsrPointer\" onclick=\"doPrdMIcnClick(" + tmmpII + ");\">";   
+	
             tmmpII++;
         }
 tmpRetStr += "</div>";
@@ -171,7 +180,7 @@ JSSHOP.ui.setTinnerHTML("dvPrdMedia","");
 JSSHOP.ui.setTinnerHTML("dvPrdMedia",tmpRetStr);
 }
 } catch(e) {
-// alert("dadido:" + e);
+alert("dadido:" + e);
 }
 };
 

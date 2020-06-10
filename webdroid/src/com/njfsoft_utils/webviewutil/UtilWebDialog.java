@@ -101,7 +101,7 @@ public class UtilWebDialog extends Dialog {
         } else {
             fullUrl = "file:///android_asset/" + theUrl;
         }
-
+            System.out.println("setPopPage: " + fullUrl + " :: " + theHtml);
         if(theHtml.equals("noQvalue") || theHtml.length() < 2) {
             System.out.println("setPopPage: " + fullUrl + " :: " + theHtml);
             show();

@@ -205,11 +205,12 @@ public final class R {
         public static final int decoder=0x7f03000d;
         public static final int encoder=0x7f03000e;
         public static final int ep_do_pop_dialog=0x7f03000f;
-        public static final int main_list_item=0x7f030010;
-        public static final int mp3_main=0x7f030011;
-        public static final int sp_browser=0x7f030012;
-        public static final int splash=0x7f030013;
-        public static final int trash_com_njfsoft_utils_utilwebview_main=0x7f030014;
+        public static final int jwqrc_decoder_activity=0x7f030010;
+        public static final int main_list_item=0x7f030011;
+        public static final int mp3_main=0x7f030012;
+        public static final int sp_browser=0x7f030013;
+        public static final int splash=0x7f030014;
+        public static final int trash_com_njfsoft_utils_utilwebview_main=0x7f030015;
     }
     public static final class raw {
         public static final int cutouts_mule=0x7f040000;

@@ -1,9 +1,9 @@
 // Various Scripts pertaining to the pages.
 var onlyNums = new RegExp(/^\d{10}$/); // allow only numbers 
 // var pipeDir = "http://localhost/evenflow/webdroid/assets/quickorder/";
-var jscssprefix = "01-"; // used with the yui javascript-css compressor in boil folder
+var jscssprefix = ""; // used with the yui javascript-css compressor in boil folder
 var pipeDir = "noQvalue";
-var forceCache = "n";
+var forceCache = "no";
 var currCacheVer = "1";
 var timeout_handles = [];
 var loaded_scripts = [];
@@ -200,6 +200,13 @@ function setLclStrg(lsName, lsVal) {
 }
 
 
+function doBarCodeScan(tstrScanType) {
+try {
+app.doBarCodeScan(tstrScanType);
+} catch(e) {
+alert("only works with Android App and " + e);
+}
+}
 
 var doPopItemMod = function() {
     loadJSModal("tplates/aa-mod-show-item.html?tt=" + JSSHOP.getUnixTimeStamp());
@@ -1205,6 +1212,7 @@ clearActbArr();
 
 var doNurQComm = function(tComObj) { 
 // alert(tmpQstr);
+strQ = tComObj.q;
 if(pipeDir == "noQvalue") {
 if(isPhP == "no") {
 try {
@@ -1230,10 +1238,13 @@ alert(e);
 }
 } else {
 tmpArrQ = JSSHOP.ajax.doRequestPrep(tComObj);
+doLclSych(strQ);
 }
+
 } else { // pipeDir is remote
 tComObj.ur = pipeDir + "_p/do.php?";
 tmpArrQ = JSSHOP.ajax.doRequestPrep(tComObj);
+doLclSych(strQ);
 }
 
 // alert(JSON.stringify(tComObj));
@@ -1278,13 +1289,17 @@ mf(theElem, tmpArrQ, null);
 rstr = shopDir + "_p/jsdo.php?cb=" + theCB + "&" + tmpQstr;
 remp(rstr);
 }
+
 } else {
 mf = window[theCB];
 tmpArrQ = JSSHOP.ajax.doNuAjaxPipe(theElem, shopDir + "_p/do.php?" + tmpQstr, mf);
+doLclSych(strQ);
 }
+
 } else { // pipeDir is remote
 mf = window[theCB];
 tmpArrQ = JSSHOP.ajax.doNuAjaxPipe(theElem, pipeDir + "_p/do.php?" + tmpQstr, mf);
+doLclSych(strQ);
 }
 };
 
@@ -1295,8 +1310,28 @@ doNuQComm("noQvalue", "n", "123",  strQ, theElem, theCB);
 };
 
 
+var doRemoteSych = function(tSqstr) {
+if((tSqstr.startsWith("select")) || (tSqstr.startsWith("batch")) || (isJApp == "no")) {
+dval = "y";
+} else {
+atmpArrQ = app.getDBselectQ(tSqstr);
+document.getElementById("fldChallArray").value = atmpArrQ;
+tmpArrQ = document.getElementById("fldChallArray").value;
+}
+};
 
-
+var doLclSych = function(tSqstr) {
+if((tSqstr.startsWith("select")) || (tSqstr.startsWith("batch")) || (isJApp == "no")) {
+dval = "y";
+} else {
+dval = "n";
+/*
+atmpArrQ = app.getDBselectQ(tSqstr);
+document.getElementById("fldChallArray").value = atmpArrQ;
+tmpArrQ = document.getElementById("fldChallArray").value;
+*/
+}
+};
 
 
 
@@ -1508,10 +1543,7 @@ tmpDV.innerHTML = tmpMColStr;
 document.getElementById('tdLMenu').appendChild(tmpDV);
 }
 
-
-
-
-
+ 
 
 };
 
@@ -1683,7 +1715,7 @@ alert("doCntLoad.error: " + a + " : " + e);
 
 // called when all content loaded
 var fnish = function(a,b,c) {
- 
+
  
 accA = null;
 accA = [];
@@ -1694,10 +1726,10 @@ tmpAfnish = JSON.parse(b);
 if(isJApp == "no") {
 accA = tmpAfnish;
 } else {
+
 accA = tmpAfnish[0];
 }
- 
- 
+
 
 for(var gkey in accA) {
 try {
@@ -1707,6 +1739,7 @@ try {
 if(isJApp == "no") {
  mf(accA[gkey].e, JSON.stringify(accA[gkey].v), null);
 } else {
+
  mf(accA[gkey].e, JSON.stringify(accA[gkey].v), null);
 // alert(accA[gkey].f + ":f:" + JSON.stringify(accA[gkey].v));
 }

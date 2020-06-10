@@ -3,6 +3,7 @@
 
 # view res/layout/capture.xml #generated:26
 # view res/layout/decoder.xml #generated:26
+# view res/layout/jwqrc_decoder_activity.xml #generated:26
 -keep class com.jwetherell.quick_response_code.ViewfinderView { <init>(...); }
 
 # view res/layout/com_njfsoft_utils_cutouts.xml #generated:46

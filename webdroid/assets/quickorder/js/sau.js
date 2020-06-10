@@ -2216,6 +2216,7 @@ function escapeTags( str ) {
 
 
 var doAIU = function() {
+try {
 	var btn, tmpDAIurl = null;
       var btn = document.getElementById('uploadBtn'),
       progressBar = document.getElementById('progressBar'),
@@ -2238,7 +2239,7 @@ var doAIU = function() {
             this.setProgressBar( progressBar );
         },
         onSubmit: function() {
-		alert(tmpDAIurl);
+		// alert(tmpDAIurl);
             msgBox.innerHTML = ''; // empty the message box
             btn.innerHTML = 'Uploading...'; // change button text to "Uploading..."
           },
@@ -2273,5 +2274,8 @@ var doAIU = function() {
 
           }
 	});
+} catch(e) {
+alert(e);
+}
 };
 doAIU();

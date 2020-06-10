@@ -899,7 +899,22 @@ max-width: 33px;
 
 }
 
+.icnprdmediabtn {
+border-width: 4px;
+vertical-align:center;
+min-height: 45px;
+min-width: 45px;
+max-height: 50px;
+max-width: 50px;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	box-shadow: 0 0 1px rgba(0, 80, 0, .8);
+	-webkit-box-shadow: 0 0 1px rgba(0, 80, 0, .8);
+	-moz-box-shadow: 0 0 1px rgba(0, 0, 80, .8);
+	margin-right:15px;
 
+}
 
 .lightbox {
     position:fixed;

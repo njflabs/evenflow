@@ -114,6 +114,11 @@ public class JSI_quickOrder extends QuickOrder {
     public void setImgEdit() {
         webMobia.doArtPadBitmap();
     }
+
+    public void doBarCodeScan(String tcurrScanType) {
+        webMobia.getBarCodeScan(tcurrScanType);
+    }
+
     public String doGifStr(String strIU) {
         return webMobia.getGifStr(strIU);
     }
@@ -133,7 +138,10 @@ public class JSI_quickOrder extends QuickOrder {
      webMobia.dbMSQLA.doUpdateRecord(recid, cvals);
 	}
 
+public void doQIMeta(String tmpStrBnce) {
+webMobia.setQIMeta(tmpStrBnce);
 
+}
 
 
     public String getCurrPageVars(String tmpStrQstr) {
@@ -372,8 +380,8 @@ public void doShareFromPage(String tmpStrBnce) {
 webMobia.shareFromPage(tmpStrBnce);
 }
  
-
-
+ 
+ 
 
 public static String bytesToHex(byte[] bytes) {
     char[] hexArray = "0123456789ABCDEF".toCharArray();

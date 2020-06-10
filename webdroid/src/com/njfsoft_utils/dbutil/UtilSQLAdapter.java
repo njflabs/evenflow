@@ -31,7 +31,7 @@ import com.njfsoft_utils.core.StringUtils;
 public class UtilSQLAdapter {
 
 
-    public static final String MYDATABASE_NAME = "qbits.db";
+    public static final String MYDATABASE_NAME = "quickorder.db";
     public static final String MYDATABASE_TABLE = "qbit";
     public static final int MYDATABASE_VERSION = 3;
     public static final String KEY_REC_ID = "_id";
@@ -840,9 +840,9 @@ public class UtilSQLAdapter {
 
 
 
-    String DB_PATH = "/data/data/com.webmobia/databases/";
+    String DB_PATH = "/data/data/com.quickorder/databases/";
  
-    String DB_NAME = "webmobia.db";
+    String DB_NAME = "quickorder.db";
  
     private SQLiteDatabase myDataBase = null; 
  

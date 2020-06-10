@@ -36,6 +36,7 @@
                 android:layout_height="fill_parent"
                 android:background="@color/result_view"
                 android:gravity="center"
+                android:visibility="gone"
                 android:padding="4dip">
 
     <LinearLayout

@@ -159,7 +159,7 @@ int[] packed;
 
 	   rUtilsBitmap = new UtilsBitmap();
     fps = 2;
-    timescale = 1000;
+    timescale = 2000;
 	try {
     transform = new RgbToYuv420(0,0);
 
@@ -385,11 +385,16 @@ static File SDPathToFile(String filePatho, String fileName)
 	  } catch(Exception e) {
 	  iTDif = fps;
 	  }
+	  int tmpiSP = 0;
         // int irCount = arrAnimFnlFrames.size();
-
-
+        if(allBmaps > 0) {
+	  tmpiSP = 0;
+	  }
         int niNTime = (int) (iNTime / 70);
-	 outTrack.addFrame(new MP4Packet(result,allBmaps * 500,(timescale * allBmaps) + 500,500,allBmaps,false,null,allBmaps * 500,0));
+	outTrack.addFrame(new MP4Packet(result,allBmaps * 1001 + tmpiSP,timescale,1001,allBmaps,false,null,allBmaps * 1001 + tmpiSP,0));
+
+	//outTrack.addFrame(new MP4Packet(result,allBmaps * timescale + tmpiSP,(timescale * allBmaps) + 750 + tmpiSP,750,allBmaps,false,null,allBmaps * timescale + tmpiSP,0));
+	 // outTrack.addFrame(new MP4Packet(result,allBmaps + tmpiSP,timescale,1,allBmaps,true,null,allBmaps * tmpiSP,0));
 
         if(pToggle == 0) {
 	  pToggle = 500;

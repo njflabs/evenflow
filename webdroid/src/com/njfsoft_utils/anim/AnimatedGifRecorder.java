@@ -376,7 +376,7 @@ static <T> List<List<T>> chopped(List<T> list, final int L) {
 	 //cnvMask.drawBitmap(bmpTheBGMask, null, rs, null);
 	// cnvMask.drawBitmap(bmpTheMask, null, rs, null);
 
-	b.recycle();
+	// b.recycle();
  
 	// bmpTheBGMask.recycle();
 	// bmpTheMask.recycle();

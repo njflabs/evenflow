@@ -107,7 +107,7 @@ UtilsBitmap utilsBitmap;
         // CameraManager must be initialized here, not in onCreate().
         if (cameraManager == null) cameraManager = new CameraManager(getApplication());
 
-	  cameraManager.setManualFramingRect(280, 280);
+	  // cameraManager.setManualFramingRect(280, 280);
 
         if (viewfinderView == null) {
             viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);

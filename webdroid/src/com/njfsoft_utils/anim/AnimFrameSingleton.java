@@ -7,6 +7,7 @@ public class AnimFrameSingleton {
     String tagValA = "noQvalue";
     byte[] mBytes;
     Bitmap mBitmap;
+    Bitmap mThumbBmp;
     Bitmap mAnimBmp;
     int mAnimResInt;
     Bitmap mAnimBgBmp;
@@ -25,6 +26,10 @@ public class AnimFrameSingleton {
     public void setMBitmap(Bitmap tmpval) {
         this.mBitmap = tmpval;
     }
+    public void setMThumbBmp(Bitmap atmpval) {
+        this.mThumbBmp = atmpval;
+    }
+
 
     public void setMAnimBmp(Bitmap tmpval) {
         this.mAnimBmp = tmpval;
@@ -55,6 +60,9 @@ public class AnimFrameSingleton {
     }
     public Bitmap getMBitmap() {
         return mBitmap;
+    }
+    public Bitmap getMThumbBmp() {
+        return mThumbBmp;
     }
     public Bitmap getMAnimBmp() {
         return mAnimBmp;

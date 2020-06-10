@@ -2,26 +2,26 @@ package com.njfsoft_utils.artpad.filters;
 import android.graphics.Bitmap;
 
 /**
- * 滤镜效果的类，定义了基本的渲染方法
+ * ??????,??????????
  * @author ragnarok
  *
  */
 public class BitmapFilter {
 	/**
-	 * 所有滤镜效果的id
+	 * ???????id
 	 */
-	public static final int GRAY_STYLE = 1; // 黑白效果
-	public static final int RELIEF_STYLE = 2; // 浮雕效果
-	public static final int VAGUE_STYLE = 3; // 模糊效果
-	public static final int OIL_STYLE = 4; // 油画效果
-	public static final int NEON_STYLE = 5; // 霓虹灯效果
-	public static final int PIXELATE_STYLE = 6; // 像素化效果
-	public static final int TV_STYLE = 7; // TV效果
-	public static final int INVERT_STYLE = 8; // 反色效果
-	public static final int BLOCK_STYLE = 9; // 版画
-	public static final int OLD_STYLE = 10; // 怀旧效果
-	public static final int SHARPEN_STYLE = 11; // 锐化效果
-	public static final int LIGHT_STYLE = 12; // 光照效果
+	public static final int GRAY_STYLE = 1;  
+	public static final int RELIEF_STYLE = 2; 
+	public static final int VAGUE_STYLE = 3;  
+	public static final int OIL_STYLE = 4;  
+	public static final int NEON_STYLE = 5;  
+	public static final int PIXELATE_STYLE = 6;  
+	public static final int TV_STYLE = 7; 
+	public static final int INVERT_STYLE = 8; 
+	public static final int BLOCK_STYLE = 9; 
+	public static final int OLD_STYLE = 10;  
+	public static final int SHARPEN_STYLE = 11;  
+	public static final int LIGHT_STYLE = 12; 
 	public static final int LOMO_STYLE = 13;
     public static final int WATERMARK_STYLE = 14;
     public static final int REFLECTION_STYLE = 15;
@@ -33,7 +33,7 @@ public class BitmapFilter {
     public static final int BOOST_STYLE = 21;
     public static final int ROTATE_STYLE = 22;
 	/**
-	 * 设置滤镜效果，
+	 * ??????,
 	 * @param bitmap
 	 * @param styleNo
 	 */

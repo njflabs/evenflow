@@ -16,14 +16,18 @@ package com.njfsoft_utils.cutOuts;
 import com.qbits.R;
 
  
-
+import java.util.HashMap;
 import android.os.Environment;
 import java.io.IOException;
 import java.util.Collection;
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.*; 
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
@@ -56,6 +60,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation;
@@ -99,7 +104,8 @@ import java.io.InputStream;
 
 
 
-
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 
 import android.view.WindowManager;
 import android.widget.ZoomControls;
@@ -157,15 +163,15 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+import java.util.Set;
 
 
 /**
  * Example Decoder Activity.
- * 
+ * IDecoderActivity,
  * @author Justin Wetherell (phishman3579@gmail.com)
  */
-public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolder.Callback {
+public class CutOuts extends Activity  implements  IDecoderActivity, SurfaceHolder.Callback, TextToSpeech.OnInitListener {
       UtilsBitmap utilsBitmap;
       ColorFilterGenerator mednFilter;
       public UtilWebDialog utilWDialog;
@@ -180,6 +186,8 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
 	String currGiphyGID;
 	String currMovType = "mp4";
     	String currMovFName;
+    	String currMovUri;
+    	String currMovPath;
       int currentZoomLevel = 0, maxZoomLevel = 0;
 
       private boolean isRecording = false;
@@ -218,6 +226,7 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
       AnimationSet animSet;
       TextView stv;
       Bitmap bmpMainCanvImg;
+      TextView tvAPVEdit;
       TextView tvAPVPreview;
       TextView tvAPVSave;
       TextView tvAPVClear;
@@ -237,9 +246,16 @@ public class CutOuts extends Activity  implements IDecoderActivity, SurfaceHolde
 
 	int iMovWidth = 0;
 	int iMovHeight = 0;
-
+	 private final static int INT_RES_EDIT_IMG = 5;
+	int currEditImgIndx;
     Bundle extras;
+    Bundle retExtras;
 
+ TextToSpeech cuMTts;
+  JSONObject cumetaObject;
+SharedPreferences configCUSettings;
+Bundle currCUConfBundle;
+ private SharedPreferences.Editor configCUEditor;
 /*
  
 	private static final int[] IMAGE_RESOURCES = { R.drawable.an_gimp1,
@@ -355,10 +371,15 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
         super.onCreate(icicle);
         setContentView(R.layout.com_njfsoft_utils_cutouts);
 	  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+	  animMovBuilder = new AnimMovBuilder(this,this);
         Log.v(TAG, "onCreate()");
 
-	  
+	configCUSettings = this.getPreferences(MODE_WORLD_WRITEABLE);
+  	configCUEditor = configCUSettings.edit();
+
+
+  	currCUConfBundle = getCUConfBundle();
+
 		try {
       File extBaseDir = Environment.getExternalStorageDirectory();
       File file = new File(extBaseDir.getAbsoluteFile()+ File.separator + "quick-order");
@@ -378,8 +399,12 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 	 	// gifAnimation = (AnimationDrawable) gifView.getBackground();
 	
             viewfinderView = (CutOutsView) findViewById(R.id.cutouts_view);
-       currMovFName = "outa.mp4";
-
+       currMovType = "mp4";
+       currMovFName = "outa";
+       currMovUri = "noQvalue";
+       currMovPath = "noQvalue";
+		currEditImgIndx = 0;
+cumetaObject = new JSONObject();
         vtv = (TextView) findViewById(R.id.status_view);
         vtv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -437,7 +462,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                setPagePopUp("quickorder/media_chooser.html","noQvalue");
+                setPagePopUp("quickorder/media_settings.html","noQvalue");
             }
         });
 
@@ -474,27 +499,8 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
         tvAPVSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-			if(currMovType == "jpeg") {
-
-
- 	 Bitmap bmpTrmpface = gifBgView.get();
-	if(bmpTrmpface != null) {
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bmpTrmpface.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    baos.close();
-                    byte[] bMapArray = baos.toByteArray();
-		ShareDataResult.getInstance().setCallingApp("CutOuts");		
-		 ShareDataResult.getInstance().setImgBytes(bMapArray);
-		 ShareDataResult.getInstance().setImgExt("jpeg");
-               Intent intent = new Intent();
-              setResult(RESULT_OK, intent);
-		 finish();
-
-     		}
-			
-			} else {
-				prepMovCrunch();
-			}
+ 			System.out.println("tvAPVSave.type: " + currMovType);
+			doMediaResult();
                 } catch (Exception e) {
  			System.out.println("tvAPVSave.error: " + e.toString());
                 }
@@ -507,6 +513,13 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
         tvAPVClear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
+				if(currMovType == "jpeg") {
+                    prepArtPad();
+				} else {
+				prepMovEditPop();
+				}
+
+/*
 			gifBgView.clearBmap();     
 			 
 			setToggleAPViewBtns(false);
@@ -515,11 +528,22 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 		anms.clearAMS();
 		arrAnimFSing = null;
 		arrAnimFSing = new ArrayList<AnimFrameSingleton>();
+
+*/
                 } catch (Exception e) {
  			System.out.println("tvAPVClear.error: " + e.toString());
                 }
             }
         });
+
+/*
+     if (tmpIttAMS != null) {
+	String tmpFNstr = Long.toString(System.currentTimeMillis());
+	tmpIttAMS.setIMovType("mp4");
+	tmpIttAMS.setIMovFileStr(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order" + File.separator + tmpFNstr + ".mp4");
+	tmpIttAMS.setIMovName(tmpFNstr);
+     }
+*/
 
 
         stv = (TextView) findViewById(R.id.status_stop);
@@ -557,14 +581,44 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
             }
         });
 
+/*
 
+         tvAPVEdit = (TextView) findViewById(R.id.btnAPVEdit);
+	  tvAPVEdit.setVisibility(View.INVISIBLE);
+        tvAPVEdit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
 
+			if(currMovType == "jpeg") {
  
 
- 
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    currFBmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+				String encodedImage = Base64.encodeBytes(bMapArray);
+       Intent toAMain = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
+       toAMain.putExtra("apmode", "apmodeEdit");
+	toAMain.putExtra("encdBmp", encodedImage);
+       startActivityForResult(toAMain, 2);
+
+			}
+                } catch (Exception e) {
+ 			System.out.println("tvAPVEdit.error: " + e.toString());
+                }
+            }
+        });
+
+ */
+
+
 
         gifBgView = new AnimBGView(this, this);  
         gifBgView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+
+
+
 /*
         gifBgView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -613,8 +667,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
          agRecorder = new MPFourRecorder(this,this);
          gagRecorder = new AnimatedGifRecorder(this,this);
         //  agRecorder = new AnimatedGifRecorder(this,this);
-	  animMovBuilder = new AnimMovBuilder(this,this);
-	  
+
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
  	  bmpMainCanvImg = null;
@@ -624,7 +677,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 	 iMovStartTstamp = 0;
 	lMovStartTstamp = 11;
 	currGiphyGID = "123";
-	preparePagePopUps("quickorder/media_chooser.html", "noQvalue");
+	preparePagePopUps("quickorder/blank.html", "noQvalue");
 
         if (extras != null) {
             if (extras.containsKey("apmode")) {
@@ -632,15 +685,17 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
  			System.out.println("extras.apmode: " + currMovType);
             }
             if (extras.containsKey("apmeta")) {
-
-
-                animMovBuilder.setAPmeta(extras.getString("apmeta"));
+		setCUAPmeta(extras.getString("apmeta"));
+    	   System.out.println("CutOuts:extras.containsKey APMETA: " + extras.getString("apmeta"));
+        animMovBuilder.setAPmeta(extras.getString("apmeta"));
             }
 
             if (extras.containsKey("apfile")) {
                 currMovFName = extras.getString("apfile");
             }
+
     }
+  cuMTts = new TextToSpeech(this, this); // TextToSpeech.OnInitListener
 
     }
 
@@ -775,6 +830,8 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
     }
 
  	
+/*
+*/
 
     @Override
     public Handler getHandler() {
@@ -788,9 +845,12 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
         return cameraManager;
     }
 
+
+
+
     @Override
     public void handleDecode(Bitmap barcode) {
-
+        	System.out.println("Cutouts:handleDecode");
     }
 
     protected void drawResultPoints(Bitmap barcode) {
@@ -844,11 +904,46 @@ cameraManager.getCamera().setParameters(parameters);
 
 
 
+ public String sendCUConfBundle() {
+   
+ String tretStr = "noQvalue";
 
+    try {
+ JSONObject atjson = new JSONObject();
+   atjson.put("confCUuseDSpeak", configCUSettings.getString("confCUuseDSpeak", "no"));
+  atjson.put("confCUTitleWmark", configCUSettings.getString("confCUTitleWmark", "no"));
+  atjson.put("confCUUseFilter", configCUSettings.getString("confCUUseFilter", "no"));
 
+tretStr = atjson.toString();
+
+    } catch(Exception e) {
+                System.out.println("sendCUConfBundle: " + e.toString());
+		e.printStackTrace();
+	return tretStr;
+        //Handle exception here
+    }
+return tretStr;
+ }
  
+// returns current CutOut user settings as an android Bundle
+ Bundle getCUConfBundle() {
+  Bundle theCUConfBundle = new Bundle();
+  theCUConfBundle.putString("confCUuseDSpeak", configCUSettings.getString("confCUuseDSpeak", "no"));
+  theCUConfBundle.putString("confCUTitleWmark", configCUSettings.getString("confCUTitleWmark", "no"));
+  theCUConfBundle.putString("confCUUseFilter", configCUSettings.getString("confCUUseFilter", "no"));
+
+  animMovBuilder.setAMBstgsObj(sendCUConfBundle());
+  return theCUConfBundle;
+ }
 
 
+ public void putCUConfValStr(String theKey, String theVal) {
+  configCUEditor = configCUSettings.edit();
+  configCUEditor.putString(theKey, theVal);
+  configCUEditor.commit();
+
+  currCUConfBundle = getCUConfBundle();
+ }
 
 
 
@@ -878,7 +973,9 @@ cameraManager.getCamera().setParameters(parameters);
 
 
     protected void takeAPicture() {
-                System.out.println("takePicture");
+
+                 System.out.println("CutOuts:using takeAPicture: ");
+ 
  			
 			if(currMovType.equals("trumpster")) {
  
@@ -902,12 +999,13 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
     public Camera.PreviewCallback trumpsterCallBack = new Camera.PreviewCallback() {
  
 
+
  
       @Override
         public void onPreviewFrame(byte[] data, Camera camera) { 
             try { 
  
-
+                 System.out.println("CutOuts:using trumpsterCallBack: ");
     int[] previewPixels = new int[iMovWidth * iMovHeight];
     utilsBitmap.decodeYUV420SP(previewPixels, data, iMovWidth, iMovHeight);
     Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
@@ -952,21 +1050,24 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 
     public Camera.PreviewCallback prevCallBack = new Camera.PreviewCallback() {
  
+  
 
- 
       @Override
         public void onPreviewFrame(byte[] data, Camera camera) { 
             try { 
- 
+                System.out.println("CutOuts:using prevCallBack : ");
 
     int[] previewPixels = new int[iMovWidth * iMovHeight];
     utilsBitmap.decodeYUV420SP(previewPixels, data, iMovWidth, iMovHeight);
     Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
  	 Bitmap adbmpAToMask = utilsBitmap.scaleBoundBitmap(b, 520);
- 
-    gifBgView.setBmap(animMovBuilder.getItemBmp(adbmpAToMask));
+     currFBmap = null;
+	currFBmap = animMovBuilder.getItemBmp(adbmpAToMask);
+    gifBgView.setBmap(currFBmap);
+    
 	setToggleAPViewBtns(true);
-/*
+	
+ /*
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     adbmpAToMask.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     baos.close();
@@ -990,7 +1091,7 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 */
      
             } catch (Exception e) {
-            System.out.println("prevCallBack: " + e.toString());
+            System.out.println("CutOuts:prevCallBack: " + e.toString());
 		e.printStackTrace();
             }
         }
@@ -998,6 +1099,93 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
  
     };
 
+
+
+
+    public Camera.PreviewCallback cbMovFrame = new Camera.PreviewCallback() {
+
+
+        @Override
+        public void onPreviewFrame(byte[] data, Camera camera) { 
+            try { 
+
+                 System.out.println("CutOuts:using cbMovFrame : " + arrAnimFSing.size());
+
+			if(isRecording) {
+		int itmpIFI = 0;
+       long l = System.currentTimeMillis();
+       int iNTime = (int)(l - lMovStartTstamp); 
+
+    int[] previewPixels = new int[iMovWidth * iMovHeight];
+    utilsBitmap.decodeYUV420SP(previewPixels, data, iMovWidth, iMovHeight);
+    Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
+ 	 Bitmap adbmpAToMask = utilsBitmap.scaleBoundBitmap(b, 320);
+
+
+
+
+			if(arrAnimFSing.size() == 0) { // add first fram at 0 timestamp
+			System.out.println("cbMovFrame: 0000000000");
+		       AnimFrameSingleton anfs = new AnimFrameSingleton();
+			 anfs.setIpst(0);
+ 
+ 			 anfs.setMBytes(data);
+			 anfs.setIanmFrmTS(0);		
+	 		 anfs.setMBitmap(adbmpAToMask);	
+	 
+			 arrAnimFSing.add(anfs);
+			 // gifAnimation.getAnimFrmIdx();
+
+		     }
+       AnimFrameSingleton aanfs = new AnimFrameSingleton();
+	 aanfs.setIpst(iNTime);
+			 // if(currMovType.equals("gif")) {	 }
+ 			 aanfs.setMBytes(data);
+		
+
+
+    previewPixels = null;
+    gifBgView.setBmap(adbmpAToMask);
+
+
+
+
+		 // aanfs.setMAnimResInt(animEngine.getAEngFrameRes());
+		aanfs.setIanmFrmTS(iAnimFrmIdx);
+	 aanfs.setMBitmap(adbmpAToMask);
+ 
+
+       arrAnimFSing.add(aanfs);
+
+       if(iAnimFrmIdx == 2) {
+
+	  }
+       if(iAnimFrmIdx == 7) {
+
+			// playFile();
+	// animMovSoundPool.playSound(1);
+	  }
+
+ 
+      if(arrAnimFSing.size() == 14) {
+      onRecClick(vtv);
+      }
+      
+
+
+ 
+	  // itmpIFI = gifAnimation.getAnimFrmIdx();
+	   System.out.println("CutOuts.cbMovFrame: " + iNTime + "iAnimFrmIdx: " + iAnimFrmIdx);
+			 // prepArrPFrame(data);                 
+			}         
+            } catch (Exception e) {
+                System.out.println("cbMovFrame: " + e.toString());
+		e.printStackTrace();
+            }
+        }
+
+
+    };
 
 
 
@@ -1228,20 +1416,21 @@ public void setToggleAPViewBtns(final boolean fnlBooltoShow) {
             public void epMDcom(int cbType, String cbArgs, UtilWebDialog epmd) {
                 final String fnlCbArgs;
                 epmd.doDismiss();
+            	System.out.println("CutOuts.preparePagePopUps: " + cbType + " : " + cbArgs);
+
 			// stopPlayFile();
 			// handler.removeCallbacks(thrdTask);
 			// handler.postDelayed(thrdTask, 0);
                    
-            System.out.println("dev:SmsCanvas:epMainDListener: " + cbType + " : " + cbArgs);
                 switch (cbType) {
                     case 60:
-		            // doAPJSComm(60);
+					editMovImage(Integer.parseInt(cbArgs));
                     default:
                         break;
                 }
             }
         };
-        utilWDialog = new UtilWebDialog(this, fullUrl, pageHtml, utilWDListener, new JSI_CutOuts(this), "app_share");
+        utilWDialog = new UtilWebDialog(this, fullUrl, pageHtml, utilWDListener, new JSI_CutOuts(this), "app_cutouts");
 	  utilWDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
@@ -1304,75 +1493,6 @@ public void playFile()
 
  
 
-    public Camera.PreviewCallback cbMovFrame = new Camera.PreviewCallback() {
-        @Override
-        public void onPreviewFrame(byte[] data, Camera camera) { 
-            try { 
-			if(isRecording) {
-		int itmpIFI = 0;
-       long l = System.currentTimeMillis();
-       int iNTime = (int)(l - lMovStartTstamp); 
-
-    int[] previewPixels = new int[iMovWidth * iMovHeight];
-    utilsBitmap.decodeYUV420SP(previewPixels, data, iMovWidth, iMovHeight);
-    Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
- 	 Bitmap adbmpAToMask = utilsBitmap.scaleBoundBitmap(b, 320);
-
-
-			if(arrAnimFSing.size() == 0) { // add first fram at 0 timestamp
-			System.out.println("cbMovFrame: 0000000000");
-		       AnimFrameSingleton anfs = new AnimFrameSingleton();
-			 anfs.setIpst(0);
-			  anfs.setMBytes(data);
-			 anfs.setIanmFrmTS(0);		
-	 		 anfs.setMBitmap(adbmpAToMask);	 
-			 arrAnimFSing.add(anfs);
-			 // gifAnimation.getAnimFrmIdx();
-
-		     }
-       AnimFrameSingleton aanfs = new AnimFrameSingleton();
-	 aanfs.setIpst(iNTime);
-	  aanfs.setMBytes(data);
-
-
-
-    previewPixels = null;
-    gifBgView.setBmap(adbmpAToMask);
-
-
-
-
-		 // aanfs.setMAnimResInt(animEngine.getAEngFrameRes());
-		aanfs.setIanmFrmTS(iAnimFrmIdx);
-	 aanfs.setMBitmap(adbmpAToMask);
-       arrAnimFSing.add(aanfs);
-
-stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
-       if(iAnimFrmIdx == 7) {
-			// playFile();
-	// animMovSoundPool.playSound(1);
-	  }
- 
-      if(arrAnimFSing.size() == 14) {
-      onRecClick(vtv);
-      }
-
- 
-	  // itmpIFI = gifAnimation.getAnimFrmIdx();
-	   System.out.println("cbMovFrame: " + iNTime + "iAnimFrmIdx: " + iAnimFrmIdx);
-			 // prepArrPFrame(data);                 
-			}         
-            } catch (Exception e) {
-                System.out.println("cbMovFrame: " + e.toString());
-		e.printStackTrace();
-            }
-        }
-
-
-    };
-
-
-
 
 
 
@@ -1382,37 +1502,27 @@ stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
 
   public void timeMovParse() {
 			
-
-			if(currMovType.equals("mp4")) {
+try {
+  String tmpFnae = currMovFName + "." + currMovType;
+  final File tmpTMPFile = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order" + File.separator + tmpFnae);
+                        System.out.println("Cutouts:timeMovParse.tmpFnae : " +  tmpFnae);
  
-
+			if(currMovType.equals("mp4")) {
  
     				
 
- 		 // currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".mp4";
-  		 String tmpFnae = ShareDataResult.getInstance().getImgName() + ".mp4";
- 				AnimMovSingleton tmpTMPAMS = agRecorder.getAnimMovSing();
-				if(tmpTMPAMS != null) {
-					tmpFnae = tmpTMPAMS.getIMovFileStr();
-				}
-                  new com.njfsoft_utils.anim.MPFourParser().procMPFourPars(tmpFnae, new com.njfsoft_utils.core.OnTaskExecutionFinished()
+ 
+                  new com.njfsoft_utils.anim.MPFourParser().procMPFourPars(tmpTMPFile.toString(), new com.njfsoft_utils.core.OnTaskExecutionFinished()
                   {
                   @Override
                   public void OnTaskFihishedEvent(String result)
                   {
 
                         System.out.println("Cutouts:timeMovParse: " +  (String)result);
- 
-				AnimMovSingleton tmpAMS = agRecorder.getAnimMovSing();
-				if(tmpAMS != null) {
-                        // System.out.println("Cutouts:timeMovParse:getAnimMovSing tmpAMS" +  tmpAMS.getMamsArrAFS().size());
-				// boolean isGTPV = gifPrevView.setAnimMovSing(tmpAMS);
-				// playFile();
-				onEPResult();
-				}
-
- 				// postGiphyVid();
-                        // setPagePopUp("canvas/characters.html","noQvalue");
+     				Uri daUri = getMovContentUri(getApplicationContext(), tmpTMPFile);
+     				currMovUri =  daUri.toString();
+     				currMovPath = tmpTMPFile.toString();
+			      onEPResult();
 
                   }
                  });
@@ -1420,8 +1530,17 @@ stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
  
 
 			} else {
-				onEPResult();
+    			 Uri daUri = getMovContentUri(getApplicationContext(), tmpTMPFile);
+     			currMovUri =  daUri.toString();
+     			currMovPath = tmpTMPFile.toString();
+                  onEPResult();
 			}	
+
+                    } catch (Exception e) {
+                        System.out.println("Cutouts:timeMovParse:Error" +  e);
+				e.printStackTrace();
+                    }
+
 
   }
 
@@ -1514,14 +1633,14 @@ stv.setText("Recording Frame : " + arrAnimFSing.size()  + " of 14");
 
 public void callMediaPrepTask() {
 
- 
+ 		try {
 
     final Handler whandler = new Handler();
     Timer atmrMovRec = new Timer();
     TimerTask adoAsynchronousTask = new TimerTask() {       
         @Override
         public void run() {
-            handler.post(new Runnable() {
+            whandler.post(new Runnable() {
                 public void run() {       
                     try {
 	  new MediaPrepareTask().execute(null, null, null);
@@ -1532,8 +1651,25 @@ public void callMediaPrepTask() {
             });
         }
     };
+
+
+
     atmrMovRec.schedule(adoAsynchronousTask, 600); //execute in every 600 ms
- 
+       new android.os.Handler().postDelayed(
+    new Runnable() {
+        public void run() {
+                getProdSpeach();
+        }
+}, 1600);
+
+
+
+
+                     } catch (Exception e) {
+                        System.out.println("Cutouts:callMediaPrepTask:Error " +  e);
+				e.printStackTrace();
+                        // TODO Auto-generated catch block
+                    }
 }
 
 public void callAsynchronousTask() {
@@ -1546,7 +1682,7 @@ public void callAsynchronousTask() {
     TimerTask doAsynchronousTask = new TimerTask() {       
         @Override
         public void run() {
-            handler.post(new Runnable() {
+            wwhandler.post(new Runnable() {
                 public void run() {       
                     try {
                        cameraManager.getCamera().setOneShotPreviewCallback(cbMovFrame); 
@@ -1603,9 +1739,9 @@ public void callAsynchronousTask() {
 
   public void prepMovCrunch() {
  
-
+ 		 String tcurrMovFName = currMovFName + "." + currMovType;
 			if(currMovType.equals("mp4")) {
- 		 currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".mp4";
+
 
 		boolean isFramed = agRecorder.setAnimMovSing(animMovBuilder.getAnimMovSing());
 		if(isFramed) {
@@ -1618,9 +1754,9 @@ public void callAsynchronousTask() {
 
 		boolean isFramed = gagRecorder.setAnimMovSing(animMovBuilder.getAnimMovSing());
 		if(isFramed) {
- 		 currMovFName = currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".gif";
+ 
 
-		gagRecorder.setFNameString(currMovFName);
+		gagRecorder.setFNameString(tcurrMovFName);
 		boolean isPrepped = gagRecorder.prepare();
 		if(isPrepped) {
             timeAnimMovFrame();
@@ -1901,17 +2037,20 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 		// ShareDataResult.getInstance().setImgName(currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".jpeg");
 
 		// ShareDataResult.getInstance().setImgBytes(agRecorder.boaAGR.toByteArray());
-		ShareDataResult.getInstance().setTitle("selfieLander Landing Title");
-		ShareDataResult.getInstance().setDesc("selfieLander Landing Desc");
-		ShareDataResult.getInstance().setMsg("selfieLander User Message");
+		ShareDataResult.getInstance().setTitle("Quick-Oder Title");
+		ShareDataResult.getInstance().setDesc("Quick-Oder Desc");
+		// ShareDataResult.getInstance().setMsg("Quick-Order User Message");
  
 
-               Intent intent = new Intent();
-              setResult(RESULT_OK, intent);
+               Intent retintent = new Intent();
+
+       retintent.putExtra("currMovType", currMovType);
+       retintent.putExtra("currMovFName", currMovFName);
+       retintent.putExtra("currMovUri", currMovUri);
+       retintent.putExtra("currMovPath", currMovFName);
+              setResult(RESULT_OK, retintent);
 		 finish();
-		///setPagePopUp("selfieLander/share.html", "noQvalue");
-
-
+ 
     }
 
  
@@ -1919,9 +2058,9 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 
 
     protected void onEPResult() {
+	try {
  
-        Log.v(TAG, "onEPResult()");
- 
+		System.out.println("onEPResult");
          if (handler != null) {
             handler.quitSynchronously();
             handler = null;
@@ -1938,20 +2077,20 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 
  
 
-		ShareDataResult.getInstance().setCallingApp("CutOuts");		
- 
+               Intent retintent = new Intent();
 
-			if(currMovType.equals("mp4")) {
-		// ShareDataResult.getInstance().setImgName(agRecorder.getFNameString());
-			} else {
-		// ShareDataResult.getInstance().setImgName(gagRecorder.getFNameString());
-			}	
- 
+       retintent.putExtra("currMovType", currMovType);
+       retintent.putExtra("currMovFName", currMovFName);
+       retintent.putExtra("currMovUri", currMovUri);
+       retintent.putExtra("currMovPath", currMovPath);
+       setResult(RESULT_OK, retintent);
+	 finish();
 
-               Intent intent = new Intent();
-              setResult(RESULT_OK, intent);
-		 finish();
- 
+    } catch (Exception e) {
+		System.out.println("onEPResult.error: ");
+
+        e.printStackTrace();
+    }
 
 
     }
@@ -1972,7 +2111,7 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
                     String encodedImage = Base64.encodeBytes(bMapArray);
  			  return encodedImage;
         } catch(Exception e) {
-            System.out.println("selfieLander:getImgLoadStr: " + e.toString());
+            System.out.println("CutOuts:getImgLoadStr: " + e.toString());
 		return "noQvalue";
         }
 */
@@ -2012,5 +2151,341 @@ public void post(String url, ArrayList<NameValuePair> nameValuePairs) {
 
 
 
+ public static Uri getMovContentUri(Context context, File imageFile) {
+  String filePath = imageFile.getAbsolutePath();
+  Cursor cursor = context.getContentResolver().query(
+   MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+   new String[] {
+    MediaStore.Images.Media._ID
+   },
+   MediaStore.Images.Media.DATA + "=? ",
+   new String[] {
+    filePath
+   }, null);
+  if (cursor != null && cursor.moveToFirst()) {
+   int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
+   cursor.close();
+   return Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "" + id);
+  } else {
+   if (imageFile.exists()) {
+    ContentValues values = new ContentValues();
+    values.put(MediaStore.Images.Media.DATA, filePath);
+    return context.getContentResolver().insert(
+     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+   } else {
+    return null;
+   }
+  }
+ }
+
+ public void picFileSaved(byte[] byte_arr, String theOutfile) {
+  JSONArray resultSet;
+  String encoded;
+  String uString;
+  resultSet = new JSONArray();
+  encoded = "noQvalue";
+  uString = "noQvalue";
+  File mediaStorageDir = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order");
+
+  try {
+   boolean fileCreated = false;
+   String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+   File ffile = new File(mediaStorageDir, theOutfile + ".jpeg");
+   if (mediaStorageDir.exists()) {
+    fileCreated = true;
+    System.out.println("Cutouts.picFileSaved.exists: " + fileCreated);
+   } else {
+    mediaStorageDir.mkdirs();
+   }
+
+   fileCreated = ffile.createNewFile();
+   if (fileCreated) {
+    FileOutputStream os = new FileOutputStream(ffile, true);
+    os.write(byte_arr);
+    os.flush();
+    os.close();
+    System.out.println("Cutouts.picFileSaved.created: " + fileCreated);
+
+    Uri daUri = getMovContentUri(getApplicationContext(), ffile);
+    uString = ffile.toString();
+    long id = ContentUris.parseId(daUri);
+
+    currMovType = "jpeg";
+ 
+    currMovUri =  daUri.toString();
+    currMovPath = uString;
+   System.out.println("Cutouts.picFileSaved: " + theOutfile + " : " + currMovFName + " : " + currMovUri + " : " + currMovPath);
+   onEPResult();
+    }
+  } catch(Exception e) {
+   System.out.println("Cutouts.picFileSaved error: " + theOutfile + " : " + currMovFName + " : " + currMovUri  + " : " + currMovPath);
+   e.printStackTrace();
+ 
+  }
+ }
+
+
+
+
+
+ // Implements TextToSpeech.OnInitListener.
+ public void onInit(int status) {
+  // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
+  if (status == TextToSpeech.SUCCESS) {
+
+
+   cuMTts.setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
+
+    @Override
+    public void onUtteranceCompleted(String utteranceId) {
+     if (utteranceId.contains("repeat")) {
+      try {
+       System.out.println("onUtteranceCompleted: " + utteranceId);
+      //  getSpeechToText();
+      } catch (Exception e) {
+       System.out.println("onUtteranceError: " + utteranceId);
+       e.printStackTrace();
+      }
+     } else {
+      // showDaToast("onUtteranceCompleted: " + utteranceId);
+     }
+    }
+   });
+   /*
+               // Set preferred language to US english.
+               // Note that a language may not be available, and the result will indicate this.
+               int result = mTts.setLanguage(Locale.US);
+               // Try this someday for some interesting results.
+               // int result mTts.setLanguage(Locale.FRANCE);
+               if (result == TextToSpeech.LANG_MISSING_DATA ||
+                   result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                  // Lanuage data is missing or the language is not supported.
+                   Log.e(LOG_TAG, "Language is not available.");
+               } else {
+                   // Check the documentation for other possible result codes.
+                   // For example, the language may be available for the locale,
+                   // but not for the specified country and variant.
+
+                   // The TTS engine has been successfully initialized.
+                   // Allow the user to press the button for the app to speak again.
+                   // mAgainButton.setEnabled(true);
+                   // Greet the user.
+                  //  sayHello();
+               }
+   */
+  } else {
+   // Initialization failed.
+        System.out.println("dev:ERROR:onInit:TexttoSpeach failed");
+  }
+ }
+
+
+
+
+ // KEY_PARAM_UTTERANCE_ID is used to prolong the silence period in speaking basically.
+ private void doCUSpeechOut(String outstr, String utterID) {
+ 
+				try {
+
+  HashMap < String, String > map = new HashMap();
+  map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "naday");
+  cuMTts.speak(outstr, TextToSpeech.QUEUE_FLUSH,  map);  // Drop all pending entries in the playback queue.
+
+	  } catch(Exception e) {
+        System.out.println("dev:ERROR:doSpeechOut: " + e);
+	  }
+ 
+
+
+
+ }
+
+ private void doCUSpeechOut(String outstr) {
+  doCUSpeechOut(outstr, "nadayet");
+ }
+
+	public void setCUAPmeta(String str) {
+  
+        System.out.println("CutOuts:setCUAPmeta:APMETA: " + str);
+	try { 
+       cumetaObject = null;
+       cumetaObject = new JSONObject(str);
+ 
+      } catch(Exception e) {
+        System.out.println("CutOuts:setAPmeta:ERROR: " + e);
+	  e.printStackTrace();
+ 
+   	}    
+ 	}
+
+public void getProdSpeach() {
+if(currMovType.equals("mp4") &&  currCUConfBundle.getString("confCUuseDSpeak").equals("yes")) {
+	try { 
+	 	 JSONObject jdata = cumetaObject.getJSONObject("qco");
+ 	 JSONObject ji = cumetaObject.getJSONObject("qitem");
+
+
+ 
+       String ctstrP = jdata.getString("c_title");
+ 
+       String tstrP = ji.getString("i_title") + ". for only $" + ji.getString("i_price_b");
+
+
+    		doCUSpeechOut(tstrP);
+      } catch(Exception e) {
+        System.out.println("getProdSpeach:ERROR: " + e);
+	  e.printStackTrace();
+ 
+   	} 
+
+}
+}
+
+
+    public int getMovArrSize() {
+	return animMovBuilder.getAnimMovSing().getMamsArrAFS().size();
+	}
+
+    public String getMovImgString(int iMISnum) {
+        try {
+ Bitmap result = animMovBuilder.getAnimMovSing().getMamsArrAFS().get(iMISnum).getMThumbBmp();
+
+ 	 		 // Bitmap result = utilsBitmap.getResizedBitmap(animMovBuilder.getAnimMovSing().getMamsArrAFS().get(iMISnum).getMBitmap(), 35, 35);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    result.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+                    String encodedImage = Base64.encodeBytes(bMapArray);
+ 			  return encodedImage;
+        } catch(Exception e) {
+            System.out.println("CutOuts:getMovImgString: " + e.toString());
+		return "noQvalue";
+        }
+    }
+
+
+
+public void editMovImage(int tmpIAI) {
+                try {
+
+				currEditImgIndx = tmpIAI;
+ Bitmap tmpMovB = animMovBuilder.getAnimMovSing().getMamsArrAFS().get(tmpIAI).getMBitmap();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    tmpMovB.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+				String encodedImage = Base64.encodeBytes(bMapArray);
+       			Intent toAMain = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
+       			toAMain.putExtra("apmode", "apmodeEdit");
+				toAMain.putExtra("encdBmp", encodedImage);
+       			startActivityForResult(toAMain, INT_RES_EDIT_IMG);
+                } catch (Exception e) {
+ 			System.out.println("CutOuts.editMovImage.error: " + e.toString());
+                }
+}
+
+public void prepArtPad() {
+                try {
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    currFBmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+				String encodedImage = Base64.encodeBytes(bMapArray);
+       			Intent toAMain = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
+       			toAMain.putExtra("apmode", "apmodeEdit");
+				toAMain.putExtra("encdBmp", encodedImage);
+       			startActivityForResult(toAMain, 2);
+                } catch (Exception e) {
+ 			System.out.println("CutOuts.prepArtPad.error: " + e.toString());
+                }
+}
+
+public void prepMovEditPop() {
+                try {
+
+                    setPagePopUp("quickorder/media_edit.html","noQvalue");
+                } catch (Exception e) {
+ 				System.out.println("CutOuts.prepMovEditPop.error: " + e.toString());
+                }
+}
+
+public void doMediaResult() {
+try {
+ 			System.out.println("CutOuts.doMediaResult.type: " + currMovType);
+			if(currMovType == "jpeg") {
+ 
+
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				// Bitmap ntBitmap = gifBgView.get();
+                    currFBmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+ 
+                    baos.close();
+                    byte[] bMapArray = baos.toByteArray();
+				 picFileSaved(bMapArray, currMovFName);
+			} else {
+				prepMovCrunch();
+			}
+                } catch (Exception e) {
+ 			System.out.println("CutOuts.doMediaResult.error: " + e.toString());
+                }
+ 
+}
+
+
+// onActivityResult functions for  mostly everything.
+// need get back to this. mostly used for media-fetching and editing, and speech functions.
+ @Override
+ protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+     System.out.println("onActivityResult.resultCode:  " + resultCode);
+  switch (requestCode) {
+   case (2):
+     System.out.println("Activity.RESULT_OK:  ");
+
+     try {
+      Bundle aextras = data.getExtras();
+      System.out.println("ArtPadRequest: aextras not null: ");
+      if (aextras.containsKey("encdBmp")) {
+       byte[] decodedString = Base64.decode(aextras.getString("encdBmp"));
+       Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, null);
+      currFBmap = bitmap;
+	 gifBgView.setBmap(bitmap);
+      }
+     } catch (Exception e) {
+      System.out.println("onActivityResult: " + e.toString());
+      e.printStackTrace();
+     }
+    break; 
+    case (INT_RES_EDIT_IMG):
+     System.out.println("Activity.RESULT_OK:  ");
+
+     try {
+      Bundle aextras = data.getExtras();
+      System.out.println("ArtPadRequest: aextras not null: ");
+      if (aextras.containsKey("encdBmp")) {
+       byte[] decodedString = Base64.decode(aextras.getString("encdBmp"));
+       Bitmap tmprbitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, null);
+	  Bitmap bmpBmap =  BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, null);
+	  Bitmap tpBmap =  BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, null);
+
+      currFBmap = tmprbitmap;
+	  
+	 gifBgView.setBmap(tmprbitmap);
+       animMovBuilder.getAnimMovSing().getMamsArrAFS().get(currEditImgIndx).setMBitmap(bmpBmap);
+       animMovBuilder.getAnimMovSing().getMamsArrAFS().get(currEditImgIndx).setMThumbBmp(utilsBitmap.scaleBoundBitmap(tpBmap, 35));
+
+ 
+      }
+     } catch (Exception e) {
+      System.out.println("onActivityResult: " + e.toString());
+      e.printStackTrace();
+     }
+    break; 
+	default:
+     System.out.println("Its default");
+  }
+ }
 
 }

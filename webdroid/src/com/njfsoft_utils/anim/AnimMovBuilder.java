@@ -10,7 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.Typeface;
+// import android.graphics.Typeface;
 import android.os.AsyncTask;
 // import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,6 +55,9 @@ import com.njfsoft_utils.anim.AnimMovSingleton;
 import com.njfsoft_utils.core.OnTaskExecutionFinished;
 import com.njfsoft_utils.anim.UtilsBitmap;
 
+import com.njfsoft_utils.artpad.filters.BitmapFilter;
+
+
 import com.qbits.R;
 
 public class AnimMovBuilder {
@@ -70,6 +73,7 @@ String path;
 
 
     JSONObject apmetaObject;
+    JSONObject ambStgsObject;
  
 
 
@@ -115,8 +119,11 @@ String path;
 	int fps = 20;
 	int newMovWidth;
 	int newMovHeight;
- 
-
+	String currITtlStr;
+	String currCoTtlStr;
+	String currIPriceStr;
+	String currUseWmarkStr; 
+	String currUseFilter; 
 
 
     public AnimMovBuilder(Activity activity, Context context) { 
@@ -127,6 +134,7 @@ String path;
  
  
          apmetaObject = new JSONObject();
+         ambStgsObject = new JSONObject();
         bcount = 0;
 	  currSwidth = 200;
 	  currSheight = 200;
@@ -141,6 +149,13 @@ String path;
 	  newMovHeight = 290;
 	mediaStorageDir = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order");
 	arrAnimFnlFrames = new ArrayList<AnimFrameSingleton>();
+
+	currITtlStr = "Great Item";
+	currCoTtlStr = "noQvalue";
+	currIPriceStr = "1.99";
+	currUseWmarkStr = "no";
+	currUseFilter = "no";
+
 
 
 	}
@@ -231,10 +246,21 @@ static File SDPathToFile(String filePatho, String fileName)
  
 	public void setAPmeta(String str) {
  
-
+        System.out.println("AnimMovBuilder:setAPmeta:APMETA: " + str);
 	try { 
+       apmetaObject = null;
        apmetaObject = new JSONObject(str);
+ 	 JSONObject ji = apmetaObject.getJSONObject("qitem");
 
+
+ 
+
+
+       currITtlStr = ji.getString("i_title");
+       currIPriceStr = ji.getString("i_price_b");
+ 	 JSONObject jdata = apmetaObject.getJSONObject("qco");
+       currCoTtlStr = jdata.getString("c_title");
+        System.out.println("AnimMovBuilder:setAPmeta:apmetaObject.toString(): " + apmetaObject.toString());
       } catch(Exception e) {
         System.out.println("AnimMovBuilder:setAPmeta:ERROR: " + e);
 	  e.printStackTrace();
@@ -242,7 +268,21 @@ static File SDPathToFile(String filePatho, String fileName)
    	}    
  	}
 
-
+	public void setAMBstgsObj(String theStgsstr) {
+ 
+        System.out.println("AnimMovBuilder:setAMBstgsObj:string: " + theStgsstr);
+	try { 
+       ambStgsObject = null;
+       ambStgsObject = new JSONObject(theStgsstr);
+		currUseWmarkStr = ambStgsObject.getString("confCUTitleWmark");
+		currUseFilter = ambStgsObject.getString("confCUUseFilter");
+        System.out.println("AnimMovBuilder:setAMBstgsObj:.toString(): " + ambStgsObject.toString());
+      } catch(Exception e) {
+        System.out.println("AnimMovBuilder:setAMBstgsObj:ERROR: " + e);
+	  e.printStackTrace();
+ 
+   	}    
+ 	}
 
 
 
@@ -251,11 +291,28 @@ static File SDPathToFile(String filePatho, String fileName)
        System.out.println("addAnimMovBmp:CronTime: ");
 
 	try { 
-       //  AnimFrameSingleton currAFS = arrAnimFnlFrames.get(allBmaps);
-	 //  Bitmap xbitmap = getMovBmp(arrAnimFnlFrames.get(allBmaps).getMBytes());
-	  arrAnimFnlFrames.get(allBmaps).setMBitmap(getMovBmp(allBmaps));
 
-	  // arrAnimFnlFrames.get(allBmaps).setMBytes(null);
+	 if(currUseWmarkStr.equals("yes")) {
+        Bitmap ttnmp = getMovBmp(allBmaps);
+
+       arrAnimFnlFrames.get(allBmaps).setMBitmap(getMovBmp(allBmaps));
+	arrAnimFnlFrames.get(allBmaps).setMThumbBmp(rUtilsBitmap.scaleBoundBitmap(ttnmp, 35));
+
+
+	} else {
+
+       Bitmap ttnmp =  arrAnimFnlFrames.get(allBmaps).getMBitmap();
+	arrAnimFnlFrames.get(allBmaps).setMThumbBmp(rUtilsBitmap.scaleBoundBitmap(ttnmp, 35));
+
+	if(recIncDrwCount == recAnmDrwCount) { recIncDrwCount = 0; }
+	if(recIncBgDrwCount == recAnmBgDrwCount) { recIncBgDrwCount = 0; }	
+	recIncDrwCount++;
+	recIncBgDrwCount++;
+ 
+      newMovWidth = ttnmp.getWidth();
+      newMovHeight = ttnmp.getHeight();
+	}
+
 	  return true;
       } catch(Exception e) {
         System.out.println("AnimMovBuilder:addAnimMovBmp:ERROR: " + e);
@@ -371,28 +428,31 @@ static File SDPathToFile(String filePatho, String fileName)
 
     public Bitmap getItemBmp(Bitmap bmpAToMask) {
 
-
+        System.out.println("AnimMovBuilder:getItemBmp:called: ");
  	  Paint fntPaint = new Paint();
-	  Typeface tfbold = Typeface.create("Arial", Typeface.BOLD);
-	  fntPaint.setTypeface(tfbold);
+	  // Typeface tfbold = Typeface.create("Arial", Typeface.BOLD);
+	  // fntPaint.setTypeface(tfbold);
         fntPaint.setTextSize(12);
         fntPaint.setColor(Color.parseColor("#FFFFFF"));
  
  
 
-	String tstrP =  "quick-order  ";
+	String tstrCoTTl =  "noQvalue";
+	String tstrIttl =  "new item - 1.00";
+	String tstrF = tstrCoTTl + tstrIttl;
        try {
  	 JSONObject jdata = apmetaObject.getJSONObject("qco");
  	 JSONObject ji = apmetaObject.getJSONObject("qitem");
 
  
-       tstrP = jdata.getString("c_title");
+       tstrCoTTl = jdata.getString("c_title");
  
-       tstrP = ji.getString("i_title") + " - " + ji.getString("i_price_a");
-
+       tstrIttl = ji.getString("i_title") + " - only $" + ji.getString("i_price_b") + " !";
+		tstrF = tstrCoTTl + " - " + tstrIttl;
  
 
        } catch(Exception e) {
+        System.out.println("AnimMovBuilder:getItemBmp:APMETA:ERROR: " + e);
 	}
 
 
@@ -413,24 +473,33 @@ static File SDPathToFile(String filePatho, String fileName)
 
      Canvas cnvMask = new Canvas(bmpMainCanvImg); 
 
- 	 Bitmap bmpToMask = rUtilsBitmap.drawTextToBitmap(bmpMainCanvImg, tstrP, fntPaint, 8);
+ 	 Bitmap bmpToMask = rUtilsBitmap.drawTextToBitmap(bmpMainCanvImg, tstrF, fntPaint, 8);
 
        cnvMask.drawBitmap(bmpToMask, null, rsa, null);
+	 if(currUseFilter.equals("no")) { 
        cnvMask.drawBitmap(bmpAToMask, null, rs, null);
-      
-
+       } else {
+       cnvMask.drawBitmap(BitmapFilter.changeStyle(bmpAToMask, Integer.parseInt(currUseFilter)), null, rs, null);	
+	}
  
  
  
 
 	// b.recycle();
-	bmpToMask.recycle();
+	// bmpToMask.recycle();
  
     System.out.println("getItemBmp: " + bmpMainCanvImg.getWidth() + " :: " + bmpMainCanvImg.getHeight());
+	if(tstrCoTTl.equals("noQvalue")) {
+	
+      newMovWidth = bmpAToMask.getWidth();
+      newMovHeight = bmpAToMask.getHeight();
+  	return bmpAToMask;
+	} else {
+
       newMovWidth = bmpMainCanvImg.getWidth();
       newMovHeight = bmpMainCanvImg.getHeight();
   	return bmpMainCanvImg;
- 
+ 	}
 	}
 
 
@@ -443,75 +512,129 @@ static File SDPathToFile(String filePatho, String fileName)
 
 
 
+   public String getIPriceStr() {
+	String tstrP =  "1.99";	
+
+       try {
+ 	 JSONObject ji = apmetaObject.getJSONObject("qitem");
+       tstrP = ji.getString("i_price_b");
+      return tstrP;
+	} catch(Exception e) {
+	return tstrP;
+	 }
+   }
+
+
+   public String getITitleStr() {
+	String tstrP =  "Great Item";	
+       try {
+ 	 JSONObject ji = apmetaObject.getJSONObject("qitem");
+       return tstrP;
+	 } catch(Exception e) {
+	 return tstrP;
+	 }
+   }
 
 
 
 
+   public String getCoTitleStr() {
+	String tstrP =  "Quick-Order  ";	
 
+       try {
+ 	 JSONObject jdata = apmetaObject.getJSONObject("qco");
+       tstrP = jdata.getString("c_title");
+	 return tstrP;
 
+       } catch(Exception e) {
+	 return tstrP;
 
-
-
-
-
+	}
+   }
 
 
     public Bitmap getMovBmp(int ibmi) {
 
+  	 Bitmap bmpAToMask =  arrAnimFnlFrames.get(ibmi).getMBitmap();
+	String tmpWMarkStr = currCoTtlStr;
+      try {
 
- 	  Paint fntPaint = new Paint();
-	  Typeface tfbold = Typeface.create("Arial", Typeface.BOLD);
-	  fntPaint.setTypeface(tfbold);
-        fntPaint.setTextSize(12);
-        fntPaint.setColor(Color.parseColor("#FFFFFF"));
 
-/* 
-	  if(ibmi < 6) {
-        fntPaint.setShadowLayer(4, 4, 4, Color.BLACK);
-        fntPaint.setColor(Color.parseColor("#FFFFFF"));
- 	  } else {
-        fntPaint.setTextSize(14);
-        fntPaint.setShadowLayer(4, 4, 4, Color.GREEN);
-        fntPaint.setColor(Color.parseColor("#DECCDE"));
-	  }
+
+
+
+
+
+       if(currUseWmarkStr.equals("no") || currCoTtlStr.equals("noQvalue")) {
+
+
+
+	if(recIncDrwCount == recAnmDrwCount) { recIncDrwCount = 0; }
+	if(recIncBgDrwCount == recAnmBgDrwCount) { recIncBgDrwCount = 0; }
+
+	recIncDrwCount++;
+	recIncBgDrwCount++;
+ 
+ 
+    	System.out.println("getMovBmp: " + bmpAToMask.getWidth() + " :: " + bmpAToMask.getHeight());
+
+
+
+      newMovWidth = bmpAToMask.getWidth();
+      newMovHeight = bmpAToMask.getHeight();
+
+    Rect rs = new Rect();
+    rs.left = rs.top = 0;
+    rs.right = newMovWidth;
+    rs.bottom = newMovHeight;
+
+
+     Bitmap bmpMainCanvImg = Bitmap.createBitmap(newMovWidth, newMovHeight, Bitmap.Config.RGB_565);
+     Canvas cnvMask = new Canvas(bmpMainCanvImg); 
+
+
+	 if(currUseFilter.equals("no")) { 
+       cnvMask.drawBitmap(bmpAToMask, null, rs, null);
+       } else {
+       cnvMask.drawBitmap(BitmapFilter.changeStyle(bmpAToMask, Integer.parseInt(currUseFilter)), null, rs, null);	
+	}
+	return bmpMainCanvImg;
+
+
+
+
+ 
+ 	} else {
+
+
 
 
 
     	 System.out.println("AnimMovBuilder:getMovBmp: " + ibmi);
+ 	  Paint fntPaint = new Paint();
+	  // Typeface tfbold = Typeface.create("Arial", Typeface.BOLD);
+	  // fntPaint.setTypeface(tfbold);
+        fntPaint.setTextSize(12);
+        fntPaint.setColor(Color.parseColor("#FFFFFF"));
 
-   byte[] bMapArray = arrAnimFnlFrames.get(ibmi).getMBytes();
-
-    int[] previewPixels = new int[recMovWidth * recMovHeight];
-    rUtilsBitmap.decodeYUV420SP(previewPixels, bMapArray, recMovWidth, recMovHeight);
-    Bitmap b  = Bitmap.createBitmap(previewPixels, recMovWidth, recMovHeight, Bitmap.Config.RGB_565);
-    previewPixels = null;
- */
-	if(recIncDrwCount == recAnmDrwCount) { recIncDrwCount = 0; }
-	if(recIncBgDrwCount == recAnmBgDrwCount) { recIncBgDrwCount = 0; }
-	// Bitmap bmpToMask = rUtilsBitmap.getFaceMap(rUtilsBitmap.getResizedBitmap(b, (int)(recMovWidth*0.70), (int)(recMovHeight*0.70)));
-	// Bitmap bmpToMask = rUtilsBitmap.changeToColor(rUtilsBitmap.getFaceMap(rUtilsBitmap.getResizedBitmap(b, (int)(recMovWidth*0.70), (int)(recMovHeight*0.70))));
- 	 // -- !! Bitmap bmpToMask = rUtilsBitmap.getResizedBitmap(b, (int)(recMovWidth*0.20), (int)(recMovHeight*0.20));
-
- 	//  Bitmap bmpAToMask = rUtilsBitmap.scaleBoundBitmap(b, 320);
- 	 Bitmap bmpAToMask =  arrAnimFnlFrames.get(ibmi).getMBitmap();
-
-	String tstrP =  "quick-order  ";
-       try {
- 	 JSONObject jdata = apmetaObject.getJSONObject("qco");
- 	 JSONObject ji = apmetaObject.getJSONObject("qitem");
+ 
 
 
 	  if(ibmi < 6) {
-       tstrP = jdata.getString("c_title");
+        fntPaint.setShadowLayer(4, 4, 4, Color.BLACK);
+        fntPaint.setColor(Color.parseColor("#FFFFFF"));
+	  tmpWMarkStr = currCoTtlStr;
+ 	  } else {
+        fntPaint.setTextSize(14);
+        fntPaint.setShadowLayer(4, 4, 4, Color.GREEN);
+        fntPaint.setColor(Color.parseColor("#DECCDE"));
+	  tmpWMarkStr = currITtlStr + " - " + currIPriceStr;
+	  }
+
+
  
-	} else {
-       tstrP = ji.getString("i_title") + " - " + ji.getString("i_price_a");
-
-	}
-
-       } catch(Exception e) {
-	}
-
+	if(recIncDrwCount == recAnmDrwCount) { recIncDrwCount = 0; }
+	if(recIncBgDrwCount == recAnmBgDrwCount) { recIncBgDrwCount = 0; }
 
  
 
@@ -530,11 +653,15 @@ static File SDPathToFile(String filePatho, String fileName)
 
      Canvas cnvMask = new Canvas(bmpMainCanvImg); 
 
- 	 Bitmap bmpToMask = rUtilsBitmap.drawTextToBitmap(bmpMainCanvImg, tstrP, fntPaint, 8);
+ 	 Bitmap bmpToMask = rUtilsBitmap.drawTextToBitmap(bmpMainCanvImg, tmpWMarkStr, fntPaint, 8);
 
        cnvMask.drawBitmap(bmpToMask, null, rsa, null);
+
+	 if(currUseFilter.equals("no")) { 
        cnvMask.drawBitmap(bmpAToMask, null, rs, null);
-      
+       } else {
+       cnvMask.drawBitmap(BitmapFilter.changeStyle(bmpAToMask, Integer.parseInt(currUseFilter)), null, rs, null);	
+	}
 
 
 	recIncDrwCount++;
@@ -543,13 +670,29 @@ static File SDPathToFile(String filePatho, String fileName)
  
 
 	// b.recycle();
-	bmpToMask.recycle();
+
  
     System.out.println("getMovBmp: " + bmpMainCanvImg.getWidth() + " :: " + bmpMainCanvImg.getHeight());
       newMovWidth = bmpMainCanvImg.getWidth();
       newMovHeight = bmpMainCanvImg.getHeight();
+// arrAnimFnlFrames.get(ibmi).setMThumbBmp(rUtilsBitmap.scaleBoundBitmap(bmpMainCanvImg, 35));
+	// bmpToMask.recycle();
   	return bmpMainCanvImg;
- 
+
+
+
+
+
+
+	}
+
+    } catch (Exception e) {
+    System.out.println("AnimMovBuilder:getMovBmp:ERROR ibmi: " + e);
+       e.printStackTrace();
+	return bmpAToMask;
+
+    }   
+
 	}
 
 

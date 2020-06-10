@@ -91,7 +91,7 @@
  
         </activity>
          <activity android:name="com.njfsoft_utils.artpad.ArtPad"
-                  android:label="selfieLander Select Image"
+                  android:label="ArtPad Editor"
                   android:screenOrientation="portrait">
         </activity>
         <activity android:name="com.njfsoft_utils.cropimage.CropImage">

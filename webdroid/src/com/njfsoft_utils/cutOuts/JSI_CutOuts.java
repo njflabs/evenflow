@@ -23,19 +23,47 @@ public class JSI_CutOuts  {
 
     public void doTest(String stargs) {
         System.out.println("doTest: " + stargs);
-	//  main.doTest(stargs);
+	 // main.doTest(stargs);
     }
 
- 
-     public String getShareImgStr() {
+     public int getMovArrSize() {
         try {
-            String ret = main.getImgLoadStr();
+            int ret = main.getMovArrSize();
 		return ret;
         } catch (Exception e) {
-            System.out.println("getJSComm: " + e);
+            System.out.println("getMovArrSize: " + e);
+		return 0;
+        }
+
+    } 
+
+     public String getMovImgString(int tIMSi) {
+        try {
+            String ret = main.getMovImgString(tIMSi);
+		return ret;
+        } catch (Exception e) {
+            System.out.println("getMovImgString: " + e);
 		return "noQvalue";
         }
 
+    }
+
+
+
+ public String getCUConfBundle() {
+        try {
+            String ret = main.sendCUConfBundle();
+		return ret;
+        } catch (Exception e) {
+            System.out.println("getCUConfBundle: " + e);
+		return "noQvalue";
+        }
+
+    }
+
+
+    public void setCUConfValStr(String theString, String theVal) {
+        main.putCUConfValStr(theString, theVal);
     }
 
      public String getEFFramesObj() {

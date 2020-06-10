@@ -1,14 +1,7 @@
 package com.njfsoft_utils.artpad;
 
 import com.njfsoft_utils.artpad.ArtPad;
-
-/**
- * Created by IntelliJ IDEA.
- * User: boss
- * Date: 24-11-2012
- * Time: 12:23
- * To change this template use File | Settings | File Templates.
- */
+ 
 public class JSI_ArtPad  {
     public JSI_ArtPad(ArtPad theArtPad) {
         artPad = theArtPad;

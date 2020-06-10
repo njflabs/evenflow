@@ -16,13 +16,14 @@ package com.jwetherell.quick_response_code;
 
 import java.io.IOException;
 import java.util.Collection;
-
+import android.view.WindowManager;
 import com.qbits.R;
 
 
 import android.graphics.drawable.BitmapDrawable;
 // import com.jwetherell.quick_response_code.R;
 import com.jwetherell.quick_response_code.camera.CameraManager;
+import com.jwetherell.quick_response_code.camera.CameraConfigurationManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.google.zxing.ResultPoint;
@@ -58,8 +59,9 @@ import java.util.List;
 import android.widget.TextView;
 
 import com.njfsoft_utils.anim.UtilsBitmap;
-
-
+import com.njfsoft_utils.shareutil.ShareDataResult;
+import android.graphics.Point;
+import android.graphics.Rect;
 /**
  * Example Decoder Activity.
  * 
@@ -86,7 +88,7 @@ Timer atmrMovRec;
 	int iMovWidth = 0;
 	int iMovHeight = 0;
 
-
+CameraConfigurationManager tconfigManager;
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -95,7 +97,7 @@ Timer atmrMovRec;
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-	strRunning = "no";
+	  strRunning = "no";
         handler = null;
         hasSurface = false;
         resultView = findViewById(R.id.result_view);
@@ -116,9 +118,9 @@ Timer atmrMovRec;
 
         // CameraManager must be initialized here, not in onCreate().
         if (cameraManager == null) cameraManager = new CameraManager(getApplication());
-
-	  // cameraManager.setManualFramingRect(280, 280);
-
+ 
+	   // cameraManager.setManualFramingRect(pwwidth - 20, pwheight - 20);
+	// 	cameraManager.setBigFramingRect();
         if (viewfinderView == null) {
             viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
             viewfinderView.setCameraManager(cameraManager);
@@ -209,14 +211,6 @@ Timer atmrMovRec;
         return cameraManager;
     }
 
-    @Override
-    public void handleDecode(Result rawResult, Bitmap barcode) {
-        drawResultPoints(barcode, rawResult);
-		atmrMovRec.cancel();
-		atmrMovRec.purge();
-        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(this, rawResult);
-        handleDecodeInternally(rawResult, resultHandler, barcode);
-    }
 
 
 
@@ -340,6 +334,15 @@ strRunning = "no";
 }
 
 
+    @Override
+    public void handleDecode(Result rawResult, Bitmap barcode) {
+        	System.out.println("handleDecode");
+        // drawResultPoints(barcode, rawResult);
+	  //	atmrMovRec.cancel();
+	//	atmrMovRec.purge();
+        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(this, rawResult);
+        handleDecodeInternally(rawResult, resultHandler, barcode);
+    }
 
 
 
@@ -348,12 +351,38 @@ strRunning = "no";
     private void handleDecodeInternally(Result rawResult, ResultHandler resultHandler, Bitmap barcode) {
         onPause();
         inScanMode = false;
+	System.out.println("handleDecodeInternally");
 
+        try {
        CharSequence displayContents = resultHandler.getDisplayContents();
+				System.out.println("handleDecodeInternally... : " + displayContents);
+
+
+				// ShareDataResult.getInstance().setData(displayContents.toString());
+
+         if (handler != null) {
+            handler.quitSynchronously();
+            handler = null;
+        }
+
+        cameraManager.closeDriver();
+
+        if (!hasSurface) {
+            SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
+            SurfaceHolder surfaceHolder = surfaceView.getHolder();
+            surfaceHolder.removeCallback(this);
+		
+        }
                             Intent intent = new Intent();
-                    intent.putExtra("encdBmp", displayContents);
+                    intent.putExtra("qrresults", displayContents.toString());
                     setResult(RESULT_OK, intent);
                     finish();
+
+        } catch (Exception e) {
+            // Barcode Scanner has seen crashes in the wild of this variety:
+            // java.?lang.?RuntimeException: Fail to connect to camera service
+				System.out.println("handleDecodeInternally.error: " + e);
+        }
     }
 
 
@@ -406,7 +435,7 @@ strRunning = "no";
     }
 
     protected void showScanner() {
-        viewfinderView.setVisibility(View.VISIBLE);
+        viewfinderView.setVisibility(View.VISIBLE); 
     }
 
     protected void initCamera(SurfaceHolder surfaceHolder) {
