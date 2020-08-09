@@ -58,7 +58,7 @@ import com.njfsoft_utils.anim.UtilsBitmap;
 import com.njfsoft_utils.artpad.filters.BitmapFilter;
 
 
-import com.qbits.R;
+import com.quickorder.R;
 
 public class AnimMovBuilder {
  
@@ -288,7 +288,7 @@ static File SDPathToFile(String filePatho, String fileName)
 
 	public boolean  addAnimMovBmp() {
 	boolean isdbool = true;
-       System.out.println("addAnimMovBmp:CronTime: ");
+       System.out.println("addAnimMovBmptimestamp");
 
 	try { 
 

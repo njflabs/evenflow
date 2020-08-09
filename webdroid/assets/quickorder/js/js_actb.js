@@ -1,5 +1,5 @@
 actbLoaded = true;
-
+var acton;
 /*    Caret Functions     */
 
 // Get the end position of the caret in the object. Note that the obj needs to be in focus first
@@ -354,7 +354,7 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
 
 	function actb_setup(){
 		addEvent(actb_curr,"keydown",actb_checkkey);
-		addEvent(actb_curr,"blur",actb_clear);
+		// addEvent(actb_curr,"blur",actb_clear);
 		addEvent(actb_curr,"keypress",actb_keypress);
 		actb_generate();
 	}
@@ -1139,7 +1139,7 @@ var getItemIcon = function(theType) {
 
 var getItemTable = function(tmpItitle, tmpIkwrds) {
  
-strItable = "<div onclick=\"javascript:doItemAction('" + tmpItitle + "');\"  class=\"txtDecorNone txtClrHdr crsrPointer txtBold cls_hoover\" style=\"width:100%;padding:3px;margin:3px\"><span class=\"slmtable bkgdClrNrml\" style=\"padding:4px;\">" + getItemIcon(tmpItitle) + " " + tmpIkwrds + "</span></div>";
+strItable = "<div onclick=\"javascript:doItemAction('" + tmpItitle + "');\"  class=\"txtDecorNone txtClrHdr crsrPointer txtBold cls_hoover\" style=\"width:100%;padding:3px;margin:3px;margin-bottom: 12px;\"><span class=\"slmtable bkgdClrWhite txtBig txtBold\" style=\"padding:4px;\">" + getItemIcon(tmpItitle) + " " + tmpIkwrds + "</span></div>";
 
 return strItable;
 };
@@ -1206,7 +1206,7 @@ epArrFarrKwds = epFdsArrKwds.split("|");
 
 
 if(theElem == "ijUFeedSearch") {
-acton = actb(document.getElementById(theElem),customarray2,customarray,epArrCarrTtls,epArrCarrKwds,epArrFarrTtls,epArrFarrKwds);
+acton = new actb(document.getElementById(theElem),customarray2,customarray,epArrCarrTtls,epArrCarrKwds,epArrFarrTtls,epArrFarrKwds);
 }  
 
  

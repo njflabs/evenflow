@@ -44,7 +44,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
-import com.qbits.R;
+import com.quickorder.R;
 
 /**
  * The activity can crop specific region of interest from an image.

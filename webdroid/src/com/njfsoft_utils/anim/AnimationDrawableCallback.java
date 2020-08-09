@@ -21,7 +21,7 @@ import android.content.res.AssetManager;
 
  
 
-import com.qbits.R;
+import com.quickorder.R;
 
 
 

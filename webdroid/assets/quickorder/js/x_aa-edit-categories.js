@@ -130,7 +130,7 @@ iint++;
 * fills category list
 */
 var doMainOut = function() {
-// alert("doMainOut ")
+// alert("doMainOut: " + JSON.stringify(currMenuArr));
 var arrToFill = null;
 arrToFill = [];
 hasr = "n";

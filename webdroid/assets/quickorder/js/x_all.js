@@ -1142,11 +1142,13 @@ JSSHOP.ajax.doNuAjaxPipe = function(theElem,pUrl,tmpCB) {
 
 		   // alert(tmpCB + " :: " + oReq.responseText);
                tmpCB(theElem,oReq.responseText,tUTA);
+
 		  
             }  
         }
         oReq.onerror = function() {
             //  alert("yikes, we have a connection problem...");
+ 
         }
         oReq.open("GET", pUrl, true);
         picr = oReq.send(null);
@@ -1275,7 +1277,7 @@ alert("no showPopHelp: " + e);
 
 
 
-JSSHOP.ui.setNPopHelp = function(){
+JSSHOP.ui.setNPopHelp = function(thePath){
  try {
 setTimeout("JSSHOP.ui.showNPopHelp()", 1080);
 } catch(e) {
@@ -1460,7 +1462,9 @@ JSSHOP.ui.setNuCBBClickClr(theElem, theCclss, theCBclss, theCB, 380);
 
 
 JSSHOP.ui.setSaveBtnClick = function(theObj,theCB) {
+theObj.innerHTML = "";
 theObj.disabled=true;
+doSpinSet(theObj.id, "small", null);
 JSSHOP.ui.setNuCBBClickClr(theObj,'cls_button cls_button-medium brdrClrHdr txtClrGrey','cls_button cls_button-medium', theCB, 380);
 };
 
@@ -1536,7 +1540,7 @@ JSSHOP.ui.popAndFillLbox = function(theFill) {
 try {
 tmpLbox = document.getElementById('lightbox');
 tmpLCbox = document.getElementById('lightbox_content');
-tmpLbox.style.display='inline';
+tmpLbox.style.display="inline";
 if(theFill == "noQvalue") {
 } else if(theFill == "dbug") {
 tmpLCbox.innerHTML= "<div style=\"overflow:auto;min-height: 231px; min-width: 368px\"  contenteditable=\"true\">" + currDBUGstr + "</div>";
@@ -1544,10 +1548,10 @@ tmpLCbox.innerHTML= "<div style=\"overflow:auto;min-height: 231px; min-width: 36
 } else {
 tmpLCbox.innerHTML=theFill;
 }
-
+tmpLCbox.style.position="absolute";
 tmpVheight = document.documentElement.clientHeight || document.body.clientHeight || window.innerHeight;
 if(tmpLCbox.clientHeight >= tmpVheight) {
-tmpLbox.style.position="absolute";
+// tmpLbox.style.position="absolute";
 newel = document.createElement('div');
 newel.innerHTML = "New Inserted";
 tmpLCbox.appendChild(newel);
@@ -1561,11 +1565,12 @@ stop = getScrollTop();
 scrollToElement("dvHdr");
 window.scrollTo(0,0);
 tmpLCbox.style.top="5px";
+// tmpLCbox.style.position="fixed";
 if(getViewportWidth() > 500) {}
 iMdl = Math.round((getViewportWidth() - tmpLCbox.clientWidth) / 2);
 tmpLCbox.style.left=iMdl+"px";
 
-tmpLCbox.style.position="fixed";
+// tmpLCbox.style.position="fixed";
 } catch(e) {
 JSSHOP.logJSerror(e, arguments, "JSSHOP.popAndFillLbox");
 }
@@ -1807,16 +1812,33 @@ JSSHOP.shop.getCurrMIArrIndex = function(tIint) {
 return currMItemsArr[tIint];
 };
 
+var setPopCartIArr = function(theObj,b,iei) {
+currCartIArr = null;
+currCartIArr = [];
+currCartIArr = JSON.parse(b);
+JSSHOP.shop.doCartAddPop();
+// JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr', function(){JSSHOP.shop.doCartAddPop()});
+
+// JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){window.scrollTo(0,0);JSSHOP.ui.setCBBClickClr(document.getElementById('ahCartIcon'),'cls_button cls_button-medium brdrClrDlg txtClrHdr','clsDummy', function(){void(0)})});
+};
+
+var xdoAddFnsh = function(theObj,b,iei) {
+
+    tmpDOs = null;
+    tmpDOs = {};
+    tmpDOs["ws"] = "where ci_uid=? and ci_coid=? and ci_cartqty >? and ci_rtype=? and ci_cartid=?";
+    tmpDOs["wa"] = [quid,cid,0,5,cartID]; 
+    oi = getNuDBFnvp("qcartitem",5,null,tmpDOs);
+    doQComm(oi["rq"], null, "setPopCartIArr");
 
 
-xdoAddFnsh = function(theObj,b,iei) {
-JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr', function(){JSSHOP.shop.doCartAddPop()});
+// JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr', function(){JSSHOP.shop.doCartAddPop()});
 
 // JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){window.scrollTo(0,0);JSSHOP.ui.setCBBClickClr(document.getElementById('ahCartIcon'),'cls_button cls_button-medium brdrClrDlg txtClrHdr','clsDummy', function(){void(0)})});
 };
 
 var xrenderCartPop = function(theObj,b, iei) {
-
+JSSHOP.ui.popAndFillLbox("loading...");
 tmpDOs = null;
 tmpDOs = {};
 
@@ -1886,8 +1908,14 @@ JSSHOP.shop.doItemShowPop = function() {
     loadNuJSModal("tplates/aa-mod-show-item.html?tt=" + JSSHOP.getUnixTimeStamp(), "trans");
 };
 
+
+
+ 
+
+
 JSSHOP.shop.doCartAddPop = function() {
-    loadJSModal("tplates/aa-mod-show-cartadd.html?tt=" + JSSHOP.getUnixTimeStamp(), "trans");
+
+JSSHOP.ui.popAndFillLbox(JSSHOP.shop.renderNuCartItems());
 };
 
 JSSHOP.shop.doCAshow = function(thePrdsArna, theObj) {
@@ -2290,6 +2318,118 @@ alert(e);
 };
 
  
+
+
+
+JSSHOP.shop.renderNuCartItems = function() {
+ 
+    tstr = "";
+    iint = 0;
+    ppint = 1;
+	 cartTtl = 0;
+ 
+		ttCAA = currCartIArr[0];
+	// ttCAA = JSON.parse(arrAllForms.qcartitem.v[0]);
+    len = currCartIArr.length;
+
+    strHtml = "<div class=\"txtSmall txtBold mintwofh highZ tatCross\">"; 
+
+    strHtml += "<div onclick=\"JSSHOP.ui.closeLbox();\" class=\"slmtable txtClrRed txtBold brdrClrRed crsrPointer\" style=\"float:right\">Close</div>";
+
+    strHtml += "<div class=\"txtClrHdr bkdgClrDlg txtBold\" style=\"margin-bottom: 15px;\">";
+    strHtml += "<i class=\"material-icons\"  style=\"margin-top: 5px;font-size:14px;\"  alt=\"shopping_cart\" title=\"shopping_cart\">&#xe8cc;</i> Cart Preview</a></div>";
+
+    if (currCartIArr.length) {
+       strHtml += "<div onclick=\"javascript:document.location.href='index.html?pid=aa-show-cart&cid=" + cid + "&ppid=" + ppid + "'\" class=\"rtable txtClrHdr bkdgClrDlg txtBold crsrPointer\" style=\"margin-bottom: 18px;max-width: 65%; margin: 0 auto;text-align: center\">Go To Cart/Checkout -></div>";
+   }
+            strHtml += "<div style=\"padding-top: 8px; margin: 8px; border-bottom: 1px dashed #D1D5D1;\">"; 
+	      strHtml += "</div>";
+
+	ts = null;
+    while (iint < len) {
+        ts = currCartIArr[iint];
+        strRecID = ts._id;
+        strRecType = 50;
+
+
+
+
+
+        if (ts._id > 0) {
+ 
+
+	na = ts.ci_price_a - ts.ci_price_b;
+	nd = Math.round((na / ts.ci_price_a) * 100);
+	strPriceHtml = "";
+
+      tmpTttl = ts.ci_price_b * ts.ci_cartqty;
+	cartTtl = cartTtl + tmpTttl;
+
+ 
+
+
+		if(ts.ci_img) {
+		 tmpIstrI = JSSHOP.shop.getPrdImgStr(ts.ci_img);
+		}
+
+
+	
+                  strHtml += "<div style=\"max-width:78%\">";
+ 		strHtml += "<a class=\"txtDecorNone\" href=\"index.html?pid=aa-show-item&itemid=" + ts.ci_pid + "&cid=" + ts.ci_coid + "&catid=" + ts.ci_catid + "\">";
+ 		strHtml += "<img src=\"" + tmpIstrI + "\" class=\"slmtable brdrClrDlg icndbtn\" style=\"align: center;text-align:center;margin:6px;\" align=\"absmiddle\">" +  ts.ci_title;
+            strHtml += "<span class=\"txtstriked txtBig txtClrGrey\">" + ts.ci_price_b + "</span></a>";
+            strHtml += "</div>";
+
+
+            strHtml += "<div style=\"align: right;text-align:right\">";
+            strHtml += "<span onclick=\"javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, document.location.href='index.html?pid=aa-show-cart&cid=' + cid + '&ppid=' + ppid);\" class=\"crsrPointer\"><span class=\"txtBig txtClrDlg txtBold\">x" + ts.ci_cartqty + " = " + tmpTttl + "</span></span>";
+             strHtml += "</div>";
+
+
+     
+
+            strHtml += "<div style=\"padding-top: 8px; margin: 8px; border-bottom: 1px dashed #D1D5D1;\">"; 
+	      strHtml += "</div>";
+
+ 
+
+ 
+
+
+ 
+            strHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
+
+ 
+            strHtml += "<input type=\"hidden\" name=\"item_name_" + ppint + "\" value=\"" +  ts.ci_title + "\">";
+            strHtml += "<input type=\"hidden\" name=\"item_number_" + ppint + "\" value=\"" +  ts._id + "\">";
+            strHtml += "<input type=\"hidden\" name=\"quantity_" + ppint + "\" value=\"" + ts.ci_cartqty + "\">";
+            strHtml += "<input type=\"hidden\" name=\"amount_" + ppint + "\" value=\"" + ts.ci_price_b + "\">";
+
+        }
+	  ppint++;
+        iint++;
+    }
+    if (currCartIArr.length) {
+ 
+      strHtml += "<div style=\"text-align: right\">Total:<b>" + cartTtl.toFixed(2) + "</b></div>"; 
+      strHtml += "<div onclick=\"javascript:document.location.href='index.html?pid=aa-show-cart&cid=" + cid + "&ppid=" + ppid + "'\" class=\"rtable txtClrHdr bkdgClrDlg txtBold crsrPointer\" style=\"margin-bottom: 18px;max-width: 65%; margin: 0 auto;text-align: center\">Go To Cart/Checkout -></div>";
+
+   } else {
+      strHtml += "<div>" + stxt[34] + "</div>";
+ 	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+
+    }
+
+    strHtml += "</div>";
+
+return strHtml;
+ 
+
+
+
+};
+
+
 
 /**/
 

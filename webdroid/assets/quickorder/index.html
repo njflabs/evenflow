@@ -5,14 +5,15 @@ include "_p/inc-header.php";
 <html>
 <head>
 <meta content="en-us" http-equiv="Content-Language">
+ 
 <script language="php">
 $pgTitle = "QuickOrder";
 $pgDesc = "QuickOrder";
 $pgKeywords = "QuickOrder"; 
 include "_p/inc-index_meta.php";
 $fArr = array("index_header", "index_nav", "index_main", "index_footer");
+</script>
  
-</script> 
 <meta name="viewport" content="initial-scale=1, user-scalable=0, maximum-scale=1">
 <script  type="text/javascript">
 var isPhP = "no";
@@ -41,27 +42,24 @@ var getFArr = function() {
 return new Array("index_header", "index_nav", "index_main", "index_footer");
 };
 </script>
- 
 <script language="php">
 echo '<scr' . 'ipt>isPhP=5;</scr' . 'ipt>';
 </script>
-<script language="javascript" type="text/javascript" src="js/lz-string.js"></script>
-<script src="js/x_admin.js"  language="javascript" type="text/javascript"></script>
+<!--
+<script src="js/lz-string.js" language="javascript" type="text/javascript"></script>
+-->
+
 <script src="js/x_all.js"  language="javascript" type="text/javascript"></script>
 <script src="js/x_booter.js"  language="javascript" type="text/javascript"></script>
+
+<script src="js/x_admin.js"  language="javascript" type="text/javascript"></script>
+
+ 
 <script language="php">
 include "_p/js-header.php";
 </script>
-
-
  
-
-
-<!-- <link href="css/materialize.css" rel="stylesheet"> 
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
--->
+ 
 
 <link href="css/main.css" rel="stylesheet">
 
@@ -76,11 +74,236 @@ include "_p/js-header.php";
 <div id="includedHeader">
 </div>
 <div id="includedNav">
+
+<!-- the following should be in the tplates/index_nav.html and imported as seen at bottom of this page. -->
+<h1 style="max-height:60px;"> 
+<nav class="animenu"> 
+<span>
+ <div id="dvHdr" class="top-bar">
+ 
+   <button style="float:right" id="mnuBtn" class="animenu__toggle" onclick="javascript:scroll(0,0);JSSHOP.ui.toggleMnuVisibility('dvMnuT');">
+    <span class="animenu__toggle__bar"></span>
+    <span class="animenu__toggle__bar"></span>
+    <span class="animenu__toggle__bar"></span>
+  </button> 
+
+  <span style="float:right" class="onlySmallScreen"><a href="javascript:JSSHOP.ui.toggleVisibility('dvSearchBoxSlim');"><i class="material-icons txtClrWhite"  style="margin-top: 5px;font-size:32px;" alt="search" title="search">&#xe8b6;</i></a></span>
+    <div class="container">
+      <div class="aarow">
+        <div>
+         
+
+
+        <h5 class="onlyWideScreen txtClrWhite txtBold"><a href="index.html"><span id="ancLogoTxt">QuickOrder</span></a></h5>          
+
+
+
+
+          <ul class="shop-menu"> 
+
+ 
+
+ 
+            <li id="ahAccountIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahAccountIcon', null, document.location.href='index.html?pid=aa-edit-user&cid=' + cid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;" alt="person" title="person">&#xe7fd;</i></a></li>   
+
+            <li id="ahSettingsIcon"><span class="icnbtn slmtable txtSmall txtClrWhite bkgdClrRed" style="float:right">2</span><a href="javascript:JSSHOP.ui.doDefCBBCC('ahSettingsIcon', null, document.location.href='index.html?pid=aa-settings&cid=' + cid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;" alt="settings" title="settings">&#xe8b8;</i></a></li>   
+            <!-- <li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, document.location.href='index.html?pid=aa-show-cart&cid=' + cid + '&ppid=' + ppid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li> -->
+ 			<li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, JSSHOP.shop.doCartAddPop());"><i class="material-icons"  style="margin-top: 5px;font-size:32px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li>
+ 
+           <li id="ahHomeIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahHomeIcon', null, document.location.href='index.html?&cid=' + cid);"><i class="material-icons" style="margin-top: 5px;font-size:32px;" alt="home" title="home">&#xe88a;</i></a></li>
+  
+                     
+          </ul>
+          
+
+          <span class="clsSearchBox" id="dvSearchBox">     
+          
+		<!--  aa-cmp-search will be included here andnot pullef from ajax request -->
+		<div  id="dvNMsearch"><table cellspacing="0" cellpadding="0" class="">
+										<tr>
+											<td> 
+                    <table border="0" align="center" cellspacing="0" cellpadding="0">
+                      <tr>
+                  <td>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+      <td>
+        <table border="0" cellspacing="0">
+          <tr>
+            <td style="width: 100%">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+					&nbsp;</td>
+				</tr>
+				</table>
+			
+			</td>
+          </tr>
+ 
+          	</table>
+      </td>
+ 
+ 
+                      </tr>
+                    </table>
+                  </td>
+							 
+                  <td width="100%">
+                    <table style="width: 100%" cellspacing="0" cellpadding="0">
+						<tr>
+					 
+							<td>
+							<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="right">
+
+				
+				
+										 
+											
+												<table style="text-align: center;margin:0 auto;" align="center" cellspacing="0" cellpadding="0">
+													<tr>
+											 
+									<td>
+														<table style="margin: 0 auto;background-color:#FFFFFF" align="center" cellpadding="0" cellspacing="0"  class="slmtable brdrClrHdr">
+								<tr>					
+									<td>&nbsp;</td><td valign="middle">                   
+							<input type="text" name="ijUFeedSearch" id="ijUFeedSearch" value="Keywords here"  title="Search" style="text-align:left; width: 100%; border-color:#FFFFFF;border:0px;color:#DEDEDE;" class="txtLrg"   onfocus="javascript:if(this.value=='Keywords here') this.value = '';this.style.color='#000000';" onblur="if(this.value === '') this.value = 'Keywords here';this.style.color='#DEDEDE'"> 
+							
+		 
+							</td>
+
+		<td>  
+		</td>											 
+<td>													
+ 
+           <div><a href="javascript:getMainSearch(ijUFeedSearch.value);"><i class="material-icons" style="font-size:22px;" alt="search" title="search">&#xe8b6;</i></a></div> 
+   
+
+</td>
+<td>
+   <div id="dvBtnSexpnd"><a href="javascript:ijUFeedSearch.focus();doDummyFocus();"><i class="material-icons" style="font-size:22px;" alt="search" title="search">&#xe5db;</i></a></div>
+
+</td>
+<td  id="tdSrchBCodeBtn">													
+ 
+         
+ <div style="margin-left:8px"><a href="javascript:doBarCodeScan('search');"> 
+           					 <img  class="icndbtn" title="barcode" alt="barcode" src="data:image/png;base64,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"> 
+
+           </a></div>
+</td>
+									
+	</tr>
+									</table></td>
+													</tr>
+												</table>
+													</td></tr></table></td>
+							<td>
+							
+ 
+ 						   </td>
+						</tr>
+		 
+						</table>
+                  </td>
+                      </tr>
+                      </table></td>
+										</tr>
+										</table>
+ </div>
+
+		<!--  ENDOF aa-cmp-search will be included here andnot pullef from ajax request -->
+		
+       
+          </span> 
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</span>
+
+<!-- <ul id="mnuULmain" class="animenu__nav"></ul> -->
+
+ 
+</nav>
+
+
+
+
+<script type="javascript" language="text/javascript">
+(function(){
+  var animenuToggle = document.querySelector('.animenu__toggle'),
+      animenuNav    = document.querySelector('.animenu__nav'),
+      hasClass = function( elem, className ) {
+        return new RegExp( ' ' + className + ' ' ).test( ' ' + elem.className + ' ' );
+      },
+      toggleClass = function( elem, className ) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
+        if( hasClass(elem, className ) ) {
+          while( newClass.indexOf( ' ' + className + ' ' ) >= 0 ) {
+            newClass = newClass.replace( ' ' + className + ' ' , ' ' );
+          }
+          elem.className = newClass.replace( /^\s+|\s+$/g, '' );
+        } else {
+          elem.className += ' ' + className;
+        }
+      },           
+      animenuToggleNav =  function (){        
+        toggleClass(animenuToggle, "animenu__toggle--active");
+        toggleClass(animenuNav, "animenu__nav--open");        
+      }
+
+  if (!animenuToggle.addEventListener) {
+      animenuToggle.attachEvent("onclick", animenuToggleNav);
+  }
+  else {
+      animenuToggle.addEventListener('click', animenuToggleNav);
+  }
+})()
+
+
+
+</script></h1>
+
+<div id="dvMnuT" class="bkgdClrWhite collection brdrClrDlg" style="display:none;visibility:hidden;max-width: 93%;min-height: 40px;padding-top: 10px;padding-left: 5px;padding-right: 20px; z-index:98988;position:fixed;margin: 7px"><!-- !! DO NOT DELETE !! MOBILE MENU DIV !! --></div>
+
+
+<!-- LIGHTBOX CODE BEGIN -->
+<div id="lightbox" class="lightbox" style="display:none;z-index:1;" onclick="document.getElementById('lightbox').style.display='none';document.getElementById('lightbox_content').style.top='-800px';document.getElementById('lightbox_content').style.display='none';document.getElementById('lightbox_content').innerHTML=''">
+</div> <div id="lightbox_content" class="rtable bkgdClrWhite" style="min-height:100px;min-width:280px;z-index:999999;position:fixed;top:-200px;">
+      </div>
+<div id="dvDynCtt" style="max-height:120px;min-width:280px;z-index:998889;position:fixed;top:-300px;">
+<IFRAME height="200px" frameborder="0" border="0" src="tplates/index_blank.html" marginwidth="0" marginheight="0" id="ifrmDynCtt" name="ifrmDynCtt">
+</IFRAME>
 </div>
+
+
+
+
+
+<!-- LIGHTBOX CODE END  -->
+
+<!-- end of the above should be in the tplates/index_nav.html and imported as seen at bottom of this page. -->
+
+</div>
+
+
+
+
+
 </header>
 <div style="min-height:40px"></div>
 
 <div id="dvSearchBoxSlim" style="top: 60px; left:25px; position:fixed; background-color: #FFFFFF"></div>
+<div style="top: -160px; left:-5025px; position:fixed;">
+<input type="checkbox" id="chkbxDummy">
+</div>
 
 <!-- // wont use for now left menu toggle button
 <div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer bkgdClrWhite" style="position: fixed" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');">
@@ -89,8 +312,163 @@ include "_p/js-header.php";
 // end of wont use left menu toggle button -->
 <input type="hidden" name="fldChallArray" id="fldChallArray" value="noQvalue">
 <div id="includedForms">
+
+<!-- called from index.php -->
+<form name="quser">
+<input type="hidden" name="_id" value="gfgfgfgfgfg" data-prval="disnull">
+<input type="hidden" name="u_rtype" id="u_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="u_name" id="u_name" value="" data-prval="disnull">
+<input type="hidden" name="u_email" id="u_email" value="" data-prval="disnull">
+<input type="hidden" name="u_pass" id="u_pass" value="" data-prval="disnull">
+<input type="hidden" name="u_header" id="u_header" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthtype" id="u_socauthtype" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthid" id="u_socauthid" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthtoke" id="u_socauthtoke" value="" data-prval="disnull">
+<input type="hidden" name="u_dadded" id="u_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qco">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="c_rtype" id="c_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="c_uid" id="c_uid" value="" data-prval="disnull">
+<input type="hidden" name="c_title" id="c_title" value="QuickOrder" data-prval="disnull">
+<input type="hidden" name="c_desc" id="c_desc" value="" data-prval="disnull">
+<input type="hidden" name="c_tel" id="c_tel" value="" data-prval="disnull">
+<input type="hidden" name="c_web" id="c_web" value="" data-prval="disnull">
+<input type="hidden" name="c_email" id="c_email" value="" data-prval="disnull">
+<input type="hidden" name="c_vala" id="c_vala" value="" data-prval="disnull">
+<input type="hidden" name="c_valb" id="c_valb" value="" data-prval="disnull">
+<input type="hidden" name="c_dadded" id="c_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qcat">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="cat_rtype" id="cat_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="cat_uid" id="cat_uid" value="5" data-prval="disnull">
+<input type="hidden" name="cat_coid" id="cat_coid" value="5" data-prval="disnull">
+<input type="hidden" name="cat_pid" id="cat_pid" value="0" data-prval="disnull">
+<input type="hidden" name="cat_title" id="cat_title" value="" data-prval="disnull">
+<input type="hidden" name="cat_desc" id="cat_desc" value="qdesc" data-prval="disnull">
+<input type="hidden" name="cat_vala" id="cat_vala" value="1" data-prval="disnull">
+<input type="hidden" name="cat_valb" id="cat_valb" value="10001" data-prval="disnull">
+<input type="hidden" name="cat_dadded" id="cat_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qitem">
+<input type="hidden" name="_id" value="0" data-prval="disnull">
+<input type="hidden" name="i_rtype" id="i_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="i_itemid" id="i_itemid" value="5" data-prval="disnull">
+<input type="hidden" name="i_bcode" id="i_bcode" value="5" data-prval="disnull">
+<input type="hidden" name="i_uid" id="i_uid" value="5" data-prval="disnull">
+<input type="hidden" name="i_coid" id="i_coid" value="5" data-prval="disnull">
+<input type="hidden" name="i_catid" id="i_catid" value="5" data-prval="disnull">
+<input type="hidden" name="i_pid" id="i_pid" value="0" data-prval="disnull">
+<input type="hidden" name="i_title" id="i_title" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="i_desc" id="i_desc" value="" data-prval="disnull">
+<input type="hidden" name="i_price_a" id="i_price_a" value="0" data-prval="disnull">
+<input type="hidden" name="i_price_b" id="i_price_b" value="0" data-prval="disnull">
+<input type="hidden" name="i_dimen_n" id="i_dimen_n" value="0" data-prval="disnull">
+<input type="hidden" name="i_dimen_v" id="i_dimen_v" value="0" data-prval="disnull">
+<input type="hidden" name="i_img" id="i_img" value="0" data-prval="disnull">
+<input type="hidden" name="i_vala" id="i_vala" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="i_valb" id="i_valb" value="0" data-prval="disnull">
+<input type="hidden" name="i_dadded" id="i_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qcartitem">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="ci_rtype" id="ci_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="ci_itemid" id="ci_itemid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_uid" id="ci_uid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_cartid" id="ci_cartid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_coid" id="ci_coid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_catid" id="ci_catid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_pid" id="ci_pid" value="" data-prval="disnull">
+<input type="hidden" name="ci_title" id="ci_title" value="" data-prval="disnull">
+<input type="hidden" name="ci_price_a" id="ci_price_a" value="" data-prval="disnull">
+<input type="hidden" name="ci_price_b" id="ci_price_b" value="" data-prval="disnull">
+<input type="hidden" name="ci_dimen_n" id="ci_dimen_n" value="" data-prval="disnull">
+<input type="hidden" name="ci_dimen_v" id="ci_dimen_v" value="" data-prval="disnull">
+<input type="hidden" name="ci_img" id="ci_img" value="0" data-prval="disnull">
+<input type="hidden" name="ci_cartqty" id="ci_cartqty" value="1" data-prval="disnull">
+<input type="hidden" name="ci_vala" id="ci_vala" value="" data-prval="disnull">
+<input type="hidden" name="ci_valb" id="ci_valb" value="" data-prval="disnull">
+<input type="hidden" name="ci_dadded" id="ci_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qorder">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="o_rtype" id="o_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="o_uid" id="o_uid" value="5" data-prval="disnull">
+<input type="hidden" name="o_cartid" id="o_cartid" value="5" data-prval="disnull">
+<input type="hidden" name="o_coid" id="o_coid" value="5" data-prval="disnull">
+<input type="hidden" name="o_pid" id="o_pid" value="" data-prval="disnull">
+<input type="hidden" name="o_cartqty" id="o_cartqty" value="" data-prval="disnull">
+<input type="hidden" name="o_vala" id="o_vala" value="" data-prval="disnull">
+<input type="hidden" name="o_valb" id="o_valb" value="" data-prval="disnull">
+<input type="hidden" name="o_dadded" id="o_dadded" value="" data-prval="disnull">
+</form>
+
+
+<form name="qmedia">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="m_rtype" id="m_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="m_uid" id="m_uid" value="5" data-prval="disnull">
+<input type="hidden" name="m_coid" id="m_coid" value="5" data-prval="disnull">
+<input type="hidden" name="m_catid" id="m_catid" value="5" data-prval="disnull">
+<input type="hidden" name="m_pid" id="m_pid" value="5" data-prval="disnull">
+<input type="hidden" name="m_file" id="m_file" value="5" data-prval="disnull">
+<input type="hidden" name="m_data" id="m_data" value="5" data-prval="disnull">
+<input type="hidden" name="m_vala" id="m_vala" value="5" data-prval="disnull">
+<input type="hidden" name="m_valb" id="m_valb" value="5" data-prval="disnull">
+<input type="hidden" name="m_valc" id="m_valc" value="5" data-prval="disnull">
+<input type="hidden" name="m_dadded" id="m_dadded" value="5" data-prval="disnull">
+</form>
+
+
+<form name="qextras">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="e_rtype" id="e_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="e_uid" id="e_uid" value="5" data-prval="disnull">
+<input type="hidden" name="e_vala" id="e_vala" value="" data-prval="disnull">
+<input type="hidden" name="e_valb" id="e_valb" value="" data-prval="disnull">
+<input type="hidden" name="e_valc" id="e_valc" value="" data-prval="disnull">
+<input type="hidden" name="e_vald" id="e_vald" value="" data-prval="disnull">
+<input type="hidden" name="e_vale" id="e_vale" value="" data-prval="disnull">
+<input type="hidden" name="e_valf" id="e_valf" value="" data-prval="disnull">
+<input type="hidden" name="e_dadded" id="e_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qbit">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="q_rtype" id="q_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="q_uid" id="q_uid" value="5" data-prval="disnull">
+<input type="hidden" name="q_pid" id="q_pid" value="" data-prval="disnull">
+<input type="hidden" name="q_title" id="q_title" value="" data-prval="disnull">
+<input type="hidden" name="q_desc" id="q_desc" value="qdesc" data-prval="disnull">
+<input type="hidden" name="q_vala" id="q_vala" value="aa" data-prval="disnull">
+<input type="hidden" name="q_valb" id="q_valb" value="aa" data-prval="disnull">
+<input type="hidden" name="q_dadded" id="q_dadded" value="" data-prval="disnull">
+</form>
+
+
+<form name="qconn" id="qconn" target="_top" action="_p/do.php" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
+<input type="hidden" name="action" value="save" data-prval="disnull">
+<input type="hidden" name="fn" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="fc" value="m" data-prval="disnull">
+<input type="hidden" name="lz" value="n" data-prval="disnull">
+<input type="hidden" name="ls" value="n" data-prval="disnull">
+<input type="hidden" name="el" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="cb" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="q" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="ur" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="rs"  value="noQvalue" data-prval="disnull">
+<input type="hidden" name="er" value="noQvalue" data-prval="disnull">
+</form>
+
+
 </div>
-<script>setTimeout("doBootLoad()", 200)</script>
+
  
  <div id="mmn" class="nanimenu animenu">
  	<div  id="mnuT" style="padding-left:10px;" >
@@ -98,7 +476,7 @@ include "_p/js-header.php";
 	 </div></div> 
 
 	 
-	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:10px;float:right;" class="txtSmall txtClrBlack">
+	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:15px;margin-top:18px;float:right;" class="txtSmall txtClrBlack">
 </div>
 
 
@@ -181,6 +559,17 @@ include "_p/js-header.php";
 
 <div id="includedFooter" class="txtBold links_footer">
 </div>
+ <script src="js/x_menu.js"  language="javascript" type="text/javascript"></script>
+<script src="js/js_spinner.js"  language="javascript" type="text/javascript"></script>
+<script src="js/js_actb.js"  language="javascript" type="text/javascript"></script>
 <div id="dvDummy"></div>
+<script language="javascript" type="text/javascript">
+// JSSHOP.ajax.doNuAjaxPipe("includedNav",  "tplates/index_nav.html", pfRet);
+window.onload=doBootLoad;
+// JSSHOP.loadScript("js/" + jscssprefix + "x_menu.js", doACTBboot,"js");
+doSpinSet("includedContent", "big", "loading the content");
+
+</script>
+
 </body> 
 </html>

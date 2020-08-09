@@ -6,7 +6,7 @@
 # view res/layout/jwqrc_decoder_activity.xml #generated:26
 -keep class com.jwetherell.quick_response_code.ViewfinderView { <init>(...); }
 
-# view res/layout/com_njfsoft_utils_cutouts.xml #generated:46
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:44
 -keep class com.njfsoft_utils.anim.AnimView { <init>(...); }
 
 # view AndroidManifest.xml #generated:93
@@ -33,7 +33,7 @@
 # view AndroidManifest.xml #generated:101
 -keep class com.njfsoft_utils.cutOuts.CutOuts { <init>(...); }
 
-# view res/layout/com_njfsoft_utils_cutouts.xml #generated:34
+# view res/layout/com_njfsoft_utils_cutouts.xml #generated:32
 -keep class com.njfsoft_utils.cutOuts.CutOutsView { <init>(...); }
 
 # view AndroidManifest.xml #generated:112

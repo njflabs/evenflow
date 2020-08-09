@@ -1,4 +1,9 @@
 // -----------------------  start js_spinner.js  ---------------------
+var spinTextDiv = document.createElement("div");
+var currSpinText = "noQvalue";
+var currSpinType = "small";
+spinTextDiv.innerHTML = "loading..";
+spinTextDiv.className = "spintable brdrClrHdr txtBold txtBig";
 
 
 /**
@@ -181,6 +186,17 @@
 
       if (target) {
         target.insertBefore(el, target.firstChild||null)
+        // target.insertBefore(linkText, target.firstChild||null)
+
+if((currSpinText == null) || (currSpinText == "noQvalue")){
+} else {
+	var tpnd = target.parentNode;
+	var tpand = tpnd.parentNode;
+	spinTextDiv.innerHTML = currSpinText;
+	tpand.appendChild(spinTextDiv);
+	currSpinText = "noQvalue";
+}
+
         tp = pos(target)
         ep = pos(el)
         css(el, {
@@ -223,6 +239,7 @@
       if (el) {
         clearTimeout(this.timeout)
         if (el.parentNode) el.parentNode.removeChild(el)
+        if (spinTextDiv.parentNode) spinTextDiv.parentNode.removeChild(spinTextDiv)
         this.el = undefined
       }
       return this
@@ -392,5 +409,33 @@ left: 'auto' // Left position relative to parent in px
 
 var spinner = new Spinner(sspinopts);
 var smlspinner = new Spinner(aspinopts);
+
+
+function doSpin(theObjId, theSpnrType) {
+var target = document.getElementById(theObjId);
+if(theSpnrType == "small") {
+smlspinner.spin(target);
+} else {
+spinner.spin(target);
+}
+}
+
+
+
+
+function doSpinSet(theObjId, theSpnrType, theSpinTxt) {
+currSpinType = theSpnrType;
+var spntarget = document.getElementById(theObjId);
+if((theSpinTxt == null) || (theSpinTxt == "noQvalue")){
+} else {
+currSpinText = theSpinTxt;
+}
+if(theSpnrType == "small") {
+smlspinner.spin(spntarget);
+} else {
+spinner.spin(spntarget);
+}
+}
+
 
 // -----------------------  end js_spinner.js  ---------------------

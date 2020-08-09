@@ -22,7 +22,7 @@ import java.util.Set;
 
 
 
-import com.qbits.R;
+import com.quickorder.R;
 // import com.jwetherell.quick_response_code.R;
 import com.google.zxing.Result;
 import com.google.zxing.ResultPoint;

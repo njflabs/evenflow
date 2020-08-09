@@ -41,7 +41,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.qbits.R;
+import com.quickorder.R;
 
 public class ArtPad extends Activity implements TouchImageView.OnTapListener {
     ViewFlipper vf;

@@ -15,7 +15,7 @@
  */
 
 package com.njfsoft_utils.cutOuts;
-import com.qbits.R;
+import com.quickorder.R;
 
 import android.app.Activity;
 import android.content.Intent;

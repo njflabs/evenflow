@@ -172,7 +172,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\fonts \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\helpr.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\index.html \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\index.php \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\indexr.php \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\media_chooser.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\media_edit.html \
@@ -284,7 +284,6 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-edit-shops.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-edit-synch.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-edit-user.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-mod-settings.js \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-mod-show-cartadd.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-mod-show-item.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-mod-show-iteml.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-x_aa-settings.js \
@@ -344,7 +343,6 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-shops.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-synch.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-edit-user.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-settings.js \
-D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-show-cartadd.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-show-item.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-mod-show-iteml.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\x_aa-settings.js \

@@ -793,8 +793,13 @@ RecognitionListener, TextToSpeech.OnInitListener {
  }
 
 
+ public void setCurrPageVars(String tmpStrQstr) {
+  currPageVars = tmpStrQstr;
+   System.out.println("setCurrPageVars.getCurrPageVars: " + currPageVars);
 
+ }
  public String getCurrPageVars(String tmpStrQstr) {
+   System.out.println("main.getCurrPageVars: " + currPageVars);
   return currPageVars;
  }
  public void setWVScrollTop() {
@@ -864,6 +869,8 @@ RecognitionListener, TextToSpeech.OnInitListener {
     // showDaToast("is one: " + temp[1]);
     // epMainHbook.setCurrPageVars(temp[1]);
     currPageVars = temp[1];
+    setCurrPageVars(temp[1]);
+    System.out.print("onPageStarted:getCurrPageVars: " + currPageVars);
    }
 
   }
@@ -888,14 +895,15 @@ RecognitionListener, TextToSpeech.OnInitListener {
   }
   @Override
   public boolean shouldOverrideUrlLoading(WebView view, String url) {
-   currPageVars = "noQvalue";
+   // currPageVars = "noQvalue";
    if (url.startsWith("file://") && url.contains("?")) {
     System.out.print("shouldOverrideUrlLoading:oride " + url);
     String[] temp;
     temp = url.split(Pattern.quote("?"));
     // showDaToast("is one: " + temp[1]);
     // epMainHbook.setCurrPageVars(temp[1]);
-    currPageVars = temp[1];
+    setCurrPageVars(temp[1]);
+    System.out.print("shouldOverrideUrlLoading:getCurrPageVars: " + currPageVars);
     mWebView.loadUrl(url);
     return true;
    } else if (url.contains(".mp4")) {
@@ -2817,13 +2825,7 @@ public void openFDlg(String mimeType) {
        nttCOapmWB.putExtra("apmeta", getQIMeta());
        startActivityForResult(nttCOapmWB, 333);
        break;
-      case 41:
-       Intent nttCOapmTR = new Intent(getApplicationContext(), CutOuts.class);
-       nttCOapmTR.putExtra("apmode", "trumpster");
-       nttCOapmTR.putExtra("apfile", currFileName);
-       nttCOapmTR.putExtra("apmeta", getQIMeta());
-       startActivityForResult(nttCOapmTR, SHARE_ACTIVITY_RES);
-       break;
+ 
      }
     }
    });

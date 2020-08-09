@@ -4,6 +4,7 @@ var euiFFObjArr = [];
 document.title = currPgTitle; // set the page title 
 
 var cbFedit = function(a,b,c) {
+ alert(b);
  JSSHOP.ui.setCBBClickClr(divCntEditCo,'cls_button cls_button-medium brdrClrDlg txtClrHdr','clsDummy', function(){void(0)});
 };
 
@@ -15,16 +16,16 @@ var doShopEdit = function() {
     tmpFobj = {};
     tmpFobj["knvp"] = JSSHOP.shared.getKNVParr(JSSHOP.shared.getDynFrmVals(document["qco"], "tmp_"));
     tmpFobj["ws"] = "where _id=?";
-    tmpFobj["wa"] = [JSSHOP.shared.getFrmFieldVal("qco","_id","0")];
+    tmpFobj["wa"] = [cid];
     oi = getNuDBFnvp("qco", 7, null, tmpFobj);
     doQComm(oi["rq"], null, "cbFedit");
 };
 
 
 var doNShopEdit = function() {
-if(JSSHOP.shared.valVOarr(euiFFObjArr, "dvVdtnError")) {
+// if(JSSHOP.shared.valVOarr(euiFFObjArr, "dvVdtnError")) {}
    doShopEdit();
-}
+
 };
 
 

@@ -59,7 +59,7 @@ import java.util.TimerTask;
 
 
 import com.njfsoft_utils.core.Base64;
-import com.qbits.R;
+import com.quickorder.R;
 
  
 // import com.google.zxing.ResultPoint;

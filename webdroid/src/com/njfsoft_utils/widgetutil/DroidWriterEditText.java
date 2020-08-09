@@ -1,6 +1,6 @@
 package com.njfsoft_utils.widgetutil;
 
-import com.qbits.R;
+import com.quickorder.R;
 /**
  * Created by IntelliJ IDEA.
  * User: boss

@@ -17,7 +17,7 @@ package com.jwetherell.quick_response_code;
 import java.io.IOException;
 import java.util.Collection;
 import android.view.WindowManager;
-import com.qbits.R;
+import com.quickorder.R;
 
 
 import android.graphics.drawable.BitmapDrawable;

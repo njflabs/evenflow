@@ -2911,12 +2911,12 @@ e.printStackTrace();
 			//  webEngine.load(temp[0]);
             }
 
- 
+                 JSObject win = (JSObject) webEngine.executeScript("window");
+                win.setMember("app", jsiAdminApp);
 
                                 strdates = "ready...";
                                 maddress.setText(webEngine.getLocation());
-                                JSObject win = (JSObject) webEngine.executeScript("window");
-                                win.setMember("app", jsiAdminApp);
+
                                 break;
 			
 

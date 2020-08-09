@@ -61,7 +61,7 @@ import android.content.res.AssetManager;
 import com.njfsoft_utils.core.OnTaskExecutionFinished;
 import com.njfsoft_utils.artpad.filters.ColorFilterGenerator;
 
-import com.qbits.R;
+import com.quickorder.R;
 
 public class UtilsBitmap {
  

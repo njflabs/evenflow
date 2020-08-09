@@ -36,6 +36,7 @@ var currACTBstr = "";
 var currMenuArr = [];
 var currItemArr = [];
 var currItemsArr = [];
+var currCartIArr = [];
 var currMItemsArr = [];
 var currProdsArr = [];
 var currQcommsArr = [];
@@ -68,7 +69,9 @@ shopDir += "/";
 var doNada = function(tmpa, tmpb, tmpc) {
 };
 
-
+function doDummyFocus() {
+setTimeout("chkbxDummy.focus()", 500);
+}
 if(!window.JSSHOP){
 var JSSHOP = new Object();
 }
@@ -254,15 +257,18 @@ return currMItemsArr;
 var getCurrUrl = function() {
 var strTurl = "noQvalue";
 strCurl = document.location.href;
+
 if(strCurl.indexOf("?") != -1) {
 strTurl = strCurl.substring(strCurl.indexOf('?') + 1);
 }
+// alert("getCurrUrl: " + strTurl);
 if(isPhP == "no") {
 try  {
 JSSHOP.loadScript("css/" + jscssprefix + "x_japp.css", JSSHOP.checkLoader,'css');
 strTurl = app.getCurrPageVars("nada");
 document.getElementById("fldChallArray").value = strTurl;
 strTurl = document.getElementById("fldChallArray").value;
+// alert("getCurrUrl strTurl no php: " + strTurl);
 } catch(e) {
 alert("getCurrUrl: " + e);
 }
@@ -293,17 +299,19 @@ fullResp = "<div onclick=\"JSSHOP.ui.closeLbox();\" style=\"float:right\">Close<
 document.getElementById(theElem).innerHTML = fullResp;
 };
 
-
-
-var loadNuJSModal = function (theMinc, theClass) {
-    spinner.spin(lightbox_content);
+var loadNurJSModal = function (theMinc, theClass, theMbLCB) {
+ 
     if(theMinc.indexOf("images/") != -1) {
     JSSHOP.ui.popAndFillLbox("<img src=\"" + theMinc + "\">");
      // setTinnerHTML("lightbox_content", "<img src=\"" + theMinc + "\">");
     } else {
- 	JSSHOP.ajax.doNuAjaxPipe("lightbox_content", theMinc, doCloseAdd);
- 	JSSHOP.ui.popAndFillLbox(theClass);
+ 	JSSHOP.ajax.doNuAjaxPipe("lightbox_content", theMinc, theMbLCB);
+ 	 JSSHOP.ui.popAndFillLbox(theClass);
     }
+};
+
+var loadNuJSModal = function (theMinc, theClass) {
+    loadNurJSModal(theMinc, theClass, doCloseAdd);
 };
 
 var loadJSModal = function (theMinc) {
@@ -460,7 +468,7 @@ JSSHOP.loadScript = function(path, callback, filetype) {
         n = path.lastIndexOf("/");
         q = path.lastIndexOf("?");
         if (filetype == "js") { //if filename is a external JavaScript file
-            var scr = document.createElement('script')
+            var scr = document.createElement('script');
             scr.setAttribute("type", "text/javascript")
             scr.src = path;
         } else if (filetype == "css") { //if filename is an external CSS file
@@ -551,7 +559,8 @@ if (!window.JSSHOP.cookies) {
 JSSHOP.cookies.getCookie = function(check_name) {
 var cretval;
 var tval;
-if((isPhP == "no") || (isJavaFx == "yes")) {
+if(isPhP == "no") {
+// if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 if(check_name == "quid") {
 tval = app.fetchConfValInt(check_name);
@@ -567,7 +576,7 @@ return null;
 return cretval;
 }
 } catch(e) {
-alert("getCookie: " + e);
+// alert("getCookie: " + e);
 return null;
 }
 
@@ -616,8 +625,9 @@ return null;
 JSSHOP.cookies.setCookie = function(name,value,expires,path,domain,secure) 
 {
 
+if(isPhP == "no") {
 
-if((isPhP == "no") || (isJavaFx == "yes")) {
+// if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 
 if(name == "quid") {
@@ -626,7 +636,7 @@ app.setConfValInt(name,value);
 app.setConfValString(name,value); 
 }
 } catch(e) {
-alert("setCookie.E: " + e)
+// alert("setCookie.E: " + e)
 }
 
 } else {
@@ -654,7 +664,8 @@ document.cookie = name + "=" +escape( value ) +
 };
 
 JSSHOP.cookies.deleteCookie = function(name,path,domain) {
-if((isPhP == "no") || (isJavaFx == "yes")) {
+if(isPhP == "no") {
+// if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 
 if(name == "quid") {
@@ -663,7 +674,7 @@ app.setConfValInt(name,0);
 app.setConfValString(name,"noQvalue"); 
 }
 } catch(e) {
-alert("setCookie.E: " + e)
+// alert("setCookie.E: " + e)
 }
 
 } else {
@@ -1083,7 +1094,7 @@ return newCleanAppStr;
 var pfDRet = function(theElem, theResp, marble) {
 document.getElementById("fldChallArray").value = theResp;
 aresp = document.getElementById("fldChallArray").value;
-alert("pfDRet " + aresp);
+// alert("pfDRet " + aresp);
 };
 
 
@@ -1133,6 +1144,13 @@ var pushActbArr = function(theArr) {
 };
 var clearActbArr = function() {
 };
+
+
+
+
+
+
+
 var mfnishCntLoad = function() {
 
 if(currAdmnMode == "y") {
@@ -1172,9 +1190,6 @@ diint++;
  
 
 fnishCntLoad();
-
-
-
 };
 var mfnishCoForm = function() {
 // alert("MfinishCoForm");
@@ -1531,6 +1546,7 @@ iint++;
 
 
 
+
 tmpMColStr = doCollsLoad();
 if(document.getElementById('mmDdown')) {
 document.getElementById('mmDdown').innerHTML = "";
@@ -1544,7 +1560,7 @@ document.getElementById('tdLMenu').appendChild(tmpDV);
 }
 
  
-
+JSSHOP.loadScript("js/" + jscssprefix + "x_" + pid + ".js", doMainContent,"js");
 };
 
 
@@ -1552,8 +1568,8 @@ document.getElementById('tdLMenu').appendChild(tmpDV);
 
 
 var setLoadACTB = function(theACb) {
- // alert("setLoadACTB: " + JSON.stringify(theACb));
-// alert("mArrFb " + JSON.stringify(currMenuArr));
+ 
+// alert("setLoadACTB " + JSON.stringify(theACb.rs));
 strCatID =  "tip:ep:Smart Autocomplete|";
 strCatName =  "This will be a smart auto-complete search box.|";
 strULPID = "";
@@ -1643,39 +1659,12 @@ alert("doLoadACTB: " + e);
 }
 
 }
-
-
-/* to delete
-upSLMRef = "n";
-if(getViewportWidth() > 500) {
-upSLMRef = "y";
-}
-try {
-if(arrUprefs["prfsSHOPuser"][0].slm) {
-// alert("upSLMRef: " + upSLMRef);
-upSLMRef = arrUprefs["prfsSHOPuser"][0].slm;
-if(upSLMRef == "y") {
  loadLmenu();
-}
-}
-} catch(e) {
- alert("upSLMRef.booter.errer: " + e);
-}
-
-*/
-
-// alert(currUserFavs);
- loadLmenu();
-
-
-
-
-
 };
 
 
 var doLoadACTB = function() {
-
+doNuMMenuLd("doMnuFnsh");
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["l"] = "30"; 
@@ -1685,29 +1674,16 @@ var doLoadACTB = function() {
 	// alert("doLoadACTB: " + oi["rq"]);
 atac = null;
 atac = nCurrCnxOb();
-
 atac["q"] = oi["rq"];
 atac["cb"] = "setLoadACTB";
 atac["ls"] = "localStorage";
 // atac["fc"] = "y";
 // atac["lz"] = "y";
 doNurQComm(atac);
-
-
-
-   //  doQComm(oi["rq"], "qextras","setLoadACTB");
 };
 
  
 
-
-var doCntLoad = function(a,b,c) {
-try {
-document.getElementById(a).innerHTML = b;
-} catch(e) {
-alert("doCntLoad.error: " + a + " : " + e);
-}
-};
 
 
 
@@ -1748,116 +1724,73 @@ if(isJApp == "no") {
 } catch(e) {
 alert("fnish; " + e);
 }
- 
-
-
 }
 
 };
-
-
-var bootACTB = function(theElem, theResp, marble) {
-document.getElementById(theElem).innerHTML = theResp;
-JSSHOP.loadScript("js/" + jscssprefix + "js_actb.js", doLoadACTB,"js");
-JSSHOP.ui.toggleVisibility("dvSearchBoxSlim");
-};
+ 
 
 
 var doWinResizeE = function() {
-document.getElementById("dvSearchBoxSlim").innerHTML = "";
-document.getElementById("dvSearchBox").innerHTML = "";
+var tmpSsstr = document.getElementById("dvSearchBox").innerHTML;
 tmpSBox = "dvSearchBoxSlim";
 if(getViewportWidth() > 500) {
 tmpSBox = "dvSearchBox";
 // JSSHOP.ui.showHideElement("tdLMenu", "show");
-}
-JSSHOP.ajax.doNuAjaxPipe(tmpSBox, 'tplates/aa-cmp-search.html', bootACTB);
-// document.getElementById("tdLMenu").className = "onlyWideScreen clsLeftMenu";
-// JSSHOP.ui.addEvent(window, "resize", doWinResizeE);
-};
-
-var doWinResizeA = function() {
-tmpSIobj = document.getElementById("ijUFeedSearch");
-if((tmpSIobj === document.activeElement) || (isJApp == "y")){
 } else {
-// document.location.href = document.location.href + "&rt=232";
-// doWinResizeE();
+document.getElementById("dvSearchBoxSlim").innerHTML = "";
+document.getElementById("dvSearchBox").innerHTML = "";
+document.getElementById("dvSearchBoxSlim").innerHTML = tmpSsstr;
 }
+JSSHOP.ui.toggleVisibility("dvSearchBoxSlim");
+// doLoadACTB();
 };
 
-
+ 
  
 var finishCntLoad = function(a,b,c) {
 try {
+smlspinner.stop();
+spinner.stop();
 document.getElementById(a).innerHTML = b;
 doWinResizeE(); // all things changed on window resize
-
-// JSSHOP.ui.addEvent(window, "resize", doWinResizeA);
 setTimeout("mfnishCntLoad()", 500);
-// doQComm("batch" + JSON.stringify(currQcommsArr), null, "fnish");
 } catch(e) {
 alert("finishCntLoad.error: " + a + " : " + e);
 }
 };
 
-var doMainFooter = function(a,b,c) {
-document.getElementById(a).innerHTML = b;
-JSSHOP.ajax.doNuAjaxPipe("includedFooter",  "tplates/" + fCa[3] + ".html", finishCntLoad);
-doMMenuLd();
-};
+ 
 
 
-
-var doMainContent = function(a,b,c) {
-
-document.getElementById(a).innerHTML = b;
+var doMainContent = function(a,b) {
+try {
+ 
 fCa = getFArr();
 // this should be fixed. authentication.
 if((pid.indexOf("edit-") != -1)  && ((quid == 0) || (quid == "noQvalue"))) {
-// if((pid.indexOf("edit-") != -1)  && ((JSSHOP.cookies.getCookie("quid") == null) || (JSSHOP.cookies.getCookie("quid") == "noQvalue"))) {
 // page requires user login
-JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/login.html", doMainFooter);
 JSSHOP.loadScript("js/" + jscssprefix + "x_login.js", JSSHOP.checkLoader,"js");
+JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/login.html", finishCntLoad);
+
 } else {
-if((quid == 0) || (quid == "noQvalue")) {
-JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/" + pid + ".html", doMainFooter);
-} else {
-if(pid == "index_main") {
-pid = "aa-edit-shops";
-JSSHOP.loadScript("js/" + jscssprefix + "x_aa-edit-shops.js", JSSHOP.checkLoader,"js");
-JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/aa-edit-shops.html", doMainFooter);
-} else {
-JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/" + pid + ".html", doMainFooter);
+JSSHOP.ajax.doNuAjaxPipe("includedContent", "tplates/" + pid + ".html", finishCntLoad);
 }
-}
-}
-};
-
-var doMainNav = function(a,b,c) {
-document.getElementById(a).innerHTML = b;
-fCa = getFArr();
-
-JSSHOP.ajax.doNuAjaxPipe("includedNav",  "tplates/" + fCa[1] + ".html", doMainContent);
- 
-};
-
-
-var doMainForms = function() {
-try {
-JSSHOP.ajax.doNuAjaxPipe("includedForms", "tplates/index_forms.html", doMainNav);
 } catch(e) {
-alert("doMainForms: "  + e);
-// JSSHOP.logJSerror(e, arguments, "fnish");
+alert("doMainContent: "  + e);
 }
 };
 
 
-var fillMFormArr = function(a,b,c) {
+
+var fillMFormArr = function(theRobj) {
 
 try {
- 
+tmpAforms = [];
+tmpAforms = JSON.parse(theRobj.rs);
+arrAllForms = tmpAforms;
+
 if(arrAllForms.qco) {
-JSSHOP.shared.setFrmVals("qco",arrAllForms.qco.v[0],function() { void(0) });
+JSSHOP.shared.setFrmVals("qco",arrAllForms.qco.v[0],function() {});
 }
 if(arrAllForms.quser) {
 JSSHOP.shared.setFrmVals("quser",arrAllForms.quser.v[0],function() { void(0) });
@@ -1870,99 +1803,68 @@ JSSHOP.shared.setFrmVals("qitem",arrAllForms.qitem.v[0],function() { void(0) });
 }
 if(arrAllForms.qextras) {
 JSSHOP.shared.setFrmVals("qextras",arrAllForms.qextras.v[0],function() { void(0) });
-
-// alert(JSON.stringify(arrAllForms.qextras.v));
 }
 if(arrAllForms.qcartitem) {
 JSSHOP.shared.setFrmVals("qcartitem",arrAllForms.qcartitem.v[0],function() { void(0) });
-
-//  alert(JSON.stringify(arrAllForms.qcartitem.v[0]));
 }
+doLoadACTB();
 } catch(e) {
 alert("fillMFormArr: "  + e);
-// JSSHOP.logJSerror(e, arguments, "fnish");
 }	
+
 };
 
  
 
 
-
-var setMFormArr = function(theRobj) {
-
-try {
-tmpAforms = [];
-tmpAforms = JSON.parse(theRobj.rs);
- 
-arrAllForms = tmpAforms;
  
 
-// doJSFormload();
-} catch(e) {
-  // alert("setMFormArr; " + e + " " + JSON.stringify(theRobj));
-// JSSHOP.logJSerror(e, arguments, "fnish");
-}	
-
-doMainForms();
-};
 
 
 
 
-
-var doFrmQLoad = function(thePath, theMessage, thearr) {
+var doFrmQLoad = function(thePath, theMessage) {
 try {
 doCFrmQ = nCurrCnxOb();
-// tac["lz"] = "y";
 doCFrmQ["q"] = "batch" + JSON.stringify(currFrmQArr);
-doCFrmQ["cb"] = "setMFormArr";
-
+doCFrmQ["cb"] = "fillMFormArr";
 doNurQComm(doCFrmQ);
-
 } catch(e) {
  alert("doFrmQLoad; " + e + " " + doCFrmQ["q"]);
-doMainForms();
-// JSSHOP.logJSerror(e, arguments, "fnish");
 }	
- // doQComm("batch" + JSON.stringify(currFrmQArr), null, "setMFormArr");
 };
 
  
-var doIPGLoad = function(thePath, theMessage, thearr) {
-JSSHOP.loadScript("js/" + jscssprefix + "x_itemplug.js", doFrmQLoad,'js');
 
-};
-
-var doMenuLoad = function(thePath, theMessage, thearr) {
-JSSHOP.loadScript("js/" + jscssprefix + "x_menu.js", doIPGLoad,"js");
-};
-
-var doSpinLoad = function(thePath, theMessage, thearr) {
-JSSHOP.loadScript("js/" + jscssprefix + "js_spinner.js", doMenuLoad,"js");
-};
-
-
-
-var doPidLoad = function(thePath, theMessage, thearr) {
-JSSHOP.loadScript("js/" + jscssprefix + "x_" + pid + ".js", doSpinLoad,"js");
-};
-
-var doLANG = function(thePath, theMessage, thearr) {
-if(JSSHOP.cookies.getCookie("usrlang") !== null) {
-usrlang = JSSHOP.cookies.getCookie("usrlang");
-}
-JSSHOP.loadScript("js/" + jscssprefix + "aa-" + usrlang + ".js", doPidLoad,"js");
-};
-
-
-
-
-
-var doBootLoad = function(thef) {
+function getCurrPID() {
+tmppid = "index_main";
+tmpcurrUrlArr = null;
+tmpcurrUrlArr = {};
 try {
+tmpPIDUrl = getCurrUrl();
+if(tmpPIDUrl == "noQvalue") {
+} else {
+tmpcurrUrlArr = JSSHOP.shared.urlToArray(tmpPIDUrl); 
+if(tmpcurrUrlArr.pid){
+tmppid = tmpcurrUrlArr.pid;
+}
+}
+} catch(e) {
+alert("getCurrPIDerror: " + e)
+}
+return tmppid;
+}
 
+var setCartIArr = function(a,b,c) {
+currCartIArr = JSON.parse(b);
+};
+
+
+
+
+var doBootLoad = function() {
+try {
 JSSHOP.user.doCkieUprefs('prfsSHOPuser');
-
 } catch(e) {
 alert("doBootLoad error: " + e)
 JSSHOP.logJSerror(e, arguments, "doBootLoad:doCkieUprefs");
@@ -1983,6 +1885,7 @@ jscssprefix = ""; // null the .js file prefix. use normal js files.
 }
 if(currUrlArr.pid){
 pid = currUrlArr.pid;
+// alert("doBootLoad: " + pid);
 }
 if(currUrlArr.ppid){
 ppid = currUrlArr.ppid;
@@ -1990,6 +1893,7 @@ ppid = currUrlArr.ppid;
 if(currUrlArr.cid){
 cid = currUrlArr.cid;
 addFrmQArr("qco", cid, "fnishCoForm");
+
 }
 if(currUrlArr.catid){
 catid = currUrlArr.catid;
@@ -2004,6 +1908,9 @@ addFrmQArr("qitem", itemid, "fnishItemForm");
 if(JSSHOP.cookies.getCookie("quid") !== null) {
 quid = JSSHOP.cookies.getCookie("quid");
 addFrmQArr("quser", quid, "fnishUserForm");
+
+
+
 
 try {
 if(pid.indexOf("edit-") != -1) {
@@ -2024,30 +1931,28 @@ cartID = tmpcid;
 cartID = JSSHOP.cookies.getCookie("cartID");
 
 
+ 
 
-/* find somewhere to get the latest cart items
-
-if(newArr.cid){
-
+if(currUrlArr.cid){
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["ws"] = "where ci_uid=? and ci_coid=? and ci_cartqty >? and ci_rtype=? and ci_cartid=?";
     tmpDOs["wa"] = [quid,cid,0,5,cartID]; 
- 
     oi = getNuDBFnvp("qcartitem",5,null,tmpDOs);
-    doFrmQArr(oi["rq"], "qcartitem","fnishCartForm");
-
+    doQComm(oi["rq"], null, "setCartIArr");
+    // doFrmQArr(oi["rq"], "qcartitem","fnishCartForm");
 }
-
-*/ 
-
 }
+ 
+
+
+if(JSSHOP.cookies.getCookie("usrlang") !== null) {
+usrlang = JSSHOP.cookies.getCookie("usrlang");
+}
+JSSHOP.loadScript("js/" + jscssprefix + "aa-" + usrlang + ".js", doFrmQLoad,"js");
 
 
 
-doLANG("js/" + jscssprefix + "x_all.js?v=4", doLANG,"js");
-// JSSHOP.loadScript("js/x_all.js?v=4", doLANG,"js");
-// JSSHOP.loadScript("js/js_spinner.js", JSSHOP.checkLoader,"js");
 } catch(e) {
 alert("doBootLoad error: " + e)
 JSSHOP.logJSerror(e, arguments, "doBootLoad");
@@ -2055,22 +1960,51 @@ JSSHOP.logJSerror(e, arguments, "doBootLoad");
 };
 
 
-var doBtmJSLoad = function(thef) {
+
+
+
+// to delete ||  to delete ||  to delete ||  to delete ||  to delete ||  to delete ||  to delete ||  to delete ||  to delete ||  
+var XXXXXXXXXXXfillDivs = function() {
+};
+ 
+
+var XXXXXXXdoBtmJSLoad = function(thef) {
 xx = "ww";
 };
 
-var aLoadModSettings = function() {
+var XXXXXXaLoadModSettings = function() {
  JSSHOP.loadScript("js/" + jscssprefix + "x_aa-mod-settings.js", JSSHOP.checkLoader,"js");
 };
 
 
-// to delete
-var fillDivs = function() {
+
+var XXXXXXXXXXXXXXdoCntLoad = function(a,b,c) {
+try {
+document.getElementById(a).innerHTML = b;
+} catch(e) {
+alert("doCntLoad.error: " + a + " : " + e);
+}
 };
 
- 
-// strIsD = doBootLoad("nep");
-// strIsD = doFullLoad();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 package com.njfsoft_utils.cutOuts;
-import com.qbits.R;
+import com.quickorder.R;
 
 import com.njfsoft_utils.cutOuts.CutOuts;
 import com.njfsoft_utils.anim.AnimFrameSingleton;

@@ -45,7 +45,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
  
-import com.qbits.R;
+import com.quickorder.R;
 import com.njfsoft_utils.core.Base64;
 import com.njfsoft_utils.anim.UtilsBitmap;
 

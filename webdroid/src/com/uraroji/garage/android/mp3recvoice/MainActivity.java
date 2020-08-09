@@ -21,7 +21,7 @@
  */
 
 package com.uraroji.garage.android.mp3recvoice;
-import com.qbits.R;
+import com.quickorder.R;
 
 
 import android.app.Activity;

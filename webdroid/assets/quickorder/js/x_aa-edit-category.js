@@ -281,6 +281,7 @@ doItemEdit();
 
 
 var showCurrImg = function() {
+try{
 tmpIvaval = i_img.value;
 if(tmpIvaval !== 'noQvalue') { 
 
@@ -295,14 +296,31 @@ imgIedit.src=tmpIstrI;
 
 }
 }
+} catch(e) {
+}
 };
+
+
+ 
+var fnishMdlLoad = function(theElem, theResp, marble) {
+tmpFelem = document.getElementById(theElem);
+tmpFelem.innerHTML = theResp;
+JSSHOP.shared.setDynFrmVals(document['qitem'], 'mod_');
+xae = tmpFelem.getElementsByTagName("ti");
+var iint = 0;
+while(iint < xae.length) {
+nuDW(xae[iint]);
+iint++;
+}
+};
+
 
 /*
 * opens up the item popup
 */
 
 var doItemEditPop = function() {
-    loadJSModal("tplates/aa-mod-edit-item.html?tt=" + JSSHOP.getUnixTimeStamp());
+    loadNurJSModal("tplates/aa-mod-edit-item.html?tt=" + JSSHOP.getUnixTimeStamp(), "noQvalue", fnishMdlLoad);
 }
 var doQIedit = function(iei) {
     tmpVindex = iei;
@@ -361,11 +379,10 @@ var renderNuTQBItems = function(a,b,c) {
             strPriceHtml = "<span class=\"txtBig txtClrRed txtBold\">" + ts.i_price_b + "</span>";
             strPriceHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
             strHtml += getQIstr(iint, strImgDsct + ts.i_title + " " + strPriceHtml);
-            // strHtml += getQIstr(iint, strImgDsct + ts.i_title + " " + strPriceHtml);
             strHtml += "<div style=\"text-align: right;\" class=\"cls-form-dv  bkgdClrNrml\" id=\"tdIedit" + iint + "\">";
  
-      	strcHtml = "<a href=\"index.html?pid=aa-edit-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\" alt=\"edit\" title=\"edit\">&#xe3c9;</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[31] + "</span></a>";
-      	strcHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><i class=\"small-material-icons  txtSmall\" alt=\"zoom_in\" title=\"zoom_in\">&#xe8ff;</i><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[53] + "</span></a>";
+      	strcHtml = "<a href=\"index.html?pid=aa-edit-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[31] + "</span></a>";
+      	strcHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + cid + "&catid=" + ts.i_catid + "\"  class=\"txtSmall txtDecorNone\"><span style=\"vertical-align:super\" class=\"txtBold\">" + stxt[53] + "</span></a>";
 
       //       strHtml += "<td  onclick=\"javascript:doItemDelete(this," + ts._id + "," + iint + ");\"><img src=\"images/delete_r.gif\" class=\"icnsmlbtn brdrClrWhite\">";
             strHtml += strcHtml + "</div>";
@@ -379,16 +396,16 @@ var renderNuTQBItems = function(a,b,c) {
         iint++;
     }
 
-	//   strHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:doCatUpdate();\"  onerror=\"javascript:doCatUpdate();\">";
+ 
 
     if (tmpVitemArr[0]) {
         strTHhtml = "<th style=\"text-align: center\" align=\"center\"><img src=\"images/picture_go.png\"></th><th>" + stxt[19] + "</th><th>X</th>";
     	  tmpFstr = getTblSortStr(strTHhtml, strHtml);
-    /// newel.innerHTML = tmpFstr;
+ 
 
     } else {
         strHtml += "<b>" + stxt[508] + "</b><br>" + stxt[509];
-	//  stxt[17]
+ 
     }
           tmpPtotal = Math.round(tmpVitemArr.length / currProdsPPg);
 	   if(tmpVitemArr.length > (tmpPtotal * currProdsPPg)) { tmpPtotal = tmpPtotal + 1; }

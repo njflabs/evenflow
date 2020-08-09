@@ -64,7 +64,7 @@ import com.njfsoft_utils.webviewutil.UtilWebDialog;
 
 
 
-import com.qbits.R;
+import com.quickorder.R;
 
 
 public class ShareActivity extends Activity {

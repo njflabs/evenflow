@@ -73,7 +73,7 @@ import com.njfsoft_utils.anim.AnimMovSingleton;
 import com.njfsoft_utils.core.OnTaskExecutionFinished;
 import com.njfsoft_utils.anim.UtilsBitmap;
 
-import com.qbits.R;
+import com.quickorder.R;
 
 public class MPFourRecorder {
    //  private static final String MOVIE_LOCATION = "http://jcodec.org/downloads/sample.mov";

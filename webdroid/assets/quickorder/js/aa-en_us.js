@@ -81,8 +81,8 @@ stxt[506] = "Edit Category Title";
 stxt[507] = "Quick Item Add";
 stxt[508] = "Start by adding some items to this category."
 stxt[509] = "Or use the <b>Quick Item Add</b> by entering item title and clicking (+).";
-
-
+stxt[510] = "Quick Item Edit";
+stxt[511] = "Item Title";
 // admin strings
 stxt[600] = "Click to run Query";
  

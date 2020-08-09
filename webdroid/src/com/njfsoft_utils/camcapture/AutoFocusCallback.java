@@ -15,7 +15,7 @@
  */
 
 package com.njfsoft_utils.camcapture;
-import com.qbits.R;
+import com.quickorder.R;
 
 import android.hardware.Camera;
 import android.os.Handler;

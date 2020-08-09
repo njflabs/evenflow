@@ -92,7 +92,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 
 import com.njfsoft_utils.core.SpaceTokenizer;
-import com.qbits.R;
+import com.quickorder.R;
 
 
 

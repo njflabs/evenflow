@@ -79,16 +79,18 @@ doQComm(oi["rq"], null, "doRecentSeen");
 
 
 /*
-* renders all items in the category
+* renders the item form itemid url variable
 */
 
-var renderNuItem = function(theElem, theResp, marble){
+var renderNuItem = function(){
+
+
 	try {
-// alert("renderNuTQBItems: " + theResp);
- 
-var qts = JSON.parse(theResp); 
-tStrHtml = JSSHOP.shop.getPrdsFullStr("prodpg", qts, null, null, null);
-tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('prodpg');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('prodpg');\">";
+tmpVitemArr = null;
+tmpVitemArr = [];
+tmpVitemArr = arrAllForms.qitem.v; 
+tStrHtml = JSSHOP.shop.getPrdsFullStr("prodpg", tmpVitemArr, null, null, null);
+// tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('prodpg');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('prodpg');\">";
 
 newel = document.createElement('div');
  
@@ -104,6 +106,7 @@ tmpTDQI.appendChild(newel);
 	}
 JSSHOP.shop.getPrdMedia(catid,itemid,"dadido");
 checkRecentSeen();
+JSSHOP.shop.setCatPrdImgs('prodpg');
 };
 
  
@@ -189,10 +192,7 @@ alert("dadido:" + e);
 
 var dmyFnishCntLoad = fnishCntLoad;
 fnishCntLoad = function() {
-tmpVitemArr = null;
-tmpVitemArr = [];
-tmpVitemArr = arrAllForms.qitem.v;
-renderNuItem("a", JSON.stringify(tmpVitemArr), null);
+renderNuItem();
 };
 
  

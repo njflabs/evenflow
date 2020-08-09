@@ -13,7 +13,7 @@
  */
 
 package com.njfsoft_utils.cutOuts;
-import com.qbits.R;
+import com.quickorder.R;
 
  
 import java.util.HashMap;
@@ -231,10 +231,11 @@ public class CutOuts extends Activity  implements  IDecoderActivity, SurfaceHold
       TextView tvAPVSave;
       TextView tvAPVClear;
 
-	ImageButton btnCam;
-	ImageButton btnVid;
-	ImageButton btnGifVid;
-	ImageButton btnSettings;
+	TextView btnCam;
+	TextView btnVid;
+	TextView btnCreate;
+	TextView btnGifVid;
+	TextView btnSettings;
       Timer tmrMovRec;
       int iMovStartTstamp;
       long lMovStartTstamp;
@@ -256,22 +257,7 @@ public class CutOuts extends Activity  implements  IDecoderActivity, SurfaceHold
 SharedPreferences configCUSettings;
 Bundle currCUConfBundle;
  private SharedPreferences.Editor configCUEditor;
-/*
  
-	private static final int[] IMAGE_RESOURCES = { R.drawable.an_gimp1,
-			R.drawable.an_gimp2, R.drawable.an_gimp3, R.drawable.an_gimp4,
-			R.drawable.an_gimp5, R.drawable.an_gimp6, R.drawable.an_gimp7,
-			R.drawable.an_gimp8 };
-
-	private static final int[] IMAGE_RESOURCES = { R.drawable.h1,
-			R.drawable.h2, R.drawable.h3, R.drawable.h4,
-			R.drawable.h5, R.drawable.h6, R.drawable.h7,
-			R.drawable.h8 };
-
-
-
-
-*/
 
 	private static final int[] IMAGE_RESOURCES = { R.drawable.an_drag1,
 			R.drawable.an_drag2, R.drawable.an_drag3, R.drawable.an_drag4,
@@ -289,7 +275,7 @@ Bundle currCUConfBundle;
 
 	public void loadGifView() {
 
-//
+ 
 
 
         if (gifView == null) {
@@ -308,40 +294,7 @@ Bundle currCUConfBundle;
 		// animEngine.start();
 
 
-
-/*
-
-
-
-
-
- 	// gifView.setBackgroundResource(R.drawable.selfielander_earthrise_mask);
-       // gifView.setImageDrawable(getResources().getDrawable(R.drawable.com_elastic_pad_utils_cutouts_horse));
- 	 // gifAnimation = (AnimationDrawable) gifView.getDrawable();
-	//gifAnimation = new AnimationDrawable((AnimationDrawable) getResources().getDrawable(R.drawable.com_elastic_pad_utils_cutouts_gimphy));
-	// gifAnimation = new AnimationDrawable(gifView.getDrawable());
-       // gifView.setImageDrawable(gifAnimation);
-
-
-
-
-gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
-    @Override
-    public void onAnimationCompleted() {
-        System.out.println("AnimationDrawableCallback:onAnimationComplete ");
-
-        // TODO Do something.
-    }
-    @Override
-    public void onAnimationAdvanced(int currentFrame, int totalFrames) {
-		iAnimFrmIdx = currentFrame;
-
-        System.out.println("AnimationDrawableCallback:onAnimationAdvanced: " + currentFrame + " :: " + totalFrames);
-
-    }
-});
  
-*/
 
  
 
@@ -354,15 +307,7 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
 
 
 	public void startAnimProps(){
-/*
-      	 animPropA = AnimationUtils.loadAnimation(this,R.anim.com_elastic_pad_utils_cutouts_gimphy);
-      	 animPropB = AnimationUtils.loadAnimation(this,R.anim.com_elastic_pad_utils_cutouts_rain);
-
-           animSet = new AnimationSet(false);//false means don't share interpolators
-           animSet.addAnimation(animPropA);
-           animSet.addAnimation(animPropB);
-           gifView.startAnimation(animSet);
-*/
+ 
 	}
 
 
@@ -404,8 +349,10 @@ gifAnimation.setCallback(new AnimationDrawableCallback(gifAnimation, gifView) {
        currMovUri = "noQvalue";
        currMovPath = "noQvalue";
 		currEditImgIndx = 0;
-cumetaObject = new JSONObject();
+		cumetaObject = new JSONObject();
         vtv = (TextView) findViewById(R.id.status_view);
+
+/*
         vtv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
@@ -418,14 +365,16 @@ cumetaObject = new JSONObject();
             }
         });
 
-
+*/
 
  
  	  arrAnimFSing = new ArrayList<AnimFrameSingleton>();
-	  btnVid = (ImageButton) findViewById(R.id.btn_vid);
-	  btnGifVid = (ImageButton) findViewById(R.id.btn_gifvid);
-	  btnCam = (ImageButton) findViewById(R.id.btn_cam);
-	  btnSettings = (ImageButton) findViewById(R.id.btn_settings);
+	  btnCreate = (TextView) findViewById(R.id.btn_create);
+	  btnVid = (TextView) findViewById(R.id.btn_vid);
+
+	  btnGifVid = (TextView) findViewById(R.id.btn_gifvid);
+	  btnCam = (TextView) findViewById(R.id.btn_cam);
+	  btnSettings = (TextView) findViewById(R.id.btn_settings);
 
 
         btnVid.setOnClickListener(new View.OnClickListener() {
@@ -494,6 +443,26 @@ cumetaObject = new JSONObject();
         });
 
 
+         tvAPVEdit = (TextView) findViewById(R.id.btnAPVEdit);
+	  tvAPVEdit.setVisibility(View.INVISIBLE);
+        tvAPVEdit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                try {
+				if(currMovType == "jpeg") {
+                    prepArtPad();
+				} else {
+				prepMovEditPop();
+				}
+
+ 
+                } catch (Exception e) {
+ 			System.out.println("tvAPVEdit.error: " + e.toString());
+                }
+            }
+        });
+
+
+
         tvAPVSave = (TextView) findViewById(R.id.btnAPVSave);
 	  tvAPVSave.setVisibility(View.INVISIBLE);
         tvAPVSave.setOnClickListener(new View.OnClickListener() {
@@ -508,18 +477,20 @@ cumetaObject = new JSONObject();
         });
 
 
+
+
+
+
+
+ 
+
+ 
+
         tvAPVClear = (TextView) findViewById(R.id.btnAPVClear);
 	  tvAPVClear.setVisibility(View.INVISIBLE);
         tvAPVClear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-				if(currMovType == "jpeg") {
-                    prepArtPad();
-				} else {
-				prepMovEditPop();
-				}
-
-/*
 			gifBgView.clearBmap();     
 			 
 			setToggleAPViewBtns(false);
@@ -528,89 +499,30 @@ cumetaObject = new JSONObject();
 		anms.clearAMS();
 		arrAnimFSing = null;
 		arrAnimFSing = new ArrayList<AnimFrameSingleton>();
-
-*/
                 } catch (Exception e) {
  			System.out.println("tvAPVClear.error: " + e.toString());
                 }
             }
         });
 
-/*
-     if (tmpIttAMS != null) {
-	String tmpFNstr = Long.toString(System.currentTimeMillis());
-	tmpIttAMS.setIMovType("mp4");
-	tmpIttAMS.setIMovFileStr(Environment.getExternalStorageDirectory().getPath() + File.separator + "quick-order" + File.separator + tmpFNstr + ".mp4");
-	tmpIttAMS.setIMovName(tmpFNstr);
-     }
-*/
+
+
 
 
         stv = (TextView) findViewById(R.id.status_stop);
+/*
         stv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-			// startAnimProps();
-
-// gifView.startAnimation(animPropA);
-// gifView.startAnimation(animPropB);
-
-		 // setPagePopUp("quickorder/pics.html","noQvalue");
-				// boolean isGTPV = gifPrevView.setAnimMovSing(animMovBuilder.getAnimMovSing());
-				// playFile();
-				// stopRecording();
-                    // takeAPicture();
-
-
-
-
-
-
-
-
-
-		// 	onEPResult();
+ 
 		prepMovCrunch();
-
-
-
-
                 } catch (Exception e) {
  			System.out.println("stv.error: " + e.toString());
                 }
             }
         });
 
-/*
-
-         tvAPVEdit = (TextView) findViewById(R.id.btnAPVEdit);
-	  tvAPVEdit.setVisibility(View.INVISIBLE);
-        tvAPVEdit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                try {
-
-			if(currMovType == "jpeg") {
- 
-
-
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    currFBmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    baos.close();
-                    byte[] bMapArray = baos.toByteArray();
-				String encodedImage = Base64.encodeBytes(bMapArray);
-       Intent toAMain = new Intent(getApplicationContext(), com.njfsoft_utils.artpad.ArtPad.class);
-       toAMain.putExtra("apmode", "apmodeEdit");
-	toAMain.putExtra("encdBmp", encodedImage);
-       startActivityForResult(toAMain, 2);
-
-			}
-                } catch (Exception e) {
- 			System.out.println("tvAPVEdit.error: " + e.toString());
-                }
-            }
-        });
-
- */
+*/ 
 
 
 
@@ -619,26 +531,7 @@ cumetaObject = new JSONObject();
 
 
 
-/*
-        gifBgView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-           
-
-
-    cameraManager.getCamera().autoFocus(new AutoFocusCallback() {
-        public void onAutoFocus(boolean success, Camera camera) {
-            if(success){
-			takeAPicture();
  
-            }
-        }
-     });
-
-
-	}
-    });
-
-*/
 
 
 	  lnrLyGBGView = (RelativeLayout) this.findViewById(R.id.gbgv_main);
@@ -931,7 +824,7 @@ return tretStr;
   theCUConfBundle.putString("confCUuseDSpeak", configCUSettings.getString("confCUuseDSpeak", "no"));
   theCUConfBundle.putString("confCUTitleWmark", configCUSettings.getString("confCUTitleWmark", "no"));
   theCUConfBundle.putString("confCUUseFilter", configCUSettings.getString("confCUUseFilter", "no"));
-
+// passes changes to animMovBuilder
   animMovBuilder.setAMBstgsObj(sendCUConfBundle());
   return theCUConfBundle;
  }
@@ -977,76 +870,15 @@ return tretStr;
                  System.out.println("CutOuts:using takeAPicture: ");
  
  			
-			if(currMovType.equals("trumpster")) {
  
- 	  BitmapDrawable myPropIcon = (BitmapDrawable) getResources().getDrawable(R.raw.helmet);
-        utilsBitmap.setFaceProp(myPropIcon.getBitmap());
-cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
-} else {
 		cameraManager.getCamera().setOneShotPreviewCallback(prevCallBack);
-}
-//  cameraManager.getCamera().setPreviewCallback(prevCallBack);
  
     }
 
  
 
  
-
-
-
-
-    public Camera.PreviewCallback trumpsterCallBack = new Camera.PreviewCallback() {
  
-
-
- 
-      @Override
-        public void onPreviewFrame(byte[] data, Camera camera) { 
-            try { 
- 
-                 System.out.println("CutOuts:using trumpsterCallBack: ");
-    int[] previewPixels = new int[iMovWidth * iMovHeight];
-    utilsBitmap.decodeYUV420SP(previewPixels, data, iMovWidth, iMovHeight);
-    Bitmap b  = Bitmap.createBitmap(previewPixels, iMovWidth, iMovHeight, Bitmap.Config.RGB_565);
- 	 Bitmap adbmpAToMask = utilsBitmap.scaleBoundBitmap(b, 520);
-
-
- 	 Bitmap bmpTrmpface = utilsBitmap.getFaceMap(adbmpAToMask);
-	if(bmpTrmpface != null) {
-	 
-			  
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bmpTrmpface.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    baos.close();
-                    byte[] bMapArray = baos.toByteArray();
-
-
-
-		ShareDataResult.getInstance().setCallingApp("CutOuts");		
- 
- 
- 		ShareDataResult.getInstance().setImgName(currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".jpeg");
- 
-
-		 ShareDataResult.getInstance().setImgBytes(bMapArray);
- 
- 
-
-               Intent intent = new Intent();
-              setResult(RESULT_OK, intent);
-		 finish();
-
-     		}
-            } catch (Exception e) {
-                System.out.println("trumpCallBack: " + e.toString());
-		e.printStackTrace();
-            }
-        }
-
- 
-    };
-
 
     public Camera.PreviewCallback prevCallBack = new Camera.PreviewCallback() {
  
@@ -1067,28 +899,6 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
     
 	setToggleAPViewBtns(true);
 	
- /*
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    adbmpAToMask.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    baos.close();
-                    byte[] bMapArray = baos.toByteArray();
-
-
-
-		ShareDataResult.getInstance().setCallingApp("CutOuts");		
- 
- 
- 		ShareDataResult.getInstance().setImgName(currMovFName.substring(0, currMovFName.lastIndexOf(".") - 1) + ".jpeg");
- 
-
-		 ShareDataResult.getInstance().setImgBytes(bMapArray);
- 
- 
-
-               Intent intent = new Intent();
-              setResult(RESULT_OK, intent);
-		 finish();
-*/
      
             } catch (Exception e) {
             System.out.println("CutOuts:prevCallBack: " + e.toString());
@@ -1125,7 +935,7 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 
 
 			if(arrAnimFSing.size() == 0) { // add first fram at 0 timestamp
-			System.out.println("cbMovFrame: 0000000000");
+			System.out.println("cbMovFrame: 0");
 		       AnimFrameSingleton anfs = new AnimFrameSingleton();
 			 anfs.setIpst(0);
  
@@ -1171,7 +981,7 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
       onRecClick(vtv);
       }
       
-
+ 		 vtv.setText("Frame : " + arrAnimFSing.size() + " of 14");
 
  
 	  // itmpIFI = gifAnimation.getAnimFrmIdx();
@@ -1236,7 +1046,7 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
 
 
     private void setCaptureButtonText(String title) {
-        vtv.setText(title);
+       // vtv.setText(title);
     }
 
 
@@ -1360,7 +1170,11 @@ cameraManager.getCamera().setPreviewCallback(trumpsterCallBack);
             }
             // inform the user that recording has started
             // setCaptureButtonText("Stop");
-         setCaptureButtonText("Stop");
+			if(currMovType.equals("jpeg")) {
+         setCaptureButtonText("");
+		} else {
+         setCaptureButtonText("recording " + currMovType + " ");
+		}
 		 animEngine.start();
 	   // gifAnimation.start();
 	   if(gifBgAnimation != null) {
@@ -1386,11 +1200,13 @@ public void setToggleAPViewBtns(final boolean fnlBooltoShow) {
 
         if(fnlBooltoShow) {
 	tvAPVPreview.setVisibility(View.VISIBLE);
+	tvAPVEdit.setVisibility(View.VISIBLE);
 	tvAPVSave.setVisibility(View.VISIBLE);
 	tvAPVClear.setVisibility(View.VISIBLE);
  
 	  } else {
 	tvAPVPreview.setVisibility(View.INVISIBLE);
+	tvAPVEdit.setVisibility(View.INVISIBLE);
 	tvAPVSave.setVisibility(View.INVISIBLE);
 	tvAPVClear.setVisibility(View.INVISIBLE);
  
@@ -1560,7 +1376,7 @@ try {
                		try {
 				
                         if(result.equals("isDone")) {
- 				 stv.setText(" Share");
+ 				 stv.setText("Done");
 
 				// dont make it yet, just show it:
      				// prepMovCrunch();
@@ -1576,7 +1392,7 @@ try {
 
               		} else {
 				iPrepArrPFrame++;
- 				 // stv.setText("Recording Frame : " + animMovBuilder.allBmaps  + " of " + animMovBuilder.getAnimMovSing().getMamsArrAFS().size());
+ 				 vtv.setText("encoding frame : " + animMovBuilder.allBmaps  + " of " + animMovBuilder.getAnimMovSing().getMamsArrAFS().size());
               	       timeAnimMovBuild();
               		}
                         System.out.println("Cutouts:timeAnimMovBuild Response From Asynchronous task: " + animMovBuilder.allBmaps + " :: " +  (String)result);
@@ -1603,7 +1419,7 @@ try {
                         if(result.equals("isDone")) {
 				iPrepArrPFrame = 0;
                     try {
- 				 stv.setText(" timeMovParse");
+ 				 vtv.setText("encoding ");
 
 				timeMovParse();
 
@@ -1615,7 +1431,7 @@ try {
 				// timeMovParse();
               		} else {
 				iPrepArrPFrame++;
- 				 stv.setText("TAF: " + iPrepArrPFrame);
+ 				 vtv.setText("encoding frame " + iPrepArrPFrame + " of 14");
 
               	       timeAnimMovFrame();
               		}

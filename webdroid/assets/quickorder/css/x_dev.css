@@ -222,7 +222,8 @@ margin-left: 20px;
 
     font-size: 18px;
     font-weight: 300;
-	min-width: 80px;
+	min-width: 180px;
+	min-height: 38px;
     padding: 5px 45px 5px 45px;
 }
 
@@ -235,7 +236,7 @@ margin-left: 20px;
     cursor: pointer;
     font-family: tahoma,sans-serif;
     color: #294759;
-   background-color: #DEDEDE;
+    background-color: #DEDEDE;
     border: 1px solid  black;
     font-size: 18px;
     font-weight: 300;
@@ -662,6 +663,15 @@ border:thin; border-style:solid; border-color:black; color:white; font-weight:bo
 	margin-right:20px;
 	
 	
+}
+.spintable {
+	margin-top:20px;
+	padding: 5px 5px 5px 5px;
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 15px;
+	border: 1px solid #e5e5e5;
 }
 .rtable {
 	padding: 5px 5px 5px 5px;
