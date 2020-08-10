@@ -65,6 +65,7 @@ shopDir = path.substring(0, n+ 1);
 } else {
 shopDir += "/";
 }
+
  
 var doNada = function(tmpa, tmpb, tmpc) {
 };
@@ -264,7 +265,6 @@ strTurl = strCurl.substring(strCurl.indexOf('?') + 1);
 // alert("getCurrUrl: " + strTurl);
 if(isPhP == "no") {
 try  {
-JSSHOP.loadScript("css/" + jscssprefix + "x_japp.css", JSSHOP.checkLoader,'css');
 strTurl = app.getCurrPageVars("nada");
 document.getElementById("fldChallArray").value = strTurl;
 strTurl = document.getElementById("fldChallArray").value;
@@ -283,6 +283,7 @@ return strTurl;
 try {
 cartID = app.fetchConfValString("cartID");
 isJApp = "y";
+JSSHOP.loadScript("css/" + jscssprefix + "x_japp.css", JSSHOP.checkLoader,'css');
 } catch(e) {
 }
 
