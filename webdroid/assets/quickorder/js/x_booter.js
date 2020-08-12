@@ -560,8 +560,8 @@ if (!window.JSSHOP.cookies) {
 JSSHOP.cookies.getCookie = function(check_name) {
 var cretval;
 var tval;
-if(isPhP == "no") {
-// if((isPhP == "no") || (isJavaFx == "yes")) {
+// if(isPhP == "no") {
+if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 if(check_name == "quid") {
 tval = app.fetchConfValInt(check_name);
@@ -577,7 +577,7 @@ return null;
 return cretval;
 }
 } catch(e) {
-// alert("getCookie: " + e);
+alert("getCookie: " + e);
 return null;
 }
 
@@ -626,9 +626,9 @@ return null;
 JSSHOP.cookies.setCookie = function(name,value,expires,path,domain,secure) 
 {
 
-if(isPhP == "no") {
+// if(isPhP == "no") {
 
-// if((isPhP == "no") || (isJavaFx == "yes")) {
+if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 
 if(name == "quid") {
@@ -637,7 +637,7 @@ app.setConfValInt(name,value);
 app.setConfValString(name,value); 
 }
 } catch(e) {
-// alert("setCookie.E: " + e)
+alert("setCookie.E: " + e)
 }
 
 } else {
@@ -665,8 +665,8 @@ document.cookie = name + "=" +escape( value ) +
 };
 
 JSSHOP.cookies.deleteCookie = function(name,path,domain) {
-if(isPhP == "no") {
-// if((isPhP == "no") || (isJavaFx == "yes")) {
+// if(isPhP == "no") {
+if((isPhP == "no") || (isJavaFx == "yes")) {
 try {
 
 if(name == "quid") {
@@ -675,7 +675,7 @@ app.setConfValInt(name,0);
 app.setConfValString(name,"noQvalue"); 
 }
 } catch(e) {
-// alert("setCookie.E: " + e)
+alert("setCookie.E: " + e)
 }
 
 } else {
@@ -1560,7 +1560,7 @@ tmpDV.innerHTML = tmpMColStr;
 document.getElementById('tdLMenu').appendChild(tmpDV);
 }
 
- 
+spinTextDiv.innerHTML = " ..... "; 
 JSSHOP.loadScript("js/" + jscssprefix + "x_" + pid + ".js", doMainContent,"js");
 };
 
@@ -1765,7 +1765,7 @@ alert("finishCntLoad.error: " + a + " : " + e);
 
 var doMainContent = function(a,b) {
 try {
- 
+spinTextDiv.innerHTML = " ... "; 
 fCa = getFArr();
 // this should be fixed. authentication.
 if((pid.indexOf("edit-") != -1)  && ((quid == 0) || (quid == "noQvalue"))) {

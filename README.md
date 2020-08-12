@@ -3,7 +3,9 @@
 		<td><p><strong>- About:</strong><br>evenflow is an abstract attempt to use the javafx 
 browser, LAMP stack and android to deploy and maintain simple desktop,web,mobile applications. <br>
 		Emphasis is on e-commerce software components and how they can be 
-		integrated to work together with minimal maintenance.<br>
+		integrated to work together with minimal maintenance.<br>A working
+		<strong>demo</strong> can be currently found here:
+		<a href="http:///quickorder.eu5.net">http:///quickorder.eu5.net</a><br>
 		</p>
 <p><strong>- Quick Setup:</strong><br>upload the whole project or the 
 <a href="webdroid/assets/quickorder">webdroid/assets/quickorder</a> folder to your web 
