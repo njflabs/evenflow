@@ -163,7 +163,7 @@ var doItemEdit = function() {
     tmpFobj["wa"] = [JSSHOP.shared.getFrmFieldVal("qitem","_id","0")];
     oi = getNuDBFnvp("qitem", 7, null, tmpFobj);
     // JSSHOP.ui.setCBBClickClr(divQitems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){JSSHOP.ui.closeLbox()});
-    JSSHOP.ui.setCBBClickClr(divQitems,'rtable brdrclrHdr bkgdClrDlg','txtClrHdr bkgdClrWhite', function(){void(0)});
+    // JSSHOP.ui.setCBBClickClr(divQitems,'rtable brdrclrHdr bkgdClrDlg','txtClrHdr bkgdClrWhite', function(){void(0)});
 
    // alert("oiRQ " + oi["rq"]); 
    doQComm(oi["rq"], null, "renderNuTQBItems"); 
@@ -355,7 +355,7 @@ var getQIstr = function(rid, tmprhtml) {
 var renderNuTQBItems = function(a,b,c) {
 	doCatUpdate();
 	// alert("rendering: " + JSON.stringify(b));
-    try { spinner.stop(); } catch(e) { alert(e); }
+
 
     tmpTDQI = document.getElementById("divQitems");
     tmpTDQI.innerHTML = "";
@@ -427,7 +427,7 @@ if(getViewportWidth() > 480) {
 scrollToElement("tdTitleBar");
 }
 if(a == "dobble") {
-JSSHOP.ui.setCBBClickClr(divQitems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){JSSHOP.ui.closeLbox()});
+JSSHOP.ui.setCBBClickClr(divQitems,'brdrClrDlg txtClrDlg','txtClrHdr bkgdClrWhite', function(){JSSHOP.ui.closeLbox()});
 } 
 };
 
@@ -441,6 +441,7 @@ var loadCatChunk = function (theCurrPage) {
 
 var renderDBis = function(theElem, theResp, marble) {
      // alert("renderDBis: " + theResp);
+
     tmpVitemArr = null;
     tmpVitemArr = [];
     tmpVitemArr = JSON.parse(theResp);
@@ -450,7 +451,7 @@ var renderDBis = function(theElem, theResp, marble) {
 
 var preRenderTQBItems = function(a, b, c) {
     // alert("pre: " + JSON.stringify(b));
-
+    stopSpin("tdBtnIadd");
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["ws"] = "where i_pid=? and i_rtype=?";

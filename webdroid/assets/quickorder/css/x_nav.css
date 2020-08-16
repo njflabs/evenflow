@@ -55,16 +55,13 @@ max-width:85%;
   visibility: hidden;
 }
 .float-item {
-float: left;
-width:200px;/*  */
-min-width:200px;
-max-width:200px;
 height:300px;
 float: left;
 margin-right:20px;
 margin-bottom:20px;
 margin-top:30px;
 }
+
 .float-item:after {
   content: ".";
   display: block;
@@ -370,7 +367,7 @@ list-style-position:inside;
 @media screen and (max-width: 800px) {
 .prodBigBox {
  	min-width:100%;
- 	max-width:100%;
+ 	 max-width:100%; /**/
  	min-height:250px;
 	border: 1px solid rgb(244,244,244);
 	background-color: #FFFFFF;
@@ -380,7 +377,7 @@ list-style-position:inside;
 
 	min-height:300px;
 	max-height:320px;
-	max-width:30%;
+	max-width:30%; /* */
 
 	border: 1px solid rgb(169,199,216);
 	background-color: #FFFFFF;
@@ -436,13 +433,11 @@ float: right;
 }
 
 .prodBox {
-
-	min-height:300px;
-	max-height:320px;
-	max-width:30%;
-
-	border: 1px solid rgb(169,199,216);
-	background-color: #FFFFFF;
+/* min-height:300px; */
+/* max-height:320px; */
+/* max-width:30%; */
+/* border: 1px solid rgb(169,199,216); */
+/* background-color: #FFFFFF; */
 }
 
 .omenuartigo {
@@ -457,10 +452,10 @@ float: right;
 
 
 .float {
-  max-width: 1200px;
   margin: 0 auto;
-list-style:none;
-padding: 10px;
+  list-style:none;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 .float:after {
   content: ".";
@@ -469,16 +464,20 @@ padding: 10px;
   clear: both;
   visibility: hidden;
 }
+
 .float-item {
 float: left;
-width:100px;
-min-width:100px;
-/* max-width:100px; */
-height:280px;
-margin-right:20px;
-margin-bottom:20px;
+min-width: 80px;
+max-width:35%;
+/* height:280px; */
+margin-left:4px;
+margin-right:9px;
+margin-bottom:10px;
 margin-top:30px;
 }
+
+
+
 .float-item:after {
   content: ".";
   display: block;
@@ -494,6 +493,9 @@ h1 {
 	height: 40px;
 	position:relative;
 	}
+
+
+
 
 .nanimenu {
 	
@@ -543,24 +545,7 @@ h1 {
   transform: rotate(-45deg);
 }
 
-/*
-
-.cls_thDynDat {
-    display: none;
-    visibility:hidden;	
-}
-
-  .animenu__nav,
-  .animenu__nav__child {
-    display: none;
-  }
-
-  .animenu__nav {
-    margin: 10px 0;
-  }
-  .animenu__nav > li:last-child {
-      border: 0;  
-  }*/
+ 
   
   
     .animenu__nav > li {
@@ -716,7 +701,7 @@ header .top-bar h5 b{ display:none;}
 
 header .top-bar ul.shop-menu{ float:right; /* margin-left:10%; */ }
 header .top-bar ul.shop-menu li{ float:right; margin:0 5px;}
-header .top-bar ul.shop-menu li a{ float:right; color:#fff; line-height:46px; font-size:12px;}
+header .top-bar ul.shop-menu li a{ float:right; color:#fff; font-size:12px;}
 header .top-bar ul.shop-menu li a:hover{text-decoration:none; color:#f3c217;}
  
 

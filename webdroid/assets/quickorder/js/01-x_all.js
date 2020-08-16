@@ -873,11 +873,8 @@ JSSHOP.shared.utf8_encode = function( argString ) {
 
 
 
-/*
-* some shared user preferences functions
-*/
 
-
+// some shared user preferences functions
 // sets prefs by passing the checkbox, the preference array name, 
 // the preference key, selected and unselected values.
 JSSHOP.shared.setChckbxPref = function(tChckbx, tPrefArr, tPrefKey, tVsel, tVunsel) {
@@ -2048,6 +2045,9 @@ ass = currProdsArr[tsCatArrNm][ntImgCtr[tsCatArrNm]];
 	// currPgTitle = JSSHOP.getUnixTimeStamp();
 	// document.title = currPgTitle; 
     }
+    image.onerror = function() {
+	   ntImgCtr[tsCatArrNm] = ntImgCtr[tsCatArrNm] + 1;
+    }
     image.src = JSSHOP.shop.getPrdImgStr(tsCatArrNm, ass.i_img);
 
 
@@ -2166,9 +2166,9 @@ strImgDsct = "";
 	subIdesc = subTIdesc.substring(0, 15);
       strImgDsct += "<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
 	if(upRefs == "r") {
-      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodRowImage\">";
+      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example.png\" class=\"prodRowImage\">";
 	} else {	
-      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/trans.gif\" class=\"prodImage\">";
+      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example.png\" class=\"prodImage\">";
 	}
       strImgDsct += "</a>";
 	}
@@ -2188,10 +2188,11 @@ strImgDsct = "";
 	}
 
 
+      strHtml += "<a class=\"txtDecorNone\"  href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
 
 	strHtml += "<div class=\"txtBold\" style=\"padding: 3px;\">";
 	strHtml += ts.i_title;
-	strHtml += "</div>";
+	strHtml += "</div></a>";
 	strHtml +=  strImgDsct;
 
 

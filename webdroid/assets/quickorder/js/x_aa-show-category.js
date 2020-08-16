@@ -29,30 +29,30 @@ catch (e) {
         strHtml = "";
         tmpTDQI = document.getElementById("dvQitems");
         tmpTDQI.innerHTML = "";
-	  tmpPrfStr = "<div style=\"margin-bottom:0px;\" align=\"right\">";
+	  tmpPrfStr = "<div style=\"margin-bottom:0px;margin:0 auto;max-width: 75%\" align=\"right\">";
         tmpDVlmore = document.createElement('div');
 
             if (upRefs == "r") {
-                tmpPrfStr += "[<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();\">grid</a>]";
+                tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();\"><i class=\"material-icons slmtable brdrClrDlg\" alt=\"grid_on\" title=\"grid_on\" style=\"margin-right: 15px;font-size:30px;\">&#xe3ec;</i></a>";
             }
             else {
-                tmpPrfStr += "[<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();\">row</a>]";
+                tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe240;</i></a>";
             }
 
 
         tmpDVlpr = document.createElement('span');
         if (upPrixRef == "a") {
-            tmpPrfStr += "   [<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('a');\">price</a>]";
+            tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('a');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe25c;</i></a>";
         }
         else {
-            tmpPrfStr += "    [<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','a');renderPrix('d');\">PRICE</a>]";
+            tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','a');renderPrix('d');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe227;</i></a>";
         }
             tmpPrfStr += "</div>";
          tmpDVlmore.innerHTML = tmpPrfStr;
  
             tmpTDQI.appendChild(tmpDVlmore);
         tStrHtml = JSSHOP.shop.getPrdsFullStr("cat", theCArr, null, null, null);
-	  tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\">";
+	 // tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('cat');\">";
 
         newel = document.createElement('div');
         newel.innerHTML = tStrHtml;
@@ -211,7 +211,7 @@ tmpActArr = getCurrMItemsArr();
     tbString = "ab" + JSSHOP.getUnixTimeStamp();
     tStrHtml = JSSHOP.shop.getPrdsFullStr(tbString, tmpACTBarr, null, null, null);
     currProdsArr[tbString] = tmpACTBarr;
-    tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('" + tbString + "');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('" + tbString + "');\">";
+    // tStrHtml += "<img alt=\"imgldr\" height=\"5px\" width=\"5px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=\" onload=\"javascript:JSSHOP.shop.setCatPrdImgs('" + tbString + "');\"  onerror=\"javascript:JSSHOP.shop.setCatPrdImgs('" + tbString + "');\">";
 
     if (tStrHtml == "") {
     }

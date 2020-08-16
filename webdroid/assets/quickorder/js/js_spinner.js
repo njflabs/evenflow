@@ -2,6 +2,8 @@
 var spinTextDiv = document.createElement("div");
 var currSpinText = "noQvalue";
 var currSpinType = "small";
+var currSpinHtml = "noQvalue";
+var currSpinTarget = "noQvalue";
 spinTextDiv.innerHTML = "loading..";
 spinTextDiv.className = "spintable txtBold";
 
@@ -383,7 +385,7 @@ shadow: false, // Whether to render a shadow
 hwaccel: false, // Whether to use hardware acceleration
 className: 'spinsmalldiv', // The CSS class to assign to the spinner
 zIndex: 2e9, // The z-index (defaults to 2000000000)
-top: '40', // Top position relative to parent in px
+top: 'auto', // Top position relative to parent in px
 left: 'auto' // Left position relative to parent in px
 };
 
@@ -403,7 +405,7 @@ shadow: false, // Whether to render a shadow
 hwaccel: false, // Whether to use hardware acceleration
 className: 'spinsmalldiv', // The CSS class to assign to the spinner
 zIndex: 2e9, // The z-index (defaults to 2000000000)
-top: '40', // Top position relative to parent in px
+top: 'auto', // Top position relative to parent in px
 left: 'auto' // Left position relative to parent in px
 };
 
@@ -412,20 +414,34 @@ var smlspinner = new Spinner(aspinopts);
 
 
 function doSpin(theObjId, theSpnrType) {
-var target = document.getElementById(theObjId);
+var starget = document.getElementById(theObjId);
 if(theSpnrType == "small") {
-smlspinner.spin(target);
+smlspinner.spin(starget);
 } else {
-spinner.spin(target);
+spinner.spin(starget);
 }
 }
 
 
+function stopSpin(theObjId) {
+try { 
+spinner.stop();
+smlspinner.stop();
+document.getElementById(theObjId).innerHTML = currSpinHtml;
+currSpinHtml = "noQvalue";
+currSpinTarget = "noQvalue";
+} catch(e) { 
+alert(e); 
+}
+}
 
 
 function doSpinSet(theObjId, theSpnrType, theSpinTxt) {
 currSpinType = theSpnrType;
 var spntarget = document.getElementById(theObjId);
+currSpinHtml = spntarget.innerHTML;
+spntarget.innerHTML = "";
+currSpinTarget = theObjId;
 if((theSpinTxt == null) || (theSpinTxt == "noQvalue")){
 } else {
 currSpinText = theSpinTxt;

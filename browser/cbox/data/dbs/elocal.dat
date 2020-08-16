@@ -1,8 +1,0 @@
-hostfolder = https://localhost/evenflow/webdroid/assets/quickorder/_p/
-dbHost = localhost
-adminusername = evenflow
-adminpassword = evenflow
-encryptedUname = ecrypted username
-encryptedPass = ecrypted password
-webdbasename = evenflow
-dbID = 1597072277

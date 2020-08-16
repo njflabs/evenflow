@@ -1,4 +1,4 @@
- <!DOCTYPE html> 
+<!DOCTYPE html> 
 <html>
 <head>
 <meta content="en-us" http-equiv="Content-Language">
@@ -37,15 +37,21 @@ isPhP = "y";
 
 </script>
 
-<!--
-<script src="js/lz-string.js" language="javascript" type="text/javascript"></script>
--->
 <link href="css/main.css" rel="stylesheet">
+
+<!--
+-->
+
 <script src="js/x_all.js"  language="javascript" type="text/javascript"></script>
 <script src="js/x_booter.js"  language="javascript" type="text/javascript"></script>
 <script src="js/x_admin.js"  language="javascript" type="text/javascript"></script>
+<script src="js/lz-string.js" language="javascript" type="text/javascript"></script>
 
- 
+
+ <script type="text/javascript">
+  
+
+</script>
 
 
 
@@ -65,7 +71,7 @@ isPhP = "y";
 <h1 style="max-height:60px;"> 
 <nav class="animenu"> 
 <span>
- <div id="dvHdr" class="top-bar">
+ <div id="dvHdr" class="top-bar" style=\"padding-bottom: 7px;\">
  
    <button style="float:right" id="mnuBtn" class="animenu__toggle" onclick="javascript:scroll(0,0);JSSHOP.ui.toggleMnuVisibility('dvMnuT');">
     <span class="animenu__toggle__bar"></span>
@@ -95,7 +101,7 @@ isPhP = "y";
             <li id="ahSettingsIcon"><span class="icnbtn slmtable txtSmall txtClrWhite bkgdClrRed" style="float:right">2</span><a href="javascript:JSSHOP.ui.doDefCBBCC('ahSettingsIcon', null, document.location.href='index.html?pid=aa-settings&cid=' + cid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;" alt="settings" title="settings">&#xe8b8;</i></a></li>   
             <!-- <li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, document.location.href='index.html?pid=aa-show-cart&cid=' + cid + '&ppid=' + ppid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li> -->
  			<li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, JSSHOP.shop.doCartAddPop());"><i class="material-icons"  style="margin-top: 5px;font-size:32px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li>
- 
+ 			<li id="ahDeRecent"><a href="javascript:JSSHOP.ui.toggleVisibility('dvSearchBoxSlim');ijUFeedSearch.focus();doDummyFocus();JSSHOP.ui.toggleVisibility('dvSearchBoxSlim');"><i class="material-icons" style="margin-top: 5px;font-size:32px;" alt="ahDeRecent" title="ahDeRecent">&#xe5db;</i></a></li>
            <li id="ahHomeIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahHomeIcon', null, document.location.href='index.html?&cid=' + cid);"><i class="material-icons" style="margin-top: 5px;font-size:32px;" alt="home" title="home">&#xe88a;</i></a></li>
   
                      
@@ -105,7 +111,7 @@ isPhP = "y";
           <span class="clsSearchBox" id="dvSearchBox">     
           
 		<!--  aa-cmp-search will be included here andnot pullef from ajax request -->
-		<div  id="dvNMsearch"><table cellspacing="0" cellpadding="0" class="">
+		<div  id="dvNMsearch" style="z-index: 9999999999999999"><table cellspacing="0" cellpadding="0" class="">
 										<tr>
 											<td> 
                     <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -153,7 +159,7 @@ isPhP = "y";
 														<table style="margin: 0 auto;background-color:#FFFFFF" align="center" cellpadding="0" cellspacing="0"  class="slmtable brdrClrHdr">
 								<tr>					
 									<td>&nbsp;</td><td valign="middle">                   
-							<input type="text" name="ijUFeedSearch" id="ijUFeedSearch" value="Keywords here"  title="Search" style="text-align:left; width: 100%; border-color:#FFFFFF;border:0px;color:#DEDEDE;" class="txtLrg"   onfocus="javascript:if(this.value=='Keywords here') this.value = '';this.style.color='#000000';" onblur="if(this.value === '') this.value = 'Keywords here';this.style.color='#DEDEDE'"> 
+							<input type="text" name="ijUFeedSearch" id="ijUFeedSearch" value="Keywords here"  title="Search" style="text-align:left; width: 100%; border-color:#FFFFFF;border:0px;color:#DEDEDE;z-index: 99999999999;" class="txtLrg"   onfocus="javascript:if(this.value=='Keywords here') this.value = '';this.style.color='#000000';" onblur="if(this.value === '') this.value = 'Keywords here';this.style.color='#DEDEDE'"> 
 							
 		 
 							</td>
@@ -257,7 +263,7 @@ isPhP = "y";
 
 </script></h1>
 
-<div id="dvMnuT" class="bkgdClrWhite collection brdrClrDlg" style="display:none;visibility:hidden;max-width: 93%;min-height: 40px;padding-top: 10px;padding-left: 5px;padding-right: 20px; z-index:98988;position:fixed;margin: 7px"><!-- !! DO NOT DELETE !! MOBILE MENU DIV !! --></div>
+<div id="dvMnuT" class="bkgdClrWhite collection brdrClrDlg" style="display:none;visibility:hidden;max-width: 93%;min-height: 40px;padding-top: 10px;padding-left: 5px;padding-right: 20px;z-index:98988;position:fixed;margin: 7px"><!-- !! DO NOT DELETE !! MOBILE MENU DIV !! --></div>
 
 
 <!-- LIGHTBOX CODE BEGIN -->
@@ -457,12 +463,12 @@ isPhP = "y";
 
  
  <div id="mmn" class="nanimenu animenu">
- 	<div  id="mnuT" style="padding-left:10px;" >
+ 	<div  id="mnuT" style="padding-left:10px;margin-top:15px; " >
   
 	 </div></div> 
 
 	 
-	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:15px;margin-top:18px;float:right;" class="txtSmall txtClrBlack">
+	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:15px;margin-top:18px;float:right;min-height: 35px;">
 </div>
 
 
@@ -509,7 +515,8 @@ isPhP = "y";
 
 
 <table  class="clsDvCntntTtle" width="100%" cellspacing="0"><tr>
-	<td><span class="onlySmallScreen"><a class="btn-floating clsDvCntntTtle"  href="javascript:document.location.href='index.html?pid=aa-edit-categories&cid=' + cid + '&catid=' + catid" ><i class="material-icons icnbtn clsDvCntntTtle" style="margin-right:16px;">arrow_back</i></a></span>
+	<td>
+<span class="onlySmallScreen"><a class="clsDvCntntTtle txtBig txtBold txtDecorNone"  href="javascript:history.go(-1);" >&nbsp;&lt;-</a></span>
 				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px">
 	<ti data-ison="currPgTitle" data-desc="title_bar"></ti></td>
 	<td align="right"><table class="onlySmallScreen"><tr><td>
@@ -538,10 +545,37 @@ isPhP = "y";
 
 
 
-<div style="margin:0 auto; text-align:center"><span style="background-color: #FFFF00">this is an e-commerce shopping cart 
-		</span><strong><span style="background-color: #FFFF00">demo.</span></strong><br>source code: <a href="https:/github.com/tumbleDryCode/evenflow">
-		https://github.com/tumbleDryCode/evenflow</a><br>freely hosted on :<a href="https://www.freehostingeu.com"> 
-		https://www.freehostingeu.com</a></div><br>
+<div style="margin:0 auto; text-align:center;max-width:90%; display:none; visibility:hidden" class="txtSmall brdrClrRed" id="dvDemoAlert">
+	<table cellspacing="5" style="width: 100%">
+		<tr>
+			<td><div style="float: right" class="txtBold txtClrDrkGrn crsrPointer" onclick="javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','sia','n');JSSHOP.ui.showHideElement('dvDemoAlert', 'hide');">X</div><span style="background-color: #FFFF00">this is an e-commerce shopping cart 
+		<strong>demo</strong> from the open sourced <strong>evenflow</strong> project..</span></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>source code can be found here: <a href="https:/github.com/tumbleDryCode/evenflow">
+		github.com/tumbleDryCode/evenflow</a></td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>this demo is freely hosted on :<a href="https://www.freehostingeu.com"> 
+		freehostingeu.com</a></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>demo url: <a href="https:/quickorder.eu5.net"> 
+			quickorder.eu5.net</a></td>
+		</tr>
+	</table>
+		</div>
+		<br>
 		
 		
 		
@@ -551,11 +585,17 @@ isPhP = "y";
 
 <div id="includedFooter" class="txtBold links_footer">
 </div>
+
+<!---->
  <script src="js/x_menu.js"  language="javascript" type="text/javascript"></script>
 <script src="js/js_spinner.js"  language="javascript" type="text/javascript"></script>
 <script src="js/js_actb.js"  language="javascript" type="text/javascript"></script>
+
 <div id="dvDummy"></div>
 <script language="javascript" type="text/javascript">
+
+ 
+
 // JSSHOP.ajax.doNuAjaxPipe("includedNav",  "tplates/index_nav.html", pfRet);
 setTimeout("doBootLoad()", 800);
 // JSSHOP.loadScript("js/" + jscssprefix + "x_menu.js", doACTBboot,"js");

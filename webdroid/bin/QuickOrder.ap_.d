@@ -245,6 +245,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\trans.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\transparent.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\x.png \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\edit.gif \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\example.png \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\help_adddb_dialog.jpg \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\icon_edit_washed.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\magnifier_washed.png \

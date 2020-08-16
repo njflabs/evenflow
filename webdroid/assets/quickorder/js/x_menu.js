@@ -4,21 +4,78 @@ if(currAdmnMode == "y") {
 tmpSTrSorE = "edit";
 }
 
+
+var doCatTreeLoad = function() {
+try {
+tmpCatPid = 0;
+tmpCatPid = document.getElementById("cat_pid").value;
+
+arrToFill = null;
+arrToFill =  [];
+// alert(JSON.stringify(currMenuArr));
+arrToFill = currMenuArr;
+var tmpLsr = "";
+var len = arrToFill.length;
+var iint = 0;
+var pcid = 0;
+tmpMCatstr = "";
+tmpSubCatstr = "";
+tstr = "";
+while(iint < len) {
+ts = arrToFill[iint];
+
+switch(ts._id) {
+case catid:
+tstr += "&nbsp;&nbsp;&nbsp;<a class=\"txtDecorNone txtClrHdr txtBold\" href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+break;
+case tmpCatPid:
+tstr += "&nbsp;&nbsp;&nbsp;<a class=\"txtDecorNone\" href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+break;
+
+default:
+if(ts.cat_pid == tmpCatPid) {
+tstr += "&nbsp;&nbsp;&nbsp;<a class=\"txtDecorNone txtClrRed\" href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+}
+if(ts.cat_pid == catid) {
+tstr += "&nbsp;&nbsp;&nbsp;<a class=\"txtDecorNone txtClrDlg\" href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
+}
+// tstr += "";
+break;
+}
+ 
+iint++;
+}
+
+
+// not in any category
+// in main category
+// in sub category
+
+
+
+
+JSSHOP.ui.setTinnerHTML("dvMCatTree", tstr);
+} catch(e) {
+alert("doCatTreeLoad: " + e);
+} 
+};
+
+
 var doSubMenuLoad = function() {
 try {
 arrToFill = null;
 arrToFill =  [];
-// arrToFill = JSON.parse(theResp);
- 
+// alert(JSON.stringify(currMenuArr));
 arrToFill = currMenuArr;
-
-
+var tmpLsr = "";
 var len = arrToFill.length;
 var iint = 0;
 var pcid = 0;
-tstr = "";
 while(iint < len) {
 ts = arrToFill[iint];
+
+
+
 // currMenuArr.push(ts);
 
 if(ts.cat_pid == "0") {
@@ -49,101 +106,11 @@ a.href = "index.html?pid=aa-" + tmpSTrSorE + "-category&ppid="+ts._id+"&cid="+ts
 iint++;
 }
 
+// doCatTreeLoad();
 } catch(e) {
  
-JSSHOP.logJSerror(e, arguments, "doSubMenuLoad");
-} 
-if(catid == 0) {
-hstring = "";
-mstring = "<a href=\"index.html?cid=" + +cid + "\">" + hstring + "</a>";
-fmcstr = "<div style=\"margin-left: 15px\" class=\"crsrPointer txtSmall txtClrBlack\">" + mstring +  "</div>";
-} else {
-newMTmpArr = [];
-newMTmpArr = JSSHOP.shared.sort(currMenuArr, "cat_pid", "sortDesc");
-var len = newMTmpArr.length;
-var iint = 0;
-var pcid = 0;
-tstr = "";
-currTmpPID = 0;
-ts = null;
-hstring = "";
-mstring = "<a href=\"index.html\">" + hstring + "</a>";
-fmcstr = mstring;
-mcat = " ";
-subcat = "";
-while(iint < len) {
-ts = newMTmpArr[iint];
-
-if(ts._id == catid) { 
-if(ts.cat_pid == "0") {
-if(pid == "aa-show-category") {
-mcat = "&nbsp;&nbsp;&nbsp;" + ts.cat_title;
-} else {
-mcat = "<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
-}
-} else {
-if(pid == "aa-show-category") {
-subcat = "&nbsp;-&nbsp;&nbsp;" + ts.cat_title;
- } else {
-subcat = "&nbsp;-&nbsp;&nbsp;<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
-}
-currTmpPID = ts.cat_pid;
-}
-
-}
-
-if(ts._id == currTmpPID) { 
-
-mcat = "&nbsp;&nbsp;&nbsp;<a href=\"index.html?pid=aa-" + tmpSTrSorE + "-category&cid=" + ts.cat_coid + "&catid=" + ts._id + "\">" + ts.cat_title + "</a>";
-
- 
-}
-
-iint++;
-}
-
-
-// alert("setMFormArr: "  + JSON.stringify(arrAllForms));
-fmcstr = "<div>" + mcat +  "  " +  subcat + "</div>";
-
-
- 
-
-// alert("ifnlref: " + ifnlref);
-
-// alert(mstring + mcat + subcat);
-} 
-/*
-upSLMRef = "n";
-try {
-if(arrUprefs["prfsSHOPuser"][0].slm) {
-upSLMRef = arrUprefs["prfsSHOPuser"][0].slm;
-}
-} catch(e) {
-
-}
-ifnlref = "n";
-if(upSLMRef == "n") {
-ifnlref = "y";
-}
-
-*/
-
-
-
-
-// fmcstr += "<div id=\"dvPrfsLmenu\" style=\"margin-left: 15px\" class=\"txtSmall txtClrBlack\"  onclick=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','slm','" + ifnlref + "');JSSHOP.ui.toggleModule('dvPrfsLmenu','tdLMenu','LmenuO','Lmenu1');";
-// if(upSLMRef == "n") {}
-// fmcstr += "loadLmenu();";
-
-
-// fmcstr += "\">Lmenu1</div>";
-// fmcstr += "<div style=\"margin-left: 15px\" class=\"txtSmall txtClrBlack\"  onclick=\"javascript:doPopCartMod();\" >Cart</div>";
-
-JSSHOP.ui.setTinnerHTML("dvMCatTree", fmcstr);
-
-
-// alert("mArr " + JSON.stringify(currMenuArr));
+alert("doSubMenuLoad: " + e);
+}  
 };
 
 var getMMenu = function() {
@@ -400,6 +367,14 @@ tmpMCollItem["mi"] = "&#xe887;"; // help
 tmpMCollItem["ti"] = stxt[71];
 tmpMCollItem["c"] = "collection-item";
 currMCollItems["aa-show-help"] = tmpMCollItem;
+
+tmpMCollItem = null;
+tmpMCollItem = {};
+tmpMCollItem["u"] = "javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','sia','y');document.location.href='index.html?cid=" + cid + "'";
+tmpMCollItem["mi"] = "&#xe887;"; // about
+tmpMCollItem["ti"] = "About";
+tmpMCollItem["c"] = "collection-item";
+currMCollItems["aa-show-about"] = tmpMCollItem;
 
 
 tmpMCollItem = null;
@@ -700,6 +675,7 @@ currMCollArr.push("aa-logout");
 }
 // currMCollArr.push("aa-docutouts");
 currMCollArr.push("aa-show-help");
+currMCollArr.push("aa-show-about");
 currMCollArr.push("aa-show-dbug");
 tmpStrbla = ""; 
 tmpStrAdmnM = "";

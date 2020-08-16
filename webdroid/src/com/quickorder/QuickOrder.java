@@ -507,7 +507,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
   if (theKey.equals("confShowWebImgs")) {
    mWebView.getSettings().setLoadsImagesAutomatically(Boolean.parseBoolean(theVal));
   }
-  showDaToast(strSettingsSaved + ": " + theKey + " : " + theVal);
+  // showDaToast(strSettingsSaved + ": " + theKey + " : " + theVal);
  }
 
  public void putConfValInt(String theKey, Integer theVal) {
@@ -516,7 +516,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
    configEditor.putInt(theKey, theVal);
    configEditor.commit();
    currConfBundle = getConfBundle();
-   showDaToast(strSettingsSaved + " putConfValInt: " + theKey + " : " + theVal);
+   // showDaToast(strSettingsSaved + " putConfValInt: " + theKey + " : " + theVal);
   } catch (Exception e) {
    System.out.println("Error.putConfValInt: " + e);
   }

@@ -17,7 +17,7 @@ var cid = 0;
 var catid = 0;
 var itemid = 0;
 var pgpq = "noQvalue";
-var arrDBnDocFNames = [];
+var arrDBnDocFNames = []; 
 var arrDBnDocFNVpar = [];
 var arrDBFNames = [];
 var arrAllForms = [];
@@ -686,11 +686,7 @@ if(JSSHOP.cookies.getCookie(name)) document.cookie = name + "=" + ( ( path ) ? "
 
 
 
-
-
-
-
-/ª shared functions */
+ 
 if (!window.JSSHOP.shared) {
     JSSHOP.shared = new Object();
 }
@@ -832,7 +828,7 @@ fldChallArray.value = JSSHOP.cookies.getCookie(daCky);
 tval = fldChallArray.value;
 arrUprefs[daCky] = JSON.parse(JSSHOP.user.decPrefCky(tval));
 } else {
-arrUprefs[daCky] = [{"prfDspLmenu":false,"scv":"g","sAL":"y","sAT":"y"}];
+arrUprefs[daCky] = [{"prfDspLmenu":false,"scv":"g","sAL":"y","sAT":"y","sia":"y"}];
 JSSHOP.user.setCkieUprefs(daCky);
 }
 // alert("doCkieUprefs: " + JSON.stringify(arrUprefs[daCky]));
@@ -847,6 +843,7 @@ JSSHOP.user.setCkieUprefs(daCky);
 
 
 
+// cunstructs the sql statement
 
 var getNuDBFnvp = function(t,m,da,de) {
 icce = 0;
@@ -859,7 +856,7 @@ xol["m"] = m; // mode
 xol["t"] = t; // table
 xol["c"] = null; // columns
 xol["o"] = "_id Desc"; 
-xol["l"] =  100;
+xol["l"] =  100; // limit
 xol["knvp"] = null;
 if(de != null) {
 if(de["ws"] != null) {
@@ -1170,7 +1167,7 @@ nuDW(xae[iint]);
 iint++;
 }
 
-
+doCatTreeLoad();
 
 /*  to delete. fixed.
 if(isJavaFx == "yes") {
@@ -1727,6 +1724,9 @@ alert("fnish; " + e);
 }
 }
 
+
+
+
 };
  
 
@@ -1755,6 +1755,9 @@ spinner.stop();
 document.getElementById(a).innerHTML = b;
 doWinResizeE(); // all things changed on window resize
 setTimeout("mfnishCntLoad()", 500);
+
+
+
 } catch(e) {
 alert("finishCntLoad.error: " + a + " : " + e);
 }
@@ -1870,6 +1873,20 @@ JSSHOP.user.doCkieUprefs('prfsSHOPuser');
 alert("doBootLoad error: " + e)
 JSSHOP.logJSerror(e, arguments, "doBootLoad:doCkieUprefs");
 } 
+
+
+
+// the ecommerce demo alert and links div in index.html
+// if it was not closed by user, show it.
+try {
+if(arrUprefs["prfsSHOPuser"][0].sia == "y") {
+JSSHOP.ui.showHideElement("dvDemoAlert", "show");
+}
+} catch (e) {
+alert(e); 	
+}
+
+
 
 try {
 tmpUrl = getCurrUrl();

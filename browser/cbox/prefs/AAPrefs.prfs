@@ -1,16 +1,16 @@
 #---No Comment---
-#Tue Aug 11 21:50:26 BST 2020
+#Mon Nov 11 14:59:50 GMT 2019
 propDBQBHeight=400
 cartID=6jyeun0y4hw
-quid=1
-defaultdb=1597072277
-lastWebPage=https\://localhost/evenflow/webdroid/assets/quickorder/index.html?pid\=aa-show-category&ppid\=2&cid\=1&catid\=2
+quid=0
+defaultdb=555
+lastWebPage=about\:blank
 propDBQBWidth=921
 minonquery=no
 propDBQBLocationY=137
+defaultDBname=Demo-Database
 propDBQBLocationX=302
-defaultDBname=elocal
-prefsDefTableName=qitem
+prefsDefTableName=DemoTableA
 prefsNumResults=100
 prfsSHOPuser=x1prfDspLmenux4falsex5scvx2gx3sATx2yx3sALx2yx3scpx2dx6
 splitLocation=634
