@@ -4,8 +4,9 @@ var euiFFObjArr = [];
 document.title = currPgTitle; // set the page title 
 
 var cbFedit = function(a,b,c) {
- alert(b);
- JSSHOP.ui.setCBBClickClr(divCntEditCo,'cls_button cls_button-medium brdrClrDlg txtClrHdr','clsDummy', function(){void(0)});
+ JSSHOP.ui.setCBBClickClr(btnEUsave,'cls_button cls_button-medium  bkgdClrDGreen txtClrWhite','cls_button cls_button-medium', function(){document.getElementById("btnEUsave").innerHTML=stxt[21];document.getElementById("btnEUsave").disabled=false;});
+
+ 
 };
 
 
@@ -88,6 +89,16 @@ tfxa.lid = "lbl_c_vala";
 tfxa.ltxt = "Custom-Database-Title"; 
 // document.getElementById(tfxa.fid).disabled = true;
 euiFFObjArr.push(tfxa);
+
+
+tfsb = nCurrFFieldOb();
+tfsb.fid = "btnEUsave";
+tfsb.fty = "button";
+tfsb.fcl = function() { JSSHOP.ui.setSaveBtnClick(this, function(){doNShopEdit()}) };
+euiFFObjArr.push(tfsb);
+
+
+
 
 JSSHOP.shared.initFrmComps(euiFFObjArr);
 // JSSHOP.ui.setTinnerHTML("tdCoTitle", JSSHOP.shared.getFieldVal("c_title", "theCo"));

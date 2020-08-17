@@ -1289,7 +1289,7 @@ if(tmpHlpStr == "page") {
 tmpHlpStr = pid;
 }
 try {
-tmpv = hlpT.default;
+tmpv = hlpT.defval;
 JSSHOP.ui.showPopHelp(tmpHlpStr);
 } catch(e) {
 // alert("no getPopHelp : " + e);

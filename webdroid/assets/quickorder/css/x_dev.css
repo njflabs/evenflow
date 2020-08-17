@@ -219,12 +219,11 @@ margin-left: 20px;
     padding: 5px 15px 5px 15px;
 }
 .cls_button-medium {
-
-    font-size: 18px;
-    font-weight: 300;
-	min-width: 180px;
-	min-height: 38px;
-    padding: 5px 45px 5px 45px;
+font-size: 18px;
+font-weight: 300;
+min-width: 180px;
+min-height: 38px;
+padding: 5px 45px 5px 45px;
 }
 
 .cls_button {

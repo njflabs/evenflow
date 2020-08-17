@@ -1,9 +1,9 @@
 // -----------------------  start js_spinner.js  ---------------------
-var spinTextDiv = document.createElement("div");
-var currSpinText = "noQvalue";
-var currSpinType = "small";
-var currSpinHtml = "noQvalue";
-var currSpinTarget = "noQvalue";
+spinTextDiv = document.createElement("div");
+currSpinText = "noQvalue";
+currSpinType = "small";
+currSpinHtml = "noQvalue";
+currSpinTarget = "noQvalue";
 spinTextDiv.innerHTML = "loading..";
 spinTextDiv.className = "spintable txtBold";
 
@@ -428,6 +428,8 @@ try {
 spinner.stop();
 smlspinner.stop();
 document.getElementById(theObjId).innerHTML = currSpinHtml;
+// alert("theObjId: " + theObjId + "  :: " + "currSpinHtml: " + currSpinHtml);
+
 currSpinHtml = "noQvalue";
 currSpinTarget = "noQvalue";
 } catch(e) { 
@@ -440,6 +442,7 @@ function doSpinSet(theObjId, theSpnrType, theSpinTxt) {
 currSpinType = theSpnrType;
 var spntarget = document.getElementById(theObjId);
 currSpinHtml = spntarget.innerHTML;
+// alert("theObjId: " + theObjId + "  :: " + "theSpnrType: " + theSpnrType + " :: " + "theSpinTxt: " + theSpinTxt + "  :: " + currSpinHtml);
 spntarget.innerHTML = "";
 currSpinTarget = theObjId;
 if((theSpinTxt == null) || (theSpinTxt == "noQvalue")){

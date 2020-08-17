@@ -416,7 +416,7 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
   tmpIw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   tmpIh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   if(tmpIw < 500) {
-  dDiv.style.left = "0px";
+  dDiv.style.left = "16px";
   } else {
   dDiv.style.left = curLeft(actb_curr) + "px";  
   }
@@ -426,7 +426,7 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
   }
 
  
-		dDiv.className = "bigtable bkgdClrTNrml brdrClrDlg txtSmall txtBold mintwofh highZ tatCross";
+		dDiv.className = "bigtable bkgdClrWhite brdrClrHdr txtSmall txtBold mintwofh highZ tatCross";
 		// dDiv.className = "rtable bkgdWhite";
 		document.body.appendChild(dDiv);
 

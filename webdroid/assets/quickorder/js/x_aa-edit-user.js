@@ -10,8 +10,9 @@ ck_password =  /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
 
 
 var cbFedit = function(a,b,c) {
-JSSHOP.ui.setCBBClickClr(btnEUsave,'cls_button cls_button-medium brdrclrDlg bkgdClrDGreen txtClrWhite','cls_button cls_button-medium', function(){document.getElementById("btnEUsave").disabled=false;});
-// smlspinner.stop();
+JSSHOP.ui.setCBBClickClr(btnEUsave,'cls_button cls_button-medium  bkgdClrDGreen txtClrWhite','cls_button cls_button-medium', function(){document.getElementById("btnEUsave").innerHTML=stxt[21];document.getElementById("btnEUsave").disabled=false;});
+
+
 };
 
 var doNUserEdit = function() {

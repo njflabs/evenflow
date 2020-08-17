@@ -57,6 +57,11 @@ var usrlang = "en_us";
 var actbSearch;
 var actbLoaded = false; // boolean show js_actb.js  is loaded
 var shopDir = document.location.href;
+var spinTextDiv = document.createElement("div");
+var currSpinText = "noQvalue";
+var currSpinType = "small";
+var currSpinHtml = "noQvalue";
+var currSpinTarget = "noQvalue";
 path = shopDir;
 n = path.lastIndexOf("/");
 q = path.lastIndexOf("?");
