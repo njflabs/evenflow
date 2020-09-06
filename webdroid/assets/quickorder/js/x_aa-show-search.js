@@ -3,7 +3,7 @@ var tmpVitemArr = null;
 tmpSQBArr = [];
 tmpVitemArr = [];
 var tmpVindex = 0;
-
+currIContent = "no"; // ajax request to include the tplates/... file or not 
 
 var sw = "search"; 
 tmpUrl = getCurrUrl();
@@ -55,22 +55,13 @@ clearNuLclStrg("localStorage", "setLoadACTB");
 qitac = nCurrCnxOb();
 qitac["q"] = oi["rq"];
 qitac["cb"] = "doRSrchb";
-  
-
 doNurQComm(qitac);
-
-
    //  doQComm(oi["rq"], null, "doRSrchb");
 }
 
 };
 
-
-
-
-
 var checkRecentSearch = function() {
-
 tmpDOs = null;
 tmpDOs = {};
 tmpDOs["ws"] = "where e_uid=? and e_rtype=? and e_vala=?";
@@ -78,9 +69,6 @@ tmpDOs["wa"] = [quid,11,sw];
 oi = getNuDBFnvp("qextras",5,null,tmpDOs);
 // alert(oi["rq"]);
 doQComm(oi["rq"], null, "doRecentSearch");
- 
-
-
 };
 
 
@@ -93,7 +81,7 @@ var rndrNuSrchItms = function(theElem, theResp, marble){
 
 
 try {
-tmpTDQI = document.getElementById("dvQitems");
+tmpTDQI = document.getElementById("includedContent");
 
 if(theResp.indexOf("_id") != -1) {
 
@@ -107,7 +95,7 @@ tmpTDQI.innerHTML = "";
 tStrHtml = JSSHOP.shop.getPrdsFullStr("srch", JSON.parse(theResp), null, null, null);
 // checkRecentSearch();
 
-
+doRecentActivity();
 } else { // response has no items
         tStrHtml = "<div class=\"txtBold txtClrHdr\">Search of " + sw + "  returned 0 results</div>";
 
@@ -149,7 +137,7 @@ var tbcret = JSON.parse(theBCResp);
 strLML = "index.html?pid=aa-edit-item&itemid=" + tbcret[0]._id + "&cid=" + tbcret[0].i_coid + "&catid=" + tbcret[0].i_catid;
 document.location.href=strLML;
 } else {
-tmpTDQI = document.getElementById("dvQitems");
+tmpTDQI = document.getElementById("includedContent");
 tStrHtml = "<div class=\"txtBold txtClrHdr\">Scan of " + sw + "  returned 0 results</div>";
 newel = document.createElement('div');
 newel.innerHTML = tStrHtml;

@@ -366,7 +366,7 @@ RecognitionListener, TextToSpeech.OnInitListener {
         mWebView.getSettings().setLoadWithOverviewMode(true);
     boolean CURR_SHOW_WEB_IMAGES = Boolean.parseBoolean(currConfBundle.getString("confShowWebImgs"));
     mWebView.getSettings().setLoadsImagesAutomatically(CURR_SHOW_WEB_IMAGES);
-    // mWebView.getSettings().setSupportZoom(true);
+    mWebView.getSettings().setSupportZoom(true);
     // mWebView.getSettings().setBuiltInZoomControls(true);
     // mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     // avoids flickering
@@ -473,6 +473,12 @@ RecognitionListener, TextToSpeech.OnInitListener {
   theConfBundle.putString("cartID", configSettings.getString("cartID", "abc123"));
   theConfBundle.putString("usrlang", configSettings.getString("usrlang", "en_us"));
   theConfBundle.putString("prfsSHOPuser", configSettings.getString("prfsSHOPuser", "x1prfDspLmenux4falsex5scvx2gx6"));
+  theConfBundle.putString("cCartStr", configSettings.getString("cCartStr", "[]"));
+  theConfBundle.putString("recentFavs", configSettings.getString("recentFavs", "[]"));
+  theConfBundle.putString("recentPlugs", configSettings.getString("recentPlugs", "[]"));
+
+  theConfBundle.putString("recentActivity", configSettings.getString("recentActivity", "[]"));
+
   theConfBundle.putInt("confScreenOrient", configSettings.getInt("confScreenOrient", 1));
   return theConfBundle;
  }

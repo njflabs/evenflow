@@ -1064,14 +1064,28 @@ URI ccuri = URI.create("https://localhost/evenflow/webdroid/assets/quickorder");
 Map<String, java.util.List<String>> ccheaders = new LinkedHashMap<String, java.util.List<String>>();
 Map<String, java.util.List<String>> ccaheaders = new LinkedHashMap<String, java.util.List<String>>();
 Map<String, java.util.List<String>> ccbheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> cccheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> ccdheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> cceheaders = new LinkedHashMap<String, java.util.List<String>>();
+Map<String, java.util.List<String>> ccfheaders = new LinkedHashMap<String, java.util.List<String>>();
+
 ccheaders.put("Set-Cookie", Arrays.asList("quid=" + aamainprefs.getProperty("quid", "1")));
 ccaheaders.put("Set-Cookie", Arrays.asList("prfsSHOPuser=" + aamainprefs.getProperty("prfsSHOPuser", "x1prfDspLmenux4falsex5scvx2gx6")));
 ccbheaders.put("Set-Cookie", Arrays.asList("cartID=" + aamainprefs.getProperty("cartID", "noQvalue")));
+cccheaders.put("Set-Cookie", Arrays.asList("recentActivity=" + aamainprefs.getProperty("recentActivity", "noQvalue")));
+ccdheaders.put("Set-Cookie", Arrays.asList("cCartStr=" + aamainprefs.getProperty("cCartStr", "noQvalue")));
+cceheaders.put("Set-Cookie", Arrays.asList("recentFavs=" + aamainprefs.getProperty("recentFavs", "noQvalue")));
+ccfheaders.put("Set-Cookie", Arrays.asList("recentPlugs=" + aamainprefs.getProperty("recentPlugs", "noQvalue")));
 
 try {
 java.net.CookieHandler.getDefault().put(ccuri, ccheaders);
 java.net.CookieHandler.getDefault().put(ccuri, ccaheaders);
 java.net.CookieHandler.getDefault().put(ccuri, ccbheaders);
+java.net.CookieHandler.getDefault().put(ccuri, cccheaders);
+java.net.CookieHandler.getDefault().put(ccuri, ccdheaders);
+java.net.CookieHandler.getDefault().put(ccuri, cceheaders);
+java.net.CookieHandler.getDefault().put(ccuri, ccfheaders);
+
 } catch(Exception e) {
 e.printStackTrace();
 }
@@ -3159,7 +3173,13 @@ e.printStackTrace();
         theConfBundle.putString("cartID", aamainprefs.getProperty("cartID"));
         theConfBundle.putString("usrlang", aamainprefs.getProperty("usrlang"));
         theConfBundle.putString("prfsSHOPuser", aamainprefs.getProperty("prfsSHOPuser"));
+        theConfBundle.putString("recentActivity", aamainprefs.getProperty("recentActivity", "noQvalue"));
         theConfBundle.putString("lastWebPage", aamainprefs.getProperty("lastWebPage", "about:blank"));
+        theConfBundle.putString("cCartStr", aamainprefs.getProperty("cCartStr", "noQvalue"));
+        theConfBundle.putString("recentFavs", aamainprefs.getProperty("recentFavs", "noQvalue"));
+        theConfBundle.putString("recentPlugs", aamainprefs.getProperty("recentPlugs", "noQvalue"));
+
+
         return theConfBundle;
     }
 

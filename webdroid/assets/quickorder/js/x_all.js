@@ -443,7 +443,7 @@ document.getElementById(tlid).innerText = ts.ltxt;
 
 JSSHOP.ui.setLblHighlight(theB,ts.fdv,document.getElementById(tlid),ts.ltxt);
 } catch(e) {
-alert("dd "  + JSON.stringify(ts));
+// alert("setLblHighlight "  + JSON.stringify(ts));
 }
 }
 
@@ -992,11 +992,12 @@ tmpNArrDRS.rs = tmpDFEUStr;
 
 if(tmpArrDRS.ls == "n") {
 } else {
-if(tmpArrDRS.st == "pending") {
-// alert("tmpArrDRS.st: " + tmpArrDRS.st);
-setNuLclStrg("localStorage", tmpArrDRS.cb, tmpArrDRS.rs);
 
+tLSStr = getNuLclStrg(tmpArrDRS.ls, tmpArrDRS.cb, "noQvalue");
+if(tLSStr == "noQvalue") {
+setNuLclStrg("localStorage", tmpArrDRS.cb, tmpArrDRS.rs);
 }
+ 
 }
 
 }
@@ -1029,20 +1030,19 @@ JSSHOP.ajax.doRespConstruct = function(tmpDRCArr, tmpRCstr) {
 tmpNDRCArr = null;
 tmpNDRCArr = {};
 tmpNDRCArr = tmpDRCArr;
-            try {
+aRespArr = null;
+aRespArr = {};
           aRespArr = JSON.parse(tmpRCstr);
           tmpNDRCArr.st = "error";
-		} catch(e) {
+ 
 	    tmpNDRCArr.rs = "noQvalue";
-		}
+ 
  	     // alert("aRespArr.data: " + " : " + aRespArr.data);	
-           try {
+ 
 	    tmpNDRCArr.rs = JSON.stringify(aRespArr.data);
+		// alert(JSON.stringify("tmpNDRCArr.rs: " + tmpNDRCArr.rs));
 	    JSSHOP.ajax.doNuResponse(tmpNDRCArr);
-		} catch(e) {
-	    tmpNDRCArr.rs = aRespArr.data;
-	    JSSHOP.ajax.doNuResponse(tmpNDRCArr);
-		}
+
  
 };
 
@@ -1079,6 +1079,7 @@ pUrl = theAxObj.ur + tmpQstr;
 
         oReq.onreadystatechange = function() {
             if (oReq.readyState == 4) {
+			// alert("oReq.readyState == 4");
                 JSSHOP.ajax.doRespConstruct(theAxObj, oReq.responseText);
 			
             }  
@@ -1097,20 +1098,25 @@ pUrl = theAxObj.ur + tmpQstr;
 
 // prepare the request 
 JSSHOP.ajax.doRequestPrep = function(tmppArrDRP) {
+
 tmppNArrDRP = null;
 tmppNArrDRP = {};
 tmppNArrDRP = tmppArrDRP;
 
 if(tmppArrDRP.ls == "n") {
+// alert("tmppArrDRP.ls ==  no");
 JSSHOP.ajax.doNurAjaxPipe(tmppArrDRP);
 } else {
 tLSStr = getNuLclStrg(tmppArrDRP.ls, tmppArrDRP.cb, "noQvalue");
 if(tLSStr == "noQvalue") {
+// alert("tLSStr ==  noQvalue");
 JSSHOP.ajax.doNurAjaxPipe(tmppArrDRP);
 } else {
 tmppNArrDRP.rs =  tLSStr;
 tmppNArrDRP.st = "saved";
 // alert("getNuLclStrg: " + tLSStr);
+// alert("tmppNArrDRP.st = saved");
+
 JSSHOP.ajax.doNuResponse(tmppNArrDRP);
 }  // tLSStr not noQvalue
 } // ls is not "n";
@@ -1814,6 +1820,7 @@ currCartIArr = null;
 currCartIArr = [];
 currCartIArr = JSON.parse(b);
 JSSHOP.shop.doCartAddPop();
+setCartIArr("y", b, "n");
 // JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','cls_button cls_button-xxsmall bkgdClrNrml brdrClrDlg txtClrHdr', function(){JSSHOP.shop.doCartAddPop()});
 
 // JSSHOP.ui.setCBBClickClr(document.getElementById(theObj),'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){window.scrollTo(0,0);JSSHOP.ui.setCBBClickClr(document.getElementById('ahCartIcon'),'cls_button cls_button-medium brdrClrDlg txtClrHdr','clsDummy', function(){void(0)})});
@@ -1912,7 +1919,7 @@ JSSHOP.shop.doItemShowPop = function() {
 
 JSSHOP.shop.doCartAddPop = function() {
 
-JSSHOP.ui.popAndFillLbox(JSSHOP.shop.renderNuCartItems());
+JSSHOP.ui.popAndFillLbox(JSSHOP.shop.renderNuCartItems("n", "y", 60));
 };
 
 JSSHOP.shop.doCAshow = function(thePrdsArna, theObj) {
@@ -1960,7 +1967,7 @@ JSSHOP.shop.getPrdPriceStr = function(thePrdsArna, prcInt, prcID, prcA, prcB){
 
 JSSHOP.shop.getPrdImgStr = function(tTAnme, tmpVala){
 
-		retIstrI = "images/example.png";
+		retIstrI = "images/misc/example_thumb.png";
 		try {
 		tmpValb = tmpVala;
  		if((tmpValb.indexOf("lcl-") != -1) || (tmpValb.indexOf("rem-") != -1)) {
@@ -2027,17 +2034,23 @@ try {
  
 if(ntImgCtr[tsCatArrNm] >= tCIL){
 clear(tsCatArrNm)();
-currPgTitle = "c" + JSSHOP.getUnixTimeStamp();
-document.title = currPgTitle; 
+// currPgTitle = "c" + JSSHOP.getUnixTimeStamp();
+// document.title = currPgTitle; 
 } else {
 ass = null;
 ass = currProdsArr[tsCatArrNm][ntImgCtr[tsCatArrNm]];
 
     image = null;
     image = new Image();
+    image.src = JSSHOP.shop.getPrdImgStr(tsCatArrNm, ass.i_img);
+
     image.onload = function() {
         if(document.getElementById(tsCatArrNm + ass._id)) {
-        document.getElementById(tsCatArrNm + ass._id).src = image.src;
+	if(document.getElementById(tsCatArrNm + ass._id).src == image.src) {
+	// do nothing if its the example img
+	} else {
+       document.getElementById(tsCatArrNm + ass._id).src = image.src;
+	}
 	   } else { 
 	   // alert(tsCatArrNm + ass._id);
 	   }
@@ -2048,7 +2061,6 @@ ass = currProdsArr[tsCatArrNm][ntImgCtr[tsCatArrNm]];
     image.onerror = function() {
 	   ntImgCtr[tsCatArrNm] = ntImgCtr[tsCatArrNm] + 1;
     }
-    image.src = JSSHOP.shop.getPrdImgStr(tsCatArrNm, ass.i_img);
 
 
 // document.getElementById(tsCatArrNm + ass._id).src = JSSHOP.shop.getPrdImgStr(tsCatArrNm, ass.i_img);
@@ -2146,7 +2158,7 @@ tstr = "";
 iint = 0;
 
 // product-grid
-strHtml += "<ol class=\"float\">";
+strHtml += "<div><ol class=\"float\" style=\"list-style:none;\">";
  
 ts = null;
 
@@ -2166,9 +2178,9 @@ strImgDsct = "";
 	subIdesc = subTIdesc.substring(0, 15);
       strImgDsct += "<a href=\"index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid + "\">";
 	if(upRefs == "r") {
-      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example.png\" class=\"prodRowImage\">";
+      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example_thumb.png\" class=\"prodRowImage\">";
 	} else {	
-      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example.png\" class=\"prodImage\">";
+      strImgDsct += "<img id=\"" + thePrdsArna +  ts._id + "\" src=\"images/misc/example_thumb.png\" class=\"prodImage\">";
 	}
       strImgDsct += "</a>";
 	}
@@ -2182,8 +2194,7 @@ strImgDsct = "";
  
 
  	} else {
-	strHtml += "<li class=\"float-item prodBox\" style=\"\">";
-
+	strHtml += "<li class=\"prodBox float-item\" style=\"\">";
 	}
 	}
 
@@ -2235,6 +2246,15 @@ strImgDsct = "";
 	strHtml += "<i class=\"material-icons\" alt=\"add cart\" title=\"add\" value=\"add\">&#xe145;</i>"; 
          // <img src=\"images/cart_r.gif\" class=\"icnsmlbtn brdrClrWhite crsrPointer\">";
 	strHtml += "</div>";
+	currFTclr = "material-icons txtClrTtl";
+	tmpUFstr = "index.html?pid=aa-show-item&itemid=" + ts._id + "&cid=" + ts.i_coid + "&catid=" + ts.i_catid;
+	if(currFavsIdstr.indexOf(ts._id + "::") != -1) {
+	currFTclr = "material-icons txtClrRed";
+	}
+	strHtml += "<div><span class=\"cls_button cls_button-xxsmall bkgdClrWhite brdrClrDlg txtClrDlg\" onclick=\"javascript:doRecentFavorite('" + tmpUFstr + "','" +  ts.i_title + "','" + ts.i_img + "','" + ts._id + "','btnFavs" + ts._id + "');\"><i id=\"btnFavs" + ts._id + "\" class=\"" + currFTclr + "\" alt=\"favorite\" title=\"favorite\" value=\"favorite\">&#xe87d;</i></span>";
+	strHtml += "&nbsp;<span class=\"cls_button cls_button-xxsmall bkgdClrWhite brdrClrDlg txtClrDlg\" style=\"margin:10px;\"><i class=\"material-icons txtClrTtl\" alt=\"share\" title=\"share\" value=\"share\">&#xe80d;</i></span></div>";
+
+
 	strHtml += "<input type=\"hidden\" id=\"prd" + 5 + iint + "\" value=\"\">";
 
 	strHtml += "</li>";
@@ -2246,7 +2266,7 @@ strImgDsct = "";
 }
 iint++;
 } 
-strHtml += "</ol>";
+strHtml += "</ol><div>";
 
 return strHtml;
 };
@@ -2322,21 +2342,24 @@ alert(e);
 
 
 
-JSSHOP.shop.renderNuCartItems = function() {
+JSSHOP.shop.renderNuCartItems = function(tmpJustTotals, tmpUseCloseLnk, tmpNumCItems) {
  
     tstr = "";
     iint = 0;
     ppint = 1;
 	 cartTtl = 0;
- 
+ 	cartIttls = 0;
 		ttCAA = currCartIArr[0];
 	// ttCAA = JSON.parse(arrAllForms.qcartitem.v[0]);
     len = currCartIArr.length;
-
+    if(len > tmpNumCItems) {
+    len = tmpNumCItems;
+    }
+    var strOnlyTtls = "";
     strHtml = "<div class=\"txtSmall txtBold mintwofh highZ tatCross\">"; 
-
+    if(tmpUseCloseLnk == "y") {
     strHtml += "<div onclick=\"JSSHOP.ui.closeLbox();\" class=\"slmtable txtClrRed txtBold brdrClrRed crsrPointer\" style=\"float:right\">Close</div>";
-
+    }
     strHtml += "<div class=\"txtClrHdr bkdgClrDlg txtBold\" style=\"margin-bottom: 15px;\">";
     strHtml += "<i class=\"material-icons\"  style=\"margin-top: 5px;font-size:14px;\"  alt=\"shopping_cart\" title=\"shopping_cart\">&#xe8cc;</i> Cart Preview</a></div>";
 
@@ -2366,20 +2389,26 @@ JSSHOP.shop.renderNuCartItems = function() {
       tmpTttl = ts.ci_price_b * ts.ci_cartqty;
 	cartTtl = cartTtl + tmpTttl;
 
- 
+ 	cartIttls = Math.round(ts.ci_cartqty) + cartIttls;
 
 
 		if(ts.ci_img) {
-		 tmpIstrI = JSSHOP.shop.getPrdImgStr(ts.ci_img);
+		 tmpIstrI = JSSHOP.shop.getPrdImgStr("prdmedia", ts.ci_img);
 		}
 
 
-	
-                  strHtml += "<div style=\"max-width:78%\">";
- 		strHtml += "<a class=\"txtDecorNone\" href=\"index.html?pid=aa-show-item&itemid=" + ts.ci_pid + "&cid=" + ts.ci_coid + "&catid=" + ts.ci_catid + "\">";
- 		strHtml += "<img src=\"" + tmpIstrI + "\" class=\"slmtable brdrClrDlg icndbtn\" style=\"align: center;text-align:center;margin:6px;\" align=\"absmiddle\">" +  ts.ci_title;
-            strHtml += "<span class=\"txtstriked txtBig txtClrGrey\">" + ts.ci_price_b + "</span></a>";
-            strHtml += "</div>";
+            strTTHtml = "";
+            strTTHtml += "<div style=\"max-width:78%\">";
+ 		strTTHtml += "<a class=\"txtDecorNone\" href=\"index.html?pid=aa-show-item&itemid=" + ts.ci_pid + "&cid=" + ts.ci_coid + "&catid=" + ts.ci_catid + "\">";
+ 		strTTHtml += "<img src=\"" + tmpIstrI + "\" class=\"slmtable brdrClrDlg icndbtn\" style=\"align: center;text-align:center;margin:6px;\" align=\"absmiddle\">" +  ts.ci_title;
+            strTTHtml += "<span class=\"txtstriked txtBig txtClrGrey\">" + ts.ci_price_b + "</span></a>";
+            strTTHtml += "</div>";
+
+	      strOnlyTtls += strTTHtml;
+            strHtml +=  strTTHtml;
+  
+
+
 
 
             strHtml += "<div style=\"align: right;text-align:right\">";
@@ -2407,6 +2436,7 @@ JSSHOP.shop.renderNuCartItems = function() {
             strHtml += "<input type=\"hidden\" name=\"amount_" + ppint + "\" value=\"" + ts.ci_price_b + "\">";
 
         }
+            strTTHtml = "";
 	  ppint++;
         iint++;
     }
@@ -2417,11 +2447,18 @@ JSSHOP.shop.renderNuCartItems = function() {
 
    } else {
       strHtml += "<div>" + stxt[34] + "</div>";
- 	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+ 	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currRcntActHstr + "</div>";
 
     }
 
     strHtml += "</div>";
+
+	if(tmpJustTotals == "y") {
+	strHtml = cartIttls + "::" + cartTtl.toFixed(2);
+	}
+	if(tmpJustTotals == "m") {
+	strHtml = strOnlyTtls;
+	}
 
 return strHtml;
  
@@ -2463,6 +2500,22 @@ alert(e);
 }
 };
 
+JSSHOP.jndroid.doWebShopUrl = function() {
+try {
+if(c_web.value) {
+tCWebVal = c_web.value;
+if(tCWebVal.indexOf("http") != -1) {
+document.location.href = tCWebVal;
+} else {
+alert("Invalid Web Url in your shop settings. Url: " + tCWebVal);
+}
+} else {
+alert("Invalid Web Url in your shop settings. Url:");
+}
+} catch(e) {
+alert("Cannot Load: " + e);
+}
+};
 
 JSSHOP.jndroid.doCutOuts = function() {
 try {

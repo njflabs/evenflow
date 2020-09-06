@@ -370,7 +370,8 @@ public class UtilWebView extends WebView {
 
         btnStop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                UtilWebView.this.stopLoading();
+               //  UtilWebView.this.stopLoading();
+			UtilWebView.this.loadUrl("javascript:JSSHOP.jndroid.doWebShopUrl()");
             }
         });
 

@@ -485,7 +485,16 @@ doQComm(oi["rq"], null, "doCBcatedit");
 };
 
  
-
+var doCatDescEdit = function() {
+JSSHOP.shared.setFrmFieldVal("qcat", "cat_dadded", JSSHOP.getUnixTimeStamp()); 
+tmpDOs = null;
+tmpDOs = {};
+tmpDOs["ws"] = "where _id=?";
+tmpDOs["wa"] = [catid];
+tmpDOs["knvp"] = JSSHOP.shared.getKNVParr(JSSHOP.shared.getDynFrmVals(document["qcat"], "tmp_"));
+oi = getNuDBFnvp("qcat",7,null,tmpDOs);
+doQComm(oi["rq"], null, "doCBcatedit");
+};
 
 /* overide the done filling def forms in  x_booter fnishCoForm etc., */
  
@@ -518,6 +527,14 @@ tfim.fda = "y";
 euiFFObjArr.push(tfim); 
 
 
+tfiq = nCurrFFieldOb();
+tfiq.fid = "tmp_cat_desc";
+tfiq.fdv = "Edit Desc";
+tfiq.fda = "y";
+tfiq.lid = "lbl_cat_desc";
+tfiq.ltxt = "Edit Desc";  
+euiFFObjArr.push(tfiq); 
+
 tfia = nCurrFFieldOb();
 tfia.fid = "tmp_i_title";
 tfia.fdv = stxt[3001];
@@ -542,5 +559,6 @@ currRQstr = oi["rq"];
 doQComm(oi["rq"], null, "renderDBis");
 JSSHOP.loadScript("js/x_aqr.js", JSSHOP.checkLoader,"js");
 JSSHOP.shared.setFieldVal("tmp_cat_title", document.getElementById("cat_title").value, "....");
+JSSHOP.shared.setFieldVal("tmp_cat_desc", document.getElementById("cat_desc").value, "....");
 
 };

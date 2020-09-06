@@ -1,0 +1,617 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta name="viewport" content="initial-scale=1, user-scalable=0, maximum-scale=1">
+<script  type="text/javascript">
+var isPhP = "no";
+var isJApp = "no"; 
+var isJavaFx = "no";
+var currDocHref = document.location.href;
+var dw = function(theElem, tStr) { theElem.innerHTML = tStr; };
+var nuDW = function(theElem) { 
+if(theElem.getAttribute("data-isscript") != null) {
+try {
+tDison = theElem.getAttribute("data-isscript");
+eval(tDison);
+} catch(e) {
+alert(e);
+}
+} else if(theElem.getAttribute("data-ison") != null) {
+try {
+tDison = theElem.getAttribute("data-ison");
+theElem.innerHTML = eval(tDison);
+} catch(e) {
+alert(e);
+}
+}
+};
+
+var getFArr = function() {
+return new Array("index_header", "index_nav", "index_main", "index_footer");
+};
+
+if(currDocHref.indexOf("http") != -1) {
+isPhP = "y";
+}
+
+</script>
+
+
+
+
+<link href="css/main.css" rel="stylesheet">
+<!--  
+- Used with boil/tools/yuicompressor/PackForPage.class
+- Takes above js and css and compresses to single page.
+
+
+
+
+
+<link href="css/01-page_header_min	.css" rel="stylesheet">
+<script src="js/01-page_header_min.js"  language="javascript" type="text/javascript"></script>
+-->
+ 
+
+
+
+
+
+
+</head>
+<body>
+<header>
+<div id="includedHeader">
+</div>
+<div id="includedNav">
+
+<!-- the following should be in the tplates/index_nav.html and imported as seen at bottom of this page. -->
+<h1 style="max-height:60px;"> 
+<nav class="animenu"> 
+<span>
+ <div id="dvHdr" class="top-bar" style="padding-bottom: 7px;">
+ 
+   <button style="float:right" id="mnuBtn" class="animenu__toggle" onclick="javascript:scroll(0,0);JSSHOP.ui.toggleMnuVisibility('dvMnuT');">
+    <span class="animenu__toggle__bar"></span>
+    <span class="animenu__toggle__bar"></span>
+    <span class="animenu__toggle__bar"></span>
+  </button> 
+
+  <span style="float:right" class="onlySmallScreen"><a href="javascript:JSSHOP.ui.toggleVisibility('dvSearchBoxSlim');"><i class="material-icons txtClrWhite"  style="margin-top: 5px;font-size:27px;margin-right:6px;" alt="search" title="search">&#xe8b6;</i></a></span>
+    <div class="container">
+      <div class="aarow">
+        <div>
+         
+
+
+        <h5 class="onlyWideScreen txtClrWhite txtBold"><a href="index.html"><span id="ancLogoTxt">QuickOrder</span></a></h5>          
+
+
+
+
+          <ul class="shop-menu"> 
+
+ 
+
+ 
+            <li id="ahAccountIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahAccountIcon', null, document.location.href='index.html?pid=aa-edit-user&cid=' + cid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;" alt="person" title="person">&#xe7fd;</i></a></li>   
+
+            <li id="ahSettingsIcon"><span class="icnbtn slmtable txtSmall txtClrWhite bkgdClrRed" style="float:right">2</span><a href="javascript:JSSHOP.ui.doDefCBBCC('ahSettingsIcon', null, document.location.href='index.html?pid=aa-settings&cid=' + cid);"><i class="material-icons"  style="margin-top: 5px;font-size:27px;margin-right:6px;" alt="settings" title="settings">&#xe8b8;</i></a></li>   
+            <!-- <li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, document.location.href='index.html?pid=aa-show-cart&cid=' + cid + '&ppid=' + ppid);"><i class="material-icons"  style="margin-top: 5px;font-size:32px;margin-right:6px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li> -->
+ 			<li id="ahCartIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahCartIcon', null, JSSHOP.shop.doCartAddPop());"><i class="material-icons"  style="margin-top: 5px;font-size:27px;margin-right:6px;"  alt="shopping_cart" title="shopping_cart">&#xe8cc;</i></a></li>
+ 		  <!-- 	<li id="ahDeRecent"><a href="javascript:JSSHOP.ui.popAndFillLbox(currUserFavs);"><i class="material-icons  style="margin-right:6px;margin-top: 5px;font-size:27px;" alt="ahDeRecent" title="ahDeRecent">&#xe889;</i></a></li> -->
+           <li id="ahHomeIcon"><a href="javascript:JSSHOP.ui.doDefCBBCC('ahHomeIcon', null, document.location.href='index.html?&cid=' + cid);"><i class="material-icons" style="margin-top: 5px;font-size:27px;margin-right:6px;" alt="home" title="home">&#xe88a;</i></a></li>
+  
+                     
+          </ul>
+          
+
+          <span class="clsSearchBox" id="dvSearchBox" style="z-index: 9999999999999999;margin:0px;padding:0px;margin-right:10px;">     
+          
+
+
+
+		<!--  aa-cmp-search will be included here andnot pullef from ajax request -->
+		<div  id="dvNMsearch" style="z-index: 9999999999999999;margin:0px;padding:0px;margin-right:10px;"><table cellspacing="0" cellpadding="0" class="">
+										<tr>
+											<td> 
+                    <table border="0" align="center" cellspacing="0" cellpadding="0">
+                      <tr>
+                  <td>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+      <td>
+        <table border="0" cellspacing="0">
+          <tr>
+            <td style="width: 100%">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+					&nbsp;</td>
+				</tr>
+				</table>
+			
+			</td>
+          </tr>
+ 
+          	</table>
+      </td>
+ 
+ 
+                      </tr>
+                    </table>
+                  </td>
+							 
+                  <td width="100%">
+                    <table style="width: 100%" cellspacing="0" cellpadding="0">
+						<tr>
+					 
+							<td>
+							<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="right">
+
+				
+				
+										 
+											
+												<table style="text-align: center;margin:0 auto;" align="center" cellspacing="0" cellpadding="0">
+													<tr>
+											 
+									<td>
+														<table style="margin: 0 auto;background-color:#FFFFFF" align="center" cellpadding="0" cellspacing="0">
+								<tr>					
+									<td>&nbsp;</td><td valign="middle">                   
+							<input type="text" name="ijUFeedSearch" id="ijUFeedSearch" value="Keywords here"  title="Search" style="text-align:left; width: 100%; border-color:#FFFFFF;border:0px;color:#DEDEDE;z-index: 99999999999;margin-bottom:12px;margin-right:12px;" class="txtLrg"   onfocus="javascript:if(this.value=='Keywords here') this.value = '';this.style.color='#000000';" onblur="if(this.value === '') this.value = 'Keywords here';this.style.color='#DEDEDE'"> 
+							
+		 
+							</td>
+
+		<td>  
+		</td>											 
+<td>													
+ 
+           <div style="margin:0px;padding-right:10px;margin-left:8px"><a href="javascript:getMainSearch(ijUFeedSearch.value);"><i class="material-icons" style="font-size:22px;" alt="search" title="search">&#xe8b6;</i></a></div> 
+   
+
+</td>
+<td>
+  <!-- --><div id="dvBtnSexpnd" style="margin:0px;padding:0px;margin-left:8px" class="onlySmallScreen"><a href="javascript:ijUFeedSearch.focus();doDummyFocus();"><i class="material-icons" style="font-size:22px;" alt="search" title="search">&#xe5db;</i></a></div>
+
+</td>
+
+									
+	</tr>
+									</table></td>
+													</tr>
+												</table>
+													</td></tr></table></td>
+							<td>
+							
+ 
+ 						   </td>
+						</tr>
+		 
+						</table>
+                  </td>
+                      </tr>
+                      </table></td>
+										</tr>
+										</table>
+ </div>
+
+		<!--  ENDOF aa-cmp-search will be included here andnot pullef from ajax request -->
+		
+       
+          </span> 
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</span>
+
+<!-- <ul id="mnuULmain" class="animenu__nav"></ul> -->
+
+ 
+</nav>
+
+
+
+
+<script type="javascript" language="text/javascript">
+(function(){
+  var animenuToggle = document.querySelector('.animenu__toggle'),
+      animenuNav    = document.querySelector('.animenu__nav'),
+      hasClass = function( elem, className ) {
+        return new RegExp( ' ' + className + ' ' ).test( ' ' + elem.className + ' ' );
+      },
+      toggleClass = function( elem, className ) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
+        if( hasClass(elem, className ) ) {
+          while( newClass.indexOf( ' ' + className + ' ' ) >= 0 ) {
+            newClass = newClass.replace( ' ' + className + ' ' , ' ' );
+          }
+          elem.className = newClass.replace( /^\s+|\s+$/g, '' );
+        } else {
+          elem.className += ' ' + className;
+        }
+      },           
+      animenuToggleNav =  function (){        
+        toggleClass(animenuToggle, "animenu__toggle--active");
+        toggleClass(animenuNav, "animenu__nav--open");        
+      }
+
+  if (!animenuToggle.addEventListener) {
+      animenuToggle.attachEvent("onclick", animenuToggleNav);
+  }
+  else {
+      animenuToggle.addEventListener('click', animenuToggleNav);
+  }
+})()
+
+
+
+</script></h1>
+
+<div id="dvMnuT" class="bkgdClrWhite collection brdrClrDlg" style="display:none;visibility:hidden;max-width: 93%;min-height: 40px;padding-top: 10px;padding-left: 5px;padding-right: 20px;z-index:98988;position:fixed;margin: 7px"><!-- !! DO NOT DELETE !! MOBILE MENU DIV !! --></div>
+
+
+<!-- LIGHTBOX CODE BEGIN -->
+<div id="lightbox" class="lightbox" style="display:none;z-index:1;" onclick="document.getElementById('lightbox').style.display='none';document.getElementById('lightbox_content').style.top='-800px';document.getElementById('lightbox_content').style.display='none';document.getElementById('lightbox_content').innerHTML=''">
+</div> <div id="lightbox_content" class="rtable bkgdClrWhite" style="min-height:100px;min-width:280px;z-index:999999;position:fixed;top:-200px;">
+      </div>
+      
+      
+      
+<!--
+// not sure what this was for. see if can be deleted.       
+<div id="dvDynCtt" style="max-height:120px;min-width:280px;z-index:998889;position:fixed;top:-300px;">
+<IFRAME height="200px" frameborder="0" border="0" src="tplates/index_blank.html" marginwidth="0" marginheight="0" id="ifrmDynCtt" name="ifrmDynCtt">
+</IFRAME>
+</div>
+-->
+
+
+
+
+<!-- LIGHTBOX CODE END  -->
+
+<!-- end of the above should be in the tplates/index_nav.html and imported as seen at bottom of this page. -->
+
+</div>
+
+
+
+
+
+</header>
+<div style="min-height:40px"></div>
+
+<div id="dvSearchBoxSlim" style="top: 60px; left:25px; position:fixed; background-color: #FFFFFF"></div>
+<div style="top: -160px; left:-5025px; position:fixed;">
+<input type="checkbox" id="chkbxDummy">
+</div>
+
+<!-- // wont use for now left menu toggle button
+<div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer bkgdClrWhite" style="position: fixed" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');">
+<div id="dvLMenuTgl"><i class="small-material-icons" style="font-size:22px">expand_more</i>
+</div></div>
+// end of wont use left menu toggle button -->
+<input type="hidden" name="fldChallArray" id="fldChallArray" value="noQvalue">
+<div id="includedForms">
+
+<!-- called from index.php -->
+<form name="quser">
+<input type="hidden" name="_id" value="gfgfgfgfgfg" data-prval="disnull">
+<input type="hidden" name="u_rtype" id="u_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="u_name" id="u_name" value="" data-prval="disnull">
+<input type="hidden" name="u_email" id="u_email" value="" data-prval="disnull">
+<input type="hidden" name="u_pass" id="u_pass" value="" data-prval="disnull">
+<input type="hidden" name="u_header" id="u_header" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthtype" id="u_socauthtype" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthid" id="u_socauthid" value="" data-prval="disnull">
+<input type="hidden" name="u_socauthtoke" id="u_socauthtoke" value="" data-prval="disnull">
+<input type="hidden" name="u_dadded" id="u_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qco">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="c_rtype" id="c_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="c_uid" id="c_uid" value="" data-prval="disnull">
+<input type="hidden" name="c_title" id="c_title" value="QuickOrder" data-prval="disnull">
+<input type="hidden" name="c_desc" id="c_desc" value="" data-prval="disnull">
+<input type="hidden" name="c_tel" id="c_tel" value="" data-prval="disnull">
+<input type="hidden" name="c_web" id="c_web" value="" data-prval="disnull">
+<input type="hidden" name="c_email" id="c_email" value="" data-prval="disnull">
+<input type="hidden" name="c_vala" id="c_vala" value="" data-prval="disnull">
+<input type="hidden" name="c_valb" id="c_valb" value="" data-prval="disnull">
+<input type="hidden" name="c_dadded" id="c_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qcat">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="cat_rtype" id="cat_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="cat_uid" id="cat_uid" value="5" data-prval="disnull">
+<input type="hidden" name="cat_coid" id="cat_coid" value="5" data-prval="disnull">
+<input type="hidden" name="cat_pid" id="cat_pid" value="0" data-prval="disnull">
+<input type="hidden" name="cat_title" id="cat_title" value="" data-prval="disnull">
+<input type="hidden" name="cat_desc" id="cat_desc" value="qdesc" data-prval="disnull">
+<input type="hidden" name="cat_vala" id="cat_vala" value="1" data-prval="disnull">
+<input type="hidden" name="cat_valb" id="cat_valb" value="10001" data-prval="disnull">
+<input type="hidden" name="cat_dadded" id="cat_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qitem">
+<input type="hidden" name="_id" value="0" data-prval="disnull">
+<input type="hidden" name="i_rtype" id="i_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="i_itemid" id="i_itemid" value="5" data-prval="disnull">
+<input type="hidden" name="i_bcode" id="i_bcode" value="5" data-prval="disnull">
+<input type="hidden" name="i_uid" id="i_uid" value="5" data-prval="disnull">
+<input type="hidden" name="i_coid" id="i_coid" value="5" data-prval="disnull">
+<input type="hidden" name="i_catid" id="i_catid" value="5" data-prval="disnull">
+<input type="hidden" name="i_pid" id="i_pid" value="0" data-prval="disnull">
+<input type="hidden" name="i_title" id="i_title" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="i_desc" id="i_desc" value="" data-prval="disnull">
+<input type="hidden" name="i_price_a" id="i_price_a" value="0" data-prval="disnull">
+<input type="hidden" name="i_price_b" id="i_price_b" value="0" data-prval="disnull">
+<input type="hidden" name="i_dimen_n" id="i_dimen_n" value="0" data-prval="disnull">
+<input type="hidden" name="i_dimen_v" id="i_dimen_v" value="0" data-prval="disnull">
+<input type="hidden" name="i_img" id="i_img" value="0" data-prval="disnull">
+<input type="hidden" name="i_vala" id="i_vala" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="i_valb" id="i_valb" value="0" data-prval="disnull">
+<input type="hidden" name="i_dadded" id="i_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qcartitem">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="ci_rtype" id="ci_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="ci_itemid" id="ci_itemid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_uid" id="ci_uid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_cartid" id="ci_cartid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_coid" id="ci_coid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_catid" id="ci_catid" value="5" data-prval="disnull">
+<input type="hidden" name="ci_pid" id="ci_pid" value="" data-prval="disnull">
+<input type="hidden" name="ci_title" id="ci_title" value="" data-prval="disnull">
+<input type="hidden" name="ci_price_a" id="ci_price_a" value="" data-prval="disnull">
+<input type="hidden" name="ci_price_b" id="ci_price_b" value="" data-prval="disnull">
+<input type="hidden" name="ci_dimen_n" id="ci_dimen_n" value="" data-prval="disnull">
+<input type="hidden" name="ci_dimen_v" id="ci_dimen_v" value="" data-prval="disnull">
+<input type="hidden" name="ci_img" id="ci_img" value="0" data-prval="disnull">
+<input type="hidden" name="ci_cartqty" id="ci_cartqty" value="1" data-prval="disnull">
+<input type="hidden" name="ci_vala" id="ci_vala" value="" data-prval="disnull">
+<input type="hidden" name="ci_valb" id="ci_valb" value="" data-prval="disnull">
+<input type="hidden" name="ci_dadded" id="ci_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qorder">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="o_rtype" id="o_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="o_uid" id="o_uid" value="5" data-prval="disnull">
+<input type="hidden" name="o_cartid" id="o_cartid" value="5" data-prval="disnull">
+<input type="hidden" name="o_coid" id="o_coid" value="5" data-prval="disnull">
+<input type="hidden" name="o_pid" id="o_pid" value="" data-prval="disnull">
+<input type="hidden" name="o_cartqty" id="o_cartqty" value="" data-prval="disnull">
+<input type="hidden" name="o_vala" id="o_vala" value="" data-prval="disnull">
+<input type="hidden" name="o_valb" id="o_valb" value="" data-prval="disnull">
+<input type="hidden" name="o_dadded" id="o_dadded" value="" data-prval="disnull">
+</form>
+
+
+<form name="qmedia">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="m_rtype" id="m_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="m_uid" id="m_uid" value="5" data-prval="disnull">
+<input type="hidden" name="m_coid" id="m_coid" value="5" data-prval="disnull">
+<input type="hidden" name="m_catid" id="m_catid" value="5" data-prval="disnull">
+<input type="hidden" name="m_pid" id="m_pid" value="5" data-prval="disnull">
+<input type="hidden" name="m_file" id="m_file" value="5" data-prval="disnull">
+<input type="hidden" name="m_data" id="m_data" value="5" data-prval="disnull">
+<input type="hidden" name="m_vala" id="m_vala" value="5" data-prval="disnull">
+<input type="hidden" name="m_valb" id="m_valb" value="5" data-prval="disnull">
+<input type="hidden" name="m_valc" id="m_valc" value="5" data-prval="disnull">
+<input type="hidden" name="m_dadded" id="m_dadded" value="5" data-prval="disnull">
+</form>
+
+
+<form name="qextras">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="e_rtype" id="e_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="e_uid" id="e_uid" value="5" data-prval="disnull">
+<input type="hidden" name="e_vala" id="e_vala" value="" data-prval="disnull">
+<input type="hidden" name="e_valb" id="e_valb" value="" data-prval="disnull">
+<input type="hidden" name="e_valc" id="e_valc" value="" data-prval="disnull">
+<input type="hidden" name="e_vald" id="e_vald" value="" data-prval="disnull">
+<input type="hidden" name="e_vale" id="e_vale" value="" data-prval="disnull">
+<input type="hidden" name="e_valf" id="e_valf" value="" data-prval="disnull">
+<input type="hidden" name="e_dadded" id="e_dadded" value="" data-prval="disnull">
+</form>
+
+<form name="qbit">
+<input type="hidden" name="_id" value="" data-prval="disnull">
+<input type="hidden" name="q_rtype" id="q_rtype" value="5" data-prval="disnull">
+<input type="hidden" name="q_uid" id="q_uid" value="5" data-prval="disnull">
+<input type="hidden" name="q_pid" id="q_pid" value="" data-prval="disnull">
+<input type="hidden" name="q_title" id="q_title" value="" data-prval="disnull">
+<input type="hidden" name="q_desc" id="q_desc" value="qdesc" data-prval="disnull">
+<input type="hidden" name="q_vala" id="q_vala" value="aa" data-prval="disnull">
+<input type="hidden" name="q_valb" id="q_valb" value="aa" data-prval="disnull">
+<input type="hidden" name="q_dadded" id="q_dadded" value="" data-prval="disnull">
+</form>
+
+
+<form name="qconn" id="qconn" target="_top" action="_p/do.php" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
+<input type="hidden" name="action" value="save" data-prval="disnull">
+<input type="hidden" name="fn" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="fc" value="m" data-prval="disnull">
+<input type="hidden" name="lz" value="n" data-prval="disnull">
+<input type="hidden" name="ls" value="n" data-prval="disnull">
+<input type="hidden" name="el" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="cb" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="q" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="ur" value="noQvalue" data-prval="disnull">
+<input type="hidden" name="rs"  value="noQvalue" data-prval="disnull">
+<input type="hidden" name="er" value="noQvalue" data-prval="disnull">
+</form>
+
+
+</div>
+
+ 
+ <div id="mmn" class="nanimenu animenu">
+ 	<div  id="mnuT" style="padding-left:10px;margin-top:15px; " >
+  
+	 </div></div> 
+
+	 
+	 <div id="dvMCatTree" style="z-index:99999;margin-right:20px;margin-bottom:15px;margin-top:18px;float:right;min-height: 35px;">
+</div>
+
+
+
+
+
+
+<div>
+<table id="tblMNContent" style="min-height:80px;" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td valign="top" class="clsTDLmenu" nowrap="nowrap">
+	
+<div id="tdLMenu" class="onlyWideScreen clsLeftMenu" style="overflow:auto;max-height:500px">
+	
+ 
+
+	    <table style="width: 100%">
+			<tr>
+				<td class="collectionhdr" style="height: 34px"><div class="onlySmallScreen icnbtn brdrClrDlg crsrPointer" style="float: right;" onclick="javascript:JSSHOP.ui.toggleNuModule('dvLMenuTgl','tdLMenu');" nowrap="nowrap">
+<div><i class="small-material-icons" style="font-size:22px">expand_less</i>
+</div></div>
+</td>
+			</tr>
+			<tr>
+				<td>
+</td>
+			</tr>
+			 
+		</table>
+	
+	
+	 </div>
+
+
+</td><td valign="top" width="100%"><table style="min-height:80px;margin:0 auto" align="center" width="100%" cellpadding="0" cellspacing="0"><tr>
+		<td valign="top">
+
+
+
+
+
+
+
+<!-- TitleBar and left top right for mobile menus CODE BEGIN -->
+
+
+<table  class="clsDvCntntTtle" width="100%" cellspacing="0"><tr>
+	<td>
+<span class="onlySmallScreen"><a class="clsDvCntntTtle txtBig txtBold txtDecorNone"  href="javascript:history.go(-1);" >&nbsp;&lt;-</a></span>
+				 </td><td width="100%" id="tdTitleBar" style="padding-left:10px">
+	<ti data-ison="currPgTitle" data-desc="title_bar"></ti></td>
+	<td align="right"><table class="onlySmallScreen"><tr><td>
+				 
+  <a class="btn txtBold" href="javascript:JSSHOP.ui.toggleVisibility('mmDdown')" style="text-transform:none"><ti data-ison="stxt[62]" data-desc="btn_more">More</ti></a>
+        
+ 
+
+        
+        
+        </td></tr></table></td></tr></table>
+
+         		      <table   onblur="javascript:JSSHOP.ui.toggleVisibility('mmDdown')"  cellpadding="15px" cellspacing="15px"><tr><td style="width: 100%"></td><td style="min-width:150px;" nowrap="nowrap"> 
+         		      <div class="collection rstable brdrClrHdr bkgdWhite" id="mmDdown" style="position:absolute;display:none;visibility:hidden;z-index:999999;margin:10px" nowrap="nowrap">
+
+
+
+
+  </div> </td></tr></table>
+	
+	
+<!-- end of main menus and title bar -->
+
+
+
+
+
+
+<div style="margin:0 auto; text-align:center;max-width:90%; display:none; visibility:hidden" class="txtSmall brdrClrRed" id="dvDemoAlert">
+	<table cellspacing="5" style="width: 100%">
+		<tr>
+			<td><div style="float: right" class="txtBold txtClrDrkGrn crsrPointer" onclick="javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','sia','n');JSSHOP.ui.showHideElement('dvDemoAlert', 'hide');">X</div><span style="background-color: #FFFF00">this is an e-commerce shopping cart 
+		<strong>demo</strong> from the open sourced <strong>evenflow</strong> project..</span></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>source code can be found here: <a href="https:/github.com/tumbleDryCode/evenflow">
+		github.com/tumbleDryCode/evenflow</a></td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>this demo is freely hosted on :<a href="https://www.freehostingeu.com"> 
+		freehostingeu.com</a></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>demo url: <a href="https:/quickorder.eu5.net"> 
+			quickorder.eu5.net</a></td>
+		</tr>
+	</table>
+		</div>
+		<br>
+		
+		
+		
+
+<div><div id="includedContent">
+</div></div></td></tr></table></td></tr></table></div>
+
+<div id="includedFooter" class="txtBold links_footer">
+</div>
+
+<!--
+
+ <script src="js/01-page_header_min.js"  language="javascript" type="text/javascript"></script>
+ <script src="js/01-page_footer_min.js"  language="javascript" type="text/javascript"></script>
+
+
+--> 
+<script src="js/lz-string.js" language="javascript" type="text/javascript"></script>
+<script src="js/x_all.js"  language="javascript" type="text/javascript"></script>
+<script src="js/x_booter.js"  language="javascript" type="text/javascript"></script>
+<script src="js/x_admin.js"  language="javascript" type="text/javascript"></script>
+
+ <script src="js/x_menu.js"  language="javascript" type="text/javascript"></script>
+<script src="js/js_spinner.js"  language="javascript" type="text/javascript"></script>
+<script src="js/js_actb.js"  language="javascript" type="text/javascript"></script>
+
+<div id="dvDummy"></div>
+<script language="javascript" type="text/javascript">
+
+doBootLoad();
+// JSSHOP.ajax.doNuAjaxPipe("includedNav",  "tplates/index_nav.html", pfRet);
+// setTimeout("doBootLoad()", 800);
+// JSSHOP.loadScript("js/" + jscssprefix + "x_menu.js", doACTBboot,"js");
+doSpinSet("includedContent", "big", "loading....");
+
+</script>
+
+</body> 
+</html>

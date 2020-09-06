@@ -19,18 +19,16 @@ display: block;
 }
 .onlySmallScreen {
 display: none;
-}
-.clsTDLmenu {
-max-width: 240px;
-min-width: 238px;
-}
+} 
+.clsTDLmenu {max-width: 240px;min-width: 5px;}
 .clsLeftMenu {
 position: fixed;
 background-color: white;
 max-width: 240px;
-min-width: 238px;
-/* z-index:99998; */
-border-right:1px green groove;
+/* min-width: 238px; */
+z-index:99998; 
+bordert:0px; 
+margin-left: 10px;
 }
 
 .clsSearchBox {
@@ -42,12 +40,14 @@ float: right;
 max-width:85%;
 }
 
+
 .float {
   max-width: 1200px;
   margin: 0 auto;
   list-style:none;
 }
 .float:after {
+float: left;
   content: ".";
   display: block;
   height: 0;
@@ -55,24 +55,36 @@ max-width:85%;
   visibility: hidden;
 }
 .float-item {
-height:300px;
 float: left;
+width:200px;/*  */
+min-width:200px;
+max-width:200px;
+height:300px;
 margin-right:20px;
 margin-bottom:20px;
 margin-top:30px;
 }
 
+
 .float-item:after {
+  float: left;
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
+ 
 
-
-
-
+.floatItem {
+float: left;
+width:200px;/*  */
+min-width:200px;
+max-width:200px;
+height:300px;
+margin-right:15px;
+margin-bottom:15px;
+}
 
 
  
@@ -273,7 +285,10 @@ width: 100%;
 }
 
 .prodBox {
-      padding: 9px;
+	float: left;
+	margin-left:10px;
+	margin-bottom:10px;
+      padding: 4px;
  	width:210px;
 	height:300px;
 	border: 1px solid rgb(199,222,216);
@@ -415,7 +430,7 @@ min-width: 238px;
 z-index:99998;
 min-height:338px;
 border-right: 1px green groove;
-overflow: scroll;
+overflow: auto;
 }
 
 .clsSearchBox {
@@ -479,6 +494,7 @@ margin-top:30px;
 
 
 .float-item:after {
+  float-left;
   content: ".";
   display: block;
   height: 0;

@@ -1,5 +1,5 @@
- 
-
+currIContent = "no"; // ajax request to include the tplates/... file or not 
+currCartTShow = "y";
 
 var tmpSQBArr = null;
 var tmpVitemArr = null;
@@ -58,15 +58,15 @@ doNurQComm(qitac);
 
 
 var checkRecentSeen = function() {
-
 tmpDOs = null;
 tmpDOs = {};
 tmpDOs["ws"] = "where e_uid=? and e_rtype=? and e_vala=?";
 tmpDOs["wa"] = [quid,10,itemid];
 oi = getNuDBFnvp("qextras",5,null,tmpDOs);
-// alert(oi["rq"]);
+
+
+
 doQComm(oi["rq"], null, "doRecentSeen");
- 
 
 
 };
@@ -96,7 +96,7 @@ newel = document.createElement('div');
  
 
 newel.innerHTML = tStrHtml;
-tmpTDQI = document.getElementById("dvItemCntn");
+tmpTDQI = document.getElementById("includedContent");
 tmpTDQI.innerHTML = "";
 
 tmpTDQI.appendChild(newel);
@@ -105,8 +105,8 @@ tmpTDQI.appendChild(newel);
 	 alert("renderNuTQBItems: " + e);
 	}
 JSSHOP.shop.getPrdMedia(catid,itemid,"dadido");
-checkRecentSeen();
 JSSHOP.shop.setCatPrdImgs('prodpg');
+doRecentActivity();
 };
 
  

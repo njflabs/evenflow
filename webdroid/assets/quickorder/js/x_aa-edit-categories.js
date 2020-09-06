@@ -5,7 +5,6 @@ var isMnuUpdd = "m";
 var euiFFObjArr = null;
 var euiFFObjArr = [];
 
-
 var doCBmnuudate = function(a, b, c) {
 	isMnuUpdd = "m";
 	doNuMMenuLd("doMainOut");
@@ -163,7 +162,7 @@ currTtlMainMnus++;
 
       if((mlen > 0) && (iint > 0)) {
 	tmpUSpn = document.createElement("span");
-	tmpUSpn.innerHTML = "<i class=\"material-icons txtLrg\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
+	tmpUSpn.innerHTML = "<i style=\"font-size: 36px;\" class=\"material-icons txtBold\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
 	tmpPA = document.createElement("a");
 	tmpPA.className="txtDecorNone brdrVertNone txtBold txtClrDlg";
 	tmpPA.appendChild(tmpUSpn);
@@ -176,7 +175,7 @@ currTtlMainMnus++;
 	} else {
 	tmpUSpn = document.createElement("span");
 	tmpUSpn.innerHTML = "&nbsp;"
-	tmpUSpn.innerHTML = "<i class=\"material-icons txtLrg txtClrWhite\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
+	tmpUSpn.innerHTML = "<i style=\"font-size: 36px;\" class=\"material-icons txtBold txtClrWhite\" alt=\"arrow_upward\" title=\"arrow_upward\">&#xe5d8;</i>";
 	tmpUSpn.className="slmtable";
 	tmpCdiv.appendChild(tmpUSpn); 
 	}
@@ -184,7 +183,7 @@ currTtlMainMnus++;
  	
 	tmpA = document.createElement("a");
  
-	tmpA.innerHTML = "<span style=\"vertical-align:super\">" + ts.cat_title + "</span>";
+	tmpA.innerHTML = "<span style=\"vertical-align:super;padding-left:12px;\">" + ts.cat_title + "</span>";
 	// tmpA.title = ts.cat_title;
 	tmpA.href = "index.html?pid=aa-edit-category&cid=" + cid + "&catid=" + ts._id;
 

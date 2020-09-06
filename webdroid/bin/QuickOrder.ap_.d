@@ -173,6 +173,8 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\helpr.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\index.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\indexr.php \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\index_aug28.html \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\index_oct2.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\media_chooser.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\media_edit.html \
@@ -185,6 +187,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\speech_editor.html \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\tplates \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-main.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-normalize.css \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-quickorder_min.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-standardista-style.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_admn.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_dev.css \
@@ -193,6 +196,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_japp.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\01-x_nav.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\main.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\normalize.css \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\quickorder_min.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\standardista-style.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\x_admn.css \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\css\x_dev.css \
@@ -244,8 +248,10 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\svg \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\trans.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\transparent.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\x.png \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\barcode.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\edit.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\example.png \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\example_thumb.png \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\help_adddb_dialog.jpg \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\icon_edit_washed.gif \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\images\misc\magnifier_washed.png \
@@ -267,6 +273,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-materialize.min.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-media_edit.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-media_settings.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-qapp_all.js \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-quickorder_min.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-sau.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-standardista-common.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\01-standardista-css.js \
@@ -326,6 +333,7 @@ D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\materialize.min.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\media_edit.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\media_settings.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\qapp_all.js \
+D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\quickorder_min.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\sau.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\standardista-common.js \
 D:\www\htdocs\evenflow\webdroid\assets\quickorder\js\standardista-css.js \

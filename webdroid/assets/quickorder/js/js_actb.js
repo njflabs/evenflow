@@ -410,15 +410,18 @@ function actb(obj,ca,arrTitles,tepCatArrTtl,tepCatArrKwds,tepFdsArrTtl,tepFdsArr
 	 
 
 		 dDiv.style.position='absolute';
-		// a.style.top = eval(curTop(actb_curr) + actb_curr.offsetHeight) + "px";
+		// dDiv.style.top = eval(curTop(actb_curr) + actb_curr.offsetHeight) + "px";
 
-		dDiv.style.top = (getScrollTop() + 60) + "px";
+
   tmpIw = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   tmpIh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   if(tmpIw < 500) {
   dDiv.style.left = "16px";
+  dDiv.style.top = (getScrollTop() + 80) + "px";
   } else {
-  dDiv.style.left = curLeft(actb_curr) + "px";  
+  dDiv.style.left = curLeft(actb_curr) + "px"; 
+  dDiv.style.top = (getScrollTop() + 70) + "px";
+
   }
 
   if(tmpIh < 200) {

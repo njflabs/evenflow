@@ -219,11 +219,12 @@ margin-left: 20px;
     padding: 5px 15px 5px 15px;
 }
 .cls_button-medium {
-font-size: 18px;
-font-weight: 300;
-min-width: 180px;
-min-height: 38px;
-padding: 5px 45px 5px 45px;
+
+    font-size: 18px;
+    font-weight: 300;
+	min-width: 180px;
+	min-height: 38px;
+    padding: 5px 45px 5px 45px;
 }
 
 .cls_button {
@@ -298,6 +299,13 @@ text-decoration:underline; !important:
   border-radius: 2px;
 }
 
+
+.clsSmallImg {
+}
+.clsSmallImg img {
+max-width: 24px:
+max-height: 24px:
+}
 .txtBold {
 font-weight:bold;
 }
@@ -955,7 +963,10 @@ background:rgba(236, 236, 255, 1);
 
 /* collections */
 
-
+.margnRight {
+margin-right: 124px;
+padding-right: 30px;
+}
 
 .collectionbrdr {
   border: 1px solid #e0e0e0;
@@ -971,6 +982,15 @@ background-color: rgb(249,249,251);
 padding: 4px;  
 }
 
+
+
+
+
+
+
+
+
+
 .collection {
   margin: 0.5rem 0 1rem 0;
   /* border: 1px solid #e0e0e0;
@@ -980,7 +1000,8 @@ padding: 4px;
 }
 
 .collection .collection-item {
-  background-color: #fff;
+
+  /* background-color: #fff; */
   line-height: 1.5rem;
   padding: 10px 2px;
   margin: 0;
@@ -989,22 +1010,47 @@ padding: 4px;
 }
 
 
+.collection a.collection-item {
+  display: block;
+  -webkit-transition: .25s;
+  transition: .25s;
+  color: #000;
+}
+
+
+.collection .collection-item:last-child {
+  border-bottom: none;
+}
+
+.collection .collection-item.active {
+  background-color: #26a69a;
+  color: #eafaf9;
+}
+
+.collection .collection-item.active .secondary-content {
+  color: #fff;
+}
+
+.collection a.collection-item:not(.active):hover {
+  background-color: #ddd;
+}
 
 
 .collection .coll-menu-item {
-  background-color: #fff;
+  /* background-color: #fff; */
   line-height: 1.5rem;
   padding: 10px 2px;
   margin: 0;
   border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+
 }
 
 .collection a.coll-menu-item {
   display: block;
   -webkit-transition: .25s;
   transition: .25s;
-  color: #000000; 
-  text-decoration: none;
+  color: #000;
 }
 
 
@@ -1013,11 +1059,15 @@ padding: 4px;
   color: #eafaf9;
 }
 
-.collection a.coll-menu-item:not(.active):hover {
-  background-color: #ddd;
+ .collection .coll-menu-item:last-child {
+  border-bottom: none;
 }
 
-.collection a.collection-item:not(.active):hover {
+.collection .coll-menu-item.active .secondary-content {
+  color: #fff;
+}
+
+.collection a.coll-menu-item:not(.active):hover {
   background-color: #ddd;
 }
 
@@ -1270,7 +1320,7 @@ nav ul a span.badge {
 
  
 .pagination {
-  float: right;
+ float: right; 
 }
 
 

@@ -48,7 +48,7 @@ var doNuItemDelete = function() {
  
     if(confirm(stxt[42] + " " + stxt[19] + "?")) {
     JSSHOP.ui.setCBBClickClr(dvCartItems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){void(0)});
-    procNuUIitem("qcartitem","ci_rtype",JSSHOP.shared.getFrmFieldVal("qcartitem", "_id", 0),"0","reloadDBis");
+    procNuUIitem("qcartitem","ci_rtype",JSSHOP.shared.getFrmFieldVal("qcartitem", "_id", 0),"0","reloadCartItems");
     }
 };
 
@@ -56,7 +56,7 @@ var doNuItemQtyEdit = function(tciID, tciCQ, tciOQ) {
  
     if(tciCQ !== tciOQ) {
     JSSHOP.ui.setCBBClickClr(dvCartItems,'cls_button cls_button-medium brdrClrDlg txtClrHdr','txtClrHdr bkgdClrWhite', function(){void(0)});
-    procNuUIitem("qcartitem","ci_cartqty",tciID,tciCQ,"reloadDBis");
+    procNuUIitem("qcartitem","ci_cartqty",tciID,tciCQ,"reloadCartItems");
     }
 };
 /*
@@ -172,11 +172,10 @@ var renderNuTQBItems = function(a,b,c) {
  
       strHtml += "<div>Total:" + cartTtl.toFixed(2) + "</div>"; 
    } else {
-
       strHtml += "<div>" + stxt[34] + "</div>";
-	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+	strHtml += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currRcntActHstr + "</div>";
 
-       JSSHOP.ui.toggleVisibility("dvBtnsCart");
+      JSSHOP.ui.toggleVisibility("dvBtnsCart");
 
     }
 
@@ -239,13 +238,13 @@ var fnishClearCart = function(thefCCObj,b,c) {
 newel = document.createElement('div');
 newel.innerHTML = "Cart Cleared<br>";
 newel.innerHTML += "<div>" + stxt[34] + "</div>";
-newel.innerHTML += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currUserFavs + "</div>";
+newel.innerHTML += "<div class=\"collection-item txtSmall txtBold\">Recent:<br>" + currRcntActHstr + "</div>";
 
 tmpTDQI = document.getElementById(thefCCObj);
 tmpTDQI.innerHTML = "";
 tmpTDQI.appendChild(newel);
 JSSHOP.ui.toggleVisibility("dvBtnsCart");
-
+tmpIval = setCartIArr("y", "[]", "d");
 };
 
 
@@ -311,14 +310,13 @@ var renderDBis = function(theTmpCORobj) {
     renderNuTQBItems(null,tmpVitemArr,null);
 };
 
+var setCIcache = function(theTmpCORobj) {
 
+    tmpIval = setCartIArr("y", theTmpCORobj.rs, "y");
+    renderDBis(theTmpCORobj);
+};
  
-var reloadDBis = function() {
-
-
-
-
-
+var reloadCartItems = function() {
     tmpDOs = null;
     tmpDOs = {};
     tmpDOs["ws"] = "where ci_uid=? and ci_coid=? and ci_cartqty >? and ci_rtype=? and ci_cartid=?";
@@ -329,7 +327,7 @@ var reloadDBis = function() {
 tmpGetCco = nCurrCnxOb();
 // tac["lz"] = "y";
 tmpGetCco["q"] = oi["rq"];
-tmpGetCco["cb"] = "renderDBis";
+tmpGetCco["cb"] = "setCIcache";
 doNurQComm(tmpGetCco);
 	
 };
@@ -355,6 +353,11 @@ JSSHOP.shared.initFrmComps(euiFFObjArr);
 tmpPPemalstr = JSSHOP.shared.getFrmFieldVal("qco","c_email","change_this_in_shop_info@to_your_paypal.email");
 JSSHOP.shared.setFrmFieldVal("orderform","business",tmpPPemalstr);
 // alert(JSSHOP.shared.getFrmFieldVal("orderform","business","change_this_in_shop_info@to_your_paypal.email"));
-reloadDBis();
+// reloadCartItems();
+// renderDBis(currCartIArr[0]);
+    tmpVitemArr = null;
+    tmpVitemArr = [];
+    tmpVitemArr = currCartIArr;
+renderNuTQBItems(null,currCartIArr,null);
 };
 

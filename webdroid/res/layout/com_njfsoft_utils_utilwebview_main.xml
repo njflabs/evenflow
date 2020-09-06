@@ -172,6 +172,7 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
              android:id="@+id/uwv_main"
+		android:background="#FFFFFF"
  		>
         </LinearLayout>
 

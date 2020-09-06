@@ -4,11 +4,53 @@ tmpSQBArr = [];
 tmpVitemArr = [];
 var tmpVindex = 0;
 var tmpImgCtr = 0;
-
-
+currIContent = "no"; // ajax request to include the tplates/... file or not 
+currCartTShow = "y";
 
 
  
+var tglCatUibtns = function(theTTCobjNm, theTTCPref, theTTCKey, theTTCval) {
+ retHref = "";
+retInhm = "";
+// alert(theTTCobjNm + " :: " + theTTCPref + " :: " + theTTCKey + " :: " + theTTCval);
+switch(theTTCval) {
+case "r":
+retInhm = "<a  class=\"txtDecorNone coll-menu-item\" href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','collection-item', function(){tglCatUibtns('" + theTTCobjNm + "', 'prfsSHOPuser','scv','g');JSSHOP.ui.showHideElement('mmDdown','hide')}, 20);\">";
+retInhm += "<i class=\"menu-material-icons\" alt=\"grid_on\" title=\"grid_on\">&#xe240;</i> <span  style=\"vertical-align:super;padding-left:12px;\" class=\"collection-item\">Gridr</span></a>";
+JSSHOP.user.setCkiePrfKV(theTTCPref,theTTCKey,theTTCval);
+renderAgn();
+break;
+case "g":
+retInhm = "<a  class=\"txtDecorNone coll-menu-item\" href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','collection-item', function(){tglCatUibtns('" + theTTCobjNm + "', 'prfsSHOPuser','scv','r');JSSHOP.ui.showHideElement('mmDdown','hide')}, 20);\">";
+retInhm += "<i class=\"menu-material-icons\" alt=\"grid_on\" title=\"grid_on\">&#xe240;</i> <span  style=\"vertical-align:super;padding-left:12px;\" class=\"collection-item\">Rowr</span></a>";
+JSSHOP.user.setCkiePrfKV(theTTCPref,theTTCKey,theTTCval);
+renderAgn();
+break;
+case "a":
+retInhm = "<a  class=\"txtDecorNone coll-menu-item\" href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','collection-item', function(){tglCatUibtns('" + theTTCobjNm + "', 'prfsSHOPuser','scp','d');JSSHOP.ui.showHideElement('mmDdown','hide')}, 20);\">";
+retInhm += "<i class=\"menu-material-icons\" alt=\"grid_on\" title=\"grid_on\">&#xe227;</i> <span  style=\"vertical-align:super;padding-left:12px;\" class=\"collection-item\">Price Descending</span></a>";
+JSSHOP.user.setCkiePrfKV(theTTCPref,theTTCKey,theTTCval);
+renderPrix('a');
+break;
+default:
+retInhm = "<a  class=\"txtDecorNone coll-menu-item\" href=\"javascript:void(0);\" onclick=\"javascript:JSSHOP.ui.setNuCBBClickClr(this,'kcoll-menu-item','collection-item', function(){tglCatUibtns('" + theTTCobjNm + "', 'prfsSHOPuser','scp','a');JSSHOP.ui.showHideElement('mmDdown','hide')}, 20);\">";
+retInhm += "<i class=\"menu-material-icons\" alt=\"grid_on\" title=\"grid_on\">&#xe25c;</i> <span  style=\"vertical-align:super;padding-left:12px;\" class=\"collection-item\">Price Ascending</span></a>";
+JSSHOP.user.setCkiePrfKV(theTTCPref,theTTCKey,theTTCval);
+renderPrix('d');
+}
+if(document.getElementsByName(theTTCobjNm)) {
+intTiv = 0;
+while(intTiv < document.getElementsByName(theTTCobjNm).length) {
+// document.getElementsByName(theTTCobjNm)[intTiv].onlick = retHref;
+document.getElementsByName(theTTCobjNm)[intTiv].innerHTML = retInhm;
+intTiv++;
+}
+
+
+}
+
+};
+
 
 
 var renderCatItems = function (theCArr) {
@@ -27,25 +69,29 @@ catch (e) {
 
     try {
         strHtml = "";
-        tmpTDQI = document.getElementById("dvQitems");
+        tmpTDQI = document.getElementById("includedContent");
         tmpTDQI.innerHTML = "";
-	  tmpPrfStr = "<div style=\"margin-bottom:0px;margin:0 auto;max-width: 75%\" align=\"right\">";
+	  tmpPrfStr = "<div style=\"margin-bottom:0px;margin:0 auto;max-width: 75%\">" + cat_desc.value + "</div>";
+
+	  tmpPrfStr += "<div style=\"margin-bottom:0px;margin:0 auto;max-width: 75%\">";
         tmpDVlmore = document.createElement('div');
 
             if (upRefs == "r") {
-                tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();\"><i class=\"material-icons slmtable brdrClrDlg\" alt=\"grid_on\" title=\"grid_on\" style=\"margin-right: 15px;font-size:30px;\">&#xe3ec;</i></a>";
+               //  tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','g');renderAgn();\"><i class=\"material-icons slmtable brdrClrDlg\" alt=\"grid_on\" title=\"grid_on\" style=\"margin-right: 15px;font-size:30px;\">&#xe3ec;</i></a>";
             }
             else {
-                tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe240;</i></a>";
+               //  tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scv','r');renderAgn();\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe240;</i></a>";
             }
 
 
         tmpDVlpr = document.createElement('span');
+
+
         if (upPrixRef == "a") {
-            tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('a');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe25c;</i></a>";
+          //   tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','d');renderPrix('a');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe25c;</i></a>";
         }
         else {
-            tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','a');renderPrix('d');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe227;</i></a>";
+           //  tmpPrfStr += "<a href=\"javascript:JSSHOP.user.setCkiePrfKV('prfsSHOPuser','scp','a');renderPrix('d');\"><i class=\"material-icons smltable brdrClrDlg\" alt=\"group\" title=\"group\" style=\"margin-right: 15px;font-size:30px;\">&#xe227;</i></a>";
         }
             tmpPrfStr += "</div>";
          tmpDVlmore.innerHTML = tmpPrfStr;
@@ -64,13 +110,13 @@ catch (e) {
          tmpPtotal = Math.round(tmpVitemArr.length / currProdsPPg);
 	   if(tmpVitemArr.length > (tmpPtotal * currProdsPPg)) { tmpPtotal = tmpPtotal + 1; }
 	   tmpPGstr = JSSHOP.shop.getDefaultPageNav(currPgIndex, tmpPtotal);
- 
+ 	    // document.getElementById("includedFooter").innerHTML = tmpPGstr;
+
         newel = document.createElement('div');
         newel.innerHTML = tmpPGstr;
         tmpTDQI.appendChild(newel);
 	  }
- 
-	// document.getElementById("dvPagination").innerHTML = tmpPGstr;
+ 	JSSHOP.shop.setCatPrdImgs('cat');
     }
     catch (e) {
         alert("renderNuTQBItems: " + e);
@@ -94,7 +140,7 @@ var renderAgn = function () {
  
 
 var loadCatChunk = function (theCurrPage) {
-        tmpTDQI = document.getElementById("dvQitems");
+        tmpTDQI = document.getElementById("includedContent");
         tmpTDQI.innerHTML = "";
 	  currPgIndex = theCurrPage - 1;
 	  // if((currPgIndex * currProdsPPg) > tmpVitemArr.length) {intStart = 
@@ -105,7 +151,7 @@ var loadCatChunk = function (theCurrPage) {
 
 
 var loadCatItems = function (theResp) {
-        tmpTDQI = document.getElementById("dvQitems");
+        tmpTDQI = document.getElementById("includedContent");
         tmpTDQI.innerHTML = "";
 	 //  alert("loadCatItems:" + JSON.stringify(theResp));
     if(theResp.rs.indexOf("_id") != -1) {
@@ -142,7 +188,7 @@ var loadCatItems = function (theResp) {
         renderCatItems(tmpVitemArr.slice(currPgIndex * currProdsPPg, (currPgIndex * currProdsPPg) + currProdsPPg));
     } else {
         strHtml = "<div class=\"txtBold txtClrHdr\">" + stxt[33] + "</div>";
-		document.getElementById("dvQitems").innerHTML = strHtml;
+		document.getElementById("includedContent").innerHTML = strHtml;
     }
 };
 var dmyFnishCntLoad = fnishCntLoad;
@@ -169,7 +215,8 @@ tac = nCurrCnxOb();
 tac["q"] = oi["rq"];
 tac["cb"] = "loadCatItems";
 tac["fn"] = "cattems" + ccheD + "-" + currCacheVer + "-" + catid + ".txt";
-//   tac["fc"] = "y";
+// tac["fc"] = "y";
+// tac["ls"] = "y";
 tac["ts"] = ccheD;
 doNurQComm(tac);
 
@@ -196,7 +243,7 @@ tmpActArr = getCurrMItemsArr();
     ital = 0;
     tmpACTBarr = null;
     tmpACTBarr = new Array();
-    daPSIdiv = document.getElementById("dvQitems");
+    daPSIdiv = document.getElementById("includedContent");
     tStrHtml = "";
  
     while (ital < thpArr.length) {
